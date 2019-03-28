@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  EmPact iOS
+//  EmPact-iOS
 //
-//  Created by Audrey Welch on 3/28/19.
+//  Created by Madison Waters on 3/28/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
