@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84626482224C375D009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84626481224C375D009A21A2 /* AppDelegate.swift */; };
-		84626487224C375D009A21A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84626485224C375D009A21A2 /* Main.storyboard */; };
-		84626489224C375F009A21A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84626488224C375F009A21A2 /* Assets.xcassets */; };
-		8462648C224C375F009A21A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462648A224C375F009A21A2 /* LaunchScreen.storyboard */; };
+		846264AC224D5678009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264AB224D5678009A21A2 /* AppDelegate.swift */; };
+		846264B1224D5679009A21A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846264AF224D5679009A21A2 /* Main.storyboard */; };
+		846264B3224D567A009A21A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846264B2224D567A009A21A2 /* Assets.xcassets */; };
+		846264B6224D567A009A21A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846264B4224D567A009A21A2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8462647E224C375D009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		84626481224C375D009A21A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84626486224C375D009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		84626488224C375F009A21A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8462648B224C375F009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8462648D224C375F009A21A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		846264A8224D5678009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		846264AB224D5678009A21A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		846264B0224D5679009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		846264B2224D567A009A21A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		846264B5224D567A009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		846264B7224D567A009A21A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8462647B224C375D009A21A2 /* Frameworks */ = {
+		846264A5224D5678009A21A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,167 +33,118 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84626475224C375D009A21A2 = {
+		8462649F224D5678009A21A2 = {
 			isa = PBXGroup;
 			children = (
-				84626480224C375D009A21A2 /* EmPact-iOS */,
-				8462647F224C375D009A21A2 /* Products */,
+				846264AA224D5678009A21A2 /* EmPact-iOS */,
+				846264A9224D5678009A21A2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8462647F224C375D009A21A2 /* Products */ = {
+		846264A9224D5678009A21A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8462647E224C375D009A21A2 /* EmPact-iOS.app */,
+				846264A8224D5678009A21A2 /* EmPact-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		84626480224C375D009A21A2 /* EmPact-iOS */ = {
+		846264AA224D5678009A21A2 /* EmPact-iOS */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				8462649E224C4AFD009A21A2 /* Model */,
-				8462649D224C4AF0009A21A2 /* Networking */,
-				8462649C224C4A71009A21A2 /* View Controllers */,
-				8462649B224C4A64009A21A2 /* Views */,
-				8462649A224C4A5C009A21A2 /* Storyboards */,
-				84626499224C4A55009A21A2 /* Resources */,
-=======
-				84626497224C3EE8009A21A2 /* Model */,
-				84626498224C3F1E009A21A2 /* Networking */,
-				84626496224C3ED6009A21A2 /* View Controllers */,
-				84626495224C3ECE009A21A2 /* Views */,
-				84626494224C3EC5009A21A2 /* Storyboards */,
-				84626493224C3EBA009A21A2 /* Resources */,
->>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
+				846264C3224D56F8009A21A2 /* Model */,
+				846264C2224D56EC009A21A2 /* Networking */,
+				846264C1224D56E3009A21A2 /* View Controllers */,
+				846264BF224D56B7009A21A2 /* Views */,
+				846264BE224D56AE009A21A2 /* Storyboards */,
+				846264BD224D569E009A21A2 /* Resources */,
 			);
 			path = "EmPact-iOS";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		84626499224C4A55009A21A2 /* Resources */ = {
-=======
-		84626493224C3EBA009A21A2 /* Resources */ = {
->>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
+		846264BD224D569E009A21A2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				84626481224C375D009A21A2 /* AppDelegate.swift */,
-				84626488224C375F009A21A2 /* Assets.xcassets */,
-				8462648D224C375F009A21A2 /* Info.plist */,
+				846264AB224D5678009A21A2 /* AppDelegate.swift */,
+				846264B7224D567A009A21A2 /* Info.plist */,
+				846264B2224D567A009A21A2 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		8462649A224C4A5C009A21A2 /* Storyboards */ = {
-=======
-		84626494224C3EC5009A21A2 /* Storyboards */ = {
->>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
+		846264BE224D56AE009A21A2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				84626485224C375D009A21A2 /* Main.storyboard */,
-				8462648A224C375F009A21A2 /* LaunchScreen.storyboard */,
+				846264AF224D5679009A21A2 /* Main.storyboard */,
+				846264B4224D567A009A21A2 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		8462649B224C4A64009A21A2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		8462649C224C4A71009A21A2 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "View Controllers";
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
-		8462649D224C4AF0009A21A2 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		8462649E224C4AFD009A21A2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			path = "New Group";
-=======
-		84626495224C3ECE009A21A2 /* Views */ = {
+		846264BF224D56B7009A21A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		84626496224C3ED6009A21A2 /* View Controllers */ = {
+		846264C1224D56E3009A21A2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		84626497224C3EE8009A21A2 /* Model */ = {
+		846264C2224D56EC009A21A2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		846264C3224D56F8009A21A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		84626498224C3F1E009A21A2 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
->>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8462647D224C375D009A21A2 /* EmPact-iOS */ = {
+		846264A7224D5678009A21A2 /* EmPact-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84626490224C375F009A21A2 /* Build configuration list for PBXNativeTarget "EmPact-iOS" */;
+			buildConfigurationList = 846264BA224D567A009A21A2 /* Build configuration list for PBXNativeTarget "EmPact-iOS" */;
 			buildPhases = (
-				8462647A224C375D009A21A2 /* Sources */,
-				8462647B224C375D009A21A2 /* Frameworks */,
-				8462647C224C375D009A21A2 /* Resources */,
+				846264A4224D5678009A21A2 /* Sources */,
+				846264A5224D5678009A21A2 /* Frameworks */,
+				846264A6224D5678009A21A2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "EmPact-iOS";
-			productName = "EmPact-iOS";
-			productReference = 8462647E224C375D009A21A2 /* EmPact-iOS.app */;
+			productName = "EmPact iOS";
+			productReference = 846264A8224D5678009A21A2 /* EmPact-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		84626476224C375D009A21A2 /* Project object */ = {
+		846264A0224D5678009A21A2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = EmPact;
 				TargetAttributes = {
-					8462647D224C375D009A21A2 = {
+					846264A7224D5678009A21A2 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
-			buildConfigurationList = 84626479224C375D009A21A2 /* Build configuration list for PBXProject "EmPact-iOS" */;
+			buildConfigurationList = 846264A3224D5678009A21A2 /* Build configuration list for PBXProject "EmPact-iOS" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -201,53 +152,53 @@
 				en,
 				Base,
 			);
-			mainGroup = 84626475224C375D009A21A2;
-			productRefGroup = 8462647F224C375D009A21A2 /* Products */;
+			mainGroup = 8462649F224D5678009A21A2;
+			productRefGroup = 846264A9224D5678009A21A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8462647D224C375D009A21A2 /* EmPact-iOS */,
+				846264A7224D5678009A21A2 /* EmPact-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8462647C224C375D009A21A2 /* Resources */ = {
+		846264A6224D5678009A21A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8462648C224C375F009A21A2 /* LaunchScreen.storyboard in Resources */,
-				84626489224C375F009A21A2 /* Assets.xcassets in Resources */,
-				84626487224C375D009A21A2 /* Main.storyboard in Resources */,
+				846264B6224D567A009A21A2 /* LaunchScreen.storyboard in Resources */,
+				846264B3224D567A009A21A2 /* Assets.xcassets in Resources */,
+				846264B1224D5679009A21A2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8462647A224C375D009A21A2 /* Sources */ = {
+		846264A4224D5678009A21A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84626482224C375D009A21A2 /* AppDelegate.swift in Sources */,
+				846264AC224D5678009A21A2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		84626485224C375D009A21A2 /* Main.storyboard */ = {
+		846264AF224D5679009A21A2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				84626486224C375D009A21A2 /* Base */,
+				846264B0224D5679009A21A2 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		8462648A224C375F009A21A2 /* LaunchScreen.storyboard */ = {
+		846264B4224D567A009A21A2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8462648B224C375F009A21A2 /* Base */,
+				846264B5224D567A009A21A2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -255,7 +206,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8462648E224C375F009A21A2 /* Debug */ = {
+		846264B8224D567A009A21A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -316,7 +267,7 @@
 			};
 			name = Debug;
 		};
-		8462648F224C375F009A21A2 /* Release */ = {
+		846264B9224D567A009A21A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -371,7 +322,7 @@
 			};
 			name = Release;
 		};
-		84626491224C375F009A21A2 /* Debug */ = {
+		846264BB224D567A009A21A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -389,7 +340,7 @@
 			};
 			name = Debug;
 		};
-		84626492224C375F009A21A2 /* Release */ = {
+		846264BC224D567A009A21A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -410,25 +361,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84626479224C375D009A21A2 /* Build configuration list for PBXProject "EmPact-iOS" */ = {
+		846264A3224D5678009A21A2 /* Build configuration list for PBXProject "EmPact-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8462648E224C375F009A21A2 /* Debug */,
-				8462648F224C375F009A21A2 /* Release */,
+				846264B8224D567A009A21A2 /* Debug */,
+				846264B9224D567A009A21A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84626490224C375F009A21A2 /* Build configuration list for PBXNativeTarget "EmPact-iOS" */ = {
+		846264BA224D567A009A21A2 /* Build configuration list for PBXNativeTarget "EmPact-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84626491224C375F009A21A2 /* Debug */,
-				84626492224C375F009A21A2 /* Release */,
+				846264BB224D567A009A21A2 /* Debug */,
+				846264BC224D567A009A21A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 84626476224C375D009A21A2 /* Project object */;
+	rootObject = 846264A0224D5678009A21A2 /* Project object */;
 }

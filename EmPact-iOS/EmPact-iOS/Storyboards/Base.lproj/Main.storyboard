@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XFd-MN-udG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="iPD-gt-Tni">
+            <objects>
+                <viewController id="gKd-BA-kZF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tby-aw-Rq3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="zAI-Gm-pvH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HAl-CQ-7le" userLabel="Language Buttons Stack">
+                                <rect key="frame" x="131.5" y="318.5" width="112" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaA-t9-imb">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                        <state key="normal" title="English"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fE-CU-W5I">
+                                        <rect key="frame" x="58" y="0.0" width="54" height="30"/>
+                                        <state key="normal" title="Español"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HAl-CQ-7le" firstAttribute="centerX" secondItem="tby-aw-Rq3" secondAttribute="centerX" id="4oh-8C-eMi"/>
+                            <constraint firstItem="zAI-Gm-pvH" firstAttribute="trailing" secondItem="fL3-qk-umw" secondAttribute="trailing" id="84k-mR-bWO"/>
+                            <constraint firstItem="zAI-Gm-pvH" firstAttribute="leading" secondItem="fL3-qk-umw" secondAttribute="leading" id="Jhj-gz-6QA"/>
+                            <constraint firstItem="zAI-Gm-pvH" firstAttribute="top" secondItem="fL3-qk-umw" secondAttribute="top" id="gVo-SB-6CH"/>
+                            <constraint firstItem="HAl-CQ-7le" firstAttribute="centerY" secondItem="tby-aw-Rq3" secondAttribute="centerY" id="xMf-tE-9lT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fL3-qk-umw"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="m5e-bP-oUV"/>
+                    <connections>
+                        <segue destination="3HA-H1-8ce" kind="show" identifier="showCategoriesSegue" id="Xfk-H4-tC4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L2M-IG-nhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1176.8" y="142.57871064467767"/>
+        </scene>
+        <!--Categories-->
+        <scene sceneID="SDU-Bb-VhE">
+            <objects>
+                <viewController id="3HA-H1-8ce" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="myc-ML-MdU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="M7z-2x-IJF"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Categories" id="HER-G6-IbJ">
+                        <barButtonItem key="rightBarButtonItem" title="Español" id="fDP-Up-K42"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e7r-J4-SdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1950" y="143"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XsQ-ek-J5X">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XFd-MN-udG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e9d-aj-dbP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gKd-BA-kZF" kind="relationship" relationship="rootViewController" id="pVr-DB-1u7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uR3-a6-qiZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="492" y="143"/>
+        </scene>
+    </scenes>
 </document>
