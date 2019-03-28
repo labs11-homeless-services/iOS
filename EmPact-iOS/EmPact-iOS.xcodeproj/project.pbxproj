@@ -52,17 +52,30 @@
 		84626480224C375D009A21A2 /* EmPact-iOS */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				8462649E224C4AFD009A21A2 /* Model */,
 				8462649D224C4AF0009A21A2 /* Networking */,
 				8462649C224C4A71009A21A2 /* View Controllers */,
 				8462649B224C4A64009A21A2 /* Views */,
 				8462649A224C4A5C009A21A2 /* Storyboards */,
 				84626499224C4A55009A21A2 /* Resources */,
+=======
+				84626497224C3EE8009A21A2 /* Model */,
+				84626498224C3F1E009A21A2 /* Networking */,
+				84626496224C3ED6009A21A2 /* View Controllers */,
+				84626495224C3ECE009A21A2 /* Views */,
+				84626494224C3EC5009A21A2 /* Storyboards */,
+				84626493224C3EBA009A21A2 /* Resources */,
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
 			);
 			path = "EmPact-iOS";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		84626499224C4A55009A21A2 /* Resources */ = {
+=======
+		84626493224C3EBA009A21A2 /* Resources */ = {
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
 			isa = PBXGroup;
 			children = (
 				84626481224C375D009A21A2 /* AppDelegate.swift */,
@@ -72,7 +85,11 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		8462649A224C4A5C009A21A2 /* Storyboards */ = {
+=======
+		84626494224C3EC5009A21A2 /* Storyboards */ = {
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
 			isa = PBXGroup;
 			children = (
 				84626485224C375D009A21A2 /* Main.storyboard */,
@@ -81,6 +98,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		8462649B224C4A64009A21A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +128,34 @@
 			);
 			name = Model;
 			path = "New Group";
+=======
+		84626495224C3ECE009A21A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84626496224C3ED6009A21A2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		84626497224C3EE8009A21A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84626498224C3F1E009A21A2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,7 +377,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "EmPact-iOS/Info.plist";
+				INFOPLIST_FILE = "EmPact-iOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -349,7 +395,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "EmPact-iOS/Info.plist";
+				INFOPLIST_FILE = "EmPact-iOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
