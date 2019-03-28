@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		84626482224C375D009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84626481224C375D009A21A2 /* AppDelegate.swift */; };
-		84626484224C375D009A21A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84626483224C375D009A21A2 /* ViewController.swift */; };
 		84626487224C375D009A21A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84626485224C375D009A21A2 /* Main.storyboard */; };
 		84626489224C375F009A21A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84626488224C375F009A21A2 /* Assets.xcassets */; };
 		8462648C224C375F009A21A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8462648A224C375F009A21A2 /* LaunchScreen.storyboard */; };
@@ -17,7 +16,6 @@
 /* Begin PBXFileReference section */
 		8462647E224C375D009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84626481224C375D009A21A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84626483224C375D009A21A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84626486224C375D009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84626488224C375F009A21A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8462648B224C375F009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,14 +52,110 @@
 		84626480224C375D009A21A2 /* EmPact-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				84626481224C375D009A21A2 /* AppDelegate.swift */,
-				84626483224C375D009A21A2 /* ViewController.swift */,
-				84626485224C375D009A21A2 /* Main.storyboard */,
-				84626488224C375F009A21A2 /* Assets.xcassets */,
-				8462648A224C375F009A21A2 /* LaunchScreen.storyboard */,
-				8462648D224C375F009A21A2 /* Info.plist */,
+<<<<<<< HEAD
+				8462649E224C4AFD009A21A2 /* Model */,
+				8462649D224C4AF0009A21A2 /* Networking */,
+				8462649C224C4A71009A21A2 /* View Controllers */,
+				8462649B224C4A64009A21A2 /* Views */,
+				8462649A224C4A5C009A21A2 /* Storyboards */,
+				84626499224C4A55009A21A2 /* Resources */,
+=======
+				84626497224C3EE8009A21A2 /* Model */,
+				84626498224C3F1E009A21A2 /* Networking */,
+				84626496224C3ED6009A21A2 /* View Controllers */,
+				84626495224C3ECE009A21A2 /* Views */,
+				84626494224C3EC5009A21A2 /* Storyboards */,
+				84626493224C3EBA009A21A2 /* Resources */,
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
 			);
 			path = "EmPact-iOS";
+			sourceTree = "<group>";
+		};
+<<<<<<< HEAD
+		84626499224C4A55009A21A2 /* Resources */ = {
+=======
+		84626493224C3EBA009A21A2 /* Resources */ = {
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
+			isa = PBXGroup;
+			children = (
+				84626481224C375D009A21A2 /* AppDelegate.swift */,
+				84626488224C375F009A21A2 /* Assets.xcassets */,
+				8462648D224C375F009A21A2 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+<<<<<<< HEAD
+		8462649A224C4A5C009A21A2 /* Storyboards */ = {
+=======
+		84626494224C3EC5009A21A2 /* Storyboards */ = {
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
+			isa = PBXGroup;
+			children = (
+				84626485224C375D009A21A2 /* Main.storyboard */,
+				8462648A224C375F009A21A2 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+<<<<<<< HEAD
+		8462649B224C4A64009A21A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		8462649C224C4A71009A21A2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "View Controllers";
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		8462649D224C4AF0009A21A2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8462649E224C4AFD009A21A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = "New Group";
+=======
+		84626495224C3ECE009A21A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84626496224C3ED6009A21A2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		84626497224C3EE8009A21A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84626498224C3F1E009A21A2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+>>>>>>> 18f7b6e51f6eef7282b3fc0f030dcdf63f92329b
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84626484224C375D009A21A2 /* ViewController.swift in Sources */,
 				84626482224C375D009A21A2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +377,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "EmPact-iOS/Info.plist";
+				INFOPLIST_FILE = "EmPact-iOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +395,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "EmPact-iOS/Info.plist";
+				INFOPLIST_FILE = "EmPact-iOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
