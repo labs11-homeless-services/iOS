@@ -1,5 +1,5 @@
 //
-//  NetworkController.swift
+//  AppearanceHelper.swift
 //  EmPact-iOS
 //
 //  Created by Audrey Welch on 3/28/19.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+enum Appearance {
+    
+}
