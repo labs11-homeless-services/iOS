@@ -2,13 +2,13 @@
 //  CategoriesViewController.swift
 //  EmPact-iOS
 //
-//  Created by Audrey Welch on 3/29/19.
+//  Created by Madison Waters on 3/29/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
 import UIKit
 
-class CategoriesViewController: UIViewController {
+class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectaionViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,8 @@ class CategoriesViewController: UIViewController {
         // Make Collection View Outlet
         // Set Delegate
         // Set DataSource
+        
+        
     }
     
 
