@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectaionViewDataSource {
+class CategoriesViewController: UIViewController { // UICollectionViewDelegate, UICollectaionViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +17,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set Delegate
         // Set DataSource
         
+        Firebase<Categories>.fetchRecords { (categories) in
+            if let categories = categories {
+                NSLog("\(categories)")
+                
+                DispatchQueue.main.async {
+                    // reload the table view data
+                }
+            }
+        }
         
     }
     
@@ -31,4 +40,5 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     */
 
+    //let firebase = Firebase()
 }

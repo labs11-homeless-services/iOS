@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
+		11A098A52252A5B1006F8B9D /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098A42252A5B1006F8B9D /* Firebase.swift */; };
+		11A098A72252A72C006F8B9D /* FirebaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098A62252A72C006F8B9D /* FirebaseItem.swift */; };
 		846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264D0224D9803009A21A2 /* AppDelegate.swift */; };
 		846264D6224D9803009A21A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846264D4224D9803009A21A2 /* Main.storyboard */; };
 		846264D8224D9805009A21A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846264D7224D9805009A21A2 /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		11A098A42252A5B1006F8B9D /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		11A098A62252A72C006F8B9D /* FirebaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseItem.swift; sourceTree = "<group>"; };
 		846264CD224D9803009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		846264D0224D9803009A21A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846264D5224D9803009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				846264EB224D98AF009A21A2 /* NetworkController.swift */,
+				11A098A42252A5B1006F8B9D /* Firebase.swift */,
+				11A098A62252A72C006F8B9D /* FirebaseItem.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -214,7 +220,9 @@
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
 				846264EA224D98A0009A21A2 /* Categories.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
+				11A098A72252A72C006F8B9D /* FirebaseItem.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
+				11A098A52252A5B1006F8B9D /* Firebase.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,
 			);
