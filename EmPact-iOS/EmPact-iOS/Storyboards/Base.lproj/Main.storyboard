@@ -10,17 +10,48 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Language Selection View Controller-->
+        <!--EmPact-->
         <scene sceneID="qHG-Tl-TMp">
             <objects>
                 <viewController id="L3M-VF-e8P" customClass="LanguageSelectionViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vQA-Tf-rlF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="JL6-Py-ksV">
+                                <rect key="frame" x="146" y="287" width="83" height="93"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GU-ab-k0d">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="English"/>
+                                        <connections>
+                                            <segue destination="0tP-UG-PIs" kind="show" id="ZcM-yn-fUD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyj-4M-Pmy">
+                                        <rect key="frame" x="0.0" y="52" width="83" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Español"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-qf-zji">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Ag-qf-zji" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" id="8Pd-7S-eGn"/>
+                            <constraint firstItem="1Ag-qf-zji" firstAttribute="top" secondItem="8AQ-Va-4rq" secondAttribute="top" id="N18-Hb-aFD"/>
+                            <constraint firstItem="JL6-Py-ksV" firstAttribute="centerX" secondItem="vQA-Tf-rlF" secondAttribute="centerX" id="Slv-v3-CEG"/>
+                            <constraint firstItem="JL6-Py-ksV" firstAttribute="centerY" secondItem="vQA-Tf-rlF" secondAttribute="centerY" id="bGG-zo-xBn"/>
+                            <constraint firstItem="1Ag-qf-zji" firstAttribute="trailing" secondItem="8AQ-Va-4rq" secondAttribute="trailing" id="qdf-te-5VE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8AQ-Va-4rq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kKg-Yk-sIL"/>
+                    <navigationItem key="navigationItem" title="EmPact" id="kKg-Yk-sIL"/>
                     <connections>
                         <segue destination="0tP-UG-PIs" kind="show" identifier="showCategoriesSegue" id="sI5-lG-G3I"/>
                     </connections>
@@ -32,7 +63,7 @@
         <!--Categories-->
         <scene sceneID="Fn9-Nh-ekR">
             <objects>
-                <viewController id="0tP-UG-PIs" sceneMemberID="viewController">
+                <viewController id="0tP-UG-PIs" customClass="CategoriesViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qqT-SJ-dEi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +88,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Jzc-f9-aFD">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="Jzc-f9-aFD" customClass="CategoryCollectionViewCell" customModule="EmPact_iOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -79,7 +110,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUL-Br-Y8K">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUL-Br-Y8K" userLabel="Shelter Card">
                                                 <rect key="frame" x="20" y="227" width="335" height="211"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3K0-1V-7az" userLabel="Name Label">
@@ -89,9 +120,9 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-XW-KB3" userLabel="Address Stack">
-                                                        <rect key="frame" x="8" y="65" width="319" height="20"/>
+                                                        <rect key="frame" x="8" y="69" width="319" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Prf-Rw-iGh" userLabel="Address Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="Prf-Rw-iGh" userLabel="Address Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="2kg-F6-pnk"/>
@@ -107,9 +138,9 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYj-gS-Pnk" userLabel="Directions Stack">
-                                                        <rect key="frame" x="8" y="93" width="319" height="20"/>
+                                                        <rect key="frame" x="8" y="97" width="319" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-mk-hU6" userLabel="Public Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-mk-hU6" userLabel="Public Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="LKH-qK-2RV"/>
@@ -123,7 +154,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eM2-zn-oxB" userLabel="Walk Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="eM2-zn-oxB" userLabel="Walk Icon">
                                                                 <rect key="frame" x="163.5" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="4Qd-zP-F7G"/>
@@ -143,9 +174,9 @@
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Trw-Pb-zkS" userLabel="Contact Stack">
-                                                        <rect key="frame" x="8" y="121" width="319" height="20"/>
+                                                        <rect key="frame" x="8" y="125" width="319" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-Po-4VI" userLabel="Phone Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-Po-4VI" userLabel="Phone Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="Nes-iu-IQF"/>
@@ -153,13 +184,13 @@
                                                                     <constraint firstAttribute="width" secondItem="xeW-Po-4VI" secondAttribute="height" id="t1M-KZ-lvq"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 (352) 344 - 8111" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFi-yv-4zE" userLabel="Phone Label">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 (352) 344 - 8111" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFi-yv-4zE" userLabel="Phone Label">
                                                                 <rect key="frame" x="28" y="0.0" width="127.5" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-CQ-IBd" userLabel="Hours Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-CQ-IBd" userLabel="Hours Icon">
                                                                 <rect key="frame" x="163.5" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="0yI-Dz-bpe"/>
@@ -167,7 +198,7 @@
                                                                     <constraint firstAttribute="height" constant="20" id="eLs-t5-aDG"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday - Friday 9 a.m. to 5 p.m." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaP-eF-phG" userLabel="Hours Label">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday - Friday 9 a.m. to 5 p.m." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaP-eF-phG" userLabel="Hours Label">
                                                                 <rect key="frame" x="191.5" y="0.0" width="127.5" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
@@ -178,15 +209,15 @@
                                                             <constraint firstItem="iaP-eF-phG" firstAttribute="width" secondItem="JFi-yv-4zE" secondAttribute="width" id="Zfn-hQ-Weq"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="71" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-jZ-qto" userLabel="Buttons Stack">
-                                                        <rect key="frame" x="8" y="161" width="319" height="30"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-jZ-qto" userLabel="Buttons Stack">
+                                                        <rect key="frame" x="8" y="165" width="319" height="30"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpN-e2-2Pz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="129.5" height="30"/>
                                                                 <state key="normal" title="View Map"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfa-NP-tL1">
-                                                                <rect key="frame" x="195" y="0.0" width="124" height="30"/>
+                                                                <rect key="frame" x="189.5" y="0.0" width="129.5" height="30"/>
                                                                 <state key="normal" title="View Details"/>
                                                             </button>
                                                         </subviews>
@@ -213,7 +244,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="jqp-jZ-qto" secondAttribute="bottom" constant="20" id="qNy-s2-WKx"/>
                                                     <constraint firstAttribute="trailing" secondItem="IYj-gS-Pnk" secondAttribute="trailing" constant="8" id="wI9-e8-MGS"/>
                                                     <constraint firstItem="Trw-Pb-zkS" firstAttribute="top" secondItem="IYj-gS-Pnk" secondAttribute="bottom" constant="8" id="yl0-8w-zNS"/>
-                                                    <constraint firstItem="C0M-XW-KB3" firstAttribute="top" secondItem="3K0-1V-7az" secondAttribute="bottom" constant="8" id="zBm-FH-U8g"/>
+                                                    <constraint firstItem="C0M-XW-KB3" firstAttribute="top" secondItem="3K0-1V-7az" secondAttribute="bottom" constant="12" id="zBm-FH-U8g"/>
                                                     <constraint firstItem="Trw-Pb-zkS" firstAttribute="leading" secondItem="PUL-Br-Y8K" secondAttribute="leading" constant="8" id="zqv-lS-Ct1"/>
                                                 </constraints>
                                             </view>
@@ -223,7 +254,6 @@
                                             <constraint firstAttribute="trailing" secondItem="A1T-51-ynV" secondAttribute="trailing" id="32J-Ea-UNc"/>
                                             <constraint firstItem="NnQ-Qv-uX1" firstAttribute="top" secondItem="oY7-Lu-bue" secondAttribute="top" constant="20" id="8iF-U0-QL6"/>
                                             <constraint firstItem="JUh-ah-XMf" firstAttribute="top" secondItem="NnQ-Qv-uX1" secondAttribute="bottom" constant="20" id="BLS-ZC-Uoi"/>
-                                            <constraint firstItem="PUL-Br-Y8K" firstAttribute="top" secondItem="A1T-51-ynV" secondAttribute="bottom" constant="20" id="NGV-Yr-F8o"/>
                                             <constraint firstAttribute="trailing" secondItem="NnQ-Qv-uX1" secondAttribute="trailing" constant="20" id="R4d-tV-0jf"/>
                                             <constraint firstItem="JUh-ah-XMf" firstAttribute="leading" secondItem="oY7-Lu-bue" secondAttribute="leading" constant="20" id="Ri9-e0-C1f"/>
                                             <constraint firstAttribute="trailing" secondItem="JUh-ah-XMf" secondAttribute="trailing" constant="20" id="aF1-r8-2K9"/>
@@ -263,10 +293,122 @@
                         <barButtonItem key="rightBarButtonItem" title="Español" id="3lH-fr-aHO"/>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <segue destination="zem-mX-p5a" kind="show" id="hvx-Hf-RwT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXs-nM-FQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1492" y="248.27586206896552"/>
+        </scene>
+        <!--Shelters - Men-->
+        <scene sceneID="DSe-Wt-ueS">
+            <objects>
+                <viewController id="zem-mX-p5a" customClass="ServiceResultsViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hdl-0b-x97">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noe-Nl-33B">
+                                <rect key="frame" x="0.0" y="64" width="375" height="117"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0A7-xO-7HR">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEN'S SHELTERS within Citrus County, FL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQW-hr-yqe">
+                                        <rect key="frame" x="20" y="76" width="335" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="qQW-hr-yqe" firstAttribute="leading" secondItem="noe-Nl-33B" secondAttribute="leading" constant="20" id="4g6-EP-u3T"/>
+                                    <constraint firstItem="0A7-xO-7HR" firstAttribute="top" secondItem="noe-Nl-33B" secondAttribute="top" id="9w2-3k-Oi7"/>
+                                    <constraint firstAttribute="trailing" secondItem="qQW-hr-yqe" secondAttribute="trailing" constant="20" id="AuZ-qH-Z09"/>
+                                    <constraint firstItem="qQW-hr-yqe" firstAttribute="top" secondItem="0A7-xO-7HR" secondAttribute="bottom" constant="20" id="UgA-q7-QPI"/>
+                                    <constraint firstItem="0A7-xO-7HR" firstAttribute="leading" secondItem="noe-Nl-33B" secondAttribute="leading" id="Wkv-zZ-1wo"/>
+                                    <constraint firstItem="0A7-xO-7HR" firstAttribute="centerX" secondItem="qQW-hr-yqe" secondAttribute="centerX" id="ocf-fO-8Wc"/>
+                                    <constraint firstAttribute="bottom" secondItem="qQW-hr-yqe" secondAttribute="bottom" constant="20" id="wXD-ho-ZPa"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t2t-NX-Rw1">
+                                <rect key="frame" x="0.0" y="181" width="375" height="486"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="219" id="eb7-v2-PZu">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="219"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eb7-v2-PZu" id="aas-0l-Bc9" customClass="ServiceResultTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="218.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9M-yO-vJa">
+                                                    <rect key="frame" x="20" y="20" width="335" height="49"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="R9M-yO-vJa" firstAttribute="leading" secondItem="aas-0l-Bc9" secondAttribute="leading" constant="20" id="0FR-5t-SC1"/>
+                                                <constraint firstItem="R9M-yO-vJa" firstAttribute="top" secondItem="aas-0l-Bc9" secondAttribute="top" constant="20" id="GxE-2I-Cpz"/>
+                                                <constraint firstAttribute="trailing" secondItem="R9M-yO-vJa" secondAttribute="trailing" constant="20" id="K93-xs-1Tc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="kk6-0y-WL5" kind="show" id="IhC-DS-dSC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7N9-rx-zAM" firstAttribute="trailing" secondItem="t2t-NX-Rw1" secondAttribute="trailing" id="3oA-K3-AIF"/>
+                            <constraint firstItem="t2t-NX-Rw1" firstAttribute="top" secondItem="noe-Nl-33B" secondAttribute="bottom" id="fAl-mp-upK"/>
+                            <constraint firstItem="t2t-NX-Rw1" firstAttribute="leading" secondItem="7N9-rx-zAM" secondAttribute="leading" id="gmI-Oj-tKc"/>
+                            <constraint firstItem="7N9-rx-zAM" firstAttribute="bottom" secondItem="t2t-NX-Rw1" secondAttribute="bottom" id="ku4-ET-7Gs"/>
+                            <constraint firstItem="7N9-rx-zAM" firstAttribute="trailing" secondItem="noe-Nl-33B" secondAttribute="trailing" id="rVz-Cl-yHE"/>
+                            <constraint firstItem="noe-Nl-33B" firstAttribute="leading" secondItem="7N9-rx-zAM" secondAttribute="leading" id="ryE-1n-jhm"/>
+                            <constraint firstItem="noe-Nl-33B" firstAttribute="top" secondItem="7N9-rx-zAM" secondAttribute="top" id="w69-In-xAV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7N9-rx-zAM"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Shelters - Men" id="xTq-Gz-mtZ">
+                        <barButtonItem key="rightBarButtonItem" title="Español" id="P18-MJ-1Cp"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wBE-gr-hJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2157.5999999999999" y="244.22788605697153"/>
+        </scene>
+        <!--Citrus County Abuse Shelter-->
+        <scene sceneID="NJn-hU-LVO">
+            <objects>
+                <viewController id="kk6-0y-WL5" customClass="ServiceDetailViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XMe-cl-Yme">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-f1-LmS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="LmX-Ue-zzX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Citrus County Abuse Shelter" id="aXl-kM-Yn3">
+                        <barButtonItem key="rightBarButtonItem" title="Español" id="iFQ-tK-faU"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gwh-5o-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2855" y="244"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tul-sl-5zu">
@@ -287,4 +429,10 @@
             <point key="canvasLocation" x="121" y="249"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-organic-food-50" width="50" height="50"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sI5-lG-G3I"/>
+    </inferredMetricsTieBreakers>
 </document>
