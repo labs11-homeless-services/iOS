@@ -10,12 +10,15 @@ import UIKit
 
 class NetworkController {
     
-    static var categoryNames: [String] = []
+    static let shared = NetworkController()
+    private init() {}
     
+    var categoryNames: [String] = []
+
     typealias CompletionHandler = (Error?) -> Void
     static var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/") }
     
-    static func fetchCategoryNames(completion: @escaping CompletionHandler = { _ in }) {
+    func fetchCategoryNames(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
             .appendingPathComponent("categories")
@@ -58,7 +61,7 @@ class NetworkController {
         }.resume()
     }
     
-    static func fetchCategoriesFromServer(completion: @escaping CompletionHandler = { _ in }) {
+    func fetchCategoriesFromServer(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL.appendingPathExtension("json")
         

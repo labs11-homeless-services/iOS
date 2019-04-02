@@ -10,17 +10,7 @@
 import Foundation
 
 struct FirebaseObject: Decodable {
-    
-//    enum CategoriesKeys: String, CodingKey {
-//        case education
-//        case emergencyServices = "emergency_services"
-//        case food
-//        case healthcare
-//        case hygiene
-//        case outreachServices = "outreach_services"
-//        case shelters
-//    }
-    
+        
     var education: [Education]
     var emergencyServices: [EmergencyServices] // emergency_services
     var food: [Food]
