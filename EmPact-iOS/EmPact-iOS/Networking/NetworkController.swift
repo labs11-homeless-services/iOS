@@ -47,17 +47,16 @@ class NetworkController {
                 let decodedResponse = try jsonDecoder.decode(Categories.self, from: data)
                 print("Network decodedResponse: \(decodedResponse)")
                 
-                //self.categoryNames = decodedResponse
                 let categories = decodedResponse.categoryName
-                self.categoryNames = categories
+                let capitalizedCategories = categories.map {$0.capitalized}
+                
+                self.categoryNames = capitalizedCategories
                 print("Network Categories: \(categories)")
                 completion(nil)
             } catch {
                 print("error decoding entries: \(error)")
                 completion(error)
             }
-            
-            
         }.resume()
     }
     

@@ -19,7 +19,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //NetworkController.fetchCategoryNames()
         //NetworkController.fetchCategoriesFromServer()
 
         // Set Delegate
@@ -32,7 +31,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //NetworkController.fetchCategoryNames()
+        
+        NetworkController.shared.fetchCategoryNames { (error) in
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.categoriesCollectionView.reloadData()
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,7 +47,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoriesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let categoryName = NetworkController.shared.categoryNames[indexPath.row]
         cell.categoryNameLabel.text = categoryName
