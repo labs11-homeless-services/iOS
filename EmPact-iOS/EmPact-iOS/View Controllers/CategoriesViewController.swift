@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -14,7 +15,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
     let networkController = NetworkController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +37,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,7 +50,27 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         let categoryName = networkController.categoryNames[indexPath.row]
         cell.categoryNameLabel.text = categoryName
-        //cell.categoryImageView.image =
+        
+        var iconImage: UIImage!
+        if categoryName == "Shelters" {
+            iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
+        } else if categoryName == "Health Care" {
+            iconImage = UIImage(named: CategoryIconImages.healthcare.rawValue)
+        } else if categoryName == "Food" {
+            iconImage = UIImage(named: CategoryIconImages.food.rawValue)
+        } else if categoryName == "Hygiene" {
+            iconImage = UIImage(named: CategoryIconImages.hygiene.rawValue)
+        } else if categoryName == "Outreach Services" {
+            iconImage = UIImage(named: CategoryIconImages.outreach.rawValue)
+        } else if categoryName == "Education" {
+            iconImage = UIImage(named: CategoryIconImages.education.rawValue)
+        } else if categoryName == "Legal Administrative" {
+            iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
+        } else if categoryName == "Jobs" {
+            iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
+        }
+        
+        cell.categoryImageView.image = iconImage
         
         return cell
     }
