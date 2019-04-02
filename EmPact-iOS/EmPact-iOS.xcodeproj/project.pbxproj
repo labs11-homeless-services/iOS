@@ -26,6 +26,7 @@
 		846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264EF224D98F5009A21A2 /* LanguageSelectionViewController.swift */; };
 		846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264F1224D9910009A21A2 /* AppearanceHelper.swift */; };
 		847A7EC92253CBFB00A62A5F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7EC82253CBFB00A62A5F /* Categories.swift */; };
+		847A7ECB2254186200A62A5F /* IconImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7ECA2254186200A62A5F /* IconImageHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		846264EF224D98F5009A21A2 /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		846264F1224D9910009A21A2 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
 		847A7EC82253CBFB00A62A5F /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		847A7ECA2254186200A62A5F /* IconImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImageHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				846264F1224D9910009A21A2 /* AppearanceHelper.swift */,
+				847A7ECA2254186200A62A5F /* IconImageHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
+				847A7ECB2254186200A62A5F /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,

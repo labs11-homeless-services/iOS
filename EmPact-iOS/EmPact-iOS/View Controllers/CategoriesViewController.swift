@@ -51,8 +51,19 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         let categoryName = NetworkController.shared.categoryNames[indexPath.row]
         cell.categoryNameLabel.text = categoryName
-        //cell.categoryImageView.image =
         
+        var iconImage: UIImage!
+        if categoryName == "Education" {
+             iconImage = UIImage(named: CategoryIconImages.education.rawValue)
+        } else if categoryName == "Education" {
+            
+        }
+
+       
+
+        
+        
+        cell.categoryImageView.image = iconImage
         return cell
     }
     

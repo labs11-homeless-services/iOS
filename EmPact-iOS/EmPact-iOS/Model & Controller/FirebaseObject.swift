@@ -5,7 +5,6 @@
 //  Created by Audrey Welch on 3/28/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
-// Pokemon, SWAPI, Codable Week, Song - Weezer Album, Codable on Pokemon & SWAPI, Make a file for each Model by name
 
 import Foundation
 
