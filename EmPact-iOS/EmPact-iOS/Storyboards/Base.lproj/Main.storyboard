@@ -82,19 +82,43 @@
                                                 <rect key="frame" x="20" y="62" width="335" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Qq-dj-PmW">
-                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="itemSize" width="95" height="115"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="Jzc-f9-aFD" customClass="CategoryCollectionViewCell" customModule="EmPact_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="115"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="115"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tGZ-Fu-NLu">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDb-ab-qrc">
+                                                                    <rect key="frame" x="0.0" y="95" width="95" height="20"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                         </view>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="oDb-ab-qrc" secondAttribute="bottom" id="4ak-Mg-PM8"/>
+                                                            <constraint firstItem="tGZ-Fu-NLu" firstAttribute="top" secondItem="Jzc-f9-aFD" secondAttribute="top" id="ECc-ab-hb8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tGZ-Fu-NLu" secondAttribute="trailing" id="IDQ-gW-fI1"/>
+                                                            <constraint firstAttribute="trailing" secondItem="oDb-ab-qrc" secondAttribute="trailing" id="MBV-sT-xnq"/>
+                                                            <constraint firstItem="oDb-ab-qrc" firstAttribute="top" secondItem="tGZ-Fu-NLu" secondAttribute="bottom" id="OHS-T5-Axi"/>
+                                                            <constraint firstItem="oDb-ab-qrc" firstAttribute="leading" secondItem="Jzc-f9-aFD" secondAttribute="leading" id="nbN-Jz-RLY"/>
+                                                            <constraint firstItem="tGZ-Fu-NLu" firstAttribute="leading" secondItem="Jzc-f9-aFD" secondAttribute="leading" id="r4e-E7-Pse"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="categoryNameLabel" destination="oDb-ab-qrc" id="9tz-GS-Ibw"/>
+                                                            <outlet property="collectionImageView" destination="tGZ-Fu-NLu" id="nqM-iE-49A"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
