@@ -6,7 +6,7 @@
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkController {
     
@@ -19,34 +19,34 @@ class NetworkController {
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
-                print("error fetching categories: \(error)")
+                print("error fetching tasks: \(error)")
                 completion(error)
                 return
             }
             
             guard let data = data else {
-                print("no data returned from data task.")
+                print("no data returned from dtat task.")
                 completion(NSError())
                 return
             }
             
+            // Make JSON Decoder
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
             do {
                 //let decodedResponse = try JSONDecoder().decode([String: Categories].self, from: data)
-                let decodedResponse = try JSONDecoder().decode([String: Category].self, from: data)
+                let decodedResponse = try jsonDecoder.decode(Categories.self, from: data)
                 print("Network decodedResponse: \(decodedResponse)")
-//                let categories = Array(decodedResponse.values)
-//                print("Network Categories: \(categories)")
+                let categories = decodedResponse
+                //let categories = Array(decodedResponse.values)
+                print("Network Categories: \(categories)")
                 completion(nil)
             } catch {
                 print("error decoding entries: \(error)")
                 completion(error)
             }
             
-            }.resume()
+        }.resume()
     }
-    
-    // 1. "Expected to decode Dictionary<String, Any> but found an array instead."
-    // 2. "Expected to decode Array<Any> but found a dictionary instead."
-    
-    
 }
