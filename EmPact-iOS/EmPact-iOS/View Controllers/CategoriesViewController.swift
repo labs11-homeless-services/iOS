@@ -7,19 +7,17 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var categoriesScrollView: UIScrollView!
-    
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
-    //let networkController = NetworkController()
-    
+    let networkController = NetworkController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //NetworkController.fetchCategoriesFromServer()
 
         // Set Delegate
         categoriesCollectionView.delegate = self
@@ -31,8 +29,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NetworkController.shared.fetchCategoryNames { (error) in
+
+        networkController.fetchCategoryNames { (error) in
+
             if let error = error {
                 NSLog("Error fetching categories: \(error)")
             }
@@ -43,15 +42,35 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return NetworkController.shared.categoryNames.count
+        return networkController.categoryNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
-        let categoryName = NetworkController.shared.categoryNames[indexPath.row]
+        let categoryName = networkController.categoryNames[indexPath.row]
         cell.categoryNameLabel.text = categoryName
-        //cell.categoryImageView.image =
+        
+        var iconImage: UIImage!
+        if categoryName == "Shelters" {
+            iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
+        } else if categoryName == "Health Care" {
+            iconImage = UIImage(named: CategoryIconImages.healthcare.rawValue)
+        } else if categoryName == "Food" {
+            iconImage = UIImage(named: CategoryIconImages.food.rawValue)
+        } else if categoryName == "Hygiene" {
+            iconImage = UIImage(named: CategoryIconImages.hygiene.rawValue)
+        } else if categoryName == "Outreach Services" {
+            iconImage = UIImage(named: CategoryIconImages.outreach.rawValue)
+        } else if categoryName == "Education" {
+            iconImage = UIImage(named: CategoryIconImages.education.rawValue)
+        } else if categoryName == "Legal Administrative" {
+            iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
+        } else if categoryName == "Jobs" {
+            iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
+        }
+        
+        cell.categoryImageView.image = iconImage
         
         return cell
     }

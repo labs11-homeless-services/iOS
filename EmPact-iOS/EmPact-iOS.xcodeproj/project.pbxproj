@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
+		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
+		11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BC22541842006F8B9D /* IconImageHelper.swift */; };
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* EmergencyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* EmergencyServices.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
@@ -25,12 +27,13 @@
 		846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */; };
 		846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264EF224D98F5009A21A2 /* LanguageSelectionViewController.swift */; };
 		846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264F1224D9910009A21A2 /* AppearanceHelper.swift */; };
-		847A7EC92253CBFB00A62A5F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7EC82253CBFB00A62A5F /* Categories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		11A098BC22541842006F8B9D /* IconImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImageHelper.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* EmergencyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyServices.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 		846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceResultTableViewCell.swift; sourceTree = "<group>"; };
 		846264EF224D98F5009A21A2 /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		846264F1224D9910009A21A2 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
-		847A7EC82253CBFB00A62A5F /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				846264F1224D9910009A21A2 /* AppearanceHelper.swift */,
+				11A098BC22541842006F8B9D /* IconImageHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -123,8 +126,8 @@
 		846264E5224D9842009A21A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */,
 				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
+				11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				846264E9224D98A0009A21A2 /* FirebaseObject.swift */,
-				847A7EC82253CBFB00A62A5F /* Categories.swift */,
+				11A098BA2253CBF8006F8B9D /* Categories.swift */,
 				842DE2022252C4D100BBE2FB /* Education.swift */,
 				842DE2042252CE2900BBE2FB /* EmergencyServices.swift */,
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
@@ -234,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
-				847A7EC92253CBFB00A62A5F /* Categories.swift in Sources */,
+				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
 				842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */,
 				846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */,
@@ -243,6 +246,7 @@
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
+				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,
