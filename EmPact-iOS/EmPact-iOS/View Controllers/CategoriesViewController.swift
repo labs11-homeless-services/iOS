@@ -11,16 +11,12 @@ import UIKit
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var categoriesScrollView: UIScrollView!
-    
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
-    //let networkController = NetworkController()
+    let networkController = NetworkController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //NetworkController.fetchCategoryNames()
-        //NetworkController.fetchCategoriesFromServer()
 
         // Set Delegate
         categoriesCollectionView.delegate = self
@@ -32,17 +28,24 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //NetworkController.fetchCategoryNames()
+        networkController.fetchCategoryNames { (error) in
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.categoriesCollectionView.reloadData()
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return NetworkController.shared.categoryNames.count
+        return networkController.categoryNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoriesCollectionViewCell
         
-        let categoryName = NetworkController.shared.categoryNames[indexPath.row]
+        let categoryName = networkController.categoryNames[indexPath.row]
         cell.categoryNameLabel.text = categoryName
         //cell.categoryImageView.image =
         

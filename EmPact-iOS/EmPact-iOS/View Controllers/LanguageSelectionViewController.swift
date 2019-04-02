@@ -18,13 +18,12 @@ class LanguageSelectionViewController: UIViewController {
     
     
     @IBAction func englishButtonClicked(_ sender: Any) {
-        NetworkController.shared.fetchCategoryNames()
-        //NetworkController.fetchCategoryNames()
+        
     }
     
     
     @IBAction func espanolButtonClicked(_ sender: Any) {
-        //NetworkController.fetchEspanolCategoryNames()
+        
     }
     
 
