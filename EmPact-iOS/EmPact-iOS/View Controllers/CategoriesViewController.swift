@@ -8,10 +8,23 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectaionViewDataSource {
+// UICollectionViewDelegate, UICollectionViewDataSource
+
+class CategoriesViewController: UIViewController {
+    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkController.fetchCategoriesFromServer()
 
         // Make Collection View Outlet
         // Set Delegate
