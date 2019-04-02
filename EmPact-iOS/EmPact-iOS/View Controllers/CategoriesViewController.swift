@@ -24,7 +24,8 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkController.fetchCategoriesNames()
+        NetworkController.fetchCategoryNames()
+        //NetworkController.fetchCategoriesFromServer()
 
         // Make Collection View Outlet
         // Set Delegate

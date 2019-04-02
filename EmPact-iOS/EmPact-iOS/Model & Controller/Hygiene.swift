@@ -10,7 +10,7 @@ import Foundation
 
 struct Hygiene: Decodable {
     
-    var address: String?
+    var address: String
     var city: String
     var name: String
     var state: String
@@ -18,6 +18,7 @@ struct Hygiene: Decodable {
     var latitude: String?
     var longitude: String?
     var phone: String?
-    var postalCode: String?
+    var postalCode: String? // Needs coding keys
     
+
 }

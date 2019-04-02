@@ -18,6 +18,5 @@ struct Shelters: Decodable {
     var latitude: String?
     var longitude: String?
     var phone: String?
-    var postalCode: String? 
-
+    var postalCode: String?
 }
