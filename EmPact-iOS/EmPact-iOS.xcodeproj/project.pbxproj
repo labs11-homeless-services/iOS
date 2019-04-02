@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
+		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* EmergencyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* EmergencyServices.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
@@ -20,7 +21,7 @@
 		846264D6224D9803009A21A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846264D4224D9803009A21A2 /* Main.storyboard */; };
 		846264D8224D9805009A21A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846264D7224D9805009A21A2 /* Assets.xcassets */; };
 		846264DB224D9805009A21A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846264D9224D9805009A21A2 /* LaunchScreen.storyboard */; };
-		846264EA224D98A0009A21A2 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264E9224D98A0009A21A2 /* Categories.swift */; };
+		846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264E9224D98A0009A21A2 /* FirebaseObject.swift */; };
 		846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264EB224D98AF009A21A2 /* NetworkController.swift */; };
 		846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */; };
 		846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264EF224D98F5009A21A2 /* LanguageSelectionViewController.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* EmergencyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyServices.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -43,7 +45,7 @@
 		846264D7224D9805009A21A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		846264DA224D9805009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		846264DC224D9805009A21A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		846264E9224D98A0009A21A2 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		846264E9224D98A0009A21A2 /* FirebaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseObject.swift; sourceTree = "<group>"; };
 		846264EB224D98AF009A21A2 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceResultTableViewCell.swift; sourceTree = "<group>"; };
 		846264EF224D98F5009A21A2 /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +149,8 @@
 		846264E8224D9866009A21A2 /* Model & Controller */ = {
 			isa = PBXGroup;
 			children = (
-				846264E9224D98A0009A21A2 /* Categories.swift */,
+				846264E9224D98A0009A21A2 /* FirebaseObject.swift */,
+				11A098BA2253CBF8006F8B9D /* Categories.swift */,
 				842DE2022252C4D100BBE2FB /* Education.swift */,
 				842DE2042252CE2900BBE2FB /* EmergencyServices.swift */,
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
@@ -231,11 +234,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
+				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
 				842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */,
 				846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */,
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
-				846264EA224D98A0009A21A2 /* Categories.swift in Sources */,
+				846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
