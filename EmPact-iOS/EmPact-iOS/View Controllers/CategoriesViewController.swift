@@ -8,24 +8,29 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController { // UICollectionViewDelegate, UICollectaionViewDataSource
+// UICollectionViewDelegate, UICollectionViewDataSource
+
+class CategoriesViewController: UIViewController {
+    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkController.fetchCategoryNames()
+        //NetworkController.fetchCategoriesFromServer()
 
         // Make Collection View Outlet
         // Set Delegate
         // Set DataSource
         
-        Firebase<Categories>.fetchRecords { (categories) in
-            if let categories = categories {
-                NSLog("\(categories)")
-                
-                DispatchQueue.main.async {
-                    // reload the table view data
-                }
-            }
-        }
         
     }
     
@@ -40,5 +45,4 @@ class CategoriesViewController: UIViewController { // UICollectionViewDelegate, 
     }
     */
 
-    //let firebase = Firebase()
 }

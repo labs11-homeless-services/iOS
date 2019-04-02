@@ -5,7 +5,6 @@
 //  Created by Madison Waters on 4/1/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
-
 import Foundation
 
 /*
@@ -15,6 +14,7 @@ import Foundation
  PUT    <- update a specific record
  DELETE <- delete a specific record
  */
+
 
 class Firebase<Item: Codable & FirebaseItem> {
     static var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/") }
