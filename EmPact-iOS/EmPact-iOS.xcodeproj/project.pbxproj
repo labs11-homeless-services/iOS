@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
+		11A098A92252A988006F8B9D /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098A82252A988006F8B9D /* Firebase.swift */; };
+		11A098AB2252A9AB006F8B9D /* FirebaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098AA2252A9AB006F8B9D /* FirebaseItem.swift */; };
+		11A098AD2252CC3F006F8B9D /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098AC2252CC3F006F8B9D /* Education.swift */; };
+		11A098AF2252CE13006F8B9D /* Shelters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098AE2252CE13006F8B9D /* Shelters.swift */; };
+		11A098B12252CEB6006F8B9D /* OutreachServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098B02252CEB6006F8B9D /* OutreachServices.swift */; };
+		11A098B32252CF0B006F8B9D /* Hygiene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098B22252CF0B006F8B9D /* Hygiene.swift */; };
+		11A098B72252CFF6006F8B9D /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098B42252CFF4006F8B9D /* Food.swift */; };
+		11A098B82252CFF6006F8B9D /* Healthcare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098B52252CFF5006F8B9D /* Healthcare.swift */; };
+		11A098B92252CFF6006F8B9D /* EmergencyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098B62252CFF5006F8B9D /* EmergencyServices.swift */; };
 		846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264D0224D9803009A21A2 /* AppDelegate.swift */; };
 		846264D6224D9803009A21A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846264D4224D9803009A21A2 /* Main.storyboard */; };
 		846264D8224D9805009A21A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846264D7224D9805009A21A2 /* Assets.xcassets */; };
@@ -23,6 +32,15 @@
 /* Begin PBXFileReference section */
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		11A098A82252A988006F8B9D /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		11A098AA2252A9AB006F8B9D /* FirebaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseItem.swift; sourceTree = "<group>"; };
+		11A098AC2252CC3F006F8B9D /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
+		11A098AE2252CE13006F8B9D /* Shelters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelters.swift; sourceTree = "<group>"; };
+		11A098B02252CEB6006F8B9D /* OutreachServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutreachServices.swift; sourceTree = "<group>"; };
+		11A098B22252CF0B006F8B9D /* Hygiene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hygiene.swift; sourceTree = "<group>"; };
+		11A098B42252CFF4006F8B9D /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		11A098B52252CFF5006F8B9D /* Healthcare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Healthcare.swift; sourceTree = "<group>"; };
+		11A098B62252CFF5006F8B9D /* EmergencyServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyServices.swift; sourceTree = "<group>"; };
 		846264CD224D9803009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		846264D0224D9803009A21A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		846264D5224D9803009A21A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				846264EB224D98AF009A21A2 /* NetworkController.swift */,
+				11A098A82252A988006F8B9D /* Firebase.swift */,
+				11A098AA2252A9AB006F8B9D /* FirebaseItem.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -134,6 +154,13 @@
 			isa = PBXGroup;
 			children = (
 				846264E9224D98A0009A21A2 /* Categories.swift */,
+				11A098AC2252CC3F006F8B9D /* Education.swift */,
+				11A098AE2252CE13006F8B9D /* Shelters.swift */,
+				11A098B02252CEB6006F8B9D /* OutreachServices.swift */,
+				11A098B22252CF0B006F8B9D /* Hygiene.swift */,
+				11A098B62252CFF5006F8B9D /* EmergencyServices.swift */,
+				11A098B42252CFF4006F8B9D /* Food.swift */,
+				11A098B52252CFF5006F8B9D /* Healthcare.swift */,
 			);
 			path = "Model & Controller";
 			sourceTree = "<group>";
@@ -210,13 +237,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
+				11A098B92252CFF6006F8B9D /* EmergencyServices.swift in Sources */,
 				846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */,
+				11A098B72252CFF6006F8B9D /* Food.swift in Sources */,
+				11A098AD2252CC3F006F8B9D /* Education.swift in Sources */,
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
 				846264EA224D98A0009A21A2 /* Categories.swift in Sources */,
+				11A098B32252CF0B006F8B9D /* Hygiene.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
+				11A098B12252CEB6006F8B9D /* OutreachServices.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
+				11A098A92252A988006F8B9D /* Firebase.swift in Sources */,
+				11A098AB2252A9AB006F8B9D /* FirebaseItem.swift in Sources */,
+				11A098B82252CFF6006F8B9D /* Healthcare.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,
+				11A098AF2252CE13006F8B9D /* Shelters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

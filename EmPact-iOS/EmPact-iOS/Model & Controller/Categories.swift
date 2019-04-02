@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+struct Category: Decodable { // Not Categories as the top level but education and decode for that.
+    
+    let education: Education
+    let shelters: Shelters
+    let outreachServices: OutreachServices
+    let hygiene: Hygiene
+    let emergencyServices: EmergencyServices
+    let food: Food
+    let healthcare: Healthcare
+    
+}
+
+
+
+struct SingleResource {
+    let singleResourceId: String
+    
+}

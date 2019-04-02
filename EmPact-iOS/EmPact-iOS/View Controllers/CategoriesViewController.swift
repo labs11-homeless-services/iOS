@@ -8,8 +8,10 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectaionViewDataSource {
+class CategoriesViewController: UIViewController { //UICollectionViewDelegate, UICollectaionViewDataSource
 
+    var category: Category?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,7 +19,21 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set Delegate
         // Set DataSource
         
+//        Firebase<Categories>.fetchRecords { categories in
+//            if let categories = categories {
+//                print("Free Firebase: \(categories)")
+//            }
+//
+//            DispatchQueue.main.async {
+//                //reload the collection view data
+//            }
+//        }
         
+        NetworkController.fetchCategoriesFromServer { (error) in
+            if let error = error {
+                NSLog("Error fetch data: \(error)")
+            }
+        }
     }
     
 
