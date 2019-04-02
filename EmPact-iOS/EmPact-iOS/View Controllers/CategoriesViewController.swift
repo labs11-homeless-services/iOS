@@ -8,30 +8,45 @@
 
 import UIKit
 
-// UICollectionViewDelegate, UICollectionViewDataSource
+class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-class CategoriesViewController: UIViewController {
+    @IBOutlet weak var categoriesScrollView: UIScrollView!
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
+    @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
-
+    //let networkController = NetworkController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkController.fetchCategoryNames()
+        //NetworkController.fetchCategoryNames()
         //NetworkController.fetchCategoriesFromServer()
 
-        // Make Collection View Outlet
         // Set Delegate
+        categoriesCollectionView.delegate = self
+        
         // Set DataSource
+        categoriesCollectionView.dataSource = self
+  
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //NetworkController.fetchCategoryNames()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return NetworkController.shared.categoryNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoriesCollectionViewCell
         
+        let categoryName = NetworkController.shared.categoryNames[indexPath.row]
+        cell.categoryNameLabel.text = categoryName
+        //cell.categoryImageView.image =
         
+        return cell
     }
     
 
