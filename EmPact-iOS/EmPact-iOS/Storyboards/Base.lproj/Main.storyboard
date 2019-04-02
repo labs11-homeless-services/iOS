@@ -125,7 +125,6 @@
                                                         <connections>
                                                             <outlet property="categoryImageView" destination="tGZ-Fu-NLu" id="hlw-yo-Y96"/>
                                                             <outlet property="categoryNameLabel" destination="oDb-ab-qrc" id="9tz-GS-Ibw"/>
-                                                            <outlet property="collectionImageView" destination="tGZ-Fu-NLu" id="nqM-iE-49A"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>

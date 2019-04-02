@@ -10,8 +10,8 @@ import UIKit
 
 class NetworkController {
     
-    static let shared = NetworkController()
-    private init() {}
+//    static let shared = NetworkController()
+//    private init() {}
     
     var categoryNames: [String] = []
 
@@ -39,7 +39,6 @@ class NetworkController {
                 return
             }
             
-            // Make JSON Decoder
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
@@ -50,10 +49,8 @@ class NetworkController {
                 //self.categoryNames = decodedResponse
                 let categories = decodedResponse.categoryName
                 self.categoryNames = categories
-                print("Network Categories: \(categories)")
                 completion(nil)
             } catch {
-                print("error decoding entries: \(error)")
                 completion(error)
             }
             
