@@ -8,17 +8,19 @@
 
 import Foundation
 
-struct Education: Codable {
+struct Education: Decodable {
+    var all: [IndividualResource]
+    var ged: [IndividualResource]
+    var publicComputers: [IndividualResource] // public-computers
     
-        var address: String
-        var city: String
-        var name: String
-        var state: String
-    
-        var latitude: String?
-        var longitude: String?
-        var phone: String?
-        var postalCode: String? 
-    
+    var educationDictionary: [String: [IndividualResource]] {
+        return ["all": all,
+                "ged": ged,
+                "publicComputers": publicComputers]
+    }
+    var dictionary: NSDictionary {
+        return educationDictionary as NSDictionary
+    }
 }
+
 

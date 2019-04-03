@@ -39,6 +39,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
+        
+        networkController.fetchSubcategoryDetails("Shelters") { (error) in
+            if let error = error {
+                NSLog("Error fetching subcategories: \(error)")
+            }
+            DispatchQueue.main.async {
+                
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

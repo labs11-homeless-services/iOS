@@ -10,14 +10,18 @@ import UIKit
 
 class NetworkController {
     
-//    static let shared = NetworkController()
-//    private init() {}
-    
     var categoryNames: [String] = []
+    
+    var subcategoryNames: [String] = []
+    var subcategoryName = "shelters"
+    
+    var subcategoryDetails: [IndividualResource] = []
 
     typealias CompletionHandler = (Error?) -> Void
     static var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/") }
     
+    
+    // CATEGORY NAMES
     func fetchCategoryNames(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
@@ -34,7 +38,7 @@ class NetworkController {
             }
             
             guard let data = data else {
-                print("no data returned from dtat task.")
+                print("no data returned from data task.")
                 completion(NSError())
                 return
             }
@@ -57,6 +61,89 @@ class NetworkController {
             }
         }.resume()
     }
+    
+    // SUBCATEGORY NAMES
+    func fetchSubcategoryNames(_ subcategory: String, completion: @escaping CompletionHandler = { _ in }) {
+        
+        let requestURL = NetworkController.baseURL
+            .appendingPathComponent(subcategoryName)
+            .appendingPathExtension("json")
+        
+        print("requestURL: \(requestURL)")
+        
+        URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
+            if let error = error {
+                print("error fetching tasks: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                print("no data returned from dtat task.")
+                completion(NSError())
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            do {
+                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
+                print("Network decodedResponse: \(decodedResponse)")
+                
+                let subcategories = decodedResponse
+                //let capitalizedCategories = categories.map {$0.capitalized}
+                
+                //self.subcategoryNames = capitalizedCategories
+                print("Network Categories: \(subcategories)")
+                completion(nil)
+            } catch {
+                completion(error)
+            }
+        }.resume()
+    }
+    
+    // SUBCATEGORY LIST RESULTS DETAILS
+    func fetchSubcategoryDetails(_ subcategory: String, completion: @escaping CompletionHandler = { _ in }) {
+        
+        let requestURL = NetworkController.baseURL
+            .appendingPathComponent(subcategoryName)
+            .appendingPathExtension("json")
+        
+        print("requestURL: \(requestURL)")
+        
+        URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
+            if let error = error {
+                print("error fetching tasks: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                print("no data returned from dtat task.")
+                completion(NSError())
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            do {
+                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
+                
+                self.subcategoryDetails = decodedResponse.women
+                print("Network Categories: \(self.subcategoryDetails)")
+                
+                completion(nil)
+            } catch {
+                completion(error)
+            }
+        }.resume()
+    }
+    
+    
+    
+    
     
     func fetchCategoriesFromServer(completion: @escaping CompletionHandler = { _ in }) {
         

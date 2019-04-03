@@ -10,14 +10,17 @@ import Foundation
 
 struct Food: Decodable {
     
-    var address: String
-    var city: String
-    var name: String
-    var state: String
+    var all: [IndividualResource]
+    var foodPantries: [IndividualResource] // food-pantries
+    var foodStamps: [IndividualResource] // food-stamps
     
-    var latitude: String?
-    var longitude: String?
-    var phone: String?
-    var postalCode: String? // "postal code"
-    
+    var foodDictionary: [String: [IndividualResource]] {
+        return ["all": all,
+                "foodPantries": foodPantries,
+                "foodStamps": foodStamps]
+    }
+    var dictionary: NSDictionary {
+        return foodDictionary as NSDictionary
+    }
 }
+
