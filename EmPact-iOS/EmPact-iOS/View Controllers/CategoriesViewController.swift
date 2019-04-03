@@ -39,7 +39,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
-        
+
         networkController.fetchSubcategoryDetails("Shelters") { (error) in
             if let error = error {
                 NSLog("Error fetching subcategories: \(error)")
@@ -48,6 +48,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 
             }
         }
+        //networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
+        //networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
+        //networkController.fetchSubcategoriesNames(SubCategory.legal)          // Phone: Expected to decode Int but found a string/data
+        //networkController.fetchSubcategoriesNames(SubCategory.food)           // Phone: Expected to decode Int but found a string/data
+        //networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
+        //networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
+        //networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
+        networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

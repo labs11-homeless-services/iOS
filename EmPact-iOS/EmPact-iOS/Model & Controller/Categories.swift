@@ -11,9 +11,11 @@ import Foundation
 struct Categories: Codable {
     
     var categoryName: [String]
+
 }
 
 struct CategoriesEspanol: Codable {
     
     var categoryName: [String]
+    
 }

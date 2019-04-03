@@ -11,8 +11,8 @@ import Foundation
 struct Food: Decodable {
     
     var all: [IndividualResource]
-    var foodPantries: [IndividualResource] // food-pantries
-    var foodStamps: [IndividualResource] // food-stamps
+    var foodPantries: [IndividualResource]
+    var foodStamps: [IndividualResource]
     
     var foodDictionary: [String: [IndividualResource]] {
         return ["all": all,
@@ -22,5 +22,6 @@ struct Food: Decodable {
     var dictionary: NSDictionary {
         return foodDictionary as NSDictionary
     }
+
 }
 

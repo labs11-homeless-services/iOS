@@ -13,7 +13,7 @@ struct Hygiene: Decodable {
     var all: [IndividualResource]
     var bathrooms: [IndividualResource]
     var showers: [IndividualResource]
-    
+
     var hygieneDictionary: [String: [IndividualResource]] {
         return ["all": all,
                 "bathrooms": bathrooms,
@@ -22,5 +22,6 @@ struct Hygiene: Decodable {
     var dictionary: NSDictionary {
         return hygieneDictionary as NSDictionary
     }
+
 }
 

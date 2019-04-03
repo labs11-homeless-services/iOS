@@ -21,6 +21,7 @@ struct OutreachServices: Decodable {
     var dictionary: NSDictionary {
         return outreachDictionary as NSDictionary
     }
+
 }
 
 

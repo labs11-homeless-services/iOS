@@ -9,9 +9,10 @@
 import Foundation
 
 struct Education: Decodable {
+  
     var all: [IndividualResource]
     var ged: [IndividualResource]
-    var publicComputers: [IndividualResource] // public-computers
+    var publicComputers: [IndividualResource]
     
     var educationDictionary: [String: [IndividualResource]] {
         return ["all": all,
@@ -21,6 +22,7 @@ struct Education: Decodable {
     var dictionary: NSDictionary {
         return educationDictionary as NSDictionary
     }
+
 }
 
 

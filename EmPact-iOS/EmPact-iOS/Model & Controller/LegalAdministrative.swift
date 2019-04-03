@@ -13,12 +13,11 @@ struct LegalAdministrative: Decodable {
     var all: [IndividualResource]
     var benefits: [IndividualResource]
     
-    var legalDictionary: [String: [IndividualResource]] {
+    var legalAdministrativeDictionary: [String: [IndividualResource]] {
         return ["all": all,
                 "benefits": benefits]
     }
     var dictionary: NSDictionary {
-        return legalDictionary as NSDictionary
-    }
-    
+        return legalAdministrativeDictionary as NSDictionary
+    }   
 }

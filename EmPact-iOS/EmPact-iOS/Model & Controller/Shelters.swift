@@ -9,6 +9,7 @@
 import Foundation
 
 struct Shelters: Decodable {
+
     var all: [IndividualResource]
     var men: [IndividualResource]
     var women: [IndividualResource]
@@ -23,5 +24,6 @@ struct Shelters: Decodable {
     var dictionary: NSDictionary {
         return shelterDictionary as NSDictionary
     }
+
 }
 

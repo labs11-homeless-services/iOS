@@ -18,7 +18,8 @@ struct Healthcare: Decodable {
     var rehab: [HealthcareIndividualResource]
     var women: [HealthcareIndividualResource]
     
-    var shelterDictionary: [String: [HealthcareIndividualResource]] {
+
+    var healthcareDictionary: [String: [HealthcareIndividualResource]] {
         return ["all": all,
                 "clinics": clinics,
                 "emergency": emergency,
@@ -28,7 +29,7 @@ struct Healthcare: Decodable {
                 "women": women]
     }
     var dictionary: NSDictionary {
-        return shelterDictionary as NSDictionary
+        return healthcareDictionary as NSDictionary
     }
     
 }
