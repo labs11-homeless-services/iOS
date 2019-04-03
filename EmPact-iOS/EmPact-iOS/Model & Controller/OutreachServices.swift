@@ -9,10 +9,9 @@
 import Foundation
 
 struct OutreachServices: Decodable {
-    
-    var afterSchool: [IndividualResource]
-    var domesticViolence: [IndividualResource]
-    var socialServices: [IndividualResource]
+    var afterSchool: [IndividualResource] // after-school
+    var domesticViolence: [IndividualResource] // domestic-violence
+    var socialServices: [IndividualResource] // social-services
     
     var outreachDictionary: [String: [IndividualResource]] {
         return ["afterSchool": afterSchool,
@@ -22,5 +21,7 @@ struct OutreachServices: Decodable {
     var dictionary: NSDictionary {
         return outreachDictionary as NSDictionary
     }
-    
+
 }
+
+

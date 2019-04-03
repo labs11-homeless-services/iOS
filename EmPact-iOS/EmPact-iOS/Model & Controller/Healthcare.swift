@@ -18,6 +18,7 @@ struct Healthcare: Decodable {
     var rehab: [HealthcareIndividualResource]
     var women: [HealthcareIndividualResource]
     
+
     var healthcareDictionary: [String: [HealthcareIndividualResource]] {
         return ["all": all,
                 "clinics": clinics,
@@ -34,12 +35,12 @@ struct Healthcare: Decodable {
 }
 
 struct HealthcareIndividualResource: Decodable {
-    
+
     var address: String
     var city: String
     var name: String
     var state: String
-    
+
     var latitude: String?
     var longitude: String?
     var phone: String?
@@ -48,5 +49,5 @@ struct HealthcareIndividualResource: Decodable {
     var keywords: String?
     var services: String?
     var subcategory: String?
-    
+
 }

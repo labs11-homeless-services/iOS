@@ -24,5 +24,6 @@ struct Shelters: Decodable {
     var dictionary: NSDictionary {
         return shelterDictionary as NSDictionary
     }
-    
+
 }
+
