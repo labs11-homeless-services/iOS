@@ -125,7 +125,6 @@
                                                         <connections>
                                                             <outlet property="categoryImageView" destination="tGZ-Fu-NLu" id="hlw-yo-Y96"/>
                                                             <outlet property="categoryNameLabel" destination="oDb-ab-qrc" id="9tz-GS-Ibw"/>
-                                                            <outlet property="collectionImageView" destination="tGZ-Fu-NLu" id="nqM-iE-49A"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -498,6 +497,9 @@
                     <navigationItem key="navigationItem" title="Shelters - Men" id="xTq-Gz-mtZ">
                         <barButtonItem key="rightBarButtonItem" title="Español" id="P18-MJ-1Cp"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="t2t-NX-Rw1" id="qRC-gw-xVT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBE-gr-hJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

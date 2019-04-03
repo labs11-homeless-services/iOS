@@ -14,5 +14,5 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryNameLabel: UILabel!
     
-    
+    static let reuseIdentifier = "categoryCell"
 }

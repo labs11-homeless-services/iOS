@@ -9,14 +9,21 @@
 import Foundation
 
 struct Shelters: Decodable {
+
+    var all: [IndividualResource]
+    var men: [IndividualResource]
+    var women: [IndividualResource]
+    var youth: [IndividualResource]
     
-    var address: String
-    var city: String
-    var name: String
-    var state: String
-    
-    var latitude: String?
-    var longitude: String?
-    var phone: String?
-    var postalCode: String?
+    var shelterDictionary: [String: [IndividualResource]] {
+        return ["all": all,
+                "men": men,
+                "women": women,
+                "youth": youth]
+    }
+    var dictionary: NSDictionary {
+        return shelterDictionary as NSDictionary
+    }
+
 }
+

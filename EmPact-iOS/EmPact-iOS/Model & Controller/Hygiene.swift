@@ -10,15 +10,18 @@ import Foundation
 
 struct Hygiene: Decodable {
     
-    var address: String
-    var city: String
-    var name: String
-    var state: String
-    
-    var latitude: String?
-    var longitude: String?
-    var phone: String?
-    var postalCode: String? // Needs coding keys
-    
+    var all: [IndividualResource]
+    var bathrooms: [IndividualResource]
+    var showers: [IndividualResource]
+
+    var hygieneDictionary: [String: [IndividualResource]] {
+        return ["all": all,
+                "bathrooms": bathrooms,
+                "showers": showers]
+    }
+    var dictionary: NSDictionary {
+        return hygieneDictionary as NSDictionary
+    }
 
 }
+
