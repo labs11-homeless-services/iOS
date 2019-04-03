@@ -62,44 +62,9 @@ class NetworkController {
         }.resume()
     }
     
-    // SUBCATEGORY LIST RESULTS DETAILS
-    func fetchSubcategoryDetails(_ subcategory: String, completion: @escaping CompletionHandler = { _ in }) {
-        
-        let requestURL = NetworkController.baseURL
-            .appendingPathComponent(subcategoryName)
-            .appendingPathExtension("json")
-        
-        print("requestURL: \(requestURL)")
-        
-        URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
-            if let error = error {
-                print("error fetching tasks: \(error)")
-                completion(error)
-                return
-            }
-            
-            guard let data = data else {
-                print("no data returned from dtat task.")
-                completion(NSError())
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
-                
-                self.subcategoryDetails = decodedResponse.women
-                print("Network Categories: \(self.subcategoryDetails)")
-                
-                completion(nil)
-            } catch {
-                completion(error)
-            }
-        }.resume()
-    }
+
     
+    // SUBCATEGORY NAMES
     func fetchSubcategoriesNames(_ subcategory: SubCategory, completion: @escaping CompletionHandler = { _ in }) {
 
         let requestURL = NetworkController.baseURL
@@ -175,6 +140,44 @@ class NetworkController {
                 completion(error)
             }
             
+        }.resume()
+    }
+    
+    // SUBCATEGORY LIST RESULTS DETAILS
+    func fetchSubcategoryDetails(_ subcategory: String, completion: @escaping CompletionHandler = { _ in }) {
+        
+        let requestURL = NetworkController.baseURL
+            .appendingPathComponent(subcategoryName)
+            .appendingPathExtension("json")
+        
+        print("requestURL: \(requestURL)")
+        
+        URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
+            if let error = error {
+                print("error fetching tasks: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                print("no data returned from dtat task.")
+                completion(NSError())
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            do {
+                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
+                
+                self.subcategoryDetails = decodedResponse.women
+                print("Network Categories: \(self.subcategoryDetails)")
+                
+                completion(nil)
+            } catch {
+                completion(error)
+            }
         }.resume()
     }
 }
