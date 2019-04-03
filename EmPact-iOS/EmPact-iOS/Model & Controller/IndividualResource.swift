@@ -1,23 +1,22 @@
 //
-//  EmergencyServices.swift
+//  IndividualResource.swift
 //  EmPact-iOS
 //
-//  Created by Audrey Welch on 4/1/19.
+//  Created by Audrey Welch on 4/3/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
 import Foundation
 
-struct EmergencyServices: Decodable {
-    
+struct IndividualResource: Decodable {
     var address: String
     var city: String
+    var keywords: String
     var name: String
     var state: String
     
     var latitude: String?
     var longitude: String?
-    var phone: String?
-    var postalCode: String? // "postal code"
-    
+    var phone: Int?
+    var postalCode: String?
 }
