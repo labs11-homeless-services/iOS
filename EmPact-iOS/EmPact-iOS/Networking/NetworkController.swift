@@ -59,8 +59,6 @@ class NetworkController {
             } catch {
                 completion(error)
             }
-            
-            
         }.resume()
     }
     
