@@ -55,7 +55,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         //networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
         //networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
         //networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
-        networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
+        //networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
 
     }
     
