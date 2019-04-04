@@ -48,12 +48,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 
             }
         }
-        //networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
+        networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
         //networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.legal)          // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.food)           // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
-        //networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
+        //networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
 
@@ -93,12 +93,22 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         return cell
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let categoryName = networkController.categoryNames[indexPath.row]
+        networkController.tempCategorySelection = categoryName
+        performSegue(withIdentifier: "modalSubcategoryMenu", sender: indexPath)
+    }
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
+        guard let indexPath = sender as? IndexPath else { return }
+        
+//        let categoriesCollectionViewCell: CategoriesCollectionViewCell
+//        let collectionCell = categoriesCollectionView.cellForItem(at: indexPath)
+//        let categoryToPass = categoriesCollectionViewCell.categoryNameLabel
+        
         // Pass the selected object to the new view controller.
     }
 

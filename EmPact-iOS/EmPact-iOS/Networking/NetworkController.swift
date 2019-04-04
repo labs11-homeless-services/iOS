@@ -10,6 +10,8 @@ import UIKit
 
 class NetworkController {
     
+    var tempCategorySelection = ""
+    
     var categoryNames: [String] = []
 
     var subcategoryNames: [String] = []
