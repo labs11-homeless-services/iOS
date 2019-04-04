@@ -94,46 +94,48 @@ class NetworkController {
                 case .education:
                     let decodedResponse = try jsonDecoder.decode(Education.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 case .legal:
                     let decodedResponse = try jsonDecoder.decode(LegalAdministrative.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 case .food:
                     let decodedResponse = try jsonDecoder.decode(Food.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 case .healthcare:
                     let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 case .outreach:
                     let decodedResponse = try jsonDecoder.decode(OutreachServices.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 case .hygiene:
                     let decodedResponse = try jsonDecoder.decode(Hygiene.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 case .shelters:
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        //print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
+                    print(self.subcategoryNames)
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        print(decodedResponseDictionary.key)
+                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
                 }
                 
-                print("Network Categories: \(String(describing: self.subcategoryNames))")
+                //print("Network Categories: \(String(describing: self.subcategoryNames))")
                 completion(nil)
             } catch {
                 print("error decoding entries: \(error)")
