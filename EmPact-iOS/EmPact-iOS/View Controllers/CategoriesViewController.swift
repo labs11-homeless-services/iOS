@@ -14,15 +14,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
+    let categoryController = CategoryController()
     let networkController = NetworkController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Set Delegate
+        // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
-        
-        // Set DataSource
         categoriesCollectionView.dataSource = self
   
     }
@@ -48,15 +47,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 
             }
         }
-        //networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
-        //networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
-        //networkController.fetchSubcategoriesNames(SubCategory.legal)          // Phone: Expected to decode Int but found a string/data
-        //networkController.fetchSubcategoriesNames(SubCategory.food)           // Phone: Expected to decode Int but found a string/data
-        //networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
-        //networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
-        //networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
-        //networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
-
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,40 +57,39 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let categoryName = networkController.categoryNames[indexPath.row]
+        categoryController.tempCategoryName = categoryName
         cell.categoryNameLabel.text = categoryName
         
-        var iconImage: UIImage!
-        if categoryName == "Shelters" {
-            iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
-        } else if categoryName == "Health Care" {
-            iconImage = UIImage(named: CategoryIconImages.healthcare.rawValue)
-        } else if categoryName == "Food" {
-            iconImage = UIImage(named: CategoryIconImages.food.rawValue)
-        } else if categoryName == "Hygiene" {
-            iconImage = UIImage(named: CategoryIconImages.hygiene.rawValue)
-        } else if categoryName == "Outreach Services" {
-            iconImage = UIImage(named: CategoryIconImages.outreach.rawValue)
-        } else if categoryName == "Education" {
-            iconImage = UIImage(named: CategoryIconImages.education.rawValue)
-        } else if categoryName == "Legal Administrative" {
-            iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
-        } else if categoryName == "Jobs" {
-            iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
-        }
-        
-        cell.categoryImageView.image = iconImage
+        categoryController.getIconImage()
+        cell.categoryImageView.image = categoryController.iconImage
         
         return cell
     }
-    
 
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let categoryName = networkController.categoryNames[indexPath.row]
+        networkController.tempCategorySelection = categoryName
+        performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let cell = sender as! CategoriesCollectionViewCell
+        var categoryIndex = categoriesCollectionView.indexPath(for: cell)
+        let destination = segue.destination as! SubcategoriesViewController
+        destination.networkController = self.networkController
+        //destination.
 
-
+        
+    }
 }
+
+//networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
+//networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
+//networkController.fetchSubcategoriesNames(SubCategory.legal)          // Phone: Expected to decode Int but found a string/data
+//networkController.fetchSubcategoriesNames(SubCategory.food)           // Phone: Expected to decode Int but found a string/data
+//networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
+//networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
+//networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
+//networkController.fetchSubcategoriesNames(SubCategory.jobs)           // Phone: Expected to decode Int but found a string/data
