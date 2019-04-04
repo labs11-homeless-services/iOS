@@ -10,10 +10,10 @@ import Foundation
 
 enum SubCategory: String {
     case education
-    case legal = "legal-administrative"
+    case legal = "legal_administrative"
     case food
-    case healthcare
-    case outreach = "outreach-services"
+    case healthcare = "health_care"
+    case outreach = "outreach_services"
     case hygiene
     case shelters
     case jobs

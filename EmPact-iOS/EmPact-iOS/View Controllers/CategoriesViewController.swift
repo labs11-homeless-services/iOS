@@ -14,6 +14,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
+    var iconImage: UIImage!
+    var tempCategoryName = ""
     let networkController = NetworkController()
 
     override func viewDidLoad() {
@@ -67,32 +69,38 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let categoryName = networkController.categoryNames[indexPath.row]
+        tempCategoryName = categoryName
         cell.categoryNameLabel.text = categoryName
         
-        var iconImage: UIImage!
-        if categoryName == "Shelters" {
-            iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
-        } else if categoryName == "Health Care" {
-            iconImage = UIImage(named: CategoryIconImages.healthcare.rawValue)
-        } else if categoryName == "Food" {
-            iconImage = UIImage(named: CategoryIconImages.food.rawValue)
-        } else if categoryName == "Hygiene" {
-            iconImage = UIImage(named: CategoryIconImages.hygiene.rawValue)
-        } else if categoryName == "Outreach Services" {
-            iconImage = UIImage(named: CategoryIconImages.outreach.rawValue)
-        } else if categoryName == "Education" {
-            iconImage = UIImage(named: CategoryIconImages.education.rawValue)
-        } else if categoryName == "Legal Administrative" {
-            iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
-        } else if categoryName == "Jobs" {
-            iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
-        }
-        
+        getIconImage()
         cell.categoryImageView.image = iconImage
         
         return cell
     }
     
+    private func getIconImage() -> UIImage {
+        
+        // Turn this into a for loop/refactor if we have time: Art Gallery project?
+        if tempCategoryName == "Shelters" {
+            iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
+        } else if tempCategoryName == "Health Care" {
+            iconImage = UIImage(named: CategoryIconImages.healthcare.rawValue)
+        } else if tempCategoryName == "Food" {
+            iconImage = UIImage(named: CategoryIconImages.food.rawValue)
+        } else if tempCategoryName == "Hygiene" {
+            iconImage = UIImage(named: CategoryIconImages.hygiene.rawValue)
+        } else if tempCategoryName == "Outreach Services" {
+            iconImage = UIImage(named: CategoryIconImages.outreach.rawValue)
+        } else if tempCategoryName == "Education" {
+            iconImage = UIImage(named: CategoryIconImages.education.rawValue)
+        } else if tempCategoryName == "Legal Administrative" {
+            iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
+        } else if tempCategoryName == "Jobs" {
+            iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
+        }
+        
+        return iconImage
+    }
 
     /*
     // MARK: - Navigation
@@ -101,6 +109,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+     
+     //if categoryName == "Shelters" {
+        networkController.fetchSubcategoriesNames(SubCategory.shelters)
+     }
+     
     }
     */
 
