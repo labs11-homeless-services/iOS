@@ -19,6 +19,17 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        networkController.fetchSubcategoryDetails(SubCategory.shelters.rawValue) { (error) in
+            
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,6 +38,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let subcategoryDetail = networkController.subcategoryDetails[indexPath.row]
+        cell.textLabel?.text = subcategoryDetail.name
         
         return cell
     }
