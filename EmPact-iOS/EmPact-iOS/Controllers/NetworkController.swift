@@ -10,11 +10,11 @@ import UIKit
 
 class NetworkController {
     
-    var categoryNames: [String] = []
-
-    var subcategoryNames: [String] = []
+    var tempCategorySelection = ""
     var subcategoryName = "shelters"
     
+    var categoryNames: [String] = []
+    var subcategoryNames: [String] = []
     var subcategoryDetails: [IndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
@@ -124,10 +124,8 @@ class NetworkController {
                 case .shelters:
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
-                        //print(decodedResponseDictionary.key)
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                     }
-                    print(self.subcategoryNames)
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
@@ -182,4 +180,27 @@ class NetworkController {
             }
         }.resume()
     }
+    
+    func determineSubcategoryFetch() {
+        
+        if tempCategorySelection == "Shelters" {
+            fetchSubcategoriesNames(SubCategory.shelters)
+            print("SubcategoryNames: \(subcategoryNames)")
+        } else if tempCategorySelection == "Health Care" {
+            fetchSubcategoriesNames(SubCategory.healthcare)
+        } else if tempCategorySelection == "Food" {
+            fetchSubcategoriesNames(SubCategory.food)
+        } else if tempCategorySelection == "Hygiene" {
+            fetchSubcategoriesNames(SubCategory.hygiene)
+        } else if tempCategorySelection == "Outreach Services" {
+            fetchSubcategoriesNames(SubCategory.outreach)
+        } else if tempCategorySelection == "Education" {
+            fetchSubcategoriesNames(SubCategory.education)
+        } else if tempCategorySelection == "Legal Administrative" {
+            fetchSubcategoriesNames(SubCategory.legal)
+        } else if tempCategorySelection == "Jobs" {
+            fetchSubcategoriesNames(SubCategory.jobs)
+        }
+    }
+    
 }
