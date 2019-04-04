@@ -29,7 +29,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         networkController.fetchCategoryNames { (error) in
+
             if let error = error {
                 NSLog("Error fetching categories: \(error)")
             }
@@ -37,16 +39,24 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
-        //networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
+
+        networkController.fetchSubcategoryDetails("Shelters") { (error) in
+            if let error = error {
+                NSLog("Error fetching subcategories: \(error)")
+            }
+            DispatchQueue.main.async {
+                
+            }
+        }
+        networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
         //networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.legal)          // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.food)           // Phone: Expected to decode Int but found a string/data
         //networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
         //networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
         //networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
-        networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
-        
-        
+        //networkController.fetchSubcategoriesNames(SubCategory.jobs)             // Phone: Expected to decode Int but found a string/data
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,7 +64,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoriesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let categoryName = networkController.categoryNames[indexPath.row]
         cell.categoryNameLabel.text = categoryName

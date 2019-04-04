@@ -19,6 +19,5 @@ struct LegalAdministrative: Decodable {
     }
     var dictionary: NSDictionary {
         return legalAdministrativeDictionary as NSDictionary
-    }
-    
+    }   
 }

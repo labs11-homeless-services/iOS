@@ -22,5 +22,6 @@ struct Hygiene: Decodable {
     var dictionary: NSDictionary {
         return hygieneDictionary as NSDictionary
     }
-    
+
 }
+

@@ -22,5 +22,6 @@ struct Food: Decodable {
     var dictionary: NSDictionary {
         return foodDictionary as NSDictionary
     }
-    
+
 }
+
