@@ -37,9 +37,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
-        cell.textLabel?.text = networkController.subcategoryNames[indexPath.row].uppercased()
+        cell.subcategoryNameLabel.text = networkController.subcategoryNames[indexPath.row].uppercased()
+        //cell.subcategoryImageView.image =
+        cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
         
         return cell
     }
