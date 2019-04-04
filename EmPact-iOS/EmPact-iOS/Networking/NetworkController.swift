@@ -80,7 +80,7 @@ class NetworkController {
             }
             
             guard let data = data else {
-                print("no data returned from dtat task.")
+                print("no data returned from data task.")
                 completion(NSError())
                 return
             }
