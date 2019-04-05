@@ -16,7 +16,6 @@ class CategoryController {
     
     func getIconImage() -> UIImage {
         
-        // Turn this into a for loop/refactor if we have time: Art Gallery project?
         if tempCategoryName == "Shelters" {
             iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
         } else if tempCategoryName == "Health Care" {

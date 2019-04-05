@@ -395,6 +395,7 @@
                                             <outlet property="nextArrowImageView" destination="qia-mn-NxZ" id="ThN-qE-emT"/>
                                             <outlet property="subcategoryImageView" destination="XPg-dH-R9y" id="fbV-Vb-q9T"/>
                                             <outlet property="subcategoryNameLabel" destination="BhN-zv-Hvj" id="XKV-XJ-9ek"/>
+                                            <segue destination="zem-mX-p5a" kind="show" id="4Kw-ER-GSO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -655,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBE-gr-hJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2157.5999999999999" y="244.22788605697153"/>
+            <point key="canvasLocation" x="2383" y="243"/>
         </scene>
         <!--Citrus County Abuse Shelter-->
         <scene sceneID="NJn-hU-LVO">
@@ -687,7 +688,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-OW-IaU">
-                                <rect key="frame" x="8" y="64" width="359" height="50"/>
+                                <rect key="frame" x="8" y="20" width="359" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="YrF-tX-9tP">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -856,7 +857,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gwh-5o-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853.5999999999999" y="243.32833583208398"/>
+            <point key="canvasLocation" x="3094" y="242"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tul-sl-5zu">
@@ -883,6 +884,7 @@
         <image name="man" width="56" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="4Kw-ER-GSO"/>
         <segue reference="aOi-eF-ufD"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>

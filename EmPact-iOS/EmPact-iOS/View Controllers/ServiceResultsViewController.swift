@@ -12,7 +12,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var tableView: UITableView!
     
-    let networkController = NetworkController()
+    var selectedSubcategory: String!
+    
+    var networkController: NetworkController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        networkController.fetchSubcategoryDetails(SubCategory.shelters.rawValue) { (error) in
+        let passedSubCategory = selectedSubcategory.lowercased()
+        
+        networkController?.fetchSubcategoryDetails(passedSubCategory) { (error) in
             
             if let error = error {
                 NSLog("Error fetching categories: \(error)")
@@ -33,14 +37,14 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return networkController.subcategoryDetails.count
+        return networkController?.subcategoryDetails.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         
-        let subcategoryDetail = networkController.subcategoryDetails[indexPath.row]
-        cell.textLabel?.text = subcategoryDetail.name
+        let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
+        cell.textLabel?.text = subcategoryDetail?.name
         
         return cell
     }
