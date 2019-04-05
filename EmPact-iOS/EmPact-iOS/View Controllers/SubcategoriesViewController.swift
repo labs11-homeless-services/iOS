@@ -15,21 +15,40 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
-    lazy var tempCategorySelection = networkController?.tempCategorySelection
-    var selectedCategory = ""
+    var selectedCategory: String!
+
     var networkController: NetworkController?
+    //var subcategoryTVCell: SubcategoryTableViewCell?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("SubcategoriesViewController CategoryNames: \(networkController?.categoryNames)")
-        print("SubategoriesViewController tempCategorySelection: \(networkController?.tempCategorySelection)")
+        // Passed Category is instantiated as a subCategory enum and lowercased to match the rawvalue
+        guard let passedCategory = SubCategory(rawValue: selectedCategory.lowercased()) else { return }
         
-        networkController?.determineSubcategoryFetch()
-        //print("determine: \(networkController?.subcategoryNames)")
+        networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+        
+        var tempSelectedCategory = networkController?.tempCategorySelection
+        print("Temp Variables: \(tempSelectedCategory) \(selectedCategory)")
+        
+        //categoryTitleImage.image = get this image
+        //categoryTitleLabel.text = selectedCategory
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,6 +61,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.subcategoryNameLabel.text = networkController?.subcategoryNames[indexPath.row].uppercased()
         //cell.subcategoryImageView.image =
         cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
+        //subcategoryTVCell = cell
         
         return cell
     }
@@ -53,8 +73,13 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+       
+        guard let destination = segue.destination as? ServiceResultsViewController,
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+            let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
+        
+        destination.networkController = networkController
+        destination.selectedSubcategory = subcategoryDetails
     }
     
     

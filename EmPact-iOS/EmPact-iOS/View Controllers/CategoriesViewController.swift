@@ -41,15 +41,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
-
-        networkController.fetchSubcategoryDetails("Shelters") { (error) in
-            if let error = error {
-                NSLog("Error fetching subcategories: \(error)")
-            }
-            DispatchQueue.main.async {
-                
-            }
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,9 +50,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
-        let categoryName = networkController.categoryNames[indexPath.row]
-        categoryController.tempCategoryName = categoryName
-        cell.categoryNameLabel.text = categoryName
+        let category = networkController.categoryNames[indexPath.row]
+        categoryController.tempCategoryName = category
+        cell.categoryNameLabel.text = category
         
         categoryController.getIconImage()
         cell.categoryImageView.image = categoryController.iconImage
@@ -71,21 +62,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let categoryName = networkController.categoryNames[indexPath.row]
-        networkController.tempCategorySelection = categoryName
-        print("CategoryName from CategoriesView: \(categoryName)")
+        let categoryAtIndexPath = networkController.categoryNames[indexPath.row]
+        networkController.tempCategorySelection = categoryAtIndexPath
+
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-//        let cell = sender as! CategoriesCollectionViewCell
-//        guard let categoryIndex = categoriesCollectionView.indexPath(for: cell) else { return }
-//        let destination = segue.destination as! SubcategoriesViewController
-//        destination.networkController = self.networkController
-//        //destination.
 
-        
+        let destination = segue.destination as! SubcategoriesViewController
+        destination.networkController = networkController
+        destination.selectedCategory = networkController.tempCategorySelection
     }
 }
 
