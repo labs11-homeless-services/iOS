@@ -479,6 +479,8 @@
                         <viewLayoutGuide key="safeArea" id="h0o-i2-UVq"/>
                     </view>
                     <connections>
+                        <outlet property="categoryTitleImage" destination="Bgs-wR-ZOB" id="Wur-Re-C33"/>
+                        <outlet property="categoryTitleLabel" destination="4Z3-MF-Aaf" id="QVS-iX-Jwc"/>
                         <outlet property="tableView" destination="c0b-zD-YXI" id="kW1-PE-jgF"/>
                     </connections>
                 </viewController>

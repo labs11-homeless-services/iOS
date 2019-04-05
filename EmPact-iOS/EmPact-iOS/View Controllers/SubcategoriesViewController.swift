@@ -10,9 +10,12 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var categoryTitleLabel: UIStackView!
+    @IBOutlet weak var categoryTitleImage: UIImageView!
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var tempCategorySelection = ""
+    lazy var tempCategorySelection = networkController?.tempCategorySelection
     var selectedCategory = ""
     var networkController: NetworkController?
     
