@@ -329,7 +329,7 @@
                         <outlet property="categoriesCollectionView" destination="JUh-ah-XMf" id="YJI-8c-nKS"/>
                         <outlet property="categoriesScrollView" destination="EDU-uA-BJS" id="ev1-f4-D9p"/>
                         <segue destination="zem-mX-p5a" kind="show" id="hvx-Hf-RwT"/>
-                        <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="CwN-lE-TK7"/>
+                        <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="aOi-eF-ufD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXs-nM-FQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,14 +480,12 @@
                         <viewLayoutGuide key="safeArea" id="h0o-i2-UVq"/>
                     </view>
                     <connections>
-                        <outlet property="categoryTitleImage" destination="Bgs-wR-ZOB" id="Wur-Re-C33"/>
-                        <outlet property="categoryTitleLabel" destination="4Z3-MF-Aaf" id="QVS-iX-Jwc"/>
                         <outlet property="tableView" destination="c0b-zD-YXI" id="kW1-PE-jgF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2p-ck-kVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1521" y="1176"/>
+            <point key="canvasLocation" x="1492" y="1191"/>
         </scene>
         <!--Shelters - Men-->
         <scene sceneID="DSe-Wt-ueS">
@@ -886,10 +884,8 @@
         <image name="man" width="56" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-
         <segue reference="4Kw-ER-GSO"/>
         <segue reference="aOi-eF-ufD"/>
-        <segue reference="CwN-lE-TK7"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
 </document>
