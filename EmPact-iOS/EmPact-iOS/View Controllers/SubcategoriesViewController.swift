@@ -19,8 +19,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("SubcategoriesViewController CategoryNames: \(networkController?.categoryNames)")
+        print("SubategoriesViewController tempCategorySelection: \(networkController?.tempCategorySelection)")
+        
         networkController?.determineSubcategoryFetch()
-        print("determine: \(networkController?.subcategoryNames)")
+        //print("determine: \(networkController?.subcategoryNames)")
 
         self.tableView.delegate = self
         self.tableView.dataSource = self

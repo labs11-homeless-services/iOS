@@ -23,6 +23,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
+        
+        print("CategoriesViewController CategoryNames: \(networkController.categoryNames)")
+        print("CategoriesViewController tempCategorySelection: \(networkController.tempCategorySelection)")
   
     }
     
@@ -70,16 +73,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         let categoryName = networkController.categoryNames[indexPath.row]
         networkController.tempCategorySelection = categoryName
+        print("CategoryName from CategoriesView: \(categoryName)")
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let cell = sender as! CategoriesCollectionViewCell
-        var categoryIndex = categoriesCollectionView.indexPath(for: cell)
-        let destination = segue.destination as! SubcategoriesViewController
-        destination.networkController = self.networkController
-        //destination.
+//        let cell = sender as! CategoriesCollectionViewCell
+//        guard let categoryIndex = categoriesCollectionView.indexPath(for: cell) else { return }
+//        let destination = segue.destination as! SubcategoriesViewController
+//        destination.networkController = self.networkController
+//        //destination.
 
         
     }
