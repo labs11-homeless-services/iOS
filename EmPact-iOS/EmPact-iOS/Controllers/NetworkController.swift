@@ -18,8 +18,8 @@ class NetworkController {
     var subcategoryDetails: [IndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
+    typealias Handler = ([String], Error?) -> Void
     static var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/") }
-    
     
     // CATEGORY NAMES
     func fetchCategoryNames(completion: @escaping CompletionHandler = { _ in }) {
@@ -28,17 +28,15 @@ class NetworkController {
             .appendingPathComponent("categories")
             .appendingPathExtension("json")
         
-        print("requestURL: \(requestURL)")
-        
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
-                print("error fetching tasks: \(error)")
+                NSLog("error fetching tasks: \(error)")
                 completion(error)
                 return
             }
             
             guard let data = data else {
-                print("no data returned from data task.")
+                NSLog("no data returned from data task.")
                 completion(NSError())
                 return
             }
@@ -48,13 +46,11 @@ class NetworkController {
             
             do {
                 let decodedResponse = try jsonDecoder.decode(Categories.self, from: data)
-                print("Network decodedResponse: \(decodedResponse)")
                 
                 let categories = decodedResponse.categoryName
                 let capitalizedCategories = categories.map {$0.capitalized}
                 
                 self.categoryNames = capitalizedCategories
-                print("Network Categories: \(categories)")
                 completion(nil)
             } catch {
                 completion(error)
@@ -62,26 +58,23 @@ class NetworkController {
         }.resume()
     }
     
-
-    
     // SUBCATEGORY NAMES
-    func fetchSubcategoriesNames(_ subcategory: SubCategory, completion: @escaping CompletionHandler = { _ in }) {
+    func fetchSubcategoriesNames(_ subcategory: SubCategory, completion: @escaping Handler = { _, _ in }) {
 
         let requestURL = NetworkController.baseURL
             .appendingPathComponent("\(subcategory.rawValue)")
             .appendingPathExtension("json")
-        print("\(subcategory) url: \(requestURL)")
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
-                print("error fetching tasks: \(error)")
-                completion(error)
+                NSLog("error fetching tasks: \(error)")
+                completion(self.subcategoryNames, error)
                 return
             }
             
             guard let data = data else {
-                print("no data returned from data task.")
-                completion(NSError())
+                NSLog("no data returned from data task.")
+                completion(self.subcategoryNames, NSError())
                 return
             }
             
@@ -133,14 +126,34 @@ class NetworkController {
                     }
                 }
                 
-                //print("Network Categories: \(String(describing: self.subcategoryNames))")
-                completion(nil)
+                completion(self.subcategoryNames, nil)
             } catch {
-                print("error decoding entries: \(error)")
-                completion(error)
+                NSLog("error decoding entries: \(error)")
+                completion(self.subcategoryNames, error)
             }
             
         }.resume()
+    }
+    
+    func determineSubcategoryFetch(completion: @escaping CompletionHandler = { _ in }) {
+        
+        if tempCategorySelection == "Shelters" {
+            fetchSubcategoriesNames(SubCategory.shelters)
+        } else if tempCategorySelection == "Health Care" {
+            fetchSubcategoriesNames(SubCategory.healthcare)
+        } else if tempCategorySelection == "Food" {
+            fetchSubcategoriesNames(SubCategory.food)
+        } else if tempCategorySelection == "Hygiene" {
+            fetchSubcategoriesNames(SubCategory.hygiene)
+        } else if tempCategorySelection == "Outreach Services" {
+            fetchSubcategoriesNames(SubCategory.outreach)
+        } else if tempCategorySelection == "Education" {
+            fetchSubcategoriesNames(SubCategory.education)
+        } else if tempCategorySelection == "Legal Administrative" {
+            fetchSubcategoriesNames(SubCategory.legal)
+        } else if tempCategorySelection == "Jobs" {
+            fetchSubcategoriesNames(SubCategory.jobs)
+        }
     }
     
     // SUBCATEGORY LIST RESULTS DETAILS
@@ -150,17 +163,15 @@ class NetworkController {
             .appendingPathComponent(subcategoryName)
             .appendingPathExtension("json")
         
-        print("requestURL: \(requestURL)")
-        
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
-                print("error fetching tasks: \(error)")
+                NSLog("error fetching tasks: \(error)")
                 completion(error)
                 return
             }
             
             guard let data = data else {
-                print("no data returned from dtat task.")
+                NSLog("no data returned from dtat task.")
                 completion(NSError())
                 return
             }
@@ -180,27 +191,5 @@ class NetworkController {
             }
         }.resume()
     }
-    
-    func determineSubcategoryFetch() {
-        
-        if tempCategorySelection == "Shelters" {
-            fetchSubcategoriesNames(SubCategory.shelters)
-            print("SubcategoryNames: \(subcategoryNames)")
-        } else if tempCategorySelection == "Health Care" {
-            fetchSubcategoriesNames(SubCategory.healthcare)
-        } else if tempCategorySelection == "Food" {
-            fetchSubcategoriesNames(SubCategory.food)
-        } else if tempCategorySelection == "Hygiene" {
-            fetchSubcategoriesNames(SubCategory.hygiene)
-        } else if tempCategorySelection == "Outreach Services" {
-            fetchSubcategoriesNames(SubCategory.outreach)
-        } else if tempCategorySelection == "Education" {
-            fetchSubcategoriesNames(SubCategory.education)
-        } else if tempCategorySelection == "Legal Administrative" {
-            fetchSubcategoriesNames(SubCategory.legal)
-        } else if tempCategorySelection == "Jobs" {
-            fetchSubcategoriesNames(SubCategory.jobs)
-        }
-    }
-    
+
 }
