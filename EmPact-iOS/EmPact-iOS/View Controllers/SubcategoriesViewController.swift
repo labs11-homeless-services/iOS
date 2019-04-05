@@ -10,9 +10,13 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var categoryTitleLabel: UIStackView!
+    @IBOutlet weak var categoryTitleImage: UIImageView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var selectedCategory: String!
+
     var networkController: NetworkController?
     //var subcategoryTVCell: SubcategoryTableViewCell?
     
@@ -41,7 +45,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         //categoryTitleImage.image = get this image
         //categoryTitleLabel.text = selectedCategory
-        
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
     

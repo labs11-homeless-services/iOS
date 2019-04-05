@@ -12,7 +12,7 @@ enum SubCategory: String {
     case education
     case legal = "legal_administrative"
     case food
-    case healthcare
+    case healthcare = "health_care"
     case outreach = "outreach_services"
     case hygiene
     case shelters
