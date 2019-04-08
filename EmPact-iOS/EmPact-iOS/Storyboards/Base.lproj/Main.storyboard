@@ -155,7 +155,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-XW-KB3" userLabel="Address Stack">
                                                         <rect key="frame" x="8" y="69" width="319" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="Prf-Rw-iGh" userLabel="Address Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="Prf-Rw-iGh" userLabel="Address Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="2kg-F6-pnk"/>
@@ -173,7 +173,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYj-gS-Pnk" userLabel="Directions Stack">
                                                         <rect key="frame" x="8" y="97" width="319" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-mk-hU6" userLabel="Public Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-mk-hU6" userLabel="Public Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="LKH-qK-2RV"/>
@@ -187,7 +187,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="eM2-zn-oxB" userLabel="Walk Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="eM2-zn-oxB" userLabel="Walk Icon">
                                                                 <rect key="frame" x="163.5" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="4Qd-zP-F7G"/>
@@ -209,7 +209,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Trw-Pb-zkS" userLabel="Contact Stack">
                                                         <rect key="frame" x="8" y="125" width="319" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-Po-4VI" userLabel="Phone Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-Po-4VI" userLabel="Phone Icon">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="Nes-iu-IQF"/>
@@ -223,7 +223,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-CQ-IBd" userLabel="Hours Icon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-CQ-IBd" userLabel="Hours Icon">
                                                                 <rect key="frame" x="163.5" y="0.0" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="0yI-Dz-bpe"/>
@@ -330,7 +330,7 @@
                         <outlet property="categoriesCollectionView" destination="JUh-ah-XMf" id="YJI-8c-nKS"/>
                         <outlet property="categoriesScrollView" destination="EDU-uA-BJS" id="ev1-f4-D9p"/>
                         <segue destination="zem-mX-p5a" kind="show" id="hvx-Hf-RwT"/>
-                        <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="aOi-eF-ufD"/>
+                        <segue destination="Jjd-21-FMI" kind="show" identifier="modalSubcategoryMenu" id="aOi-eF-ufD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXs-nM-FQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -502,10 +502,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="117"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QtB-bE-08A">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0A7-xO-7HR">
-                                                <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
                                         </subviews>
@@ -518,11 +518,12 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="topView"/>
                                 <constraints>
                                     <constraint firstItem="qQW-hr-yqe" firstAttribute="leading" secondItem="noe-Nl-33B" secondAttribute="leading" constant="20" id="4g6-EP-u3T"/>
                                     <constraint firstAttribute="trailing" secondItem="qQW-hr-yqe" secondAttribute="trailing" constant="20" id="AuZ-qH-Z09"/>
-                                    <constraint firstItem="QtB-bE-08A" firstAttribute="leading" secondItem="noe-Nl-33B" secondAttribute="leading" constant="8" id="RWX-IK-r8q"/>
-                                    <constraint firstAttribute="trailing" secondItem="QtB-bE-08A" secondAttribute="trailing" constant="8" id="sbu-uE-ERU"/>
+                                    <constraint firstItem="QtB-bE-08A" firstAttribute="leading" secondItem="noe-Nl-33B" secondAttribute="leading" id="RWX-IK-r8q"/>
+                                    <constraint firstAttribute="trailing" secondItem="QtB-bE-08A" secondAttribute="trailing" id="sbu-uE-ERU"/>
                                     <constraint firstItem="QtB-bE-08A" firstAttribute="top" secondItem="noe-Nl-33B" secondAttribute="top" id="vug-BG-NtQ"/>
                                     <constraint firstAttribute="bottom" secondItem="qQW-hr-yqe" secondAttribute="bottom" constant="20" id="wXD-ho-ZPa"/>
                                 </constraints>
@@ -547,7 +548,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="azp-8G-5A6" userLabel="Address Stack">
                                                     <rect key="frame" x="20" y="92" width="335" height="20"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="wtf-TX-uNd" userLabel="Address Icon">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="wtf-TX-uNd" userLabel="Address Icon">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="O7X-9R-f26"/>
@@ -566,7 +567,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cHF-6N-YEy" userLabel="Phone Stack">
                                                     <rect key="frame" x="20" y="120" width="335" height="20"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-MB-xRL" userLabel="Phone Icon">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-MB-xRL" userLabel="Phone Icon">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="0nI-aI-dPt"/>
@@ -585,7 +586,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zIq-J7-tcO" userLabel="Hours Stack">
                                                     <rect key="frame" x="20" y="148" width="335" height="20"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-hc-5Sm" userLabel="Hours Icon">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-hc-5Sm" userLabel="Hours Icon">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="FpS-9h-UV7"/>
@@ -594,13 +595,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Monday - Friday 9 a.m. - 7 p.m." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaU-4h-thL" userLabel="Hours Label">
-                                                            <rect key="frame" x="28" y="0.0" width="256" height="20"/>
+                                                            <rect key="frame" x="28" y="0.0" width="250.5" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p49-Rx-sfQ">
-                                                            <rect key="frame" x="292" y="0.0" width="43" height="20"/>
+                                                            <rect key="frame" x="286.5" y="0.0" width="48.5" height="20"/>
                                                             <state key="normal" title="VIEW"/>
                                                             <connections>
                                                                 <action selector="viewButton:" destination="eb7-v2-PZu" eventType="touchUpInside" id="a53-oR-qfF"/>
@@ -695,7 +696,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-OW-IaU" userLabel="Search Stack">
-                                <rect key="frame" x="8" y="64" width="359" height="56"/>
+                                <rect key="frame" x="8" y="20" width="359" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-f1-LmS">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
@@ -715,7 +716,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="L9X-CV-wbh" userLabel="Address Stack">
                                         <rect key="frame" x="8" y="68" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="olm-Xj-23Z">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="olm-Xj-23Z">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="CGL-dJ-Cnx"/>
@@ -734,7 +735,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jz7-we-eLA" userLabel="Location Stack">
                                         <rect key="frame" x="8" y="96" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="lPB-5k-m4A">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="lPB-5k-m4A">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lPB-5k-m4A" secondAttribute="height" id="FVs-yT-jWa"/>
@@ -748,7 +749,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="53M-kR-BtT">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="53M-kR-BtT">
                                                 <rect key="frame" x="163.5" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="7P7-zD-XhJ"/>
@@ -770,7 +771,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oZk-ft-1Mm" userLabel="Phone Stack">
                                         <rect key="frame" x="8" y="126" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-YR-Q7g">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="3gK-YR-Q7g">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="eGK-qn-9kl"/>
@@ -895,8 +896,8 @@
     <resources>
         <image name="C-shelter" width="60" height="56"/>
         <image name="Sharp" width="28" height="28"/>
-        <image name="icons8-organic-food-50" width="50" height="50"/>
         <image name="man" width="56" height="60"/>
+        <image name="public transportation" width="60" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hvx-Hf-RwT"/>
