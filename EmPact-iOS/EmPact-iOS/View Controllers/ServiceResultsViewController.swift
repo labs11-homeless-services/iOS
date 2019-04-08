@@ -11,22 +11,42 @@ import UIKit
 class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var subcategoriesTitleLabel: UILabel!
     
-    let networkController = NetworkController()
+    var selectedSubcategory: String!
+    
+    var networkController: NetworkController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        let passedSubCategory = selectedSubcategory.lowercased()
+        
+        networkController?.fetchSubcategoryDetails(passedSubCategory) { (error) in
+            
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return networkController.subcategoryDetails.count
+        return networkController?.subcategoryDetails.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
+        cell.textLabel?.text = subcategoryDetail?.name
         
         return cell
     }

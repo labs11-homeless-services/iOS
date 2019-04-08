@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		112250AE22554A5900577EEF /* IndividualResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112250AD22554A5900577EEF /* IndividualResource.swift */; };
+		112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220D22566A910008E54B /* UserLocationViewController.swift */; };
+		112A221022569C550008E54B /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220F22569C550008E54B /* CategoryController.swift */; };
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
 		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		112250AD22554A5900577EEF /* IndividualResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualResource.swift; sourceTree = "<group>"; };
+		112A220D22566A910008E54B /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
+		112A220F22569C550008E54B /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -103,7 +107,7 @@
 			children = (
 				846264E2224D981A009A21A2 /* Storyboards */,
 				846264E8224D9866009A21A2 /* Model & Controller */,
-				846264E7224D985E009A21A2 /* Networking */,
+				846264E7224D985E009A21A2 /* Controllers */,
 				846264E6224D984F009A21A2 /* View Controllers */,
 				846264E5224D9842009A21A2 /* Views */,
 				846264E4224D9839009A21A2 /* Helpers */,
@@ -137,6 +141,7 @@
 				846264F1224D9910009A21A2 /* AppearanceHelper.swift */,
 				11A098BC22541842006F8B9D /* IconImageHelper.swift */,
 				11A098C022552031006F8B9D /* Subcategory.swift */,
+				112A220D22566A910008E54B /* UserLocationViewController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -144,9 +149,9 @@
 		846264E5224D9842009A21A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
 				11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */,
 				847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */,
+				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -163,12 +168,13 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		846264E7224D985E009A21A2 /* Networking */ = {
+		846264E7224D985E009A21A2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				846264EB224D98AF009A21A2 /* NetworkController.swift */,
+				112A220F22569C550008E54B /* CategoryController.swift */,
 			);
-			path = Networking;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		846264E8224D9866009A21A2 /* Model & Controller */ = {
@@ -278,6 +284,7 @@
 				847A7ED922557B2900A62A5F /* OutreachServices.swift in Sources */,
 				842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */,
 				846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */,
+				112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */,
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
 				846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */,
 				847A7EDB22557B4400A62A5F /* IndividualResource.swift in Sources */,
@@ -293,6 +300,7 @@
 				842DE2032252C4D200BBE2FB /* Education.swift in Sources */,
 				847A7ED122553CD700A62A5F /* ServiceDetailViewController.swift in Sources */,
 				842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */,
+				112A221022569C550008E54B /* CategoryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
