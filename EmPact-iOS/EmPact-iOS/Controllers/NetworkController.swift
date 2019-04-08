@@ -15,7 +15,7 @@ class NetworkController {
     
     var categoryNames: [String] = []
     var subcategoryNames: [String] = []
-    var subcategoryDetails: [IndividualResource] = []
+    var subcategoryDetails: [ShelterIndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
     typealias Handler = ([String], Error?) -> Void

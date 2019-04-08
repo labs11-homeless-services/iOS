@@ -11,6 +11,8 @@ import UIKit
 class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var subcategoriesTitleLabel: UILabel!
     
     var selectedSubcategory: String!
     
