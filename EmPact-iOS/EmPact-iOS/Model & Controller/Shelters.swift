@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Shelters: Decodable {
+struct Shelters: Codable {
 
-    var all: [IndividualResource]
-    var men: [IndividualResource]
-    var women: [IndividualResource]
-    var youth: [IndividualResource]
+    var all: [ShelterIndividualResource]
+    var men: [ShelterIndividualResource]
+    var women: [ShelterIndividualResource]
+    var youth: [ShelterIndividualResource]
     
-    var shelterDictionary: [String: [IndividualResource]] {
+    var shelterDictionary: [String: [ShelterIndividualResource]] {
         return ["all": all,
                 "men": men,
                 "women": women,
@@ -25,5 +25,64 @@ struct Shelters: Decodable {
         return shelterDictionary as NSDictionary
     }
 
+}
+
+struct ShelterIndividualResource: Codable {
+    
+    enum SheltersCodingKeys: String, CodingKey {
+        case address
+        case city
+        case details
+        case hours
+        case keywords
+        case latitude
+        case longitude
+        case name
+        case phone
+        case postalCode = "postal code"
+        case state
+        case services
+        
+    }
+    
+    var address: String
+    var city: String
+    var details: [String]?
+    var hours: String?
+    
+    var keywords: String
+    var latitude: String
+    var longitude: String
+    
+    var name: String
+    var phone: String
+    var postalCode: String
+    var state: String
+    
+    var services: [String]?
+
+    init(from decoder: Decoder) throws {
+        
+        // Container representing top level of information, which is a dictionary
+        let container = try decoder.container(keyedBy: SheltersCodingKeys.self)
+        
+        address = try container.decode(String.self, forKey: .address)
+        city = try container.decode(String.self, forKey: .city)
+        
+        // contains an array, but is not nested
+        details = try container.decode([String].self, forKey: .details)
+        
+        hours = try container.decode(String.self, forKey: .hours)
+        keywords = try container.decode(String.self, forKey: .keywords)
+        latitude = try container.decode(String.self, forKey: .latitude)
+        longitude = try container.decode(String.self, forKey: .longitude)
+        name = try container.decode(String.self, forKey: .name)
+        phone = try container.decode(String.self, forKey: .phone)
+        postalCode = try container.decode(String.self, forKey: .postalCode)
+        state = try container.decode(String.self, forKey: .state)
+        
+        // contains an array, but is not nested
+        services = try container.decode([String].self, forKey: .services)
+    }
 }
 

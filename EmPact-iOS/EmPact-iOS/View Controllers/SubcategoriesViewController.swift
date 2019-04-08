@@ -10,7 +10,7 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var categoryTitleLabel: UIStackView!
+    @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var categoryTitleImage: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
@@ -18,7 +18,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     var selectedCategory: String!
 
     var networkController: NetworkController?
-    //var subcategoryTVCell: SubcategoryTableViewCell?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,7 +43,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         print("Temp Variables: \(tempSelectedCategory) \(selectedCategory)")
         
         //categoryTitleImage.image = get this image
-        //categoryTitleLabel.text = selectedCategory
+        categoryTitleLabel.text = selectedCategory
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -61,7 +60,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.subcategoryNameLabel.text = networkController?.subcategoryNames[indexPath.row].uppercased()
         //cell.subcategoryImageView.image =
         cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
-        //subcategoryTVCell = cell
         
         return cell
     }
