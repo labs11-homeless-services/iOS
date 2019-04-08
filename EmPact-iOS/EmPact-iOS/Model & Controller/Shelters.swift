@@ -70,9 +70,9 @@ struct ShelterIndividualResource: Codable {
         city = try container.decode(String.self, forKey: .city)
         
         // contains an array, but is not nested
-        details = try container.decode([String].self, forKey: .details)
+        details = try container.decodeIfPresent([String].self, forKey: .details)
         
-        hours = try container.decode(String.self, forKey: .hours)
+        hours = try container.decodeIfPresent(String.self, forKey: .hours)
         keywords = try container.decode(String.self, forKey: .keywords)
         latitude = try container.decode(String.self, forKey: .latitude)
         longitude = try container.decode(String.self, forKey: .longitude)
@@ -82,7 +82,7 @@ struct ShelterIndividualResource: Codable {
         state = try container.decode(String.self, forKey: .state)
         
         // contains an array, but is not nested
-        services = try container.decode([String].self, forKey: .services)
+        services = try container.decodeIfPresent([String].self, forKey: .services)
     }
 }
 
