@@ -29,16 +29,18 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         // Passed Category is instantiated as a subCategory enum and lowercased to match the rawvalue
-        guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
+        guard let passedCategory = SubCategory(rawValue: selectedCategory.lowercased()) else { return }
+        if networkController?.subcategoryNames.count ?? 0 < 1 {
+            networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+                if let error = error {
+                    NSLog("Error fetching categories: \(error)")
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
         
-        networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
-            if let error = error {
-                NSLog("Error fetching categories: \(error)")
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
         
         var tempSelectedCategory = networkController?.tempCategorySelection
         print("Temp Variables: \(tempSelectedCategory) \(selectedCategory)")
