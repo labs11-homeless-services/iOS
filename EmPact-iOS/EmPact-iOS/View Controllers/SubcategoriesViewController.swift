@@ -14,7 +14,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCategory: String!
     var networkController: NetworkController?
-    //var subcategoryTVCell: SubcategoryTableViewCell?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,7 +56,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.subcategoryNameLabel.text = networkController?.subcategoryNames[indexPath.row].uppercased()
         //cell.subcategoryImageView.image =
         cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
-        //subcategoryTVCell = cell
         
         return cell
     }

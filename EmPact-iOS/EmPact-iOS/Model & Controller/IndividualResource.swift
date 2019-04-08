@@ -19,4 +19,5 @@ struct IndividualResource: Decodable {
     var longitude: String?
     var phone: Int?
     var postalCode: String?
+    
 }

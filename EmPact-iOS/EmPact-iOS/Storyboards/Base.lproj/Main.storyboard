@@ -688,7 +688,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-OW-IaU">
-                                <rect key="frame" x="8" y="20" width="359" height="50"/>
+                                <rect key="frame" x="8" y="64" width="359" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-organic-food-50" translatesAutoresizingMaskIntoConstraints="NO" id="YrF-tX-9tP">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -884,7 +884,7 @@
         <image name="man" width="56" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Kw-ER-GSO"/>
+        <segue reference="hvx-Hf-RwT"/>
         <segue reference="aOi-eF-ufD"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
