@@ -10,6 +10,7 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //@IBOutlet weak var topView: UIView!
     @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var categoryTitleImage: UIImageView!
     
