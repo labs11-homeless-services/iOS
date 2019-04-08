@@ -10,15 +10,21 @@ import UIKit
 
 class ServiceResultTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var serviceNameLabel: UILabel!
+    
+    @IBOutlet weak var serviceAddressLabel: UILabel!
+    @IBOutlet weak var serviceAddressIcon: UIImageView!
+    
+    @IBOutlet weak var servicePhoneLabel: UILabel!
+    @IBOutlet weak var servicePhoneIcon: UIImageView!
+    
+    @IBOutlet weak var serviceHoursLabel: UILabel!
+    @IBOutlet weak var serviceHoursIcon: UIImageView!
+    
+    
+    
+    
+    @IBAction func viewButton(_ sender: Any) {
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }

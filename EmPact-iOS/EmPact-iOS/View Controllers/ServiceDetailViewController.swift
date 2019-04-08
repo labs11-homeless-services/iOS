@@ -10,9 +10,10 @@ import UIKit
 import MapKit
 
 class ServiceDetailViewController: UIViewController {
-
+    
     // Outlet for MapView
-    var mapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
+
     //var resultLatitude = navigationController
     
     let annotation = MKPointAnnotation()
@@ -21,12 +22,11 @@ class ServiceDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         annotation.coordinate = CLLocationCoordinate2D(latitude: 11.12, // These will be fetched from Firebase
-                                                       longitude: 12.11)
+            longitude: 12.11)
         mapView.addAnnotation(annotation)
     }
-    
 
     /*
     // MARK: - Navigation

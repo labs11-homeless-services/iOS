@@ -10,9 +10,13 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var categoryTitleLabel: UILabel!
+    @IBOutlet weak var categoryTitleImage: UIImageView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var selectedCategory: String!
+
     var networkController: NetworkController?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +43,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         print("Temp Variables: \(tempSelectedCategory) \(selectedCategory)")
         
         //categoryTitleImage.image = get this image
-        //categoryTitleLabel.text = selectedCategory
-        
+        categoryTitleLabel.text = selectedCategory
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
     

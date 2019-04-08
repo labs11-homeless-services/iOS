@@ -151,9 +151,9 @@
 		846264E5224D9842009A21A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
 				11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */,
 				847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */,
+				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

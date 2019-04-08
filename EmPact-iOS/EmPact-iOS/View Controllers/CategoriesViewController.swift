@@ -23,6 +23,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
+        
+        print("CategoriesViewController CategoryNames: \(networkController.categoryNames)")
+        print("CategoriesViewController tempCategorySelection: \(networkController.tempCategorySelection)")
   
     }
     
@@ -61,6 +64,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         let categoryAtIndexPath = networkController.categoryNames[indexPath.row]
         networkController.tempCategorySelection = categoryAtIndexPath
+
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
     
