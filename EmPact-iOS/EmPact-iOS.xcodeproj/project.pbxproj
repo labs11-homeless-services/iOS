@@ -15,7 +15,6 @@
 		11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BC22541842006F8B9D /* IconImageHelper.swift */; };
 		11A098BF22551911006F8B9D /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BE22551911006F8B9D /* Jobs.swift */; };
 		11A098C122552031006F8B9D /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098C022552031006F8B9D /* Subcategory.swift */; };
-		11D79C42225817AC0064EFB5 /* IndividualShelter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C41225817AB0064EFB5 /* IndividualShelter.swift */; };
 		11D79C79225BD6840064EFB5 /* IndividualResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C78225BD6840064EFB5 /* IndividualResource.swift */; };
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */; };
@@ -48,7 +47,6 @@
 		11A098BC22541842006F8B9D /* IconImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImageHelper.swift; sourceTree = "<group>"; };
 		11A098BE22551911006F8B9D /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		11A098C022552031006F8B9D /* Subcategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
-		11D79C41225817AB0064EFB5 /* IndividualShelter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualShelter.swift; sourceTree = "<group>"; };
 		11D79C78225BD6840064EFB5 /* IndividualResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualResource.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				842DE20E2252CFE900BBE2FB /* Shelters.swift */,
 				11A098BE22551911006F8B9D /* Jobs.swift */,
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
-				11D79C41225817AB0064EFB5 /* IndividualShelter.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
 			);
 			path = "Model & Controller";
@@ -299,7 +296,6 @@
 				842DE2032252C4D200BBE2FB /* Education.swift in Sources */,
 				847A7ED122553CD700A62A5F /* ServiceDetailViewController.swift in Sources */,
 				842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */,
-				11D79C42225817AC0064EFB5 /* IndividualShelter.swift in Sources */,
 				112A221022569C550008E54B /* CategoryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

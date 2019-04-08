@@ -11,7 +11,7 @@ import UIKit
 class NetworkController {
     
     var tempCategorySelection = ""
-    var subcategoryName = "shelters"
+    var subcategoryName = ""
     
     var categoryNames: [String] = []
     var subcategoryNames: [String] = []
@@ -59,10 +59,10 @@ class NetworkController {
     }
     
     // SUBCATEGORY NAMES
-    func fetchSubcategoriesNames(_ subcategory: SubCategory, completion: @escaping Handler = { _, _ in }) {
+    func fetchSubcategoriesNames(_ category: Category, completion: @escaping Handler = { _, _ in }) {
 
         let requestURL = NetworkController.baseURL
-            .appendingPathComponent("\(subcategory.rawValue)")
+            .appendingPathComponent("\(category.rawValue)")
             .appendingPathExtension("json")
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
@@ -83,7 +83,7 @@ class NetworkController {
             
             do {
                 
-                switch subcategory {
+                switch category {
                 case .education:
                     let decodedResponse = try jsonDecoder.decode(Education.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
@@ -138,30 +138,36 @@ class NetworkController {
     func determineSubcategoryFetch(completion: @escaping CompletionHandler = { _ in }) {
         
         if tempCategorySelection == "Shelters" {
-            fetchSubcategoriesNames(SubCategory.shelters)
+            fetchSubcategoriesNames(Category.shelters)
         } else if tempCategorySelection == "Health Care" {
-            fetchSubcategoriesNames(SubCategory.healthcare)
+            fetchSubcategoriesNames(Category.healthcare)
         } else if tempCategorySelection == "Food" {
-            fetchSubcategoriesNames(SubCategory.food)
+            fetchSubcategoriesNames(Category.food)
         } else if tempCategorySelection == "Hygiene" {
-            fetchSubcategoriesNames(SubCategory.hygiene)
+            fetchSubcategoriesNames(Category.hygiene)
         } else if tempCategorySelection == "Outreach Services" {
-            fetchSubcategoriesNames(SubCategory.outreach)
+            fetchSubcategoriesNames(Category.outreach)
         } else if tempCategorySelection == "Education" {
-            fetchSubcategoriesNames(SubCategory.education)
+            fetchSubcategoriesNames(Category.education)
         } else if tempCategorySelection == "Legal Administrative" {
-            fetchSubcategoriesNames(SubCategory.legal)
+            fetchSubcategoriesNames(Category.legal)
         } else if tempCategorySelection == "Jobs" {
-            fetchSubcategoriesNames(SubCategory.jobs)
+            fetchSubcategoriesNames(Category.jobs)
         }
     }
     
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: String, completion: @escaping CompletionHandler = { _ in }) {
         
+        guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
+        determineSubcategory(subcategory: tempSubcategory)
+        
         let requestURL = NetworkController.baseURL
-            .appendingPathComponent(subcategoryName)
+            .appendingPathComponent(tempCategorySelection.lowercased())
+            .appendingPathComponent(subcategory)
             .appendingPathExtension("json")
+        
+        print("subcategory requestURL: \(requestURL)")
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
@@ -192,4 +198,49 @@ class NetworkController {
         }.resume()
     }
 
+    func determineSubcategory(subcategory: Subcategory) {
+        
+        var temp = subcategory
+        switch subcategory {
+        case .all:
+            temp = Subcategory.all
+        case .women:
+            temp = Subcategory.women
+        case .men:
+            temp = Subcategory.men
+        case .youth:
+            temp = Subcategory.youth
+        case .ged:
+            temp = Subcategory.ged
+        case .publicComputers:
+            temp = Subcategory.publicComputers
+        case .foodPantries:
+            temp = Subcategory.foodPantries
+        case .foodStamps:
+            temp = Subcategory.foodStamps
+        case .clinics:
+            temp = Subcategory.clinics
+        case .emergency:
+            temp = Subcategory.emergency
+        case .hiv:
+            temp = Subcategory.hiv
+        case .mentalHealth:
+            temp = Subcategory.mentalHealth
+        case .rehab:
+            temp = Subcategory.rehab
+        case .bathrooms:
+            temp = Subcategory.bathrooms
+        case .showers:
+            temp = Subcategory.showers
+        case .benefits:
+            temp = Subcategory.benefits
+        case .afterSchool:
+            temp = Subcategory.afterSchool
+        case .domesticViolence:
+            temp = Subcategory.domesticViolence
+        case .socialServices:
+            temp = Subcategory.socialServices
+        }
+    }
+    
 }

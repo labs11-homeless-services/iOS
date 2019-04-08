@@ -29,7 +29,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         // Passed Category is instantiated as a subCategory enum and lowercased to match the rawvalue
-        guard let passedCategory = SubCategory(rawValue: selectedCategory.lowercased()) else { return }
+        guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
         
         networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
             if let error = error {
