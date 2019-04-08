@@ -10,6 +10,8 @@ import UIKit
 
 class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var searchBarView: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var subcategoriesTitleLabel: UILabel!
@@ -43,11 +45,14 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ServiceResultTableViewCell.reuseIdentifier, for: indexPath) as! ServiceResultTableViewCell
         
         let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
-        cell.textLabel?.text = subcategoryDetail?.name
-        
+        cell.serviceNameLabel.text = subcategoryDetail?.name
+        cell.serviceAddressLabel.text = subcategoryDetail?.address
+        cell.servicePhoneLabel.text = subcategoryDetail?.phone
+        cell.serviceHoursLabel.text = subcategoryDetail?.hours
+            
         return cell
     }
     
