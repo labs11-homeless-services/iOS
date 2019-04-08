@@ -163,6 +163,8 @@ class NetworkController {
             .appendingPathComponent(subcategoryName)
             .appendingPathExtension("json")
         
+        print(requestURL)
+        
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
                 NSLog("error fetching tasks: \(error)")

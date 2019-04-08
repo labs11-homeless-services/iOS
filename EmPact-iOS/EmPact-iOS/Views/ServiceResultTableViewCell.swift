@@ -21,7 +21,7 @@ class ServiceResultTableViewCell: UITableViewCell {
     @IBOutlet weak var serviceHoursLabel: UILabel!
     @IBOutlet weak var serviceHoursIcon: UIImageView!
     
-    
+    static let reuseIdentifier = "serviceResultCell"
     
     
     @IBAction func viewButton(_ sender: Any) {
