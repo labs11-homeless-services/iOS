@@ -16,8 +16,10 @@
 		11A098BF22551911006F8B9D /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BE22551911006F8B9D /* Jobs.swift */; };
 		11A098C122552031006F8B9D /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098C022552031006F8B9D /* Subcategory.swift */; };
 		11D79C79225BD6840064EFB5 /* IndividualResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C78225BD6840064EFB5 /* IndividualResource.swift */; };
-		8428C5F4225D2BFB0036B295 /* ResultDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428C5F3225D2BFB0036B295 /* ResultDetailsController.swift */; };
-		8428C5F6225D2CD70036B295 /* ShelterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428C5F5225D2CD70036B295 /* ShelterDetails.swift */; };
+		11D79C7E225D04630064EFB5 /* DismissMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7A225D04440064EFB5 /* DismissMenuAnimator.swift */; };
+		11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */; };
+		11D79C80225D04630064EFB5 /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7C225D04620064EFB5 /* MenuHelper.swift */; };
+		11D79C81225D04630064EFB5 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7D225D04630064EFB5 /* Interactor.swift */; };
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
@@ -50,8 +52,10 @@
 		11A098BE22551911006F8B9D /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		11A098C022552031006F8B9D /* Subcategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		11D79C78225BD6840064EFB5 /* IndividualResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualResource.swift; sourceTree = "<group>"; };
-		8428C5F3225D2BFB0036B295 /* ResultDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailsController.swift; sourceTree = "<group>"; };
-		8428C5F5225D2CD70036B295 /* ShelterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterDetails.swift; sourceTree = "<group>"; };
+		11D79C7A225D04440064EFB5 /* DismissMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissMenuAnimator.swift; sourceTree = "<group>"; };
+		11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMenuAnimator.swift; sourceTree = "<group>"; };
+		11D79C7C225D04620064EFB5 /* MenuHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
+		11D79C7D225D04630064EFB5 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -87,6 +91,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11D79C82225D04720064EFB5 /* Hamburger Menu */ = {
+			isa = PBXGroup;
+			children = (
+				11D79C7A225D04440064EFB5 /* DismissMenuAnimator.swift */,
+				11D79C7D225D04630064EFB5 /* Interactor.swift */,
+				11D79C7C225D04620064EFB5 /* MenuHelper.swift */,
+				11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */,
+			);
+			path = "Hamburger Menu";
+			sourceTree = "<group>";
+		};
 		846264C4224D9803009A21A2 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +155,7 @@
 		846264E4224D9839009A21A2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				11D79C82225D04720064EFB5 /* Hamburger Menu */,
 				846264F1224D9910009A21A2 /* AppearanceHelper.swift */,
 				11A098BC22541842006F8B9D /* IconImageHelper.swift */,
 				11A098C022552031006F8B9D /* Subcategory.swift */,
@@ -175,7 +191,6 @@
 			children = (
 				846264EB224D98AF009A21A2 /* NetworkController.swift */,
 				112A220F22569C550008E54B /* CategoryController.swift */,
-				8428C5F3225D2BFB0036B295 /* ResultDetailsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -191,7 +206,6 @@
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
 				842DE20A2252CFC000BBE2FB /* Hygiene.swift */,
 				842DE20E2252CFE900BBE2FB /* Shelters.swift */,
-				8428C5F5225D2CD70036B295 /* ShelterDetails.swift */,
 				11A098BE22551911006F8B9D /* Jobs.swift */,
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
@@ -278,17 +292,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
+				11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */,
 				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
 				11A098BF22551911006F8B9D /* Jobs.swift in Sources */,
-				8428C5F6225D2CD70036B295 /* ShelterDetails.swift in Sources */,
 				11A098C122552031006F8B9D /* Subcategory.swift in Sources */,
 				847A7EDD225663BA00A62A5F /* SubcategoryTableViewCell.swift in Sources */,
+				11D79C7E225D04630064EFB5 /* DismissMenuAnimator.swift in Sources */,
 				847A7ED922557B2900A62A5F /* OutreachServices.swift in Sources */,
 				842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */,
 				846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */,
 				112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */,
-				8428C5F4225D2BFB0036B295 /* ResultDetailsController.swift in Sources */,
+				11D79C81225D04630064EFB5 /* Interactor.swift in Sources */,
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
 				846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
@@ -303,6 +318,7 @@
 				847A7ECF22553CD000A62A5F /* ServiceResultsViewController.swift in Sources */,
 				842DE2032252C4D200BBE2FB /* Education.swift in Sources */,
 				847A7ED122553CD700A62A5F /* ServiceDetailViewController.swift in Sources */,
+				11D79C80225D04630064EFB5 /* MenuHelper.swift in Sources */,
 				842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */,
 				112A221022569C550008E54B /* CategoryController.swift in Sources */,
 			);

@@ -9,6 +9,12 @@
 import UIKit
 import CoreLocation
 
+// MARK: - Hamburger Menu protocol
+protocol MenuActionDelegate {
+    func openSegue(_ segueName: String, sender: AnyObject?)
+    func reopenMenu()
+}
+
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var categoriesScrollView: UIScrollView!
@@ -23,10 +29,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
-        
-        print("CategoriesViewController CategoryNames: \(networkController.categoryNames)")
-        print("CategoriesViewController tempCategorySelection: \(networkController.tempCategorySelection)")
-  
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,12 +71,55 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
+        if let destinationViewController = segue.destination as? SubcategoriesViewController {
+            destinationViewController.transitioningDelegate = self
+            destinationViewController.interactor = interactor
+            destinationViewController.menuActionDelegate = self
+        }
+        
         let destination = segue.destination as! SubcategoriesViewController
         destination.networkController = networkController
         destination.selectedCategory = networkController.tempCategorySelection
     }
+    
+    // MARK: - Hamburger Menu Variables
+    let interactor = Interactor()
+    var seguePerformed = false
 }
+
+// MARK: - Hamburger Menu Extensions
+extension CategoriesViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentMenuAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissMenuAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+    
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+}
+
+extension CategoriesViewController : MenuActionDelegate {
+    func openSegue(_ segueName: String, sender: AnyObject?) {
+        dismiss(animated: true){
+            self.performSegue(withIdentifier: segueName, sender: sender)
+        }
+    }
+    
+    func reopenMenu(){
+        performSegue(withIdentifier: "showResultsTableVC", sender: nil)
+    }
+}
+
+//showResultsTableVC
 
 //networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
 //networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
