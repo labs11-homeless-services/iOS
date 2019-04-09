@@ -20,6 +20,7 @@
 		11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */; };
 		11D79C80225D04630064EFB5 /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7C225D04620064EFB5 /* MenuHelper.swift */; };
 		11D79C81225D04630064EFB5 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7D225D04630064EFB5 /* Interactor.swift */; };
+		8428C5FA225D5DFD0036B295 /* ShelterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */; };
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
@@ -56,6 +57,7 @@
 		11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMenuAnimator.swift; sourceTree = "<group>"; };
 		11D79C7C225D04620064EFB5 /* MenuHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
 		11D79C7D225D04630064EFB5 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetails.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
 				842DE20A2252CFC000BBE2FB /* Hygiene.swift */,
 				842DE20E2252CFE900BBE2FB /* Shelters.swift */,
+				8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */,
 				11A098BE22551911006F8B9D /* Jobs.swift */,
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
@@ -311,6 +314,7 @@
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
+				8428C5FA225D5DFD0036B295 /* ShelterDetails.swift in Sources */,
 				842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */,
 				847A7ED72255754E00A62A5F /* SubcategoriesViewController.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,

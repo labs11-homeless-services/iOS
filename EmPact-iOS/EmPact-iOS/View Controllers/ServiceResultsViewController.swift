@@ -26,11 +26,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection,
-        let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath.rawValue
+        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection
+        
+        //let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath.rawValue
         else { return }
         
-        self.title = "\(unwrappedTempCategorySelection) - \(unwrappedSubcategoryAtIndexPath.capitalized)"
+        self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
         
     }
     

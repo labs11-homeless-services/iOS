@@ -74,17 +74,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
         networkController?.determineSubcategoryDetailFetch()
         
-        //guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
-//        networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
-//
-//            if let error = error {
-//                NSLog("Error fetching subcategory details")
-//            }
-//            DispatchQueue.main.async {
-//                tableView.reloadData()
-//            }
-//
-//        })
     }
     
     // MARK: - Navigation
@@ -97,6 +86,33 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         destination.networkController = networkController
         destination.selectedSubcategory = subcategoryDetails
+    }
+    
+    // MARK: - Hamburger Menu Outlets
+    // MARK: - Hamburger Menu Actions
+    @IBAction func closeMenu(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Hamburger Menu Variables
+    var interactor:Interactor? = nil
+    var menuActionDelegate:MenuActionDelegate? = nil
+    let menuItems = ["First", "Second"]
+    
+    // MARK: - Hamburger Menu Methods
+    func delay(seconds: Double, completion:@escaping ()->()) {
+        let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: popTime) {
+            completion()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        dismiss(animated: true){
+            self.delay(seconds: 0.5){
+                self.menuActionDelegate?.reopenMenu()
+            }
+        }
     }
     
     
