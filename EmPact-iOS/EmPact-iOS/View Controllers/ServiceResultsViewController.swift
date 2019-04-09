@@ -26,32 +26,24 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        let passedSubCategory = selectedSubcategory.lowercased()
-        
-//        networkController?.fetchSubcategoryDetails(passedSubCategory) { (error) in
-//            
-//            if let error = error {
-//                NSLog("Error fetching categories: \(error)")
-//            }
-//            
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return networkController?.subcategoryDetails.count ?? 0
+        return networkController?.tempCategoryDictionary.values.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceResultTableViewCell.reuseIdentifier, for: indexPath) as! ServiceResultTableViewCell
         
-        let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
-        cell.serviceNameLabel.text = subcategoryDetail?.name
-        cell.serviceAddressLabel.text = subcategoryDetail?.address
-        cell.servicePhoneLabel.text = subcategoryDetail?.phone
-        cell.serviceHoursLabel.text = subcategoryDetail?.hours
+        let subcategoryDetail = networkController?.tempCategoryDictionary.values
+        for value in (networkController?.tempCategoryDictionary)! {
+            print(value.value[0])
+            
+        }
+//        cell.serviceNameLabel.text = subcategoryDetail![key: address].value
+//        cell.serviceAddressLabel.text = subcategoryDetail?.address
+//        cell.servicePhoneLabel.text = subcategoryDetail?.phone
+//        cell.serviceHoursLabel.text = subcategoryDetail?.hours
             
         return cell
     }
