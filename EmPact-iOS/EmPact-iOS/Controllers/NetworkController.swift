@@ -17,6 +17,7 @@ class NetworkController {
     var subcategoryNames: [String] = []
     
     var tempCategoryDictionary: [String: [Any]] = [:]
+    var tempSimpleDictionary: [String: Any] = [:]
     var subcategoryDetails: [ShelterIndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
@@ -133,7 +134,10 @@ class NetworkController {
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
-                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
+                        self.tempCategoryDictionary = [String(describing: decodedResponseDictionary.key): [decodedResponseDictionary.value]]                        
+//                        self.tempSimpleDictionary = ["\(decodedResponseDictionary.key)": decodedResponseDictionary.value]
+//                        print("tempSimpleDictionary: \(self.tempSimpleDictionary)")
+                        print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
                     }
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
@@ -179,7 +183,6 @@ class NetworkController {
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
         //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
-        determineSubcategory(subcategory: subcategory)
         
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(tempCategorySelection.lowercased())
@@ -219,50 +222,4 @@ class NetworkController {
             }
         }.resume()
     }
-
-    func determineSubcategory(subcategory: Subcategory) {
-        
-        var temp = subcategory
-        switch subcategory {
-        case .all:
-            temp = Subcategory.all
-        case .women:
-            temp = Subcategory.women
-        case .men:
-            temp = Subcategory.men
-        case .youth:
-            temp = Subcategory.youth
-        case .ged:
-            temp = Subcategory.ged
-        case .publicComputers:
-            temp = Subcategory.publicComputers
-        case .foodPantries:
-            temp = Subcategory.foodPantries
-        case .foodStamps:
-            temp = Subcategory.foodStamps
-        case .clinics:
-            temp = Subcategory.clinics
-        case .emergency:
-            temp = Subcategory.emergency
-        case .hiv:
-            temp = Subcategory.hiv
-        case .mentalHealth:
-            temp = Subcategory.mentalHealth
-        case .rehab:
-            temp = Subcategory.rehab
-        case .bathrooms:
-            temp = Subcategory.bathrooms
-        case .showers:
-            temp = Subcategory.showers
-        case .benefits:
-            temp = Subcategory.benefits
-        case .afterSchool:
-            temp = Subcategory.afterSchool
-        case .domesticViolence:
-            temp = Subcategory.domesticViolence
-        case .socialServices:
-            temp = Subcategory.socialServices
-        }
-    }
-    
 }

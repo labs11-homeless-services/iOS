@@ -23,12 +23,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Passed Category is instantiated as a subCategory enum and lowercased to match the rawvalue
         guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
         if networkController?.subcategoryNames.count ?? 0 < 1 {
             networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
@@ -37,14 +31,16 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    
                 }
+                
             })
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        var tempSelectedCategory = networkController?.tempCategorySelection
-        print("Temp Variables: \(tempSelectedCategory) \(selectedCategory)")
-        
-        //categoryTitleImage.image = get this image
         categoryTitleLabel.text = selectedCategory
 
         self.tableView.delegate = self
