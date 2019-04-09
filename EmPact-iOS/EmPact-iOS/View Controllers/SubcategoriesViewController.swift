@@ -20,6 +20,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
     var networkController: NetworkController?
     
+    var categoryController = CategoryController()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
@@ -42,6 +44,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         categoryTitleLabel.text = selectedCategory
+        
+        //networkController?.fetchSubcategoryDetails(.all)
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -64,6 +68,23 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
+        
+        networkController?.tempSubcategorySelection = subcategoryAtIndexPath
+    
+        networkController?.determineSubcategoryDetailFetch()
+        
+        //guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
+//        networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
+//
+//            if let error = error {
+//                NSLog("Error fetching subcategory details")
+//            }
+//            DispatchQueue.main.async {
+//                tableView.reloadData()
+//            }
+//
+//        })
     }
     
     // MARK: - Navigation

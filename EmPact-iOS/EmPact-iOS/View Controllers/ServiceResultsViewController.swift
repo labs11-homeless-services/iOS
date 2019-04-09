@@ -26,29 +26,45 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection,
+        let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath.rawValue
+        else { return }
+        
+        self.title = "\(unwrappedTempCategorySelection) - \(unwrappedSubcategoryAtIndexPath.capitalized)"
+        
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
+        
+        networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return networkController?.tempCategoryDictionary.values.count ?? 0
+        return networkController?.subcategoryDetails.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceResultTableViewCell.reuseIdentifier, for: indexPath) as! ServiceResultTableViewCell
         
-        let subcategoryDetail = networkController?.tempCategoryDictionary.values
-        for value in (networkController?.tempCategoryDictionary)! {
-            print(value.value[0])
-            
-        }
-//        cell.serviceNameLabel.text = subcategoryDetail![key: address].value
-//        cell.serviceAddressLabel.text = subcategoryDetail?.address
-//        cell.servicePhoneLabel.text = subcategoryDetail?.phone
-//        cell.serviceHoursLabel.text = subcategoryDetail?.hours
-            
+        let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
+        cell.serviceNameLabel.text = subcategoryDetail?.name
+        cell.serviceAddressLabel.text = subcategoryDetail?.address
+        cell.servicePhoneLabel.text = subcategoryDetail?.phone
+        cell.serviceHoursLabel.text = subcategoryDetail?.hours
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         
     }
     

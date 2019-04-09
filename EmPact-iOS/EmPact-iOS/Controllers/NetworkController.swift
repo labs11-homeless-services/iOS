@@ -10,6 +10,9 @@ import UIKit
 
 class NetworkController {
     
+    var tempSubcategorySelection = ""
+    var subcategoryAtIndexPath: Subcategory!
+    
     var tempCategorySelection = ""
     var subcategoryName = ""
     
@@ -18,7 +21,7 @@ class NetworkController {
     
     var tempCategoryDictionary: [String: [Any]] = [:]
     var tempSimpleDictionary: [String: Any] = [:]
-    var subcategoryDetails: [ShelterIndividualResource] = []
+    var subcategoryDetails: [ShelterDetailsIndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
     typealias Handler = ([String], Error?) -> Void
@@ -134,11 +137,26 @@ class NetworkController {
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
-                        self.tempCategoryDictionary = [String(describing: decodedResponseDictionary.key): [decodedResponseDictionary.value]]                        
-//                        self.tempSimpleDictionary = ["\(decodedResponseDictionary.key)": decodedResponseDictionary.value]
-//                        print("tempSimpleDictionary: \(self.tempSimpleDictionary)")
-                        print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
+                        //self.fetchSubcategoryDetails(.all)
+                        
+                        //self.allArray.append(decodedResponseDictionary)
+//
+//                        
+//                        if "\(decodedResponseDictionary.key)" == "all" {
+//                            self.allDictionary["all"] = "\(decodedResponseDictionary.value)"
+//                        }
+//                        print("allDictionary: \(self.allDictionary)")
+//                        print("subcategory names array: \(self.subcategoryNames)")
+//                        print("Each dictionary in decoded response: \(decodedResponseDictionary)")
+//                        print("Subcategory Details Array: \(self.subcategoryDetails)")
+                        
+                        
+//                        self.tempCategoryDictionary = [String(describing: decodedResponseDictionary.key): [decodedResponseDictionary.value]]
+////                        self.tempSimpleDictionary = ["\(decodedResponseDictionary.key)": decodedResponseDictionary.value]
+////                        print("tempSimpleDictionary: \(self.tempSimpleDictionary)")
+//                        print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
                     }
+                    
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
@@ -179,6 +197,7 @@ class NetworkController {
         }
     }
     
+    
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
@@ -208,13 +227,23 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                //let decodedResponse = try jsonDecoder.decode(tempDecodedCategory.self, from: data)
+                
+//                switch subcategory {
+//                case .all:
+//                    let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
+//                    self.subcategoryDetails = decodedResponse
+//                }
+                
+                
+                let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
+                self.subcategoryDetails = decodedResponse
+                
                 //self.subcategoryDetails = decodedResponse.men
                 
-//                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
-//                self.subcategoryDetails = decodedResponse.men
+                //                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
+                //                self.subcategoryDetails = decodedResponse.men
                 
-                print("Network Categories: \(self.subcategoryDetails)")
+                print("Subcategory Details: \(self.subcategoryDetails)")
                 
                 completion(nil)
             } catch {
@@ -222,4 +251,55 @@ class NetworkController {
             }
         }.resume()
     }
+    
+    
+    func determineSubcategoryDetailFetch() {
+        
+        
+        
+        if Subcategory.all.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.all
+        } else if tempSubcategorySelection == Subcategory.women.rawValue {
+            subcategoryAtIndexPath = Subcategory.women
+        } else if Subcategory.men.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.men
+        } else if Subcategory.youth.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.youth
+        } else if Subcategory.ged.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.ged
+        } else if Subcategory.publicComputers.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.publicComputers
+        } else if Subcategory.foodPantries.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.foodPantries
+        } else if Subcategory.foodStamps.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.foodStamps
+        } else if Subcategory.clinics.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.clinics
+        } else if Subcategory.emergency.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.emergency
+        } else if Subcategory.hiv.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.hiv
+        } else if Subcategory.mentalHealth.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.mentalHealth
+        } else if Subcategory.rehab.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.rehab
+        } else if Subcategory.bathrooms.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.bathrooms
+        } else if Subcategory.showers.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.showers
+        } else if Subcategory.benefits.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.benefits
+        } else if Subcategory.afterSchool.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.afterSchool
+        } else if Subcategory.domesticViolence.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.domesticViolence
+        } else if Subcategory.socialServices.rawValue == tempSubcategorySelection {
+            subcategoryAtIndexPath = Subcategory.socialServices
+        }
+        
+        //fetchSubcategoryDetails(subcategoryAtIndexPath)
+        
+        
+    }
+
 }
