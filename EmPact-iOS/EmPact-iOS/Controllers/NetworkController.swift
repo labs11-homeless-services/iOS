@@ -15,6 +15,8 @@ class NetworkController {
     
     var categoryNames: [String] = []
     var subcategoryNames: [String] = []
+    
+    var tempCategoryDictionary: [String: [Any]] = [:]
     var subcategoryDetails: [ShelterIndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
@@ -88,42 +90,59 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(Education.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .legal:
                     let decodedResponse = try jsonDecoder.decode(LegalAdministrative.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .food:
                     let decodedResponse = try jsonDecoder.decode(Food.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .healthcare:
                     let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .outreach:
                     let decodedResponse = try jsonDecoder.decode(OutreachServices.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .hygiene:
                     let decodedResponse = try jsonDecoder.decode(Hygiene.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .shelters:
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
+                    print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
                 }
                 
                 completion(self.subcategoryNames, nil)
@@ -157,14 +176,14 @@ class NetworkController {
     }
     
     // SUBCATEGORY LIST RESULTS DETAILS
-    func fetchSubcategoryDetails(_ subcategory: String, completion: @escaping CompletionHandler = { _ in }) {
+    func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
-        guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
-        determineSubcategory(subcategory: tempSubcategory)
+        //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
+        determineSubcategory(subcategory: subcategory)
         
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(tempCategorySelection.lowercased())
-            .appendingPathComponent(subcategory)
+            .appendingPathComponent(subcategory.rawValue)
             .appendingPathExtension("json")
         
         print("subcategory requestURL: \(requestURL)")
@@ -186,9 +205,12 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
+                //let decodedResponse = try jsonDecoder.decode(tempDecodedCategory.self, from: data)
+                //self.subcategoryDetails = decodedResponse.men
                 
-                self.subcategoryDetails = decodedResponse.women
+//                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
+//                self.subcategoryDetails = decodedResponse.men
+                
                 print("Network Categories: \(self.subcategoryDetails)")
                 
                 completion(nil)

@@ -28,16 +28,16 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         let passedSubCategory = selectedSubcategory.lowercased()
         
-        networkController?.fetchSubcategoryDetails(passedSubCategory) { (error) in
-            
-            if let error = error {
-                NSLog("Error fetching categories: \(error)")
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+//        networkController?.fetchSubcategoryDetails(passedSubCategory) { (error) in
+//            
+//            if let error = error {
+//                NSLog("Error fetching categories: \(error)")
+//            }
+//            
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
