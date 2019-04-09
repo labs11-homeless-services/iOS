@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Category: String {
+enum Category: String, Decodable {
     case education
     case legal = "legal_administrative"
     case food
@@ -19,7 +19,7 @@ enum Category: String {
     case jobs
 }
 
-enum Subcategory: String {
+enum Subcategory: String, Decodable {
     case all
     case women
     case men
