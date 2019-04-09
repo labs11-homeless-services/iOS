@@ -135,8 +135,6 @@ class NetworkController {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
                         self.tempCategoryDictionary = [String(describing: decodedResponseDictionary.key): [decodedResponseDictionary.value]]                        
-//                        self.tempSimpleDictionary = ["\(decodedResponseDictionary.key)": decodedResponseDictionary.value]
-//                        print("tempSimpleDictionary: \(self.tempSimpleDictionary)")
                         print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
                     }
                 case .jobs:
