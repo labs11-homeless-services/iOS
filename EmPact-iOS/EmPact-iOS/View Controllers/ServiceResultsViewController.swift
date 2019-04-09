@@ -35,11 +35,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceResultTableViewCell.reuseIdentifier, for: indexPath) as! ServiceResultTableViewCell
         
-        let subcategoryDetail = networkController?.tempCategoryDictionary.values
-        for value in (networkController?.tempCategoryDictionary)! {
-            print(value.value[0])
-            
-        }
+        
+        
 //        cell.serviceNameLabel.text = subcategoryDetail![key: address].value
 //        cell.serviceAddressLabel.text = subcategoryDetail?.address
 //        cell.servicePhoneLabel.text = subcategoryDetail?.phone

@@ -45,7 +45,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,21 +61,44 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
     // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        guard let destination = segue.destination as? ServiceResultsViewController,
-            let indexPath = tableView.indexPathForSelectedRow else { return }
-            let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
         
-        destination.networkController = networkController
-        destination.selectedSubcategory = subcategoryDetails
+        if segue.identifier == "showResults" {
+            guard let destination = segue.destination as? ServiceResultsViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+                let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
+            
+            destination.networkController = networkController
+            destination.selectedSubcategory = subcategoryDetails
+        }
     }
     
+    // MARK: - Hamburger Menu Outlets
+    // MARK: - Hamburger Menu Actions
+    @IBAction func closeMenu(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
+    // MARK: - Hamburger Menu Variables
+    var interactor:Interactor? = nil
+    var menuActionDelegate:MenuActionDelegate? = nil
+    let menuItems = ["First", "Second"]
+    
+    // MARK: - Hamburger Menu Methods
+    func delay(seconds: Double, completion:@escaping ()->()) {
+        let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: popTime) {
+            completion()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        dismiss(animated: true){
+            self.delay(seconds: 0.5){
+                self.menuActionDelegate?.reopenMenu()
+            }
+        }
+    }
 }
+
