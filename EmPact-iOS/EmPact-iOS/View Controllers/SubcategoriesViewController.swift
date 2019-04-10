@@ -20,6 +20,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
     var networkController: NetworkController?
     
+    var categoryController = CategoryController()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
@@ -42,9 +44,12 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         categoryTitleLabel.text = selectedCategory
+        
+        //networkController?.fetchSubcategoryDetails(.all)
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,17 +66,26 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if segue.identifier == "showResults" {
-            guard let destination = segue.destination as? ServiceResultsViewController,
-                let indexPath = tableView.indexPathForSelectedRow else { return }
-                let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
-            
-            destination.networkController = networkController
-            destination.selectedSubcategory = subcategoryDetails
-        }
+        guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
+        
+        networkController?.tempSubcategorySelection = subcategoryAtIndexPath
+    
+        networkController?.determineSubcategoryDetailFetch()
+        
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+        guard let destination = segue.destination as? ServiceResultsViewController,
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+            let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
+        
+        destination.networkController = networkController
+        destination.selectedSubcategory = subcategoryDetails
     }
     
     // MARK: - Hamburger Menu Outlets
@@ -100,5 +114,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
     }
+    
+    
 }
-
