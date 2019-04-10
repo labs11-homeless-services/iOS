@@ -16,7 +16,7 @@ class CategoryController {
     
     var tempCategoryName = ""
     
-    func getIconImage() -> UIImage {
+    func getIconImage() {
         
         if tempCategoryName == "Shelters" {
             iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
@@ -35,8 +35,6 @@ class CategoryController {
         } else if tempCategoryName == "Jobs" {
             iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
         }
-        
-        return iconImage
     }
     
     

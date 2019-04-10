@@ -8,26 +8,7 @@
 
 import Foundation
 
-//struct ShelterDetails: Codable {
-//
-//    var all: [ShelterDetailsIndividualResource]
-//    var men: [ShelterDetailsIndividualResource]
-//    var women: [ShelterDetailsIndividualResource]
-//    var youth: [ShelterDetailsIndividualResource]
-//
-////    var shelterDictionary: [String: [ShelterDetailsIndividualResource]] {
-////        return ["all": all,
-////                "men": men,
-////                "women": women,
-////                "youth": youth]
-////    }
-////    var dictionary: NSDictionary {
-////        return shelterDictionary as NSDictionary
-////    }
-//
-//}
-
-struct ShelterDetailsIndividualResource: Codable {
+struct ShelterIndividualResource: Codable {
     
     enum SheltersCodingKeys: String, CodingKey {
         case address
@@ -42,7 +23,6 @@ struct ShelterDetailsIndividualResource: Codable {
         case postalCode = "postal code"
         case state
         case services
-        
     }
     
     var address: String
@@ -55,7 +35,7 @@ struct ShelterDetailsIndividualResource: Codable {
     var longitude: String
     
     var name: String
-    var phone: String
+    var phone: String?
     var postalCode: String
     var state: String
     
@@ -63,7 +43,7 @@ struct ShelterDetailsIndividualResource: Codable {
     
     init(from decoder: Decoder) throws {
         
-        // Container representing top level of information, which is a dictionary
+        // Dictionary container at top level
         let container = try decoder.container(keyedBy: SheltersCodingKeys.self)
         
         address = try container.decode(String.self, forKey: .address)
@@ -71,22 +51,20 @@ struct ShelterDetailsIndividualResource: Codable {
         
         // contains an array, but is not nested
         details = try container.decodeIfPresent([String].self, forKey: .details)
+        services = try container.decodeIfPresent([String].self, forKey: .services) 
         
         hours = try container.decodeIfPresent(String.self, forKey: .hours)
         keywords = try container.decode(String.self, forKey: .keywords)
         latitude = try container.decode(String.self, forKey: .latitude)
         longitude = try container.decode(String.self, forKey: .longitude)
         name = try container.decode(String.self, forKey: .name)
-        phone = try container.decode(String.self, forKey: .phone)
+        phone = try container.decodeIfPresent(String.self, forKey: .phone)
         postalCode = try container.decode(String.self, forKey: .postalCode)
         state = try container.decode(String.self, forKey: .state)
-        
-        // contains an array, but is not nested
-        services = try container.decodeIfPresent([String].self, forKey: .services)
     }
 }
 
-struct JSON: Codable {
+struct ShelterJSON: Codable {
     
-    var JSON: [ShelterDetailsIndividualResource]
+    var JSON: [ShelterIndividualResource]
 }

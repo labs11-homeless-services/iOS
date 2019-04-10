@@ -78,10 +78,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         guard let destination = segue.destination as? ServiceDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow else { return }
         let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
+        let shelterServiceDetail = networkController?.shelterSubcategoryDetails[indexPath.row]
         
         // Pass the selected object to the new view controller.
         destination.networkController = networkController
         destination.serviceDetail = serviceDetail
+        destination.shelterServiceDetail = shelterServiceDetail
         
     }
     

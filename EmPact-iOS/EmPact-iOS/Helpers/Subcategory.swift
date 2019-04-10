@@ -10,10 +10,10 @@ import Foundation
 
 enum Category: String, Decodable {
     case education
-    case legal = "legal_administrative"
+    case legal //= "legal_administrative"
     case food
-    case healthcare = "health_care"
-    case outreach = "outreach_services"
+    case healthcare //= "health_care"
+    case outreach //= "outreach_services"
     case hygiene
     case shelters
     case jobs
@@ -39,6 +39,11 @@ enum Subcategory: String, Decodable {
     case afterSchool = "after_school"
     case domesticViolence = "domestic_violence"
     case socialServices = "social_services"
+}
+
+enum Resources: String, Decodable {
+    case individualResource
+    case shelterResource
 }
 
 
