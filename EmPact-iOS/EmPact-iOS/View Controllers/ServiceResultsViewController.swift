@@ -40,12 +40,14 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
-        
-        networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
+        if (networkController?.subcategoryDetails.count ?? 0) < 1 {
+            networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,7 +75,14 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
+        guard let destination = segue.destination as? ServiceDetailViewController,
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+        let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
+        
         // Pass the selected object to the new view controller.
+        destination.networkController = networkController
+        destination.serviceDetail = serviceDetail
+        
     }
     
 
