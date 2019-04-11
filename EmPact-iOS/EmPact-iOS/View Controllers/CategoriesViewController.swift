@@ -116,6 +116,7 @@ extension CategoriesViewController : MenuActionDelegate {
     
     func reopenMenu(){
         performSegue(withIdentifier: "showResultsTableVC", sender: nil)
+        
     }
 }
 

@@ -223,10 +223,10 @@
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
 				842DE20A2252CFC000BBE2FB /* Hygiene.swift */,
 				842DE20E2252CFE900BBE2FB /* Shelters.swift */,
-				8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */,
 				11A098BE22551911006F8B9D /* Jobs.swift */,
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
+				8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */,
 			);
 			path = "Model & Controller";
 			sourceTree = "<group>";
@@ -244,7 +244,6 @@
 				9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */,
 				7EAC893F8D7D615995098A1B /* Pods-EmPact-iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

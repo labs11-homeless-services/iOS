@@ -25,7 +25,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
 
     var networkController: NetworkController?
     
-    var serviceDetail: ShelterDetailsIndividualResource?
+    var serviceDetail: IndividualResource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +42,20 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
             return
         }
         
-        let camera = GMSCameraPosition.camera(withLatitude: doubleLatValue, longitude: doubleLongValue, zoom: 12.0)
-        mapView.camera = camera
+        print(doubleLongValue)
+        
+//        let camera = GMSCameraPosition.camera(withLatitude: doubleLatValue, longitude: doubleLongValue, zoom: 12.0)
+//        mapView.camera = camera
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
         marker.title = serviceDetail?.address
         marker.map = mapView
         
+        mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
+        
         // Change to default to Central Park if no coordinates are retrieved from JSON
-        //annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLatValue ?? 40.7829, longitude: doubleLongValue ?? 73.9654)
+        //annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLatValue ?? 40.7829, longitude: doubleLongValue ?? -73.9654)
         
         updateViews()
     }
@@ -61,11 +65,27 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
         serviceDetailAddressLabel.text = serviceDetail?.address
         //serviceDetailDistanceLabel.text =
         //serviceDetailWalkTimeLabel.text =
-        serviceDetailPhoneLabel.text = serviceDetail?.phone
+        //serviceDetailPhoneLabel.text = serviceDetail?.phone
         serviceDetailHoursLabel.text = serviceDetail?.hours
         
     }
-
-
+    
+    
+    @IBAction func launchMapsButton(_ sender: Any) {
+        
+        // Form Directions URL
+        // https://www.google.com/maps/dir/?api=1 // &parameters
+        // https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
+        // https://www.google.com/maps/dir/?api=1&origin=40.7829,73.9654&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
+        // origin: if none, the map will provide a blank form to allow a user to enter the origin // OPTIONAL
+        // destination: comma-separated latitude/longitude coordinates
+        // travelmode (optional): driving, walking, bicycling, transit
+        
+        print("https://www.google.com/maps/dir/?api=1&origin=40.7829,-73.9654&destination=\(serviceDetail!.latitude),\(serviceDetail!.longitude)")
+        
+        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=40.7829,-73.9654&destination=\(serviceDetail!.latitude),\(serviceDetail!.longitude)&travelmode=transit") {
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
 
 }

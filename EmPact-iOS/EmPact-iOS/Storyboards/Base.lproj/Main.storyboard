@@ -861,6 +861,9 @@
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Fl-gkr">
                                 <rect key="frame" x="154" y="638" width="67" height="30"/>
                                 <state key="normal" title="View Map"/>
+                                <connections>
+                                    <action selector="launchMapsButton:" destination="kk6-0y-WL5" eventType="touchUpInside" id="Zmc-m9-KBz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -21,7 +21,12 @@ class NetworkController {
     
     var tempCategoryDictionary: [String: [Any]] = [:]
     var tempSimpleDictionary: [String: Any] = [:]
-    var subcategoryDetails: [ShelterDetailsIndividualResource] = []
+    
+    var subcategoryDetails: [IndividualResource] = []
+    
+    // IF NEEDING TWO ARRAYS OF MDOEL OBJECTS
+    //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
+    //var individualResourceSubcategoryDetails: [IndividualResource] = []
        
     typealias CompletionHandler = (Error?) -> Void
     typealias Handler = ([String], Error?) -> Void
@@ -228,14 +233,28 @@ class NetworkController {
             
             do {
                 
+                // JUST AN IDEA
 //                switch subcategory {
 //                case .all:
 //                    let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
 //                    self.subcategoryDetails = decodedResponse
 //                }
                 
+                // IF NEEDING TO USE TWO ARRAYS FOR TWO MODEL OBJECTS
+//                if self.tempCategorySelection == "Shelters" {
+//                    let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
+//                    self.shelterSubcategoryDetails = decodedResponse
+//                    print("shelter decodedResponse: \(self.shelterSubcategoryDetails)")
+//
+//                } else {
+//                    let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
+//                    self.individualResourceSubcategoryDetails = decodedResponse
+//                    print("individual resource decodedResponse: \(self.individualResourceSubcategoryDetails)")
+//                }
                 
-                let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
+                // This works for shelters
+                // But subcategoryDetails was changed to shelterSubcategoryDetails [ShelterDetailIndividualResource]
+                let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
                 self.subcategoryDetails = decodedResponse
                 
                 //self.subcategoryDetails = decodedResponse.men
@@ -243,7 +262,7 @@ class NetworkController {
                 //                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                 //                self.subcategoryDetails = decodedResponse.men
                 
-                print("Subcategory Details: \(self.subcategoryDetails)")
+                //print("Subcategory Details: \(self.subcategoryDetails)")
                 
                 completion(nil)
             } catch {
