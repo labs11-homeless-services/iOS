@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
 
-class ServiceDetailViewController: UIViewController {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
     
     // Outlet for MapView
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var serviceDetailNameLabel: UILabel!
     @IBOutlet weak var serviceDetailAddressLabel: UILabel!
@@ -22,9 +22,7 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var serviceDetailHoursLabel: UILabel!
     
     //var resultLatitude = navigationController
-    
-    let annotation = MKPointAnnotation()
-    
+
     var networkController: NetworkController?
     
     var serviceDetail: ShelterDetailsIndividualResource?
@@ -34,21 +32,26 @@ class ServiceDetailViewController: UIViewController {
         
         self.title = serviceDetail?.name
         
+        mapView.delegate = self
+        
+        // Convert latitude/longitude strings to doubles
         guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
             let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
             else {
             print("Latitude or Longitude is not a valid Double")
             return
         }
-
-        let center = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
-        mapView.setRegion(region, animated: true)
+        
+        let camera = GMSCameraPosition.camera(withLatitude: doubleLatValue, longitude: doubleLongValue, zoom: 12.0)
+        mapView.camera = camera
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
+        marker.title = serviceDetail?.address
+        marker.map = mapView
         
         // Change to default to Central Park if no coordinates are retrieved from JSON
-        annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLatValue ?? 40.7829,
-            longitude: doubleLongValue ?? 73.9654)
-        mapView.addAnnotation(annotation)
+        //annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLatValue ?? 40.7829, longitude: doubleLongValue ?? 73.9654)
         
         updateViews()
     }
