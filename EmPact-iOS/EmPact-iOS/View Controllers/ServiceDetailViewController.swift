@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import MapKit
-import CoreLocation
+import GoogleMaps
 
-class ServiceDetailViewController: UIViewController {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
     
     // Outlet for MapView
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var serviceDetailNameLabel: UILabel!
     @IBOutlet weak var serviceDetailAddressLabel: UILabel!
@@ -23,85 +22,38 @@ class ServiceDetailViewController: UIViewController {
     @IBOutlet weak var serviceDetailHoursLabel: UILabel!
     
     //var resultLatitude = navigationController
-    
-    var serviceCoordinates: CLLocationCoordinate2D?
-    let locationManager = CLLocationManager()
-    let annotation = MKPointAnnotation()
-    
+
     var networkController: NetworkController?
-    let googleMapsController = GoogleMapsController()
     
-    var shelterServiceDetail: ShelterIndividualResource?
-    var serviceDetail: IndividualResource?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        locationManager.requestWhenInUseAuthorization()
-    }
+    var serviceDetail: ShelterDetailsIndividualResource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = serviceDetail?.name
         
-        //getServiceDistanceAndDuration()
-        let unwrappedLatitude = serviceCoordinates?.latitude
-            let unwrappedLongitude = serviceCoordinates?.longitude
-        print("locations = \(unwrappedLatitude) \(unwrappedLongitude)")
+        mapView.delegate = self
         
-        if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
+        // Convert latitude/longitude strings to doubles
+        guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
+            let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
+            else {
+            print("Latitude or Longitude is not a valid Double")
             return
-            // Create a hidden label
-            // If not location is present
-            // Set label is hidden bool to false
-            // label says "map is unavailable for your desired location"
-            
-            //serviceDetail?.latitude = String(40.7829)
-            //serviceDetail?.longitude = String(73.9654)
-            
-        } else {
-            guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-                let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
-                else {
-                    print("Latitude or Longitude is not a valid Double")
-                    return
-            }
-            
-            let center = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
-            let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
-            mapView.setRegion(region, animated: true)
-            
-            // Change to default to Central Park if no coordinates are retrieved from JSON
-            annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLatValue,
-                                                           longitude: doubleLongValue)
-            mapView.addAnnotation(annotation)
         }
+        
+        let camera = GMSCameraPosition.camera(withLatitude: doubleLatValue, longitude: doubleLongValue, zoom: 12.0)
+        mapView.camera = camera
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
+        marker.title = serviceDetail?.address
+        marker.map = mapView
+        
+        // Change to default to Central Park if no coordinates are retrieved from JSON
+        //annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLatValue ?? 40.7829, longitude: doubleLongValue ?? 73.9654)
         
         updateViews()
-    }
-    
-    // MARK: - Google Distance Matrix Method
-    private func getServiceDistanceAndDuration() {
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            //locationManager.desiredAccuracy =
-            locationManager.startUpdatingLocation()
-        }
-        
-        googleMapsController.fetchServiceDistance((serviceCoordinates?.latitude)!, (serviceCoordinates?.longitude)!, 40.6905615, -73.9976592) { (error) in
-            if let error = error {
-                print("Error fetching distance to chosen service: \(error)")
-            }
-            
-            guard let unwrappedDistance = self.googleMapsController.serviceDistance,
-                let unwrappedDuration = self.googleMapsController.serviceTravelDuration else { return }
-            
-            print("serviceDistance: \(String(describing: unwrappedDistance))")
-            print("serviceTravelDuration: \(String(describing: unwrappedDuration))")
-        }
-        
     }
     
     func updateViews() {
@@ -114,13 +66,6 @@ class ServiceDetailViewController: UIViewController {
         
     }
 
-}
 
-// MARK: - Google Distance Matrix Extension
-extension ServiceDetailViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        serviceCoordinates = manager.location?.coordinate
-    }
+
 }

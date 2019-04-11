@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        NetworkController.fetchAllForSearch()
+        GMSServices.provideAPIKey("AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4")
         
         return true
     }
