@@ -2,7 +2,7 @@
 //  ShelterDetails.swift
 //  EmPact-iOS
 //
-//  Created by Audrey Welch on 4/9/19.
+//  Created by Madison Waters on 4/11/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -27,7 +27,7 @@ import Foundation
 //
 //}
 
-struct ShelterDetailsIndividualResource: Codable {
+struct ShelterIndividualResource: Codable {
     
     enum SheltersCodingKeys: String, CodingKey {
         case address
@@ -71,6 +71,7 @@ struct ShelterDetailsIndividualResource: Codable {
         
         // contains an array, but is not nested
         details = try container.decodeIfPresent([String].self, forKey: .details)
+        services = try container.decodeIfPresent([String].self, forKey: .services)
         
         hours = try container.decodeIfPresent(String.self, forKey: .hours)
         keywords = try container.decode(String.self, forKey: .keywords)
@@ -80,13 +81,12 @@ struct ShelterDetailsIndividualResource: Codable {
         phone = try container.decode(String.self, forKey: .phone)
         postalCode = try container.decode(String.self, forKey: .postalCode)
         state = try container.decode(String.self, forKey: .state)
-        
-        // contains an array, but is not nested
-        services = try container.decodeIfPresent([String].self, forKey: .services)
+                
     }
 }
 
-struct JSON: Codable {
+struct ShelterJSON: Codable {
     
-    var JSON: [ShelterDetailsIndividualResource]
+    var JSON: [ShelterIndividualResource]
 }
+

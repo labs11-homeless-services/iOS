@@ -1,15 +1,15 @@
 //
-//  FirebaseObject.swift
+//  AllCategories.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/11/19.
+//  Created by Audrey Welch on 3/28/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
 import Foundation
 
-struct FirebaseObject: Decodable {
-    
+struct AllCategories: Decodable {
+        
     var education: [Education]
     var legalAdministrative: [LegalAdministrative] // emergency_services
     var food: [Food]
@@ -20,3 +20,4 @@ struct FirebaseObject: Decodable {
     var jobs: [Jobs]
     
 }
+

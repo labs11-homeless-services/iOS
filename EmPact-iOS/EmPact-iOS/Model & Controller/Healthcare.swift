@@ -10,16 +10,15 @@ import Foundation
 
 struct Healthcare: Decodable {
     
-    var all: [HealthcareIndividualResource]
-    var clinics: [HealthcareIndividualResource]
-    var emergency: [HealthcareIndividualResource]
-    var hiv: [HealthcareIndividualResource]
-    var mentalHealth: [HealthcareIndividualResource] // mental-health
-    var rehab: [HealthcareIndividualResource]
-    var women: [HealthcareIndividualResource]
+    var all: [IndividualResource]
+    var clinics: [IndividualResource]
+    var emergency: [IndividualResource]
+    var hiv: [IndividualResource]
+    var mentalHealth: [IndividualResource] // mental-health
+    var rehab: [IndividualResource]
+    var women: [IndividualResource]
     
-
-    var healthcareDictionary: [String: [HealthcareIndividualResource]] {
+    var healthcareDictionary: [String: [IndividualResource]] {
         return ["all": all,
                 "clinics": clinics,
                 "emergency": emergency,
@@ -31,9 +30,8 @@ struct Healthcare: Decodable {
     var dictionary: NSDictionary {
         return healthcareDictionary as NSDictionary
     }
-    
 }
-
+// Testing to see if we still need this. 
 struct HealthcareIndividualResource: Decodable {
 
     var address: String

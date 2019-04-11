@@ -1,16 +1,16 @@
 //
-//  IndividualResource.swift
+//  ShelterDetails.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/10/19.
+//  Created by Audrey Welch on 4/9/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
 import Foundation
 
-struct IndividualResource: Codable {
+struct ShelterIndividualResource: Codable {
     
-    enum CodingKeys: String, CodingKey {
+    enum SheltersCodingKeys: String, CodingKey {
         case address
         case city
         case details
@@ -27,44 +27,44 @@ struct IndividualResource: Codable {
     
     var address: String
     var city: String
-    var details: String?
+    var details: [String]?
     var hours: String?
     
     var keywords: String
-    var latitude: String?
-    var longitude: String?
+    var latitude: String
+    var longitude: String
     
     var name: String
     var phone: String?
-    var postalCode: String?
+    var postalCode: String
     var state: String
     
-    var services: String?
+    var services: [String]?
     
     init(from decoder: Decoder) throws {
         
         // Dictionary container at top level
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: SheltersCodingKeys.self)
         
         address = try container.decode(String.self, forKey: .address)
         city = try container.decode(String.self, forKey: .city)
         
         // contains an array, but is not nested
-        details = try container.decodeIfPresent(String.self, forKey: .details) 
-        services = try container.decodeIfPresent(String.self, forKey: .services)
+        details = try container.decodeIfPresent([String].self, forKey: .details)
+        services = try container.decodeIfPresent([String].self, forKey: .services) 
         
         hours = try container.decodeIfPresent(String.self, forKey: .hours)
         keywords = try container.decode(String.self, forKey: .keywords)
-        latitude = try container.decodeIfPresent(String.self, forKey: .latitude)
-        longitude = try container.decodeIfPresent(String.self, forKey: .longitude)
+        latitude = try container.decode(String.self, forKey: .latitude)
+        longitude = try container.decode(String.self, forKey: .longitude)
         name = try container.decode(String.self, forKey: .name)
         phone = try container.decodeIfPresent(String.self, forKey: .phone)
-        postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
+        postalCode = try container.decode(String.self, forKey: .postalCode)
         state = try container.decode(String.self, forKey: .state)
     }
 }
 
-struct JSON: Codable {
+struct ShelterJSON: Codable {
     
-    var JSON: [IndividualResource]
+    var JSON: [ShelterIndividualResource]
 }
