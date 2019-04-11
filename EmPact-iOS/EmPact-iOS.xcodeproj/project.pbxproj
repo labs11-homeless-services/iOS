@@ -41,6 +41,7 @@
 		847A7ED72255754E00A62A5F /* SubcategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7ED62255754E00A62A5F /* SubcategoriesViewController.swift */; };
 		847A7ED922557B2900A62A5F /* OutreachServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7ED822557B2800A62A5F /* OutreachServices.swift */; };
 		847A7EDD225663BA00A62A5F /* SubcategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */; };
+		B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMenuAnimator.swift; sourceTree = "<group>"; };
 		11D79C7C225D04620064EFB5 /* MenuHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
 		11D79C7D225D04630064EFB5 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmPact_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EAC893F8D7D615995098A1B /* Pods-EmPact-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.release.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetails.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		847A7ED62255754E00A62A5F /* SubcategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesViewController.swift; sourceTree = "<group>"; };
 		847A7ED822557B2800A62A5F /* OutreachServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutreachServices.swift; sourceTree = "<group>"; };
 		847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryTableViewCell.swift; sourceTree = "<group>"; };
+		9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.debug.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,12 +109,22 @@
 			path = "Hamburger Menu";
 			sourceTree = "<group>";
 		};
+		66F00C53E2BD9B17A4C9AF03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		846264C4224D9803009A21A2 = {
 			isa = PBXGroup;
 			children = (
 				846264CF224D9803009A21A2 /* EmPact-iOS */,
 				846264CE224D9803009A21A2 /* Products */,
 				847A7ED5225573F200A62A5F /* Recovered References */,
+				92F31404964A6E6D13565878 /* Pods */,
+				66F00C53E2BD9B17A4C9AF03 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,6 +238,16 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		92F31404964A6E6D13565878 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */,
+				7EAC893F8D7D615995098A1B /* Pods-EmPact-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -230,9 +255,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 846264DF224D9805009A21A2 /* Build configuration list for PBXNativeTarget "EmPact-iOS" */;
 			buildPhases = (
+				E5B446735D74313EBDDF6822 /* [CP] Check Pods Manifest.lock */,
 				846264C9224D9803009A21A2 /* Sources */,
 				846264CA224D9803009A21A2 /* Frameworks */,
 				846264CB224D9803009A21A2 /* Resources */,
+				4056520F9E191E75FA2D9277 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -288,6 +315,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4056520F9E191E75FA2D9277 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5B446735D74313EBDDF6822 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmPact-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		846264C9224D9803009A21A2 /* Sources */ = {
@@ -468,6 +542,7 @@
 		};
 		846264E0224D9805009A21A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +561,7 @@
 		};
 		846264E1224D9805009A21A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EAC893F8D7D615995098A1B /* Pods-EmPact-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
