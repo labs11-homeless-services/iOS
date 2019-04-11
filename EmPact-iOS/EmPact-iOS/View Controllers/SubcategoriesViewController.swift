@@ -59,7 +59,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
-        cell.subcategoryNameLabel.text = networkController?.subcategoryNames[indexPath.row].capitalized
+        guard let  sortedSubcategories = networkController?.subcategoryNames.sorted(by: { $0 < $1 }) else {
+            fatalError("Unable to unwrap the subcategories and sort them") }
+        let subcategoryCell = sortedSubcategories[indexPath.row]
+        
+        cell.subcategoryNameLabel.text = String(subcategoryCell).capitalized
         //cell.subcategoryImageView.image =
         cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
         

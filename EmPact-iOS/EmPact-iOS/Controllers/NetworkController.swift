@@ -60,6 +60,7 @@ class NetworkController {
                 self.categoryNames = capitalizedCategories
                 completion(nil)
             } catch {
+                NSLog("error decoding entries: \(error)")
                 completion(error)
             }
         }.resume()
@@ -170,12 +171,8 @@ class NetworkController {
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
-        //var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/outreach_services") }
-        //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
-        
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(tempCategorySelection.lowercased())
-            // Construct a string and remove the underscore "_"
             .appendingPathComponent(subcategory.rawValue)
             .appendingPathExtension("json")
         
@@ -188,7 +185,7 @@ class NetworkController {
             }
             
             guard let data = data else {
-                NSLog("no data returned from dtat task.")
+                NSLog("no data returned from data task.")
                 completion(NSError())
                 return
             }
@@ -198,29 +195,19 @@ class NetworkController {
             
             do {
                 
-                if subcategory.rawValue == "shelters" {
+                if self.tempCategorySelection == "Shelters" {
                     let decodedResponse = try jsonDecoder.decode([ShelterIndividualResource].self, from: data)
                     self.shelterSubcategoryDetails = decodedResponse
                     print("shelter decodedResponse: \(self.shelterSubcategoryDetails)")
-                } else {//
-                //    if subcategory.rawValue == Category.education.rawValue ||
-//                    subcategory.rawValue == Category.legal.rawValue ||
-//                    subcategory.rawValue == Category.food.rawValue ||
-//                    subcategory.rawValue == Category.healthcare.rawValue ||
-//                    subcategory.rawValue == Category.outreach.rawValue ||
-//                    subcategory.rawValue == Category.hygiene.rawValue ||
-//                    subcategory.rawValue == Category.jobs.rawValue {
-        
+                
+                } else {
                     let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
                     self.subcategoryDetails = decodedResponse
-                    print("pre fetch decodedResponse: \(self.subcategoryDetails)")
                 }
-                
-                
-                print("Subcategory Details: \(self.subcategoryDetails)")
-                
+        
                 completion(nil)
             } catch {
+                NSLog("error decoding entries: \(error)")
                 completion(error)
             }
         }.resume()
@@ -291,7 +278,7 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                let decodedResponse = try jsonDecoder.decode(AllCategories.self, from: data)
+                let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
                 print(decodedResponse)
                 
                 completion(nil)

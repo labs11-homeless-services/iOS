@@ -26,22 +26,20 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection
-        
-        //let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath.rawValue
-        else { return }
-        
+        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
         self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
-        
     }
     
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
         if (networkController?.subcategoryDetails.count ?? 0) < 1 {
             networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
+                if let error = error {
+                    NSLog("Error fetching subcategory details: \(error)")
+                }
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -77,14 +75,24 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         // Get the new view controller using segue.destination.
         guard let destination = segue.destination as? ServiceDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow else { return }
-        let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
-        //let shelterServiceDetail = networkController?.shelterSubcategoryDetails[indexPath.row]
         
         // Pass the selected object to the new view controller.
         destination.networkController = networkController
-        destination.serviceDetail = serviceDetail
-       // destination.shelterServiceDetail = shelterServiceDetail
         
+        if networkController?.subcategoryDetails == nil {
+            return
+        } else {
+            let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
+            destination.serviceDetail = serviceDetail
+        }
+        
+//        if networkController?.shelterSubcategoryDetails == nil {
+//            return
+//        } else {
+//            let shelterServiceDetail = networkController?.shelterSubcategoryDetails[indexPath.row]
+//            destination.shelterServiceDetail = shelterServiceDetail
+//        }
+            
     }
     
 
