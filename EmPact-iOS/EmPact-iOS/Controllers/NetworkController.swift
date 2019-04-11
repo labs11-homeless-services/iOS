@@ -27,7 +27,7 @@ class NetworkController {
        
     typealias CompletionHandler = (Error?) -> Void
     typealias Handler = ([String], Error?) -> Void
-    static var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/") }
+    static var baseURL: URL! { return URL(string: "https://empact-e511a.firebaseio.com/") }
     
     // CATEGORY NAMES
     func fetchCategoryNames(completion: @escaping CompletionHandler = { _ in }) {

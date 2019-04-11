@@ -10,12 +10,10 @@ import UIKit
 
 class CategoryController {
     
-    var networkController: NetworkController?
-    
     var iconImage: UIImage!
-    
     var tempCategoryName = ""
-    
+    var networkController: NetworkController?
+
     func getIconImage() {
         
         if tempCategoryName == "Shelters" {
@@ -36,6 +34,4 @@ class CategoryController {
             iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
         }
     }
-    
-    
 }

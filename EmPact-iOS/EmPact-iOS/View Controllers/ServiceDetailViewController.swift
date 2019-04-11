@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ServiceDetailViewController: UIViewController {
     
@@ -23,17 +24,31 @@ class ServiceDetailViewController: UIViewController {
     
     //var resultLatitude = navigationController
     
+    var serviceCoordinates: CLLocationCoordinate2D?
+    let locationManager = CLLocationManager()
     let annotation = MKPointAnnotation()
     
     var networkController: NetworkController?
+    let googleMapsController = GoogleMapsController()
     
     var shelterServiceDetail: ShelterIndividualResource?
     var serviceDetail: IndividualResource?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        locationManager.requestWhenInUseAuthorization()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = serviceDetail?.name
+        
+        //getServiceDistanceAndDuration()
+        let unwrappedLatitude = serviceCoordinates?.latitude
+            let unwrappedLongitude = serviceCoordinates?.longitude
+        print("locations = \(unwrappedLatitude) \(unwrappedLongitude)")
         
         if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
             return
@@ -66,6 +81,29 @@ class ServiceDetailViewController: UIViewController {
         updateViews()
     }
     
+    // MARK: - Google Distance Matrix Method
+    private func getServiceDistanceAndDuration() {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            //locationManager.desiredAccuracy =
+            locationManager.startUpdatingLocation()
+        }
+        
+        googleMapsController.fetchServiceDistance((serviceCoordinates?.latitude)!, (serviceCoordinates?.longitude)!, 40.6905615, -73.9976592) { (error) in
+            if let error = error {
+                print("Error fetching distance to chosen service: \(error)")
+            }
+            
+            guard let unwrappedDistance = self.googleMapsController.serviceDistance,
+                let unwrappedDuration = self.googleMapsController.serviceTravelDuration else { return }
+            
+            print("serviceDistance: \(String(describing: unwrappedDistance))")
+            print("serviceTravelDuration: \(String(describing: unwrappedDuration))")
+        }
+        
+    }
+    
     func updateViews() {
         serviceDetailNameLabel.text = serviceDetail?.name
         serviceDetailAddressLabel.text = serviceDetail?.address
@@ -76,6 +114,13 @@ class ServiceDetailViewController: UIViewController {
         
     }
 
+}
 
-
+// MARK: - Google Distance Matrix Extension
+extension ServiceDetailViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        serviceCoordinates = manager.location?.coordinate
+    }
 }
