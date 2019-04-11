@@ -33,7 +33,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    
+
                 }
                 
             })
@@ -60,8 +60,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
         guard let  sortedSubcategories = networkController?.subcategoryNames.sorted(by: { $0 < $1 }) else {
-            fatalError("Unable to unwrap the subcategories and sort them")
-        }
+
+            fatalError("Unable to unwrap the subcategories and sort them") }
+
         let subcategoryCell = sortedSubcategories[indexPath.row]
         
         cell.subcategoryNameLabel.text = String(subcategoryCell).capitalized
