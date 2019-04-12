@@ -14,12 +14,35 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
     
+    // MARK: Info View Outlets
+    @IBOutlet weak var serviceView: UIView!
+    @IBOutlet weak var servicesInfoNameLabel: UILabel!
+    @IBOutlet weak var serviesInfoTextView: UITextView!
+    
+    // MARK: Info View Outlets
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var serviceDetailNameLabel: UILabel!
     @IBOutlet weak var serviceDetailAddressLabel: UILabel!
     @IBOutlet weak var serviceDetailDistanceLabel: UILabel!
     @IBOutlet weak var serviceDetailWalkTimeLabel: UILabel!
     @IBOutlet weak var serviceDetailPhoneLabel: UILabel!
     @IBOutlet weak var serviceDetailHoursLabel: UILabel!
+    
+    // MARK: - Segmented Control Actions
+    @IBAction func locationTapped(_ sender: Any) {
+        //performSegue(withIdentifier: "ShowLocation", sender: nil)//ShowLocation
+        serviceView.isHidden = true
+        infoView.isHidden = false
+        updateViews()
+    }
+    @IBAction func servicesTapped(_ sender: Any) {
+        //performSegue(withIdentifier: "ShowServices", sender: nil)//ShowServices
+        serviceView.isHidden = false
+        infoView.isHidden = true
+        updateViews()
+    }
+    @IBAction func detailsTapped(_ sender: Any) {
+    }
     
     //var resultLatitude = navigationController
 
@@ -36,6 +59,9 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        serviceView.isHidden = false
+        infoView.isHidden = false
         
         self.title = serviceDetail?.name
         
@@ -104,10 +130,12 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             let unwrappedDuration = serviceTravelDuration else { return }
         serviceDetailDistanceLabel.text = unwrappedDistance
         serviceDetailWalkTimeLabel.text = unwrappedDuration
-        
-        
+        // Services Tab Info
+        servicesInfoNameLabel.text = serviceDetail?.name
+        serviesInfoTextView.text = """
+        GED Prep Courses
+        """
     }
-    
     
     @IBAction func launchMapsButton(_ sender: Any) {
         

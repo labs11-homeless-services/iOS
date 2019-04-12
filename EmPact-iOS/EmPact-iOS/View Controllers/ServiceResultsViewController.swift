@@ -16,6 +16,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var subcategoriesTitleLabel: UILabel!
     
+    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
+        networkController?.subcategoryNames = []
+        networkController?.subcategoryDetails = []
+        performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        
+    }
+    
     var selectedSubcategory: String!
     
     var networkController: NetworkController?
@@ -87,6 +94,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         // Get the new view controller using segue.destination.
         guard let destination = segue.destination as? ServiceDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow else { return }
