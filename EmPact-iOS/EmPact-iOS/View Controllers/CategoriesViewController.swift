@@ -20,6 +20,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
+    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
+        //dismiss(animated: true, completion: nil)
+    }
+    
     let categoryController = CategoryController()
     let networkController = NetworkController()
 

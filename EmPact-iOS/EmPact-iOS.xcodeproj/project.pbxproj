@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220D22566A910008E54B /* UserLocationViewController.swift */; };
 		112A221022569C550008E54B /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220F22569C550008E54B /* CategoryController.swift */; };
+		11650F37226103D0009CFCE9 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11650F36226103CF009CFCE9 /* GoogleDistance.swift */; };
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
 		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
@@ -42,13 +43,13 @@
 		847A7ED922557B2900A62A5F /* OutreachServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7ED822557B2800A62A5F /* OutreachServices.swift */; };
 		847A7EDD225663BA00A62A5F /* SubcategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */; };
 		84B3A4AE2260076D00F06DC4 /* GoogleMapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */; };
-		84B3A4B02260078400F06DC4 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4AF2260078300F06DC4 /* GoogleDistance.swift */; };
 		B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		112A220D22566A910008E54B /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		112A220F22569C550008E54B /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		11650F36226103CF009CFCE9 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDistance.swift; sourceTree = "<group>"; };
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -85,8 +86,7 @@
 		847A7ED62255754E00A62A5F /* SubcategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoriesViewController.swift; sourceTree = "<group>"; };
 		847A7ED822557B2800A62A5F /* OutreachServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutreachServices.swift; sourceTree = "<group>"; };
 		847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryTableViewCell.swift; sourceTree = "<group>"; };
-		84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsController.swift; sourceTree = "<group>"; };
-		84B3A4AF2260078300F06DC4 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleDistance.swift; path = ../../../../../../../../../Downloads/GoogleDistance.swift; sourceTree = "<group>"; };
+		84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleMapsController.swift; path = "../View Controllers/GoogleMapsController.swift"; sourceTree = "<group>"; };
 		9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.debug.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +203,6 @@
 				847A7ED62255754E00A62A5F /* SubcategoriesViewController.swift */,
 				847A7ECE22553CD000A62A5F /* ServiceResultsViewController.swift */,
 				847A7ED022553CD600A62A5F /* ServiceDetailViewController.swift */,
-				84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -213,6 +212,7 @@
 			children = (
 				846264EB224D98AF009A21A2 /* NetworkController.swift */,
 				112A220F22569C550008E54B /* CategoryController.swift */,
+				84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 				11A098BE22551911006F8B9D /* Jobs.swift */,
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
-				84B3A4AF2260078300F06DC4 /* GoogleDistance.swift */,
+				11650F36226103CF009CFCE9 /* GoogleDistance.swift */,
 				8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */,
 			);
 			path = "Model & Controller";
@@ -376,6 +376,7 @@
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
 				11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */,
 				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
+				11650F37226103D0009CFCE9 /* GoogleDistance.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
 				11A098BF22551911006F8B9D /* Jobs.swift in Sources */,
 				11A098C122552031006F8B9D /* Subcategory.swift in Sources */,
@@ -388,7 +389,6 @@
 				112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */,
 				11D79C81225D04630064EFB5 /* Interactor.swift in Sources */,
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
-				84B3A4B02260078400F06DC4 /* GoogleDistance.swift in Sources */,
 				846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
