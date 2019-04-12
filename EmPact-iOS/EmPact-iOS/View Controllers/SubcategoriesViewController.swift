@@ -59,7 +59,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
-        guard let  sortedSubcategories = networkController?.subcategoryNames.sorted(by: { $0 < $1 }) else {
+        guard let  sortedSubcategories = networkController?.subcategoryNames //.sorted(by: { $0 < $1 })
+            else {
 
             fatalError("Unable to unwrap the subcategories and sort them") }
 

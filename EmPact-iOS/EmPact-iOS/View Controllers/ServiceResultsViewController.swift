@@ -59,8 +59,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         cell.serviceNameLabel.text = subcategoryDetail?.name
         cell.serviceAddressLabel.text = subcategoryDetail?.address
         
-        if let value = subcategoryDetail?.phone {
-            cell.servicePhoneLabel.text = value as? String
+        if let phoneJSON = subcategoryDetail?.phone {
+            cell.servicePhoneLabel.text = phoneJSON as? String
         }
         
         if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
