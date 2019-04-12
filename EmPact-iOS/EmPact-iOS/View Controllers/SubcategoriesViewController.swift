@@ -16,6 +16,12 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
+//    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
+//        networkController?.subcategoryNames = []
+//        networkController?.subcategoryDetails = []
+//        dismiss(animated: true, completion: nil)
+//    } // We might need to rename this.
+    
     var selectedCategory: String!
 
     var networkController: NetworkController?
@@ -87,15 +93,18 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        guard let destination = segue.destination as? ServiceResultsViewController,
+        if segue.identifier == "showResults" {
+            guard let navController = segue.destination as? UINavigationController,
+            let destination = navController.viewControllers[0] as? ServiceResultsViewController,
+      
             let indexPath = tableView.indexPathForSelectedRow else { return }
             let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
         
-        destination.networkController = networkController
-        destination.selectedSubcategory = subcategoryDetails
+            destination.networkController = networkController
+            destination.selectedSubcategory = subcategoryDetails
+        }
     }
     
-    // MARK: - Hamburger Menu Outlets
     // MARK: - Hamburger Menu Actions
     @IBAction func closeMenu(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -122,6 +131,5 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
     }
-    
     
 }
