@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Healthcare: Decodable {
+struct HealthCare: Decodable {
     
     var all: [IndividualResource]
     var clinics: [IndividualResource]

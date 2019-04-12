@@ -57,7 +57,7 @@ class GoogleMapsController {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
                 let googleDistanceResponse = decodedResponse.rows
                 self.serviceDistance = googleDistanceResponse[0].elements[0].distance.text
-                self.serviceTravelDuration = googleDistanceResponse[0].elements[0].distance.text
+                self.serviceTravelDuration = googleDistanceResponse[0].elements[0].duration.text
                 
                 completion(nil)
             } catch {

@@ -24,7 +24,7 @@
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
-		842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2082252CF0100BBE2FB /* Healthcare.swift */; };
+		842DE2092252CF0100BBE2FB /* HealthCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2082252CF0100BBE2FB /* HealthCare.swift */; };
 		842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE20A2252CFC000BBE2FB /* Hygiene.swift */; };
 		842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE20E2252CFE900BBE2FB /* Shelters.swift */; };
 		846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264D0224D9803009A21A2 /* AppDelegate.swift */; };
@@ -66,7 +66,7 @@
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		842DE2082252CF0100BBE2FB /* Healthcare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthcare.swift; sourceTree = "<group>"; };
+		842DE2082252CF0100BBE2FB /* HealthCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCare.swift; sourceTree = "<group>"; };
 		842DE20A2252CFC000BBE2FB /* Hygiene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hygiene.swift; sourceTree = "<group>"; };
 		842DE20E2252CFE900BBE2FB /* Shelters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shelters.swift; sourceTree = "<group>"; };
 		846264CD224D9803009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,7 +224,7 @@
 				11A098BA2253CBF8006F8B9D /* Categories.swift */,
 				842DE2022252C4D100BBE2FB /* Education.swift */,
 				842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */,
-				842DE2082252CF0100BBE2FB /* Healthcare.swift */,
+				842DE2082252CF0100BBE2FB /* HealthCare.swift */,
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
 				842DE20A2252CFC000BBE2FB /* Hygiene.swift */,
 				842DE20E2252CFE900BBE2FB /* Shelters.swift */,
@@ -396,7 +396,7 @@
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				8428C5FA225D5DFD0036B295 /* ShelterDetails.swift in Sources */,
-				842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */,
+				842DE2092252CF0100BBE2FB /* HealthCare.swift in Sources */,
 				847A7ED72255754E00A62A5F /* SubcategoriesViewController.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,
 				11D79C79225BD6840064EFB5 /* IndividualResource.swift in Sources */,
