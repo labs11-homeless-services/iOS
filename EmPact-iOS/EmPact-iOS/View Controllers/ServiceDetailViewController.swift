@@ -46,9 +46,9 @@ class ServiceDetailViewController: UIViewController, CLLocationManagerDelegate, 
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if let _ = locations.first {
             serviceCoordinates = manager.location?.coordinate
-            print("serviceCoordinates: \(serviceCoordinates)")
+            print("serviceCoordinates: \(String(describing: serviceCoordinates))")
             locationManager.stopUpdatingLocation()
         } else {
             print("User location is unavailable")
