@@ -11,8 +11,9 @@ import UIKit
 class CategoryController {
     
     var iconImage: UIImage!
+    var subcategoryIconImage: UIImage!
     var tempCategoryName = ""
-    var networkController: NetworkController?
+    var tempSubcategoryName = ""
 
     func getIconImage() {
         
@@ -32,6 +33,19 @@ class CategoryController {
             iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
         } else if tempCategoryName == "Jobs" {
             iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
+        }
+    }
+    
+    func getSubcategoryIconImage() {
+        
+        if tempSubcategoryName == "Men" {
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.men.rawValue)
+        } else if tempSubcategoryName == "Women" {
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.women.rawValue)
+        } else if tempSubcategoryName == "Youth" {
+            subcategoryIconImage = UIImage(named: "abuse")
+        } else {
+            subcategoryIconImage = UIImage(named: "church")
         }
     }
 }
