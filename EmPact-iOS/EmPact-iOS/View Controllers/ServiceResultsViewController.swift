@@ -58,8 +58,23 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
         cell.serviceNameLabel.text = subcategoryDetail?.name
         cell.serviceAddressLabel.text = subcategoryDetail?.address
-        cell.servicePhoneLabel.text = subcategoryDetail?.phone
+        
+        if let phoneJSON = subcategoryDetail?.phone {
+            cell.servicePhoneLabel.text = phoneJSON as? String
+        }
+        
+        if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
+            cell.servicePhoneLabel.isHidden = true
+            cell.servicePhoneIcon.isHidden = true
+        }
+       
+        // Either hide labels or write "Unavailable"
         cell.serviceHoursLabel.text = subcategoryDetail?.hours
+        
+        if subcategoryDetail?.hours == nil {
+            cell.serviceHoursLabel.isHidden = true
+            cell.serviceHoursIcon.isHidden = true
+        }
         
         return cell
     }
