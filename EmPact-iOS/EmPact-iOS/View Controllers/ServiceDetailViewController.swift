@@ -144,11 +144,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
         serviesInfoTextView.text = """
-        Bathtubs
-        Showers
-        Tooth Cleanings
-        FootRubs
-        Seaweed Wrap
+        GED Prep Courses
         """
     }
     
