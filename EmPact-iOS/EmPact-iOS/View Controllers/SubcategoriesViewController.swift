@@ -51,6 +51,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         categoryTitleLabel.text = selectedCategory
         
+        categoryController.getIconImage(from: selectedCategory)
+        categoryTitleImage.image = categoryController.iconImage
+        
         //networkController?.fetchSubcategoryDetails(.all)
 
         self.tableView.delegate = self
@@ -65,15 +68,50 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
-        guard let  sortedSubcategories = networkController?.subcategoryNames //.sorted(by: { $0 < $1 })
+        guard let subcategory = networkController?.subcategoryNames[indexPath.row] //.sorted(by: { $0 < $1 })
             else {
 
             fatalError("Unable to unwrap the subcategories and sort them") }
 
-        let subcategoryCell = sortedSubcategories[indexPath.row]
+        //let subcategoryCell = sortedSubcategories[indexPath.row]
         
-        cell.subcategoryNameLabel.text = String(subcategoryCell).capitalized
-        //cell.subcategoryImageView.image =
+        cell.subcategoryNameLabel.text = String(subcategory).capitalized
+        
+        categoryController.tempSubcategoryName = subcategory
+        
+        categoryController.getSubcategoryIconImage()
+        
+        cell.subcategoryImageView.image = categoryController.subcategoryIconImage
+
+        //for eachSubcategoryName in sortedSubcategories {
+            
+//        if subcategory == "men" {
+//            cell.subcategoryImageView.image = UIImage(named: SubcategoryIconImages.men.rawValue)
+//        } else if subcategory == "women" {
+//            cell.subcategoryImageView.image = UIImage(named: SubcategoryIconImages.women.rawValue)
+//        } else if subcategory == "youth" {
+//            cell.subcategoryImageView.image = UIImage(named: "S-abuse")
+//        } else if subcategory == "all" {
+//            cell.subcategoryImageView.image = UIImage(named: "S-church")
+//        }
+        
+            //categoryController.tempSubcategoryName = eachSubcategoryName
+            //print(categoryController.tempSubcategoryName)
+            
+            //categoryController.getSubcategoryIconImage()
+            
+            //guard let subcategoryImage = categoryController.subcategoryIconImage else { return cell }
+
+            //let subcategoryImage = categoryController.subcategoryIconImage!
+            
+            //cell.subcategoryImageView.image = subcategoryImage
+
+            //print("Subcategory Image: \(subcategoryImage)")
+            
+        //}
+        
+        
+        
         cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
         
         return cell

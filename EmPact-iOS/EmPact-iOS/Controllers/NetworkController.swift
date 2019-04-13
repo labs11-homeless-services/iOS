@@ -28,7 +28,7 @@ class NetworkController {
     
     var individualResources: [IndividualResource] = []
     
-    // IF NEEDING TWO ARRAYS OF MDOEL OBJECTS
+    // IF NEEDING TWO ARRAYS OF MODEL OBJECTS
     //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
     //var individualResourceSubcategoryDetails: [IndividualResource] = []
        

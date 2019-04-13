@@ -57,10 +57,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let category = networkController.categoryNames[indexPath.row]
-        categoryController.tempCategoryName = category
         cell.categoryNameLabel.text = category
         
-        categoryController.getIconImage()
+        categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
         return cell
