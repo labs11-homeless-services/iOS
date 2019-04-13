@@ -24,6 +24,10 @@ class NetworkController {
     
     var subcategoryDetails: [IndividualResource] = []
     
+    var firebaseObjects: [FirebaseObject] = []
+    
+    var individualResources: [IndividualResource] = []
+    
     // IF NEEDING TWO ARRAYS OF MDOEL OBJECTS
     //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
     //var individualResourceSubcategoryDetails: [IndividualResource] = []
@@ -117,7 +121,7 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .healthcare:
-                    let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
+                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
@@ -274,8 +278,6 @@ class NetworkController {
     
     func determineSubcategoryDetailFetch() {
         
-        
-        
         if Subcategory.all.rawValue == tempSubcategorySelection {
             subcategoryAtIndexPath = Subcategory.all
         } else if tempSubcategorySelection == Subcategory.women.rawValue {
@@ -317,8 +319,45 @@ class NetworkController {
         }
         
         //fetchSubcategoryDetails(subcategoryAtIndexPath)
+    }
+    
+    func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         
+        let requestURL = NetworkController.baseURL
+            .appendingPathExtension("json")
         
+        print(requestURL)
+        
+        URLSession.shared.dataTask(with: requestURL) { ( data, _, error ) in
+            if let error = error {
+                NSLog("Error fetching data for search: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from fetch for search data task.")
+                completion(NSError())
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            do {
+                let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
+                
+                //firebaseObjects = decodedResponse
+            
+                print(decodedResponse)
+                
+                completion(nil)
+            } catch {
+                NSLog("Error decoding FirebaseObject: \(error)")
+                completion(error)
+            }
+        }.resume()
+   
     }
 
 }
