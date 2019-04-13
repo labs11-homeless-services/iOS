@@ -51,7 +51,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         categoryTitleLabel.text = selectedCategory
         
-        //networkController?.fetchSubcategoryDetails(.all)
+        categoryController.getIconImage(from: selectedCategory)
+        categoryTitleImage.image = categoryController.iconImage
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -65,16 +66,14 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
-        guard let  sortedSubcategories = networkController?.subcategoryNames //.sorted(by: { $0 < $1 })
-            else {
-
-            fatalError("Unable to unwrap the subcategories and sort them") }
-
-        let subcategoryCell = sortedSubcategories[indexPath.row]
+        guard let subcategory = networkController?.subcategoryNames[indexPath.row] else { fatalError("Unable to unwrap the subcategories and sort them") }
+        //.sorted(by: { $0 < $1 })
+        cell.subcategoryNameLabel.text = String(subcategory).capitalized
         
-        cell.subcategoryNameLabel.text = String(subcategoryCell).capitalized
-        //cell.subcategoryImageView.image =
-        cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
+        categoryController.tempSubcategoryName = subcategory
+        
+        categoryController.getSubcategoryIconImage()
+        cell.subcategoryImageView.image = categoryController.subcategoryIconImage
         
         return cell
     }
@@ -84,9 +83,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
         
         networkController?.tempSubcategorySelection = subcategoryAtIndexPath
-    
         networkController?.determineSubcategoryDetailFetch()
-        
     }
     
     // MARK: - Navigation

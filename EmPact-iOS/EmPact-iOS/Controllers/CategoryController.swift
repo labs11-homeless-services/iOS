@@ -15,37 +15,67 @@ class CategoryController {
     var tempCategoryName = ""
     var tempSubcategoryName = ""
 
-    func getIconImage() {
+    func getIconImage(from category: String) {
         
-        if tempCategoryName == "Shelters" {
+        if category == "Shelters" {
             iconImage = UIImage(named: CategoryIconImages.shelter.rawValue)
-        } else if tempCategoryName == "Health Care" {
+        } else if category == "Health Care" {
             iconImage = UIImage(named: CategoryIconImages.healthcare.rawValue)
-        } else if tempCategoryName == "Food" {
+        } else if category == "Food" {
             iconImage = UIImage(named: CategoryIconImages.food.rawValue)
-        } else if tempCategoryName == "Hygiene" {
+        } else if category == "Hygiene" {
             iconImage = UIImage(named: CategoryIconImages.hygiene.rawValue)
-        } else if tempCategoryName == "Outreach Services" {
+        } else if category == "Outreach Services" {
             iconImage = UIImage(named: CategoryIconImages.outreach.rawValue)
-        } else if tempCategoryName == "Education" {
+        } else if category == "Education" {
             iconImage = UIImage(named: CategoryIconImages.education.rawValue)
-        } else if tempCategoryName == "Legal Administrative" {
+        } else if category == "Legal Administrative" {
             iconImage = UIImage(named: CategoryIconImages.legal.rawValue)
-        } else if tempCategoryName == "Jobs" {
+        } else if category == "Jobs" {
             iconImage = UIImage(named: CategoryIconImages.jobs.rawValue)
         }
     }
     
     func getSubcategoryIconImage() {
         
-        if tempSubcategoryName == "Men" {
+        if tempSubcategoryName == "men" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.men.rawValue)
-        } else if tempSubcategoryName == "Women" {
+        } else if tempSubcategoryName == "women" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.women.rawValue)
-        } else if tempSubcategoryName == "Youth" {
-            subcategoryIconImage = UIImage(named: "abuse")
-        } else {
-            subcategoryIconImage = UIImage(named: "church")
+        } else if tempSubcategoryName == "youth" {
+            subcategoryIconImage = UIImage(named: "S-church")
+        } else if tempSubcategoryName == "all" {
+            subcategoryIconImage = UIImage(named: "S-church")
+        } else if tempSubcategoryName == "ged" {
+            subcategoryIconImage = UIImage(named: "C-outreach-services")
+        } else if tempSubcategoryName == "publicComputers" {
+            subcategoryIconImage = UIImage(named: "S-church")
+        } else if tempSubcategoryName == "foodPantries" {
+            subcategoryIconImage = UIImage(named: "C-food")
+        } else if tempSubcategoryName == "foodStamps" {
+            subcategoryIconImage = UIImage(named: "C-food")
+        } else if tempSubcategoryName == "clinics" {
+            subcategoryIconImage = UIImage(named: "C-health-care")
+        } else if tempSubcategoryName == "emergency" {
+            subcategoryIconImage = UIImage(named: "C-emergency")
+        } else if tempSubcategoryName == "hiv" {
+            subcategoryIconImage = UIImage(named: "C-health-care")
+        } else if tempSubcategoryName == "mentalHealth" {
+            subcategoryIconImage = UIImage(named: "C-jobs")
+        } else if tempSubcategoryName == "rehab" {
+            subcategoryIconImage = UIImage(named: "S-drugs")
+        } else if tempSubcategoryName == "bathrooms" {
+            subcategoryIconImage = UIImage(named: "C-hygiene")
+        } else if tempSubcategoryName == "showers" {
+            subcategoryIconImage = UIImage(named: "C-hygiene")
+        } else if tempSubcategoryName == "benefits" {
+            subcategoryIconImage = UIImage(named: "C-jobs")
+        } else if tempSubcategoryName == "afterSchool" {
+            subcategoryIconImage = UIImage(named: "C-outreach-services")
+        } else if tempSubcategoryName == "domesticViolence" {
+            subcategoryIconImage = UIImage(named: "S-abuse")
+        } else if tempSubcategoryName == "socialServices" {
+            subcategoryIconImage = UIImage(named: "C-outreach-services")
         }
     }
 }

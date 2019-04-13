@@ -21,8 +21,8 @@ enum CategoryIconImages: String {
 
 enum SubcategoryIconImages: String {
     case all
-    case women
-    case men
+    case women = "S-woman"
+    case men = "S-man"
     case youth
     case ged
     case publicComputers = "public_computers"
