@@ -44,7 +44,7 @@ class CategoryController {
         } else if tempSubcategoryName == "women" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.women.rawValue)
         } else if tempSubcategoryName == "youth" {
-            subcategoryIconImage = UIImage(named: "S-abuse")
+            subcategoryIconImage = UIImage(named: "S-church")
         } else if tempSubcategoryName == "all" {
             subcategoryIconImage = UIImage(named: "S-church")
         } else if tempSubcategoryName == "ged" {
