@@ -147,12 +147,12 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         // destination: comma-separated latitude/longitude coordinates
         // travelmode (optional): driving, walking, bicycling, transit
         
-        print("https://www.google.com/maps/dir/?api=1&origin=40.7829,-73.9654&destination=\(serviceDetail!.latitude),\(serviceDetail!.longitude)")
-        
-        
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
         
+        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit")
+        
         if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
+     
             UIApplication.shared.open(url, options: [:])
         }
     }
