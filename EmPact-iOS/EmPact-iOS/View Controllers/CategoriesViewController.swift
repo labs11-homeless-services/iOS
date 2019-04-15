@@ -15,10 +15,13 @@ protocol MenuActionDelegate {
     func reopenMenu()
 }
 
-class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
+    
+    @IBOutlet weak var collectionViewSearchBar: UISearchBar!
+    
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
         //dismiss(animated: true, completion: nil)
@@ -33,6 +36,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
+        collectionViewSearchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +76,44 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
+    
+    // MARK: = UI Search Bar
+    
+    // Tell the delegate the search button was tapped
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        
+        // Create and perform segue to Service Results View Controller
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func filterServiceResults() {
+        
+        DispatchQueue.main.async {
+            
+            // Grab the text, make sure it's not empty
+            guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
+                // If no search term...
+                
+                return
+            }
+            // We need to split up each string of keywords - How ??
+            
+            // Filter through the arrays of results to see if the keywords match
+            let matchingShelterObjects = NetworkController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
+            
+            for eachObject in matchingShelterObjects {
+                NetworkController.filteredObjects.append(eachObject)
+            } 
+        }
+        
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

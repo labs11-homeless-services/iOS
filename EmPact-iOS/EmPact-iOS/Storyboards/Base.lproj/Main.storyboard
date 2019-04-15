@@ -327,6 +327,7 @@
                     <connections>
                         <outlet property="categoriesCollectionView" destination="JUh-ah-XMf" id="YJI-8c-nKS"/>
                         <outlet property="categoriesScrollView" destination="EDU-uA-BJS" id="ev1-f4-D9p"/>
+                        <outlet property="collectionViewSearchBar" destination="XRj-oF-APD" id="rWX-qN-xaR"/>
                         <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="WGJ-jW-BT6"/>
                     </connections>
                 </viewController>
