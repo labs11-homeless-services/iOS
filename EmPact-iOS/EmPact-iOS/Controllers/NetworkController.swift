@@ -24,11 +24,7 @@ class NetworkController {
     
     var subcategoryDetails: [IndividualResource] = []
     
-    static var firebaseObjects: [FirebaseObject] = []
-    
-    static var individualResources: [IndividualResource] = []
-    
-    // IF NEEDING TWO ARRAYS OF MODEL OBJECTS
+    // IF NEEDING TWO ARRAYS OF MDOEL OBJECTS
     //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
     //var individualResourceSubcategoryDetails: [IndividualResource] = []
        
@@ -121,7 +117,7 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .healthcare:
-                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
+                    let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
@@ -265,58 +261,4 @@ class NetworkController {
         //fetchSubcategoryDetails(subcategoryAtIndexPath)
     }
     
-    static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
-        
-        let requestURL = NetworkController.baseURL
-            .appendingPathExtension("json")
-        
-        print(requestURL)
-        
-        URLSession.shared.dataTask(with: requestURL) { ( data, _, error ) in
-            if let error = error {
-                NSLog("Error fetching data for search: \(error)")
-                completion(error)
-                return
-            }
-            
-            guard let data = data else {
-                NSLog("No data returned from fetch for search data task.")
-                completion(NSError())
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
-                
-                //individualResources = decodedResponse.education.all
-                
-                allShelterObjects = decodedResponse.shelters.all
-                print(allShelterObjects)
-            
-                //print(decodedResponse)
-                
-                completion(nil)
-            } catch {
-                NSLog("Error decoding FirebaseObject: \(error)")
-                completion(error)
-            }
-        }.resume()
-    }
-    
-    // MARK: - Properties for FetchAll
-    
-    static var allShelterObjects: [IndividualResource] = []
-    static var allEducationObjects: [IndividualResource] = []
-    static var allLegalAdminObjects: [IndividualResource] = []
-    static var allHealthCareObjects: [IndividualResource] = []
-    static var allFoodObjects: [IndividualResource] = []
-    static var allHygieneObjects: [IndividualResource] = []
-    static var allJobsObjects: [IndividualResource] = []
-    static var allOutreachServicesObjects: [IndividualResource] = []
-    
-    static var filteredObjects: [IndividualResource] = []
-
 }

@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct IndividualResource: Decodable {
+class IndividualResource: Decodable {
     
     var address: String?
     var city: String
@@ -44,8 +44,7 @@ struct IndividualResource: Decodable {
         
     }
     
-    
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         
         // Container representing top level of information, which is a dictionary
         let container = try decoder.container(keyedBy: IndividualResourceCodingKeys.self)
