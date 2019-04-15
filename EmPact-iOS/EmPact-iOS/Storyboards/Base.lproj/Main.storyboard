@@ -41,7 +41,7 @@
                                 </subviews>
                             </stackView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-qf-zji">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -73,11 +73,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="XRj-oF-APD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDU-uA-BJS">
-                                <rect key="frame" x="0.0" y="120" width="375" height="880"/>
+                                <rect key="frame" x="0.0" y="172" width="375" height="828"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oY7-Lu-bue">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -327,6 +327,7 @@
                     <connections>
                         <outlet property="categoriesCollectionView" destination="JUh-ah-XMf" id="YJI-8c-nKS"/>
                         <outlet property="categoriesScrollView" destination="EDU-uA-BJS" id="ev1-f4-D9p"/>
+                        <outlet property="collectionViewSearchBar" destination="XRj-oF-APD" id="rWX-qN-xaR"/>
                         <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="WGJ-jW-BT6"/>
                     </connections>
                 </viewController>
@@ -356,7 +357,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FLf-OM-M1I">
                                                     <rect key="frame" x="20" y="8" width="267" height="62.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" translatesAutoresizingMaskIntoConstraints="NO" id="XPg-dH-R9y">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XPg-dH-R9y">
                                                             <rect key="frame" x="0.0" y="1.5" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="XPg-dH-R9y" secondAttribute="height" id="Upf-QN-Kga"/>
@@ -437,16 +438,13 @@
                                         <state key="normal" title="Español"/>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Z3-MF-Aaf">
-                                        <rect key="frame" x="12" y="8" width="44.5" height="65"/>
+                                        <rect key="frame" x="12" y="8" width="60" height="65"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C-shelter" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-wR-ZOB">
-                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="44.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Bgs-wR-ZOB" secondAttribute="height" id="nAj-AL-Bxq"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="44.5"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3g-jU-ySL">
-                                                <rect key="frame" x="0.0" y="44.5" width="44.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3g-jU-ySL">
+                                                <rect key="frame" x="0.0" y="44.5" width="60" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -510,7 +508,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t2t-NX-Rw1">
-                                <rect key="frame" x="0.0" y="181" width="375" height="486"/>
+                                <rect key="frame" x="0.0" y="233" width="375" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceResultCell" rowHeight="200" id="eb7-v2-PZu" customClass="ServiceResultTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
@@ -635,7 +633,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8K8-u8-cMq">
-                                <rect key="frame" x="0.0" y="64" width="375" height="117"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="117"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cYi-Ac-EoW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -703,7 +701,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="20U-54-fO9">
-                                <rect key="frame" x="40" y="140" width="295" height="30"/>
+                                <rect key="frame" x="40" y="192" width="295" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYp-MF-sCa">
                                         <rect key="frame" x="0.0" y="0.0" width="98.5" height="30"/>
@@ -733,7 +731,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-OW-IaU" userLabel="Search Stack">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-f1-LmS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -821,7 +819,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgC-q7-hjb" userLabel="Info View">
-                                <rect key="frame" x="20" y="190" width="335" height="180"/>
+                                <rect key="frame" x="20" y="242" width="335" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-gO-ybm">
                                         <rect key="frame" x="8" y="8" width="319" height="52"/>
@@ -1015,8 +1013,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UjT-y9-lna" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BGF-th-zsj">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BGF-th-zsj">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1239,8 +1237,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2MF-OB-Ggx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z0V-Uf-UQk">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Z0V-Uf-UQk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1255,7 +1253,6 @@
     </scenes>
     <resources>
         <image name="C-shelter" width="60" height="56"/>
-        <image name="man" width="56" height="60"/>
         <image name="public transportation" width="60" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>

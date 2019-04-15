@@ -68,6 +68,7 @@ class GoogleMapsController {
             }
             }.resume()
     }
+    
 
     func constructURLForMultiple(coordinates: [String]) {
         
