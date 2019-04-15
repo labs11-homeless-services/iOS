@@ -103,17 +103,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
             
         }
-        // Convert latitude/longitude strings to doubles
-//        guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-//            let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
-//            else {
-//            print("Latitude or Longitude is not a valid Double")
-//            return
-//        }
-        
-//        let camera = GMSCameraPosition.camera(withLatitude: doubleLatValue, longitude: doubleLongValue, zoom: 12.0)
-//        mapView.camera = camera
- 
         updateViews()
     }
     
@@ -172,9 +161,12 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         // destination: comma-separated latitude/longitude coordinates
         // travelmode (optional): driving, walking, bicycling, transit
         
-        print("https://www.google.com/maps/dir/?api=1&origin=40.7829,-73.9654&destination=\(serviceDetail!.latitude),\(serviceDetail!.longitude)")
+        guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
         
-        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=40.7829,-73.9654&destination=\(serviceDetail!.latitude),\(serviceDetail!.longitude)&travelmode=transit") {
+        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit")
+        
+        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
+     
             UIApplication.shared.open(url, options: [:])
         }
     }

@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cacheController = CacheController()
         cacheController.fetchAllForSearch()
         
+        NetworkController.fetchAllForSearch()
+
         return true
     }
 
