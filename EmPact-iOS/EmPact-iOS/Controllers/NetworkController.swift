@@ -24,9 +24,9 @@ class NetworkController {
     
     var subcategoryDetails: [IndividualResource] = []
     
-    var firebaseObjects: [FirebaseObject] = []
+    static var firebaseObjects: [FirebaseObject] = []
     
-    var individualResources: [IndividualResource] = []
+    static var individualResources: [IndividualResource] = []
     
     // IF NEEDING TWO ARRAYS OF MODEL OBJECTS
     //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
@@ -321,7 +321,7 @@ class NetworkController {
         //fetchSubcategoryDetails(subcategoryAtIndexPath)
     }
     
-    func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
+    static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
             .appendingPathExtension("json")
@@ -347,9 +347,12 @@ class NetworkController {
             do {
                 let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
                 
-                //firebaseObjects = decodedResponse
+                //individualResources = decodedResponse.education.all
+                
+                allShelterObjects = decodedResponse.shelters.all
+                print(allShelterObjects)
             
-                print(decodedResponse)
+                //print(decodedResponse)
                 
                 completion(nil)
             } catch {
@@ -359,5 +362,18 @@ class NetworkController {
         }.resume()
    
     }
+    
+    // MARK: - Properties for FetchAll
+    
+    static var allShelterObjects: [IndividualResource] = []
+    static var allEducationObjects: [IndividualResource] = []
+    static var allLegalAdminObjects: [IndividualResource] = []
+    static var allHealthCareObjects: [IndividualResource] = []
+    static var allFoodObjects: [IndividualResource] = []
+    static var allHygieneObjects: [IndividualResource] = []
+    static var allJobsObjects: [IndividualResource] = []
+    static var allOutreachServicesObjects: [IndividualResource] = []
+    
+    static var filteredObjects: [IndividualResource] = []
 
 }

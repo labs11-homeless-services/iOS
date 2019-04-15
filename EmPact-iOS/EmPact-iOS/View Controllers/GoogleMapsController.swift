@@ -65,5 +65,6 @@ class GoogleMapsController {
             }
             }.resume()
     }
+    
 
 }
