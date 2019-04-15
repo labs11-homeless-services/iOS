@@ -109,6 +109,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         // Add matching objects to the filtered objects array
         for eachObject in matchingShelterObjects {
+            
+            // Do we need a filteredObjects array?
             NetworkController.filteredObjects.append(eachObject)
             
         }
