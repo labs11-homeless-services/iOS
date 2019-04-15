@@ -260,5 +260,5 @@ class NetworkController {
         
         //fetchSubcategoryDetails(subcategoryAtIndexPath)
     }
-
+    
 }
