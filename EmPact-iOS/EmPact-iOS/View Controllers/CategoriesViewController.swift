@@ -84,6 +84,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         searchBar.resignFirstResponder()
         
+        // Filter the results based on the text in the search bar
+        filterServiceResults()
+        
         // Create and perform segue to Service Results View Controller
     }
     
@@ -93,22 +96,21 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func filterServiceResults() {
         
-        DispatchQueue.main.async {
+        // Grab the text, make sure it's not empty
+        guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
+            // If no search term...
+            NetworkController.filteredObjects = self.networkController.subcategoryDetails
             
-            // Grab the text, make sure it's not empty
-            guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
-                // If no search term...
-                
-                return
-            }
-            // We need to split up each string of keywords - How ??
+            return
+        }
+
+        // Filter through the arrays of results to see if the keywords match
+        let matchingShelterObjects = NetworkController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
+        
+        // Add matching objects to the filtered objects array
+        for eachObject in matchingShelterObjects {
+            NetworkController.filteredObjects.append(eachObject)
             
-            // Filter through the arrays of results to see if the keywords match
-            let matchingShelterObjects = NetworkController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
-            
-            for eachObject in matchingShelterObjects {
-                NetworkController.filteredObjects.append(eachObject)
-            } 
         }
         
     }
