@@ -10,6 +10,7 @@ import Foundation
 
 class GoogleMapsController {
     
+    var serviceAddresses: [String]!
     var serviceDistance: String!
     var serviceTravelDuration: String!
     var key = "AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4"
@@ -59,6 +60,8 @@ class GoogleMapsController {
                 self.serviceDistance = googleDistanceResponse[0].elements[0].distance.text
                 self.serviceTravelDuration = googleDistanceResponse[0].elements[0].duration.text
                 
+                self.serviceAddresses = decodedResponse.destinationAddresses
+                
                 completion(nil)
             } catch {
                 completion(error)
@@ -66,4 +69,35 @@ class GoogleMapsController {
             }.resume()
     }
 
+    func constructURLForMultiple(coordinates: [String]) {
+        
+        // loop through the array of strings
+        // convert each string to a double
+        // increment by 2 starting at index 0 adding a | (pipe)
+        // increment by 2 starting at index 1 adding a , (comma)
+        // note sure if we will need to return a string
+    }
+    
+    let googleURL = """
+    
+    https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=40.745377%2C-73.981306%7C40.81653%2C-73.889742%7C40.749139%2C-73.994016%7C40.676015%2C-73.905105%7C40.641112%2C-73.076825%7C40.689964%2C-73.932736%7C40.675854%2C-73.905247%7C40.675854%2C-73.905247%7C40.751979%2C-73.994054&key=AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4
+    
+    https://maps.googleapis.com/maps/api/distancematrix/json?
+    units=imperial
+    &origins=40.6655101,-73.89188969999998
+    &destinations=40.745377%2C-73.981306
+    %7C40.81653%2C-73.889742
+    %7C40.749139%2C-73.994016
+    %7C40.676015%2C-73.905105
+    %7C40.641112%2C-73.076825
+    %7C40.689964%2C-73.932736
+    %7C40.675854%2C-73.905247
+    %7C40.675854%2C-73.905247
+    %7C40.751979%2C-73.994054
+    &key=AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4
+    
+    %7C is a |
+    %2C is a ,
+    
+    """
 }
