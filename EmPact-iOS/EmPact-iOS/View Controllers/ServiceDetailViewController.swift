@@ -14,10 +14,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
     
-    // MARK: Info View Outlets
-    @IBOutlet weak var serviceView: UIView!
-    @IBOutlet weak var servicesInfoNameLabel: UILabel!
-    @IBOutlet weak var serviesInfoTextView: UITextView!
+
     
     // MARK: Info View Outlets
     @IBOutlet weak var infoView: UIView!
@@ -28,20 +25,36 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var serviceDetailPhoneLabel: UILabel!
     @IBOutlet weak var serviceDetailHoursLabel: UILabel!
     
+    // MARK: Service View Outlets
+    @IBOutlet weak var serviceView: UIView!
+    @IBOutlet weak var servicesInfoNameLabel: UILabel!
+    @IBOutlet weak var serviesInfoTextView: UITextView!
+    
+    // MARK: Detail View Outlets
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var detailsNameLabel: UILabel!
+    @IBOutlet weak var detailsTextView: UITextView!
+    
     // MARK: - Segmented Control Actions
     @IBAction func locationTapped(_ sender: Any) {
-        //performSegue(withIdentifier: "ShowLocation", sender: nil)//ShowLocation
+        detailsView.isHidden = true
         serviceView.isHidden = true
         infoView.isHidden = false
         updateViews()
     }
+    
     @IBAction func servicesTapped(_ sender: Any) {
-        //performSegue(withIdentifier: "ShowServices", sender: nil)//ShowServices
+        detailsView.isHidden = true
         serviceView.isHidden = false
         infoView.isHidden = true
         updateViews()
     }
+    
     @IBAction func detailsTapped(_ sender: Any) {
+        detailsView.isHidden = false
+        serviceView.isHidden = true
+        infoView.isHidden = true
+        updateViews()
     }
     
     //var resultLatitude = navigationController
@@ -60,7 +73,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        serviceView.isHidden = false
+        detailsView.isHidden = true
+        serviceView.isHidden = true
         infoView.isHidden = false
         
         self.title = serviceDetail?.name

@@ -24,11 +24,7 @@ class NetworkController {
     
     var subcategoryDetails: [IndividualResource] = []
     
-    static var firebaseObjects: [FirebaseObject] = []
-    
-    static var individualResources: [IndividualResource] = []
-    
-    // IF NEEDING TWO ARRAYS OF MODEL OBJECTS
+    // IF NEEDING TWO ARRAYS OF MDOEL OBJECTS
     //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
     //var individualResourceSubcategoryDetails: [IndividualResource] = []
        
@@ -121,7 +117,7 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .healthcare:
-                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
+                    let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
@@ -145,25 +141,6 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        
-                        //self.fetchSubcategoryDetails(.all)
-                        
-                        //self.allArray.append(decodedResponseDictionary)
-//
-//                        
-//                        if "\(decodedResponseDictionary.key)" == "all" {
-//                            self.allDictionary["all"] = "\(decodedResponseDictionary.value)"
-//                        }
-//                        print("allDictionary: \(self.allDictionary)")
-//                        print("subcategory names array: \(self.subcategoryNames)")
-//                        print("Each dictionary in decoded response: \(decodedResponseDictionary)")
-//                        print("Subcategory Details Array: \(self.subcategoryDetails)")
-                        
-                        
-//                        self.tempCategoryDictionary = [String(describing: decodedResponseDictionary.key): [decodedResponseDictionary.value]]
-////                        self.tempSimpleDictionary = ["\(decodedResponseDictionary.key)": decodedResponseDictionary.value]
-////                        print("tempSimpleDictionary: \(self.tempSimpleDictionary)")
-//                        print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
                     }
                     
                 case .jobs:
@@ -173,15 +150,12 @@ class NetworkController {
                         
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
-                    print("tempCategoryDictionary: \(self.tempCategoryDictionary)")
                 }
-                
                 completion(self.subcategoryNames, nil)
             } catch {
                 NSLog("error decoding entries: \(error)")
                 completion(self.subcategoryNames, error)
             }
-            
         }.resume()
     }
     
@@ -206,7 +180,6 @@ class NetworkController {
         }
     }
     
-    
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
@@ -216,8 +189,6 @@ class NetworkController {
             .appendingPathComponent(tempCategorySelection.lowercased())
             .appendingPathComponent(subcategory.rawValue)
             .appendingPathExtension("json")
-        
-        print("subcategory requestURL: \(requestURL)")
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
@@ -236,45 +207,14 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                
-                // JUST AN IDEA
-//                switch subcategory {
-//                case .all:
-//                    let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
-//                    self.subcategoryDetails = decodedResponse
-//                }
-                
-                // IF NEEDING TO USE TWO ARRAYS FOR TWO MODEL OBJECTS
-//                if self.tempCategorySelection == "Shelters" {
-//                    let decodedResponse = try jsonDecoder.decode([ShelterDetailsIndividualResource].self, from: data)
-//                    self.shelterSubcategoryDetails = decodedResponse
-//                    print("shelter decodedResponse: \(self.shelterSubcategoryDetails)")
-//
-//                } else {
-//                    let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
-//                    self.individualResourceSubcategoryDetails = decodedResponse
-//                    print("individual resource decodedResponse: \(self.individualResourceSubcategoryDetails)")
-//                }
-                
-                // This works for shelters
-                // But subcategoryDetails was changed to shelterSubcategoryDetails [ShelterDetailIndividualResource]
                 let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
                 self.subcategoryDetails = decodedResponse
-                
-                //self.subcategoryDetails = decodedResponse.men
-                
-                //                let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
-                //                self.subcategoryDetails = decodedResponse.men
-                
-                //print("Subcategory Details: \(self.subcategoryDetails)")
-                
                 completion(nil)
             } catch {
                 completion(error)
             }
         }.resume()
     }
-    
     
     func determineSubcategoryDetailFetch() {
         
@@ -321,59 +261,4 @@ class NetworkController {
         //fetchSubcategoryDetails(subcategoryAtIndexPath)
     }
     
-    static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
-        
-        let requestURL = NetworkController.baseURL
-            .appendingPathExtension("json")
-        
-        print(requestURL)
-        
-        URLSession.shared.dataTask(with: requestURL) { ( data, _, error ) in
-            if let error = error {
-                NSLog("Error fetching data for search: \(error)")
-                completion(error)
-                return
-            }
-            
-            guard let data = data else {
-                NSLog("No data returned from fetch for search data task.")
-                completion(NSError())
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-                let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
-                
-                //individualResources = decodedResponse.education.all
-                
-                allShelterObjects = decodedResponse.shelters.all
-                print(allShelterObjects)
-            
-                //print(decodedResponse)
-                
-                completion(nil)
-            } catch {
-                NSLog("Error decoding FirebaseObject: \(error)")
-                completion(error)
-            }
-        }.resume()
-   
-    }
-    
-    // MARK: - Properties for FetchAll
-    
-    static var allShelterObjects: [IndividualResource] = []
-    static var allEducationObjects: [IndividualResource] = []
-    static var allLegalAdminObjects: [IndividualResource] = []
-    static var allHealthCareObjects: [IndividualResource] = []
-    static var allFoodObjects: [IndividualResource] = []
-    static var allHygieneObjects: [IndividualResource] = []
-    static var allJobsObjects: [IndividualResource] = []
-    static var allOutreachServicesObjects: [IndividualResource] = []
-    
-    static var filteredObjects: [IndividualResource] = []
-
 }

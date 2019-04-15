@@ -27,9 +27,8 @@ struct Shelters: Decodable {
 
 }
 
-// This also works, but to streamline, we can have the subcategories be arrays of Individual Resource
 //struct ShelterDetailsIndividualResource: Decodable {
-//
+//    
 //    enum SheltersCodingKeys: String, CodingKey {
 //        case address
 //        case city
@@ -43,36 +42,36 @@ struct Shelters: Decodable {
 //        case postalCode = "postal code"
 //        case state
 //        case services
-//
+//        
 //    }
-//
+//    
 //    var address: String
 //    var city: String
 //    var details: [String]?
 //    var hours: String?
-//
+//    
 //    var keywords: String
 //    var latitude: String
 //    var longitude: String
-//
+//    
 //    var name: String
 //    var phone: String
 //    var postalCode: String
 //    var state: String
-//
+//    
 //    var services: [String]?
-//
+//    
 //    init(from decoder: Decoder) throws {
-//
+//        
 //        // Container representing top level of information, which is a dictionary
 //        let container = try decoder.container(keyedBy: SheltersCodingKeys.self)
-//
+//        
 //        address = try container.decode(String.self, forKey: .address)
 //        city = try container.decode(String.self, forKey: .city)
-//
+//        
 //        // contains an array, but is not nested
 //        details = try container.decodeIfPresent([String].self, forKey: .details)
-//
+//        
 //        hours = try container.decodeIfPresent(String.self, forKey: .hours)
 //        keywords = try container.decode(String.self, forKey: .keywords)
 //        latitude = try container.decode(String.self, forKey: .latitude)
@@ -81,14 +80,14 @@ struct Shelters: Decodable {
 //        phone = try container.decode(String.self, forKey: .phone)
 //        postalCode = try container.decode(String.self, forKey: .postalCode)
 //        state = try container.decode(String.self, forKey: .state)
-//
+//        
 //        // contains an array, but is not nested
 //        services = try container.decodeIfPresent([String].self, forKey: .services)
 //    }
 //}
-//
-//struct JSON: Decodable {
-//
+
+//struct JSON: Codable {
+//    
 //    var JSON: [ShelterDetailsIndividualResource]
 //}
 
