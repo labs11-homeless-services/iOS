@@ -16,6 +16,7 @@ class IndividualResource: Decodable {
         case address
         case city
         case details
+        case additionalInformation
         case hours
         case keywords
         case latitude
@@ -45,6 +46,7 @@ class IndividualResource: Decodable {
     var address: String?
     var city: String
     var details: Any?
+    var additionalInformation: String?
     var hours: String?
     
     var keywords: String
@@ -72,26 +74,31 @@ class IndividualResource: Decodable {
             // Try to decode the value as an array
             details = try container.decodeIfPresent([String].self, forKey: .details)
         } catch {
+            
             do {
                 // If that doesn't work, try to decode as a single value
                 details = try container.decodeIfPresent(String.self, forKey: .details)
             } catch {
                 
                 do {
-                    // Finally, try to decode as a dictionary
+                    // Try to decode as a dictionary holding a string
                     let allDetailsContainer = try container.nestedContainer(keyedBy: IndividualResourceCodingKeys.AllDetails.self, forKey: .details)
                     
                     details = try allDetailsContainer.decodeIfPresent(String.self, forKey: .hours)
+                    
                 } catch {
+                    
+                    // Finally try to decode as a dictionary of dictionaries
                     let allDetailsContainer = try container.nestedContainer(keyedBy: IndividualResourceCodingKeys.AllDetails.self, forKey: .details)
+                    
+                    additionalInformation = try allDetailsContainer.decodeIfPresent(String.self, forKey: .additionalInformation)
                     
                     let detailsDescriptionContainer = try allDetailsContainer.nestedContainer(keyedBy: IndividualResourceCodingKeys.AllDetails.AllHours.self, forKey: .hours)
                     
                     details = try detailsDescriptionContainer.decodeIfPresent(String.self, forKey: .monday)
                     
-                    
+   
                 }
-  
             }
         }
         

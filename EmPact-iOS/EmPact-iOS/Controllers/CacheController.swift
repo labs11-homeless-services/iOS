@@ -61,10 +61,10 @@ class CacheController {
                 self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
                 self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
-                //self.allHealthCareObjects = decodedResponse.
+                self.allHealthCareObjects = decodedResponse.healthCare.all
                 self.allFoodObjects = decodedResponse.food.all
                 self.allHygieneObjects = decodedResponse.hygiene.all
-                self.allOutreachServicesObjects = decodedResponse.outreachServices.all
+                self.allOutreachServicesObjects = decodedResponse.outreachServices._all
                 
                 for eachObject in allShelterObjects {
                     filteredObjects.append(eachObject)

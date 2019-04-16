@@ -88,7 +88,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // Filter the results based on the text in the search bar
         filterServiceResults()
         
-        // Create and perform segue to Service Results View Controller
+        // Perform segue to Service Results View Controller
+        performSegue(withIdentifier: "searchResultsSegue", sender: nil)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -105,6 +106,18 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             
             return
         }
+        
+        print(networkController.filteredObjects)
+        
+        var matchingObjects = networkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
+        
+        print(matchingObjects)
+        
+        matchingObjects = networkController.subcategoryDetails
+        
+        print(networkController.subcategoryDetails)
+        
+        print(matchingObjects)
 
         // Filter through the arrays of results to see if the keywords match
 //        for eachObject in CacheController.cache {
@@ -117,11 +130,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //CacheController.cache.
         
-        let matchingObjects = CacheController.cache.object(forKey: "\(searchTerm)" as NSString)?.keywords
-      
-        print(matchingObjects)
+//        let matchingObjects = CacheController.cache.object(forKey: "\(searchTerm)" as NSString)?.keywords
+//      
+//        print(matchingObjects)
         
-        let allMatchingObjects = CacheController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
+        
         
         // Add matching objects to the filtered objects array
 //        for eachObject in matchingShelterObjects {
@@ -137,15 +150,22 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "searchResultsSegue" {
+            let searchDestinationVC = segue.destination as! ServiceResultsViewController
+            searchDestinationVC.networkController = networkController
+        }
+        
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
             destinationViewController.transitioningDelegate = self
             destinationViewController.interactor = interactor
             destinationViewController.menuActionDelegate = self
         }
         
-        let destination = segue.destination as! SubcategoriesViewController
-        destination.networkController = networkController
-        destination.selectedCategory = networkController.tempCategorySelection
+        if segue.identifier == "modalSubcategoryMenu" {
+            let destination = segue.destination as! SubcategoriesViewController
+            destination.networkController = networkController
+            destination.selectedCategory = networkController.tempCategorySelection
+        }
     }
     
     // MARK: - Hamburger Menu Variables

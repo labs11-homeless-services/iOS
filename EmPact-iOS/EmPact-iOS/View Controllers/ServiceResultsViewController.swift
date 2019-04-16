@@ -35,7 +35,14 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.delegate = self
         
         guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
-        self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        
+        if unwrappedTempCategorySelection == "" {
+            self.title = ""
+        } else {
+            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        }
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
