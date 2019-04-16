@@ -329,6 +329,7 @@
                         <outlet property="categoriesScrollView" destination="EDU-uA-BJS" id="ev1-f4-D9p"/>
                         <outlet property="collectionViewSearchBar" destination="XRj-oF-APD" id="rWX-qN-xaR"/>
                         <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="WGJ-jW-BT6"/>
+                        <segue destination="zem-mX-p5a" kind="show" identifier="searchResultsSegue" id="d27-Sl-fNX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXs-nM-FQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -682,6 +683,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Español" id="P18-MJ-1Cp"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="cYi-Ac-EoW" id="sOc-YF-fbs"/>
                         <outlet property="searchBarView" destination="8K8-u8-cMq" id="EeE-J7-Hy0"/>
                         <outlet property="tableView" destination="t2t-NX-Rw1" id="qRC-gw-xVT"/>
                         <segue destination="KGc-DN-LJv" kind="unwind" identifier="unwindToSubcategoriesVC" unwindAction="unwindToSubcategoriesVCWithSegue:" id="KhI-WT-zms"/>
@@ -1050,6 +1052,7 @@
         <image name="public transportation" width="60" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="d27-Sl-fNX"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
 </document>
