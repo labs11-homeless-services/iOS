@@ -11,25 +11,25 @@ import Foundation
 
 class CacheController {
     
-    var cache = NSCache<NSString, IndividualResource>()
-    var resourceObject: IndividualResource?
+    static var cache = NSCache<NSString, IndividualResource>()
+    static var resourceObject: IndividualResource?
     
     // MARK: - Properties for FetchAll
     
-    var allShelterObjects: [IndividualResource] = []
-    var allEducationObjects: [IndividualResource] = []
-    var allLegalAdminObjects: [IndividualResource] = []
-    var allHealthCareObjects: [IndividualResource] = []
-    var allFoodObjects: [IndividualResource] = []
-    var allHygieneObjects: [IndividualResource] = []
-    var allJobsObjects: [IndividualResource] = []
-    var allOutreachServicesObjects: [IndividualResource] = []
+    static var allShelterObjects: [IndividualResource] = []
+    static var allEducationObjects: [IndividualResource] = []
+    static var allLegalAdminObjects: [IndividualResource] = []
+    static var allHealthCareObjects: [IndividualResource] = []
+    static var allFoodObjects: [IndividualResource] = []
+    static var allHygieneObjects: [IndividualResource] = []
+    static var allJobsObjects: [IndividualResource] = []
+    static var allOutreachServicesObjects: [IndividualResource] = []
     
-    var filteredObjects: [IndividualResource] = []
+    static var filteredObjects: [IndividualResource] = []
     
     typealias CompletionHandler = (Error?) -> Void
     
-    func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
+    static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
             .appendingPathExtension("json")
@@ -55,24 +55,73 @@ class CacheController {
             do {
                 
                 let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
-                self.allShelterObjects = decodedResponse.shelters.all
-                // All categories
                 
-                for eachObject in self.allShelterObjects {
-
-                    self.cache.setObject( eachObject, forKey: eachObject.keywords as NSString )
+                print(decodedResponse.healthCare.clinics)
+                
+                self.allShelterObjects = decodedResponse.shelters.all
+                self.allEducationObjects = decodedResponse.education.all
+                self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
+                self.allHealthCareObjects = decodedResponse.healthCare.all
+                self.allFoodObjects = decodedResponse.food.all
+                self.allHygieneObjects = decodedResponse.hygiene.all
+                self.allOutreachServicesObjects = decodedResponse.outreachServices._all
+                
+                for eachObject in allShelterObjects {
+                    filteredObjects.append(eachObject)
                 }
                 
-                //print(self.cache.object(forKey: "shelter, drop-in, meal, shower, help, bed"))
+                for eachObject in allEducationObjects {
+                    filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in allLegalAdminObjects {
+                    filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in allHealthCareObjects {
+                    filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in allFoodObjects {
+                    filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in allHygieneObjects {
+                    filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in allOutreachServicesObjects {
+                    filteredObjects.append(eachObject)
+                }
+                
+                
+//                for eachObject in self.allShelterObjects {
+//
+//                    var keywordStringsArray = eachObject.keywords.components(separatedBy: ", ")
+//                    print(keywordStringsArray)
+//
+//                    for eachKeyword in keywordStringsArray {
+//                        self.cache.setObject( eachObject, forKey: eachKeyword as NSString )
+//                    }
+//                }
+//
+//                print(self.cache.object(forKey: "shelter")?.address)
+//                print(self.cache.object(forKey: "drop-in")?.address)
 
                 completion(nil)
             } catch {
                 NSLog("Error decoding FirebaseObject: \(error)")
                 completion(error)
             }
-            }.resume()
+        }.resume()
         
     }
     
 }
+
+//extension IndividualResource {
+//    func matches(searchTerm: String) -> Bool {
+//        return keywords.contains(where: { $0.contains(newSearchText) })
+//    }
+//}
 

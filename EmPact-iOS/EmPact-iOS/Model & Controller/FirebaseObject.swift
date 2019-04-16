@@ -13,7 +13,7 @@ struct FirebaseObject: Decodable {
     var education: Education
     var legalAdministrative: LegalAdministrative // emergency_services
     var food: Food
-    //var healthcare: Healthcare
+    var healthCare: HealthCare
     var hygiene: Hygiene
     var outreachServices: OutreachServices // outreach_services
     var shelters: Shelters
