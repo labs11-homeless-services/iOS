@@ -30,6 +30,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print(Category(rawValue: selectedCategory.lowercased()))
        
         guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
         if networkController?.subcategoryNames.count ?? 0 < 1 {
