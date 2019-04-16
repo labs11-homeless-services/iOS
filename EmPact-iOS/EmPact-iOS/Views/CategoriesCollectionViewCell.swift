@@ -10,8 +10,9 @@ import UIKit
 
 class CategoriesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryImageView: UIImageView!
     
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     static let reuseIdentifier = "categoryCell"
