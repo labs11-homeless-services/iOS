@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4")
         let cacheController = CacheController()
         cacheController.fetchAllForSearch()
-        
-        NetworkController.fetchAllForSearch()
 
         return true
     }

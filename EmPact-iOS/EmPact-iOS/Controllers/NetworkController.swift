@@ -117,7 +117,7 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .healthcare:
-                    let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
+                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         

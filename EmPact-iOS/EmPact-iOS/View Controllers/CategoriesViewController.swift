@@ -29,6 +29,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     let categoryController = CategoryController()
     let networkController = NetworkController()
+    let cacheController = CacheController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
+        
+        cell.setCellShadow(cell: cell, color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         return cell
     }
@@ -104,10 +107,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             // We need to split up each string of keywords - How ??
             
             // Filter through the arrays of results to see if the keywords match
-            let matchingShelterObjects = NetworkController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
+            let matchingShelterObjects = self.cacheController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
             
             for eachObject in matchingShelterObjects {
-                NetworkController.filteredObjects.append(eachObject)
+                self.cacheController.filteredObjects.append(eachObject)
             } 
         }
         
