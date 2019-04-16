@@ -109,29 +109,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
         
-        print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
+        //print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
         
         networkController.subcategoryDetails = matchingObjects
         
-        print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
+        //print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
 
-        // Filter through the arrays of results to see if the keywords match
-//        for eachObject in CacheController.cache {
-//
-//        }
-//
-//        for (key, value) in CacheController.cache {
-//
-//        }
-        
-        //CacheController.cache.
-        
-//        let matchingObjects = CacheController.cache.object(forKey: "\(searchTerm)" as NSString)?.keywords
-//      
-//        print(matchingObjects)
-        
-        
-        
         // Add matching objects to the filtered objects array
 //        for eachObject in matchingShelterObjects {
 //
