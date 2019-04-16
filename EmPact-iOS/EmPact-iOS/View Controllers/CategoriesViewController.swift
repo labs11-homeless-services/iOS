@@ -29,6 +29,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     let categoryController = CategoryController()
     let networkController = NetworkController()
+    let cacheController = CacheController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,22 +99,37 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         // Grab the text, make sure it's not empty
         guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
+            
             // If no search term...
-            NetworkController.filteredObjects = self.networkController.subcategoryDetails
+            //NetworkController.filteredObjects = self.networkController.subcategoryDetails
             
             return
         }
 
         // Filter through the arrays of results to see if the keywords match
-        let matchingShelterObjects = NetworkController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
+//        for eachObject in CacheController.cache {
+//
+//        }
+//
+//        for (key, value) in CacheController.cache {
+//
+//        }
+        
+        //CacheController.cache.
+        
+        let matchingObjects = CacheController.cache.object(forKey: "\(searchTerm)" as NSString)?.keywords
+      
+        print(matchingObjects)
+        
+        let allMatchingObjects = CacheController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
         
         // Add matching objects to the filtered objects array
-        for eachObject in matchingShelterObjects {
-            
-            // Do we need a filteredObjects array?
-            NetworkController.filteredObjects.append(eachObject)
-            
-        }
+//        for eachObject in matchingShelterObjects {
+//
+//            // Do we need a filteredObjects array?
+//            NetworkController.filteredObjects.append(eachObject)
+//
+//        }
         
     }
     
