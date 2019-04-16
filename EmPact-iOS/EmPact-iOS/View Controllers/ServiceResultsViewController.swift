@@ -19,6 +19,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
         networkController?.subcategoryNames = []
         networkController?.subcategoryDetails = []
+        networkController?.tempCategorySelection = ""
+        selectedSubcategory = ""
         performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
         
     }
@@ -35,21 +37,11 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.delegate = self
         
         if networkController?.tempCategorySelection == "" {
-            self.title = ""
+            self.title = "Search Results"
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
         }
-        
-        
-//        
-//        if unwrappedTempCategorySelection == "" {
-//            self.title = ""
-//        } else {
-//            
-//        }
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

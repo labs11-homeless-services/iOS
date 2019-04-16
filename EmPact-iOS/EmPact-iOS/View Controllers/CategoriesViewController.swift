@@ -107,7 +107,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
-        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
         
         print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
         
