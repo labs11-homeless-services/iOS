@@ -34,13 +34,20 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.dataSource = self
         searchBar.delegate = self
         
-        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
-        
-        if unwrappedTempCategorySelection == "" {
+        if networkController?.tempCategorySelection == "" {
             self.title = ""
         } else {
+            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
         }
+        
+        
+//        
+//        if unwrappedTempCategorySelection == "" {
+//            self.title = ""
+//        } else {
+//            
+//        }
 
         
     }

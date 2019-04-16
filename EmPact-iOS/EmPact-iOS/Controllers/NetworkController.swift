@@ -244,7 +244,7 @@ class NetworkController {
     
     // MARK: - Search Fetch
     
-    func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
+    static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
             .appendingPathExtension("json")
@@ -271,9 +271,8 @@ class NetworkController {
                 
                 let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
                 
-                print(decodedResponse.healthCare.clinics)
+                //print("Shelter objects array from search fetch: \(self.allShelterObjects)")
                 
-                self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
                 self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
                 self.allHealthCareObjects = decodedResponse.healthCare.all
@@ -309,7 +308,7 @@ class NetworkController {
                     self.filteredObjects.append(eachObject)
                 }
                 
-                print(self.filteredObjects)
+                // print("Total list of objects after fetch inside the filteredObjects array: \(self.filteredObjects)")
  
                 completion(nil)
                 
@@ -323,16 +322,16 @@ class NetworkController {
     
     // MARK: - Properties for FetchAll
     
-    var allShelterObjects: [IndividualResource] = []
-    var allEducationObjects: [IndividualResource] = []
-    var allLegalAdminObjects: [IndividualResource] = []
-    var allHealthCareObjects: [IndividualResource] = []
-    var allFoodObjects: [IndividualResource] = []
-    var allHygieneObjects: [IndividualResource] = []
-    var allJobsObjects: [IndividualResource] = []
-    var allOutreachServicesObjects: [IndividualResource] = []
+    static var allShelterObjects: [IndividualResource] = []
+    static var allEducationObjects: [IndividualResource] = []
+    static var allLegalAdminObjects: [IndividualResource] = []
+    static var allHealthCareObjects: [IndividualResource] = []
+    static var allFoodObjects: [IndividualResource] = []
+    static var allHygieneObjects: [IndividualResource] = []
+    static var allJobsObjects: [IndividualResource] = []
+    static var allOutreachServicesObjects: [IndividualResource] = []
     
-    var filteredObjects: [IndividualResource] = []
+    static var filteredObjects: [IndividualResource] = []
 }
 
 
