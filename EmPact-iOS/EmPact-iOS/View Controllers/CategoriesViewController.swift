@@ -107,17 +107,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
-        print(networkController.filteredObjects)
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
         
-        var matchingObjects = networkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
+        print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
         
-        print(matchingObjects)
+        networkController.subcategoryDetails = matchingObjects
         
-        matchingObjects = networkController.subcategoryDetails
-        
-        print(networkController.subcategoryDetails)
-        
-        print(matchingObjects)
+        print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
 
         // Filter through the arrays of results to see if the keywords match
 //        for eachObject in CacheController.cache {
@@ -153,6 +149,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "searchResultsSegue" {
             let searchDestinationVC = segue.destination as! ServiceResultsViewController
             searchDestinationVC.networkController = networkController
+            //searchDestinationVC.selectedSubcategory = 
         }
         
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
