@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220D22566A910008E54B /* UserLocationViewController.swift */; };
 		112A221022569C550008E54B /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220F22569C550008E54B /* CategoryController.swift */; };
-		11650F37226103D0009CFCE9 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11650F36226103CF009CFCE9 /* GoogleDistance.swift */; };
-		11650F3F2265137F009CFCE9 /* CacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11650F3E2265137F009CFCE9 /* CacheController.swift */; };
+		11650F4322663A22009CFCE9 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11650F4222663A22009CFCE9 /* GoogleDistance.swift */; };
+		11650F4522663A54009CFCE9 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11650F4422663A54009CFCE9 /* DropShadow.swift */; };
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
 		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
@@ -26,7 +26,7 @@
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
-		842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2082252CF0100BBE2FB /* Healthcare.swift */; };
+		842DE2092252CF0100BBE2FB /* HealthCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2082252CF0100BBE2FB /* HealthCare.swift */; };
 		842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE20A2252CFC000BBE2FB /* Hygiene.swift */; };
 		842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE20E2252CFE900BBE2FB /* Shelters.swift */; };
 		846264D1224D9803009A21A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846264D0224D9803009A21A2 /* AppDelegate.swift */; };
@@ -44,14 +44,15 @@
 		847A7ED922557B2900A62A5F /* OutreachServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7ED822557B2800A62A5F /* OutreachServices.swift */; };
 		847A7EDD225663BA00A62A5F /* SubcategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */; };
 		84B3A4AE2260076D00F06DC4 /* GoogleMapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */; };
+		84B3A4B222652E2A00F06DC4 /* CacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4B122652E2400F06DC4 /* CacheController.swift */; };
 		B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		112A220D22566A910008E54B /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		112A220F22569C550008E54B /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
-		11650F36226103CF009CFCE9 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDistance.swift; sourceTree = "<group>"; };
-		11650F3E2265137F009CFCE9 /* CacheController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
+		11650F4222663A22009CFCE9 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDistance.swift; sourceTree = "<group>"; };
+		11650F4422663A54009CFCE9 /* DropShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -69,7 +70,7 @@
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		842DE2082252CF0100BBE2FB /* Healthcare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthcare.swift; sourceTree = "<group>"; };
+		842DE2082252CF0100BBE2FB /* HealthCare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCare.swift; sourceTree = "<group>"; };
 		842DE20A2252CFC000BBE2FB /* Hygiene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hygiene.swift; sourceTree = "<group>"; };
 		842DE20E2252CFE900BBE2FB /* Shelters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shelters.swift; sourceTree = "<group>"; };
 		846264CD224D9803009A21A2 /* EmPact-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmPact-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +90,7 @@
 		847A7ED822557B2800A62A5F /* OutreachServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutreachServices.swift; sourceTree = "<group>"; };
 		847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryTableViewCell.swift; sourceTree = "<group>"; };
 		84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleMapsController.swift; path = "../View Controllers/GoogleMapsController.swift"; sourceTree = "<group>"; };
+		84B3A4B122652E2400F06DC4 /* CacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
 		9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.debug.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 				846264F1224D9910009A21A2 /* AppearanceHelper.swift */,
 				11A098BC22541842006F8B9D /* IconImageHelper.swift */,
 				11A098C022552031006F8B9D /* Subcategory.swift */,
+				11650F4422663A54009CFCE9 /* DropShadow.swift */,
 				112A220D22566A910008E54B /* UserLocationViewController.swift */,
 			);
 			path = Helpers;
@@ -215,7 +218,7 @@
 				846264EB224D98AF009A21A2 /* NetworkController.swift */,
 				112A220F22569C550008E54B /* CategoryController.swift */,
 				84B3A4AD2260076D00F06DC4 /* GoogleMapsController.swift */,
-				11650F3E2265137F009CFCE9 /* CacheController.swift */,
+				84B3A4B122652E2400F06DC4 /* CacheController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -227,14 +230,14 @@
 				11A098BA2253CBF8006F8B9D /* Categories.swift */,
 				842DE2022252C4D100BBE2FB /* Education.swift */,
 				842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */,
-				842DE2082252CF0100BBE2FB /* Healthcare.swift */,
+				842DE2082252CF0100BBE2FB /* HealthCare.swift */,
 				842DE2062252CEBF00BBE2FB /* Food.swift */,
 				842DE20A2252CFC000BBE2FB /* Hygiene.swift */,
 				842DE20E2252CFE900BBE2FB /* Shelters.swift */,
 				11A098BE22551911006F8B9D /* Jobs.swift */,
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
-				11650F36226103CF009CFCE9 /* GoogleDistance.swift */,
+				11650F4222663A22009CFCE9 /* GoogleDistance.swift */,
 				8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */,
 			);
 			path = "Model & Controller";
@@ -379,7 +382,6 @@
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
 				11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */,
 				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
-				11650F37226103D0009CFCE9 /* GoogleDistance.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
 				11A098BF22551911006F8B9D /* Jobs.swift in Sources */,
 				11A098C122552031006F8B9D /* Subcategory.swift in Sources */,
@@ -392,15 +394,17 @@
 				112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */,
 				11D79C81225D04630064EFB5 /* Interactor.swift in Sources */,
 				11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */,
+				11650F4522663A54009CFCE9 /* DropShadow.swift in Sources */,
 				846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
-				11650F3F2265137F009CFCE9 /* CacheController.swift in Sources */,
+				84B3A4B222652E2A00F06DC4 /* CacheController.swift in Sources */,
+				11650F4322663A22009CFCE9 /* GoogleDistance.swift in Sources */,
 				8428C5FA225D5DFD0036B295 /* ShelterDetails.swift in Sources */,
-				842DE2092252CF0100BBE2FB /* Healthcare.swift in Sources */,
+				842DE2092252CF0100BBE2FB /* HealthCare.swift in Sources */,
 				847A7ED72255754E00A62A5F /* SubcategoriesViewController.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,
 				11D79C79225BD6840064EFB5 /* IndividualResource.swift in Sources */,

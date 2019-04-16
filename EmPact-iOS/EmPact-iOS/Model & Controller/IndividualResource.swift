@@ -12,9 +12,41 @@ import Foundation
 
 class IndividualResource: Decodable {
     
+    enum IndividualResourceCodingKeys: String, CodingKey {
+        case address
+        case city
+        case details
+        case additionalInformation
+        case hours
+        case keywords
+        case latitude
+        case longitude
+        case name
+        case phone
+        case postalCode = "postal code"
+        case state
+        case services
+        
+        enum AllDetails: String, CodingKey {
+            case hours
+            case additionalInformation = "additional_information"
+            
+            enum AllHours: String, CodingKey {
+                case friday
+                case monday
+                case saturday
+                case sunday
+                case thursday
+                case tuesday
+                case wednesday
+            }
+        }
+    }
+    
     var address: String?
     var city: String
     var details: Any?
+    var additionalInformation: String?
     var hours: String?
     
     var keywords: String
@@ -28,21 +60,7 @@ class IndividualResource: Decodable {
     
     var services: Any?
     
-    enum IndividualResourceCodingKeys: String, CodingKey {
-        case address
-        case city
-        case details
-        case hours
-        case keywords
-        case latitude
-        case longitude
-        case name
-        case phone
-        case postalCode = "postal code"
-        case state
-        case services
-        
-    }
+
     
     required init(from decoder: Decoder) throws {
         
@@ -56,8 +74,32 @@ class IndividualResource: Decodable {
             // Try to decode the value as an array
             details = try container.decodeIfPresent([String].self, forKey: .details)
         } catch {
-            // If that doesn't work, try to decode as a single value
-            details = try container.decodeIfPresent(String.self, forKey: .details)
+            
+            do {
+                // If that doesn't work, try to decode as a single value
+                details = try container.decodeIfPresent(String.self, forKey: .details)
+            } catch {
+                
+                do {
+                    // Try to decode as a dictionary holding a string
+                    let allDetailsContainer = try container.nestedContainer(keyedBy: IndividualResourceCodingKeys.AllDetails.self, forKey: .details)
+                    
+                    details = try allDetailsContainer.decodeIfPresent(String.self, forKey: .hours)
+                    
+                } catch {
+                    
+                    // Finally try to decode as a dictionary of dictionaries
+                    let allDetailsContainer = try container.nestedContainer(keyedBy: IndividualResourceCodingKeys.AllDetails.self, forKey: .details)
+                    
+                    additionalInformation = try allDetailsContainer.decodeIfPresent(String.self, forKey: .additionalInformation)
+                    
+                    let detailsDescriptionContainer = try allDetailsContainer.nestedContainer(keyedBy: IndividualResourceCodingKeys.AllDetails.AllHours.self, forKey: .hours)
+                    
+                    details = try detailsDescriptionContainer.decodeIfPresent(String.self, forKey: .monday)
+                    
+   
+                }
+            }
         }
         
         hours = try container.decodeIfPresent(String.self, forKey: .hours)
@@ -78,9 +120,9 @@ class IndividualResource: Decodable {
         state = try container.decode(String.self, forKey: .state)
         
         do {
-            services = try container.decodeIfPresent([String].self, forKey: .services)
-        } catch {
             services = try container.decodeIfPresent(String.self, forKey: .services)
+        } catch {
+            services = try container.decodeIfPresent([String].self, forKey: .services)
         }
         
     }

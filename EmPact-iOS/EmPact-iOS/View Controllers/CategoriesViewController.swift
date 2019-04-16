@@ -17,10 +17,28 @@ protocol MenuActionDelegate {
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var helpLabel: UILabel!
+    @IBOutlet weak var helpView: UIView!
+    
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
     @IBOutlet weak var collectionViewSearchBar: UISearchBar!
+    
+    @IBOutlet weak var shelterView: UIView!
+    @IBOutlet weak var shelterNameLabel: UILabel!
+    @IBOutlet weak var shelterAddressLabel: UILabel!
+    @IBOutlet weak var shelterDistanceLabel: UILabel!
+    @IBOutlet weak var shelterDurationLabel: UILabel!
+    @IBOutlet weak var shelterPhoneLabel: UILabel!
+    @IBOutlet weak var shelterHoursLabel: UILabel!
+    @IBOutlet weak var viewMapButton: UIButton!
+    @IBOutlet weak var viewDetailsButton: UIButton!
+    
+    @IBAction func viewMapClicked(_ sender: Any) {
+    }
+    @IBAction func viewDetailsClicked(_ sender: Any) {
+    }
     
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
@@ -29,6 +47,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     let categoryController = CategoryController()
     let networkController = NetworkController()
+    let cacheController = CacheController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +56,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
+        
+        collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
+        collectionViewSearchBar.barTintColor = UIColor.white
+        collectionViewSearchBar.placeholder = "Search"
+        
+        helpView.backgroundColor = UIColor.darkGray
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +93,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
+        cell.cellView.backgroundColor = UIColor.darkGray
+        cell.cellView.layer.cornerRadius = 10
+        //cell.cellView.layer.borderColor = UIColor.white.cgColor
+        //cell.cellView.layer.borderWidth = 2
+        
+        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        cell.categoryNameLabel.textColor = UIColor.white
+        
         return cell
     }
 
@@ -84,7 +120,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         searchBar.resignFirstResponder()
         
-        // Create and perform segue to Service Results View Controller
+        // Filter the results based on the text in the search bar
+        filterServiceResults()
+        
+        // Perform segue to Service Results View Controller
+        performSegue(withIdentifier: "searchResultsSegue", sender: nil)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -93,23 +133,47 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func filterServiceResults() {
         
-        DispatchQueue.main.async {
+        // Grab the text, make sure it's not empty
+        guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
             
-            // Grab the text, make sure it's not empty
-            guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
-                // If no search term...
-                
-                return
-            }
-            // We need to split up each string of keywords - How ??
+            // If no search term...
+            //NetworkController.filteredObjects = self.networkController.subcategoryDetails
             
-            // Filter through the arrays of results to see if the keywords match
-            let matchingShelterObjects = NetworkController.allShelterObjects.filter({ $0.keywords.contains(searchTerm) })
-            
-            for eachObject in matchingShelterObjects {
-                NetworkController.filteredObjects.append(eachObject)
-            } 
+            return
         }
+        
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
+        
+        print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
+        
+        networkController.subcategoryDetails = matchingObjects
+        
+        print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
+
+        // Filter through the arrays of results to see if the keywords match
+//        for eachObject in CacheController.cache {
+//
+//        }
+//
+//        for (key, value) in CacheController.cache {
+//
+//        }
+        
+        //CacheController.cache.
+        
+//        let matchingObjects = CacheController.cache.object(forKey: "\(searchTerm)" as NSString)?.keywords
+//      
+//        print(matchingObjects)
+        
+        
+        
+        // Add matching objects to the filtered objects array
+//        for eachObject in matchingShelterObjects {
+//
+//            // Do we need a filteredObjects array?
+//            NetworkController.filteredObjects.append(eachObject)
+//
+//        }
         
     }
     
@@ -117,15 +181,23 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "searchResultsSegue" {
+            let searchDestinationVC = segue.destination as! ServiceResultsViewController
+            searchDestinationVC.networkController = networkController
+            //searchDestinationVC.selectedSubcategory = 
+        }
+        
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
             destinationViewController.transitioningDelegate = self
             destinationViewController.interactor = interactor
             destinationViewController.menuActionDelegate = self
         }
         
-        let destination = segue.destination as! SubcategoriesViewController
-        destination.networkController = networkController
-        destination.selectedCategory = networkController.tempCategorySelection
+        if segue.identifier == "modalSubcategoryMenu" {
+            let destination = segue.destination as! SubcategoriesViewController
+            destination.networkController = networkController
+            destination.selectedCategory = networkController.tempCategorySelection
+        }
     }
     
     // MARK: - Hamburger Menu Variables

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchBarView: UIView!
     
@@ -32,9 +32,28 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        searchBar.delegate = self
         
-        guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
-        self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        searchBar.barTintColor = UIColor.white
+        searchBar.placeholder = "Search"
+        
+        if networkController?.tempCategorySelection == "" {
+            self.title = ""
+        } else {
+            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
+            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        }
+        
+        
+//        
+//        if unwrappedTempCategorySelection == "" {
+//            self.title = ""
+//        } else {
+//            
+//        }
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +135,11 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 //            destination.shelterServiceDetail = shelterServiceDetail
 //        }
             
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchBar.text?.isEmpty ?? true
     }
     
 

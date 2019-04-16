@@ -10,6 +10,8 @@ import UIKit
 
 class NetworkController {
     
+    // MARK: - Properties
+    
     var tempSubcategorySelection = ""
     var subcategoryAtIndexPath: Subcategory!
     
@@ -24,13 +26,11 @@ class NetworkController {
     
     var subcategoryDetails: [IndividualResource] = []
     
-    // IF NEEDING TWO ARRAYS OF MDOEL OBJECTS
-    //var shelterSubcategoryDetails: [ShelterDetailsIndividualResource] = []
-    //var individualResourceSubcategoryDetails: [IndividualResource] = []
-       
     typealias CompletionHandler = (Error?) -> Void
     typealias Handler = ([String], Error?) -> Void
     static var baseURL: URL!  { return URL(string: "https://empact-e511a.firebaseio.com/") }
+    
+    // MARK: - Category Fetch
     
     // CATEGORY NAMES
     func fetchCategoryNames(completion: @escaping CompletionHandler = { _ in }) {
@@ -68,6 +68,8 @@ class NetworkController {
             }
         }.resume()
     }
+    
+    // MARK: - Subcategory Fetches
     
     // SUBCATEGORY NAMES
     func fetchSubcategoriesNames(_ category: Category, completion: @escaping Handler = { _, _ in }) {
@@ -117,7 +119,7 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .healthcare:
-                    let decodedResponse = try jsonDecoder.decode(Healthcare.self, from: data)
+                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         
@@ -157,27 +159,6 @@ class NetworkController {
                 completion(self.subcategoryNames, error)
             }
         }.resume()
-    }
-    
-    func determineSubcategoryFetch(completion: @escaping CompletionHandler = { _ in }) {
-        
-        if tempCategorySelection == "Shelters" {
-            fetchSubcategoriesNames(Category.shelters)
-        } else if tempCategorySelection == "Health Care" {
-            fetchSubcategoriesNames(Category.healthcare)
-        } else if tempCategorySelection == "Food" {
-            fetchSubcategoriesNames(Category.food)
-        } else if tempCategorySelection == "Hygiene" {
-            fetchSubcategoriesNames(Category.hygiene)
-        } else if tempCategorySelection == "Outreach Services" {
-            fetchSubcategoriesNames(Category.outreach)
-        } else if tempCategorySelection == "Education" {
-            fetchSubcategoriesNames(Category.education)
-        } else if tempCategorySelection == "Legal Administrative" {
-            fetchSubcategoriesNames(Category.legal)
-        } else if tempCategorySelection == "Jobs" {
-            fetchSubcategoriesNames(Category.jobs)
-        }
     }
     
     // SUBCATEGORY LIST RESULTS DETAILS
@@ -261,4 +242,128 @@ class NetworkController {
         //fetchSubcategoryDetails(subcategoryAtIndexPath)
     }
     
+    // MARK: - Search Fetch
+    
+    static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
+        
+        let requestURL = NetworkController.baseURL
+            .appendingPathExtension("json")
+        
+        print(requestURL)
+        
+        URLSession.shared.dataTask(with: requestURL) { ( data, _, error ) in
+            if let error = error {
+                NSLog("Error fetching data for search: \(error)")
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned from fetch for search data task.")
+                completion(NSError())
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            do {
+                
+                let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
+                
+                //print("Shelter objects array from search fetch: \(self.allShelterObjects)")
+                
+                self.allEducationObjects = decodedResponse.education.all
+                self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
+                self.allHealthCareObjects = decodedResponse.healthCare.all
+                self.allFoodObjects = decodedResponse.food.all
+                self.allHygieneObjects = decodedResponse.hygiene.all
+                self.allOutreachServicesObjects = decodedResponse.outreachServices._all
+                
+                for eachObject in self.allShelterObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in self.allEducationObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in self.allLegalAdminObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in self.allHealthCareObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in self.allFoodObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in self.allHygieneObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                for eachObject in self.allOutreachServicesObjects {
+                    self.filteredObjects.append(eachObject)
+                }
+                
+                // print("Total list of objects after fetch inside the filteredObjects array: \(self.filteredObjects)")
+ 
+                completion(nil)
+                
+            } catch {
+                NSLog("Error decoding FirebaseObject: \(error)")
+                completion(error)
+            }
+        }.resume()
+        
+    }
+    
+    // MARK: - Properties for FetchAll
+    
+    static var allShelterObjects: [IndividualResource] = []
+    static var allEducationObjects: [IndividualResource] = []
+    static var allLegalAdminObjects: [IndividualResource] = []
+    static var allHealthCareObjects: [IndividualResource] = []
+    static var allFoodObjects: [IndividualResource] = []
+    static var allHygieneObjects: [IndividualResource] = []
+    static var allJobsObjects: [IndividualResource] = []
+    static var allOutreachServicesObjects: [IndividualResource] = []
+    
+    static var filteredObjects: [IndividualResource] = []
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    func determineSubcategoryFetch(completion: @escaping CompletionHandler = { _ in }) {
+//
+//        if tempCategorySelection == "Shelters" {
+//            fetchSubcategoriesNames(Category.shelters)
+//        } else if tempCategorySelection == "Health Care" {
+//            fetchSubcategoriesNames(Category.healthcare)
+//        } else if tempCategorySelection == "Food" {
+//            fetchSubcategoriesNames(Category.food)
+//        } else if tempCategorySelection == "Hygiene" {
+//            fetchSubcategoriesNames(Category.hygiene)
+//        } else if tempCategorySelection == "Outreach Services" {
+//            fetchSubcategoriesNames(Category.outreach)
+//        } else if tempCategorySelection == "Education" {
+//            fetchSubcategoriesNames(Category.education)
+//        } else if tempCategorySelection == "Legal Administrative" {
+//            fetchSubcategoriesNames(Category.legal)
+//        } else if tempCategorySelection == "Jobs" {
+//            fetchSubcategoriesNames(Category.jobs)
+//        }
+//    }
