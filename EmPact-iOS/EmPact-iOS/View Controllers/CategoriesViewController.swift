@@ -17,10 +17,28 @@ protocol MenuActionDelegate {
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var helpLabel: UILabel!
+    @IBOutlet weak var helpView: UIView!
+    
     @IBOutlet weak var categoriesScrollView: UIScrollView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
     @IBOutlet weak var collectionViewSearchBar: UISearchBar!
+    
+    @IBOutlet weak var shelterView: UIView!
+    @IBOutlet weak var shelterNameLabel: UILabel!
+    @IBOutlet weak var shelterAddressLabel: UILabel!
+    @IBOutlet weak var shelterDistanceLabel: UILabel!
+    @IBOutlet weak var shelterDurationLabel: UILabel!
+    @IBOutlet weak var shelterPhoneLabel: UILabel!
+    @IBOutlet weak var shelterHoursLabel: UILabel!
+    @IBOutlet weak var viewMapButton: UIButton!
+    @IBOutlet weak var viewDetailsButton: UIButton!
+    
+    @IBAction func viewMapClicked(_ sender: Any) {
+    }
+    @IBAction func viewDetailsClicked(_ sender: Any) {
+    }
     
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
@@ -38,6 +56,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
+        
+        collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
+        collectionViewSearchBar.barTintColor = UIColor.white
+        collectionViewSearchBar.placeholder = "Search"
+        
+        helpView.backgroundColor = UIColor.darkGray
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +92,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
+        
+        cell.cellView.backgroundColor = UIColor.darkGray
+        cell.cellView.layer.cornerRadius = 10
+        //cell.cellView.layer.borderColor = UIColor.white.cgColor
+        //cell.cellView.layer.borderWidth = 2
+        
+        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        cell.categoryNameLabel.textColor = UIColor.white
         
         return cell
     }

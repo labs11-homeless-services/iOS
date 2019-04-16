@@ -34,6 +34,10 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.dataSource = self
         searchBar.delegate = self
         
+        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        searchBar.barTintColor = UIColor.white
+        searchBar.placeholder = "Search"
+        
         if networkController?.tempCategorySelection == "" {
             self.title = ""
         } else {
