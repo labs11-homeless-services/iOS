@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4")
         
         NetworkController.fetchAllForSearch()
+        
+        Appearance.setupTheme()
+        
+        // Find names of custom fonts
+//        for family in UIFont.familyNames.sorted() {
+//            let names = UIFont.fontNames(forFamilyName: "SF Pro Display")
+//            print("Family: \(family) Font names: \(names)")
+//        }
 
         return true
     }

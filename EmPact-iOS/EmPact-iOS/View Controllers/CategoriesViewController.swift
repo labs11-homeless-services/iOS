@@ -57,13 +57,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
-        collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
-        collectionViewSearchBar.barTintColor = UIColor.white
-        collectionViewSearchBar.placeholder = "Search"
-        
-        helpView.backgroundColor = UIColor.darkGray
-        helpView.layer.cornerRadius = 5
-        helpLabel.textColor = UIColor.white
+        setupTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +74,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    func setupTheme() {
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        helpView.backgroundColor = UIColor.customDarkPurple
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return networkController.categoryNames.count
     }
@@ -88,12 +92,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let category = networkController.categoryNames[indexPath.row]
-        cell.categoryNameLabel.text = category
+        cell.categoryNameLabel.text = category.uppercased()
         
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
-        cell.cellView.backgroundColor = UIColor.darkGray
+        cell.cellView.backgroundColor = UIColor.customDarkGray
         cell.cellView.layer.cornerRadius = 10
         //cell.cellView.layer.borderColor = UIColor.white.cgColor
         //cell.cellView.layer.borderWidth = 2

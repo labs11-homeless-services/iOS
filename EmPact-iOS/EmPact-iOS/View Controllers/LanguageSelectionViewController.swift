@@ -14,6 +14,8 @@ class LanguageSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTheme()
     }
     
     @IBAction func englishButtonClicked(_ sender: Any) {
@@ -23,6 +25,12 @@ class LanguageSelectionViewController: UIViewController {
     
     @IBAction func espanolButtonClicked(_ sender: Any) {
         
+    }
+    
+    func setupTheme() {
+        
+        self.navigationController?.navigationBar.barTintColor = .customDarkPurple
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
 }
