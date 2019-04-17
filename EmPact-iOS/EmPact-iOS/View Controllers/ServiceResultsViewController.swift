@@ -79,6 +79,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 
     }
     
+    func setupTheme() {
+        
+        
+        
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchBarIsEmpty() == false {
@@ -89,6 +96,32 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceResultTableViewCell.reuseIdentifier, for: indexPath) as! ServiceResultTableViewCell
+        
+        cell.serviceNameLabel.textColor = UIColor.customLightBlack
+        
+        // Icons
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.serviceAddressIcon.tintColor = .customDarkPurple
+        cell.serviceAddressIcon.image = placeColoredIcon
+
+        let coloredPhoneIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.servicePhoneIcon.tintColor = .customDarkPurple
+        cell.servicePhoneIcon.image = coloredPhoneIcon
+        
+        let coloredClockIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.serviceHoursIcon.tintColor = .customDarkPurple
+        cell.serviceHoursIcon.image = coloredClockIcon
+        
+        // Button
+        cell.viewDetailsButton.setTitle("  VIEW", for: .normal)
+        cell.viewDetailsButton.setTitleColor(.white, for: .normal)
+        cell.viewDetailsButton.backgroundColor = .customDarkPurple
+        
+        let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.viewDetailsButton.tintColor = UIColor.white
+        cell.viewDetailsButton.setImage(launchColoredIcon, for: .normal)
+        
+        cell.viewDetailsButton.layer.cornerRadius = 5
         
         // Display the search results
         if searchBarIsEmpty() == false {

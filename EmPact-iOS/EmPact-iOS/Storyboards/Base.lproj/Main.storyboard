@@ -846,9 +846,9 @@
                                                                                                     <nil key="textColor"/>
                                                                                                     <nil key="highlightedColor"/>
                                                                                                 </label>
-                                                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p49-Rx-sfQ">
+                                                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p49-Rx-sfQ">
                                                                                                     <rect key="frame" x="123.5" y="0.0" width="123.5" height="40"/>
-                                                                                                    <state key="normal" title="VIEW"/>
+                                                                                                    <state key="normal" title="VIEW" image="launch"/>
                                                                                                     <connections>
                                                                                                         <action selector="viewButton:" destination="eb7-v2-PZu" eventType="touchUpInside" id="a53-oR-qfF"/>
                                                                                                     </connections>
@@ -1324,6 +1324,7 @@
         <image name="C-shelter" width="60" height="56"/>
         <image name="bus" width="24" height="24"/>
         <image name="clock" width="24" height="24"/>
+        <image name="launch" width="24" height="24"/>
         <image name="near_me" width="24" height="24"/>
         <image name="phone" width="24" height="24"/>
         <image name="place" width="24" height="24"/>

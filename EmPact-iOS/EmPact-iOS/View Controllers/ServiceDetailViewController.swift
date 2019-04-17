@@ -141,7 +141,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     func setupTheme() {
         
         // Buttons
-        startMapButton.setTitle("Start Map", for: .normal)
+        startMapButton.setTitle("  Start Map", for: .normal)
         startMapButton.setTitleColor(.white, for: .normal)
         startMapButton.backgroundColor = .customDarkPurple
         
