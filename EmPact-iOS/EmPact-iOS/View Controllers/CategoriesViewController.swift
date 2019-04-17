@@ -25,11 +25,20 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var collectionViewSearchBar: UISearchBar!
     
+    @IBOutlet weak var nearestShelterView: UIView!
+    @IBOutlet weak var nearestShelterLabel: UILabel!
     @IBOutlet weak var shelterView: UIView!
     @IBOutlet weak var shelterNameLabel: UILabel!
+    
+    @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var shelterAddressLabel: UILabel!
+    
+    
+    @IBOutlet weak var distanceView: UIView!
     @IBOutlet weak var shelterDistanceLabel: UILabel!
     @IBOutlet weak var shelterDurationLabel: UILabel!
+    
+    @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var shelterPhoneLabel: UILabel!
     @IBOutlet weak var shelterHoursLabel: UILabel!
     @IBOutlet weak var viewMapButton: UIButton!
@@ -57,7 +66,34 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
+
         setupTheme()
+
+        collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
+        collectionViewSearchBar.barTintColor = UIColor.white
+        collectionViewSearchBar.placeholder = "Search"
+        
+        helpView.backgroundColor = UIColor.darkGray
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
+        
+        shelterView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        addressView.layer.borderWidth = 0.25
+        addressView.layer.borderColor = UIColor.lightGray.cgColor
+        distanceView.layer.borderWidth = 0.25
+        distanceView.layer.borderColor = UIColor.lightGray.cgColor
+        contactView.layer.borderWidth = 0.25
+        contactView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        viewDetailsButton.backgroundColor = UIColor.darkGray
+        viewDetailsButton.layer.cornerRadius = 5
+        viewMapButton.layer.borderWidth = 0.25
+        viewMapButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        nearestShelterView.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        nearestShelterLabel.textColor = UIColor.customDarkPurple
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,14 +141,22 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
+
         cell.cellView.backgroundColor = UIColor.customDarkGray
+
+        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+
         cell.cellView.layer.cornerRadius = 10
-        //cell.cellView.layer.borderColor = UIColor.white.cgColor
-        //cell.cellView.layer.borderWidth = 2
-        
-        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        cell.cellView.layer.borderColor = UIColor.white.cgColor
+        cell.cellView.layer.borderWidth = 2
         
         cell.categoryNameLabel.textColor = UIColor.white
+        cell.cellView.backgroundColor = UIColor.darkGray
+        
+//        cell.contentView.setViewShadow(color: UIColor.black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+//        cell.contentView.layer.cornerRadius = 10
+//        cell.contentView.layer.borderColor = UIColor.customLightestGray.cgColor
+//        cell.contentView.layer.borderWidth = 2
         
         return cell
     }

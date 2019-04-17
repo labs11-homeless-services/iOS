@@ -10,7 +10,13 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //@IBOutlet weak var topView: UIView!
+    @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var spanishButton: UIButton!
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var middleView: UIView!
+    @IBOutlet weak var subcategoryLabel: UILabel!
     @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var categoryTitleImage: UIImageView!
     
@@ -61,6 +67,16 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.delegate = self
         self.tableView.dataSource = self
     
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        topView.backgroundColor = UIColor.customDarkPurple
+        homeButton.backgroundColor = UIColor.white
+        homeButton.tintColor = UIColor.customDarkPurple
+        
+        spanishButton.layer.cornerRadius = 5
+        spanishButton.backgroundColor = UIColor.white
+        spanishButton.tintColor = UIColor.customLightPurple
+        
+        subcategoryLabel.textColor = UIColor.customLightPurple
     }
     
     func setupTheme() {
@@ -92,7 +108,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         cell.nextArrowImageView.image = coloredIcon
 
-        
+        cell.cellView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
+        cell.cellView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)
+    
         return cell
     }
     

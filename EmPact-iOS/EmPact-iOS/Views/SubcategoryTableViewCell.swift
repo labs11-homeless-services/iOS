@@ -10,6 +10,8 @@ import UIKit
 
 class SubcategoryTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var subcategoryStackView: UIStackView!
     @IBOutlet weak var subcategoryImageView: UIImageView!
     
     @IBOutlet weak var subcategoryNameLabel: UILabel!
