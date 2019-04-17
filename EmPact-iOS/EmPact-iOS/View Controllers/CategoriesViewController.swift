@@ -82,6 +82,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         helpView.backgroundColor = UIColor.customDarkPurple
         helpView.layer.cornerRadius = 5
         helpLabel.textColor = UIColor.white
+        
+        viewDetailsButton.setTitle("VIEW DETAILS", for: .normal)
+        viewDetailsButton.setTitleColor(.white, for: .normal)
+        viewDetailsButton.backgroundColor = .customDarkPurple
+        
+        viewMapButton.setTitle("View Map", for: .normal)
+        viewMapButton.setTitleColor(UIColor.customDarkPurple, for: .normal)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -63,6 +63,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     }
     
+    func setupTheme() {
+        
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return networkController?.subcategoryNames.count ?? 0
     }
@@ -74,13 +79,18 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         guard let subcategory = networkController?.subcategoryNames[indexPath.row] else { fatalError("Unable to unwrap the subcategories and sort them") }
         //.sorted(by: { $0 < $1 })
         cell.subcategoryNameLabel.text = String(subcategory).capitalized
+        cell.subcategoryNameLabel.textColor = .customDarkGray
         
         categoryController.tempSubcategoryName = subcategory
         
         categoryController.getSubcategoryIconImage()
         cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
-        cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
+        let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        
+        cell.nextArrowImageView.tintColor = .customDarkGray
+        
+        cell.nextArrowImageView.image = coloredIcon
 
         
         return cell
