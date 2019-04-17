@@ -28,6 +28,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     var selectedSubcategory: String!
     
+    var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
     override func viewDidLoad() {
@@ -148,11 +149,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-    }
-    
     // MARK: - Search Bar
     
     // Tell the delegate that the search button was tapped
@@ -171,7 +167,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     func filterServiceResults() {
         
         DispatchQueue.main.async {
-            
             guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
                 // If no search term, display all of the search results
                 NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
@@ -183,7 +178,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
             // Set the value of filteredObjects to the results of the filter
             NetworkController.filteredObjects = matchingObjects
-            
             self.tableView.reloadData()
         }
     }
@@ -205,9 +199,11 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         if searchBarIsEmpty() == false {
             let serviceDetail = NetworkController.filteredObjects[indexPath.row]
             destination.serviceDetail = serviceDetail
+            destination.googleMapsController = googleMapsController
             destination.networkController = networkController
         } else {
             // Pass the subcategory results array
+            destination.googleMapsController = googleMapsController
             destination.networkController = networkController
             
             if networkController?.subcategoryDetails == nil {
