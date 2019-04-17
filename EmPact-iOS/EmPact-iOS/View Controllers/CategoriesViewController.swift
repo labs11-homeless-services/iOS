@@ -15,7 +15,7 @@ protocol MenuActionDelegate {
     func reopenMenu()
 }
 
-class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
+class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var helpView: UIView!
@@ -53,6 +53,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func viewMapClicked(_ sender: Any) {
     }
     @IBAction func viewDetailsClicked(_ sender: Any) {
+        //performSegue(withIdentifier: "", sender: nil)
     }
     
     
@@ -60,13 +61,45 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         //dismiss(animated: true, completion: nil)
     }
     
+    var serviceDistance: String!
+    var serviceTravelDuration: String!
+    
+    var nearestShelter: IndividualResource?
+    var nearestDistance: [Element]?
+    var destinationAddresses: [String]?
+    
+    var serviceCoordinates: CLLocationCoordinate2D?
+    let locationManager = CLLocationManager()
+    
+    let googleMapsController = GoogleMapsController()
     let categoryController = CategoryController()
     let networkController = NetworkController()
     let cacheController = CacheController()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        networkController.fetchCategoryNames { (error) in
+            
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.categoriesCollectionView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
@@ -82,6 +115,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         distanceView.layer.borderColor = UIColor.lightGray.cgColor
         contactView.layer.borderWidth = 0.25
         contactView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        viewDetailsButton.backgroundColor = UIColor.darkGray
+        viewDetailsButton.layer.cornerRadius = 5
+        viewMapButton.layer.borderWidth = 0.25
+        viewMapButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        nearestShelterView.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        nearestShelterLabel.textColor = UIColor.customDarkPurple
+        
+        updateNearestShelter()
 
     }
     
@@ -204,16 +247,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     // MARK: = UI Search Bar
-    
-    // Tell the delegate the search button was tapped
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchBar.resignFirstResponder()
-        
-        // Filter the results based on the text in the search bar
         filterServiceResults()
         
-        // Perform segue to Service Results View Controller
         performSegue(withIdentifier: "searchResultsSegue", sender: nil)
     }
     
@@ -222,42 +260,105 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func filterServiceResults() {
-        
         // Grab the text, make sure it's not empty
-        guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
-            
-            // If no search term...
-            //NetworkController.filteredObjects = self.networkController.subcategoryDetails
-            
-            return
-        }
-        
-        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else { return }
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
         
         //print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
-        
         networkController.subcategoryDetails = matchingObjects
-        
         //print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
-
-        // Add matching objects to the filtered objects array
-//        for eachObject in matchingShelterObjects {
-//
-//            // Do we need a filteredObjects array?
-//            NetworkController.filteredObjects.append(eachObject)
-//
-//        }
-        
     }
     
+    // MARK: - Shelter Nearest User Location
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            serviceCoordinates = manager.location?.coordinate
+            print("serviceCoordinates: \(String(describing: serviceCoordinates))")
+            locationManager.stopUpdatingLocation()
+        } else {
+            print("User location is unavailable")
+        }
+        getNearestShelter()
+        //updateViews()
+    }
     
+    // MARK: - Shelter Nearest You Method
+    private func getNearestShelter() {
+        
+        guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
+        
+        googleMapsController.fetchNearestShelter(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude) { (error) in
+            if let error = error {
+                print("Error fetching distance to chosen service: \(error)")
+            }
+
+            self.serviceDistance = self.googleMapsController.serviceDistance
+            self.serviceTravelDuration = self.googleMapsController.serviceTravelDuration
+            
+            print("serviceDistance: \(String(describing: self.serviceDistance))")
+            print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
+            
+            DispatchQueue.main.async {
+                self.updateNearestShelter()
+            }
+            
+            self.destinationAddresses = self.googleMapsController.serviceAddresses
+            self.nearestDistance = self.googleMapsController.googleDistanceResponse[0].elements
+            
+            guard var unwrappedShelters = self.nearestDistance else { return }
+            
+            var shelter = unwrappedShelters[0] //.distance.value
+            var index = 0
+            var shelterIndex = 0
+            var shelterTuple = (shelterIndex, shelter)
+            
+            for each in unwrappedShelters {
+ 
+                if each.distance.value < shelter.distance.value {
+                    shelter = each
+                    shelterIndex = index
+                    shelterTuple = (shelterIndex, shelter)
+                }
+                index += 1
+            }
+            
+            let fetchedShelter = self.googleMapsController.serviceAddresses[ shelterIndex ]
+            var splitAddress = fetchedShelter.split(separator: " ")
+            var addressNumber = splitAddress[0]
+            
+            for eachShelter in NetworkController.allShelterObjects {
+                
+                if (eachShelter.address?.contains(addressNumber))! {
+                    self.nearestShelter = eachShelter
+                }
+            }
+        }
+    }
+    
+    private func updateNearestShelter() {
+        
+        shelterNameLabel.text = nearestShelter?.name
+        shelterAddressLabel.text = nearestShelter?.address
+        shelterHoursLabel.text = nearestShelter?.hours
+        
+        if let phoneJSON = nearestShelter?.phone {
+            shelterPhoneLabel.text = phoneJSON as? String
+        }
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        shelterDistanceLabel.text = unwrappedDistance
+        shelterDurationLabel.text = unwrappedDuration
+    }
+    
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "searchResultsSegue" {
             let searchDestinationVC = segue.destination as! ServiceResultsViewController
             searchDestinationVC.networkController = networkController
-            //searchDestinationVC.selectedSubcategory = 
+            
         }
         
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
@@ -269,6 +370,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "modalSubcategoryMenu" {
             let destination = segue.destination as! SubcategoriesViewController
             destination.networkController = networkController
+            destination.googleMapsController = googleMapsController
             destination.selectedCategory = networkController.tempCategorySelection
         }
     }
@@ -310,13 +412,4 @@ extension CategoriesViewController : MenuActionDelegate {
     }
 }
 
-//showResultsTableVC
 
-//networkController.fetchSubcategoriesNames(SubCategory.shelters)       // Shelters: WORKS!!!!
-//networkController.fetchSubcategoriesNames(SubCategory.education)      // Phone: Expected to decode Int but found a string/data
-//networkController.fetchSubcategoriesNames(SubCategory.legal)          // Phone: Expected to decode Int but found a string/data
-//networkController.fetchSubcategoriesNames(SubCategory.food)           // Phone: Expected to decode Int but found a string/data
-//networkController.fetchSubcategoriesNames(SubCategory.healthcare)     // Details: Expected to decode String but found a dictionary instead
-//networkController.fetchSubcategoriesNames(SubCategory.outreach)       // Convert from Kebab case
-//networkController.fetchSubcategoriesNames(SubCategory.hygiene)        // Phone: Expected to decode Int but found a string/data
-//networkController.fetchSubcategoriesNames(SubCategory.jobs)           // Phone: Expected to decode Int but found a string/data
