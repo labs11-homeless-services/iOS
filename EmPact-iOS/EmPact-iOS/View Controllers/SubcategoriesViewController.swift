@@ -10,6 +10,7 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var spanishView: UIView!
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var spanishButton: UIButton!
@@ -57,6 +58,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTheme()
+        
         categoryTitleLabel.text = selectedCategory
         
         categoryController.getIconImage(from: selectedCategory)
@@ -68,19 +71,30 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.dataSource = self
     
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        topView.backgroundColor = UIColor.customDarkPurple
-        homeButton.backgroundColor = UIColor.white
-        homeButton.tintColor = UIColor.customDarkPurple
         
-        spanishButton.layer.cornerRadius = 5
-        spanishButton.backgroundColor = UIColor.white
-        spanishButton.tintColor = UIColor.customLightPurple
-        
-        subcategoryLabel.textColor = UIColor.customLightPurple
     }
     
     func setupTheme() {
         
+        // Spanish Button
+        spanishButton.setTitle("Español", for: .normal)
+        spanishButton.setTitleColor(.customDarkPurple, for: .normal)
+        spanishButton.backgroundColor = .white
+        spanishView.backgroundColor = .customDarkPurple
+        spanishButton.layer.cornerRadius = 5
+        
+        let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        spanishButton.tintColor = .customDarkPurple
+        spanishButton.setImage(tapColoredIcon, for: .normal)
+        
+        topView.backgroundColor = UIColor.customDarkPurple
+        homeButton.backgroundColor = UIColor.white
+        homeButton.tintColor = UIColor.customDarkPurple
+        
+        categoryTitleLabel.textColor = .white
+        categoryTitleLabel.font = Appearance.boldFont
+        
+        subcategoryLabel.textColor = UIColor.customLightPurple
         
     }
     

@@ -469,26 +469,28 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="190" translatesAutoresizingMaskIntoConstraints="NO" id="tp8-33-cYp">
                                                 <rect key="frame" x="20" y="0.0" width="275" height="42.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4P-0r-n9j">
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4P-0r-n9j">
                                                         <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Y4P-0r-n9j" secondAttribute="height" id="IUt-Qn-RH8"/>
                                                         </constraints>
-                                                        <state key="normal" title="HOME"/>
+                                                        <state key="normal" title="HOME" image="home">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmc-Fz-mYd">
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmc-Fz-mYd">
                                                         <rect key="frame" x="232.5" y="0.0" width="42.5" height="42.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Zmc-Fz-mYd" secondAttribute="height" id="vQJ-PW-Ca1"/>
                                                         </constraints>
-                                                        <state key="normal" title="Close"/>
+                                                        <state key="normal" title="Close" image="Sharp"/>
                                                         <connections>
                                                             <action selector="closeMenu:" destination="Jjd-21-FMI" eventType="touchUpInside" id="gbh-lz-zFs"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="130" translatesAutoresizingMaskIntoConstraints="NO" id="pzU-Id-qRa">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="pzU-Id-qRa">
                                                 <rect key="frame" x="20" y="62.5" width="275" height="55"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Z3-MF-Aaf">
@@ -506,14 +508,15 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-Op-3wI">
-                                                        <rect key="frame" x="190" y="0.0" width="85" height="55"/>
+                                                        <rect key="frame" x="160" y="0.0" width="115" height="55"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi2-Nw-KNm">
-                                                                <rect key="frame" x="5" y="10" width="75" height="35"/>
-                                                                <state key="normal" title="Español"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi2-Nw-KNm">
+                                                                <rect key="frame" x="5" y="10" width="105" height="35"/>
+                                                                <state key="normal" title="Español" image="tap"/>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" red="0.22352941176470589" green="0.23137254901960785" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" red="0.22352941176470589" green="0.23137254901960785" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="pi2-Nw-KNm" secondAttribute="trailing" constant="5" id="0zf-gf-bLN"/>
                                                             <constraint firstItem="pi2-Nw-KNm" firstAttribute="leading" secondItem="6Vi-Op-3wI" secondAttribute="leading" constant="5" id="R5h-lu-f4I"/>
@@ -670,6 +673,7 @@
                         <outlet property="homeButton" destination="Y4P-0r-n9j" id="9QJ-4u-7s9"/>
                         <outlet property="middleView" destination="IZi-zw-9R4" id="ABf-7K-V0h"/>
                         <outlet property="spanishButton" destination="pi2-Nw-KNm" id="Quj-Cc-y34"/>
+                        <outlet property="spanishView" destination="6Vi-Op-3wI" id="oMy-PJ-ypD"/>
                         <outlet property="subcategoryLabel" destination="z5O-DZ-I8v" id="L5l-Nk-x2g"/>
                         <outlet property="tableView" destination="c0b-zD-YXI" id="kW1-PE-jgF"/>
                         <outlet property="topView" destination="DDV-Yb-wM9" id="A4u-tp-aKD"/>
@@ -1322,12 +1326,15 @@
     </scenes>
     <resources>
         <image name="C-shelter" width="60" height="56"/>
+        <image name="Sharp" width="28" height="28"/>
         <image name="bus" width="24" height="24"/>
         <image name="clock" width="24" height="24"/>
+        <image name="home" width="24" height="24"/>
         <image name="launch" width="24" height="24"/>
         <image name="near_me" width="24" height="24"/>
         <image name="phone" width="24" height="24"/>
         <image name="place" width="24" height="24"/>
+        <image name="tap" width="24" height="24"/>
         <image name="walk" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
