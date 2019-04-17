@@ -952,24 +952,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="20U-54-fO9">
-                                <rect key="frame" x="40" y="192" width="295" height="30"/>
+                                <rect key="frame" x="30" y="192" width="315" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYp-MF-sCa">
-                                        <rect key="frame" x="0.0" y="0.0" width="98.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="6MP-xK-5Ex"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="Kvo-QW-bDY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                         <state key="normal" title="LOCATION"/>
                                         <connections>
                                             <action selector="locationTapped:" destination="kk6-0y-WL5" eventType="touchUpInside" id="ebf-Tq-IiG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsc-ZN-0Hf">
-                                        <rect key="frame" x="98.5" y="0.0" width="98" height="30"/>
+                                        <rect key="frame" x="105" y="0.0" width="105" height="40"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                         <state key="normal" title="SERVICES"/>
                                         <connections>
                                             <action selector="servicesTapped:" destination="kk6-0y-WL5" eventType="touchUpInside" id="Lbq-ap-cj6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojp-VR-Wbr">
-                                        <rect key="frame" x="196.5" y="0.0" width="98.5" height="30"/>
+                                        <rect key="frame" x="210" y="0.0" width="105" height="40"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                         <state key="normal" title="DETAILS"/>
                                         <connections>
                                             <action selector="detailsTapped:" destination="kk6-0y-WL5" eventType="touchUpInside" id="C9y-mb-ZME"/>
@@ -996,7 +1003,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-5L-hLr">
-                                <rect key="frame" x="20" y="242" width="335" height="180"/>
+                                <rect key="frame" x="20" y="252" width="335" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-ec-Xca">
                                         <rect key="frame" x="8" y="8" width="319" height="49"/>
@@ -1033,7 +1040,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6N-S8-NBd" userLabel="Details View">
-                                <rect key="frame" x="20" y="242" width="335" height="180"/>
+                                <rect key="frame" x="20" y="252" width="335" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtQ-Zk-DwI">
                                         <rect key="frame" x="8" y="8" width="319" height="49"/>
@@ -1070,7 +1077,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgC-q7-hjb" userLabel="Info View">
-                                <rect key="frame" x="20" y="242" width="335" height="180"/>
+                                <rect key="frame" x="20" y="252" width="335" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-gO-ybm">
                                         <rect key="frame" x="8" y="8" width="319" height="52"/>
@@ -1230,14 +1237,13 @@
                             <constraint firstItem="q24-JB-WOx" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="20" id="fCI-os-ylG"/>
                             <constraint firstItem="OgC-q7-hjb" firstAttribute="top" secondItem="20U-54-fO9" secondAttribute="bottom" constant="20" id="grI-hk-VWR"/>
                             <constraint firstItem="q9V-5L-hLr" firstAttribute="top" secondItem="20U-54-fO9" secondAttribute="bottom" constant="20" id="hS0-mW-tjs"/>
-                            <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="20U-54-fO9" secondAttribute="trailing" constant="40" id="j6q-C7-BG8"/>
                             <constraint firstItem="q9V-5L-hLr" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="20" id="jWD-Ef-e2x"/>
                             <constraint firstItem="dUw-Fl-gkr" firstAttribute="leading" secondItem="q24-JB-WOx" secondAttribute="leading" constant="50" id="jct-nD-7Dv"/>
                             <constraint firstItem="dUw-Fl-gkr" firstAttribute="centerX" secondItem="XMe-cl-Yme" secondAttribute="centerX" id="mT9-Xd-PDv"/>
                             <constraint firstItem="q24-JB-WOx" firstAttribute="trailing" secondItem="dUw-Fl-gkr" secondAttribute="trailing" constant="50" id="obd-ru-FUx"/>
                             <constraint firstItem="g6N-S8-NBd" firstAttribute="top" secondItem="20U-54-fO9" secondAttribute="bottom" constant="20" id="p9H-yR-icf"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="q24-JB-WOx" secondAttribute="trailing" constant="20" id="sVF-yf-Vc2"/>
-                            <constraint firstItem="20U-54-fO9" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="40" id="v7f-uj-GxA"/>
+                            <constraint firstItem="20U-54-fO9" firstAttribute="centerX" secondItem="XMe-cl-Yme" secondAttribute="centerX" id="sls-8Y-Yqz"/>
                             <constraint firstItem="dUw-Fl-gkr" firstAttribute="top" secondItem="q24-JB-WOx" secondAttribute="bottom" constant="8" id="xNW-MS-bIQ"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="bottom" secondItem="dUw-Fl-gkr" secondAttribute="bottom" constant="15.5" id="zv1-aw-NNq"/>
                         </constraints>

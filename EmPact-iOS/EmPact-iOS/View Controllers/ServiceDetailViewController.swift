@@ -145,6 +145,27 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         startMapButton.setTitleColor(.white, for: .normal)
         startMapButton.backgroundColor = .customDarkPurple
         
+        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        startMapButton.tintColor = UIColor.white
+        startMapButton.setImage(nearMeColoredIcon, for: .normal)
+        
+        locationButton.setTitle("LOCATION", for: .normal)
+        locationButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .disabled)
+        locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
+        locationButton.backgroundColor = .customDarkPurple
+        
+        servicesButton.setTitle("SERVICES", for: .normal)
+        servicesButton.setTitleColor(.white, for: .selected)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        servicesButton.backgroundColor = .customDarkPurple
+        
+        detailsButton.setTitle("DETAILS", for: .normal)
+        detailsButton.setTitleColor(.white, for: .selected)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        detailsButton.backgroundColor = .customDarkPurple
         
         // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
