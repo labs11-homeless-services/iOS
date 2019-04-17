@@ -53,6 +53,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func viewMapClicked(_ sender: Any) {
     }
     @IBAction func viewDetailsClicked(_ sender: Any) {
+        //performSegue(withIdentifier: "", sender: nil)
     }
     
     
