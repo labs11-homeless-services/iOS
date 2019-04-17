@@ -36,6 +36,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print(Category(rawValue: selectedCategory.lowercased()))
        
         guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
         if networkController?.subcategoryNames.count ?? 0 < 1 {
@@ -77,6 +79,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         subcategoryLabel.textColor = UIColor.customLightPurple
     }
     
+    func setupTheme() {
+        
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return networkController?.subcategoryNames.count ?? 0
     }
@@ -88,13 +95,18 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         guard let subcategory = networkController?.subcategoryNames[indexPath.row] else { fatalError("Unable to unwrap the subcategories and sort them") }
         //.sorted(by: { $0 < $1 })
         cell.subcategoryNameLabel.text = String(subcategory).capitalized
+        cell.subcategoryNameLabel.textColor = .customDarkGray
         
         categoryController.tempSubcategoryName = subcategory
         
         categoryController.getSubcategoryIconImage()
         cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
-        cell.nextArrowImageView.image = UIImage(named: "ic_play_circle_outline")
+        let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        
+        cell.nextArrowImageView.tintColor = .customDarkGray
+        
+        cell.nextArrowImageView.image = coloredIcon
 
         cell.cellView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
         cell.cellView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)

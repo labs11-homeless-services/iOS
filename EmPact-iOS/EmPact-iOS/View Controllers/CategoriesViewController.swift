@@ -66,6 +66,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
+
+        setupTheme()
+
         collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
         collectionViewSearchBar.barTintColor = UIColor.white
         collectionViewSearchBar.placeholder = "Search"
@@ -90,6 +93,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         nearestShelterView.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
         nearestShelterLabel.textColor = UIColor.customDarkPurple
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +110,24 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    func setupTheme() {
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        helpView.backgroundColor = UIColor.customDarkPurple
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
+        
+        viewDetailsButton.setTitle("VIEW DETAILS", for: .normal)
+        viewDetailsButton.setTitleColor(.white, for: .normal)
+        viewDetailsButton.backgroundColor = .customDarkPurple
+        
+        viewMapButton.setTitle("View Map", for: .normal)
+        viewMapButton.setTitleColor(UIColor.customDarkPurple, for: .normal)
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return networkController.categoryNames.count
     }
@@ -114,12 +136,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let category = networkController.categoryNames[indexPath.row]
-        cell.categoryNameLabel.text = category
+        cell.categoryNameLabel.text = category.uppercased()
         
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
+
+        cell.cellView.backgroundColor = UIColor.customDarkGray
+
         cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+
         cell.cellView.layer.cornerRadius = 10
         cell.cellView.layer.borderColor = UIColor.white.cgColor
         cell.cellView.layer.borderWidth = 2
@@ -172,31 +198,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
-        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm) })
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
         
-        print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
+        //print("Matching Objects array which is the filtered results by search term: \(matchingObjects)")
         
         networkController.subcategoryDetails = matchingObjects
         
-        print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
+        //print("Subcategory Details array from filterServiceResults function that should be the same as Matching Objects: \(networkController.subcategoryDetails)")
 
-        // Filter through the arrays of results to see if the keywords match
-//        for eachObject in CacheController.cache {
-//
-//        }
-//
-//        for (key, value) in CacheController.cache {
-//
-//        }
-        
-        //CacheController.cache.
-        
-//        let matchingObjects = CacheController.cache.object(forKey: "\(searchTerm)" as NSString)?.keywords
-//      
-//        print(matchingObjects)
-        
-        
-        
         // Add matching objects to the filtered objects array
 //        for eachObject in matchingShelterObjects {
 //

@@ -13,7 +13,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var servicesButton: UIButton!
@@ -78,12 +78,14 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTheme()
+        
         infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
-        servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -127,6 +129,27 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func setupTheme() {
+        
+//        startMapButton.setTitle("Start Map", for: .normal)
+//        startMapButton.setTitleColor(.white, for: .normal)
+//        startMapButton.backgroundColor = .customDarkPurple
+        
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailAddressLabel.font = Appearance.lightFont
+        serviceDetailDistanceLabel.font = Appearance.lightFont
+        serviceDetailWalkTimeLabel.font = Appearance.lightFont
+        serviceDetailPhoneLabel.font = Appearance.lightFont
+        serviceDetailHoursLabel.font = Appearance.lightFont
+        
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviesInfoTextView.font = Appearance.lightFont
+        
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsTextView.font = Appearance.lightFont
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
