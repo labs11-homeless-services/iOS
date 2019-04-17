@@ -21,6 +21,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
         networkController?.subcategoryNames = []
         networkController?.subcategoryDetails = []
+        networkController?.tempCategorySelection = ""
+        selectedSubcategory = ""
         performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
         
     }
@@ -51,15 +53,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         if networkController?.tempCategorySelection == "" {
-            self.title = ""
+            self.title = "Search Results"
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
             subcategoriesTitleLabel.text = "\(selectedSubcategory.uppercased()) \(unwrappedTempCategorySelection.uppercased()) within New York City, NY"
         }
-        
-        
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,40 +80,140 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 
     }
     
+    func setupTheme() {
+        
+        
+        
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if searchBarIsEmpty() == false {
+            return NetworkController.filteredObjects.count
+        }
         return networkController?.subcategoryDetails.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceResultTableViewCell.reuseIdentifier, for: indexPath) as! ServiceResultTableViewCell
         
-        let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
-        cell.serviceNameLabel.text = subcategoryDetail?.name
-        cell.serviceAddressLabel.text = subcategoryDetail?.address
+        cell.serviceNameLabel.textColor = UIColor.customLightBlack
         
-        if let phoneJSON = subcategoryDetail?.phone {
-            cell.servicePhoneLabel.text = phoneJSON as? String
+        // Icons
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.serviceAddressIcon.tintColor = .customDarkPurple
+        cell.serviceAddressIcon.image = placeColoredIcon
+
+        let coloredPhoneIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.servicePhoneIcon.tintColor = .customDarkPurple
+        cell.servicePhoneIcon.image = coloredPhoneIcon
+        
+        let coloredClockIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.serviceHoursIcon.tintColor = .customDarkPurple
+        cell.serviceHoursIcon.image = coloredClockIcon
+        
+        // Button
+        cell.viewDetailsButton.setTitle("  VIEW", for: .normal)
+        cell.viewDetailsButton.setTitleColor(.white, for: .normal)
+        cell.viewDetailsButton.backgroundColor = .customDarkPurple
+        
+        let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.viewDetailsButton.tintColor = UIColor.white
+        cell.viewDetailsButton.setImage(launchColoredIcon, for: .normal)
+        
+        cell.viewDetailsButton.layer.cornerRadius = 5
+        
+        // Display the search results
+        if searchBarIsEmpty() == false {
+            let filteredSubcategoryDetail = NetworkController.filteredObjects[indexPath.row]
+            cell.serviceNameLabel.text = filteredSubcategoryDetail.name
+            cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
+            
+            if let phoneJSON = filteredSubcategoryDetail.phone {
+                cell.servicePhoneLabel.text = phoneJSON as? String
+            }
+            
+            if filteredSubcategoryDetail.phone == nil || filteredSubcategoryDetail.phone as? String == "" {
+                cell.servicePhoneLabel.isHidden = true
+                cell.servicePhoneIcon.isHidden = true
+            }
+            
+            cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
+            
+            if filteredSubcategoryDetail.hours == nil {
+                cell.serviceHoursLabel.isHidden = true
+                cell.serviceHoursIcon.isHidden = true
+            }
+        } else {
+            // Display the subcategory resources
+            let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
+            cell.serviceNameLabel.text = subcategoryDetail?.name
+            cell.serviceAddressLabel.text = subcategoryDetail?.address
+            
+            if let phoneJSON = subcategoryDetail?.phone {
+                cell.servicePhoneLabel.text = phoneJSON as? String
+            }
+            
+            if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
+                cell.servicePhoneLabel.isHidden = true
+                cell.servicePhoneIcon.isHidden = true
+            }
+            
+            // Either hide labels or write "Unavailable"
+            cell.serviceHoursLabel.text = subcategoryDetail?.hours
+            
+            if subcategoryDetail?.hours == nil {
+                cell.serviceHoursLabel.isHidden = true
+                cell.serviceHoursIcon.isHidden = true
+            }
         }
-        
-        if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
-            cell.servicePhoneLabel.isHidden = true
-            cell.servicePhoneIcon.isHidden = true
-        }
-       
-        // Either hide labels or write "Unavailable"
-        cell.serviceHoursLabel.text = subcategoryDetail?.hours
-        
-        if subcategoryDetail?.hours == nil {
-            cell.serviceHoursLabel.isHidden = true
-            cell.serviceHoursIcon.isHidden = true
-        }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
+    }
+    
+    // MARK: - Search Bar
+    
+    // Tell the delegate that the search button was tapped
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+        filterServiceResults()
+        
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        tableView.reloadData()
+    }
+    
+    func filterServiceResults() {
+        
+        DispatchQueue.main.async {
+            
+            guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
+                // If no search term, display all of the search results
+                NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
+                return
+            }
+            
+            // Filter through array to see if keywords contain the text entered by user
+            var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+            
+            // Set the value of filteredObjects to the results of the filter
+            NetworkController.filteredObjects = matchingObjects
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchBar.text?.isEmpty ?? true
     }
     
     // MARK: - Navigation
@@ -124,16 +224,26 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         guard let destination = segue.destination as? ServiceDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow else { return }
         
-        // Pass the selected object to the new view controller.
-        destination.googleMapsController = googleMapsController
-        destination.networkController = networkController
-        
-        if networkController?.subcategoryDetails == nil {
-            return
-        } else {
-            let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
+        // Pass the search results array
+        if searchBarIsEmpty() == false {
+            let serviceDetail = NetworkController.filteredObjects[indexPath.row]
             destination.serviceDetail = serviceDetail
+            destination.googleMapsController = googleMapsController
+            destination.networkController = networkController
+        } else {
+            // Pass the subcategory results array
+            destination.googleMapsController = googleMapsController
+            destination.networkController = networkController
+            
+            if networkController?.subcategoryDetails == nil {
+                return
+            } else {
+                let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
+                destination.serviceDetail = serviceDetail
+            }
         }
+        
+
         
 //        if networkController?.shelterSubcategoryDetails == nil {
 //            return
@@ -144,10 +254,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
     }
     
-    func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
-        return searchBar.text?.isEmpty ?? true
-    }
+
     
 
 }

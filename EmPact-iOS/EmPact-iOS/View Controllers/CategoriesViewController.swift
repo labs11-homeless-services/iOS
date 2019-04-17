@@ -44,6 +44,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var viewMapButton: UIButton!
     @IBOutlet weak var viewDetailsButton: UIButton!
     
+    @IBOutlet weak var addressImageView: UIImageView!
+    @IBOutlet weak var transitImageView: UIImageView!
+    @IBOutlet weak var walkImageView: UIImageView!
+    @IBOutlet weak var phoneImageView: UIImageView!
+    @IBOutlet weak var hoursImageView: UIImageView!
+    
     @IBAction func viewMapClicked(_ sender: Any) {
     }
     @IBAction func viewDetailsClicked(_ sender: Any) {
@@ -98,14 +104,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
-        collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
-        collectionViewSearchBar.barTintColor = UIColor.white
-        collectionViewSearchBar.placeholder = "Search"
-        
-        helpView.backgroundColor = UIColor.darkGray
-        helpView.layer.cornerRadius = 5
-        helpLabel.textColor = UIColor.white
-        
+        setupTheme()
+
         shelterView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         addressView.layer.borderWidth = 0.25
@@ -124,6 +124,84 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         nearestShelterLabel.textColor = UIColor.customDarkPurple
         
         updateNearestShelter()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        networkController.fetchCategoryNames { (error) in
+
+            if let error = error {
+                NSLog("Error fetching categories: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.categoriesCollectionView.reloadData()
+            }
+        }
+    }
+    
+    func setupTheme() {
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        helpView.backgroundColor = UIColor.customDarkPurple
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
+        
+        viewDetailsButton.setTitle("  VIEW DETAILS", for: .normal)
+        viewDetailsButton.setTitleColor(.white, for: .normal)
+        viewDetailsButton.titleLabel?.font = Appearance.boldFont
+        viewDetailsButton.backgroundColor = .customDarkPurple
+        viewDetailsButton.layer.cornerRadius = 5
+        
+        let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        viewDetailsButton.tintColor = .white
+        viewDetailsButton.setImage(launchColoredIcon, for: .normal)
+        
+        viewMapButton.setTitle("  View Map", for: .normal)
+        viewMapButton.setTitleColor(UIColor.customDarkPurple, for: .normal)
+        viewMapButton.backgroundColor = .white
+        viewMapButton.layer.borderWidth = 0.25
+        viewMapButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        viewMapButton.tintColor = .customDarkPurple
+        viewMapButton.setImage(nearMeColoredIcon, for: .normal)
+        
+        shelterNameLabel.textColor = .customDarkBlack
+        shelterNameLabel.font = Appearance.regularFont
+        
+        nearestShelterLabel.textColor = .customDarkPurple
+        nearestShelterLabel.font = Appearance.boldFont
+        nearestShelterView.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        
+        helpView.backgroundColor = UIColor.customDarkPurple
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
+        
+        // Icon Colors
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        addressImageView.tintColor = .customDarkPurple
+        addressImageView.image = placeColoredIcon
+        
+        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        transitImageView.tintColor = .customDarkPurple
+        transitImageView.image = busColoredIcon
+        
+        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        walkImageView.tintColor = .customDarkPurple
+        walkImageView.image = walkColoredIcon
+        
+        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        phoneImageView.tintColor = .customDarkPurple
+        phoneImageView.image = phoneColoredIcon
+        
+        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        hoursImageView.tintColor = .customDarkPurple
+        hoursImageView.image = clockColoredIcon
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -134,12 +212,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         let category = networkController.categoryNames[indexPath.row]
-        cell.categoryNameLabel.text = category
+        cell.categoryNameLabel.text = category.uppercased()
         
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
+
+        cell.cellView.backgroundColor = UIColor.customDarkGray
+
         cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+
         cell.cellView.layer.cornerRadius = 10
         cell.cellView.layer.borderColor = UIColor.white.cgColor
         cell.cellView.layer.borderWidth = 2

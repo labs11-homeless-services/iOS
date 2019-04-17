@@ -95,7 +95,14 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-                
+//                if category.rawValue == "health_care" {
+//                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
+//                    for decodedResponseDictionary in decodedResponse.dictionary {
+//                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+//                        print(decodedResponseDictionary.key)
+//                    }
+//                }
+                    
                 switch category {
                 case .education:
                     let decodedResponse = try jsonDecoder.decode(Education.self, from: data)
@@ -118,10 +125,11 @@ class NetworkController {
                         
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
-                case .healthcare:
+                case .healthCare:
                     let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        print(decodedResponseDictionary.key)
                         
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
@@ -143,6 +151,7 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
+                        print(decodedResponseDictionary.key)
                     }
                     
                 case .jobs:

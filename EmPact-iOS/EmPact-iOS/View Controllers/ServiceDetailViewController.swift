@@ -13,7 +13,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var servicesButton: UIButton!
@@ -27,6 +27,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var serviceDetailWalkTimeLabel: UILabel!
     @IBOutlet weak var serviceDetailPhoneLabel: UILabel!
     @IBOutlet weak var serviceDetailHoursLabel: UILabel!
+    
+    @IBOutlet weak var addressIconImageView: UIImageView!
+    @IBOutlet weak var transitIconImageView: UIImageView!
+    @IBOutlet weak var walkIconImageView: UIImageView!
+    @IBOutlet weak var phoneIconImageView: UIImageView!
+    @IBOutlet weak var hoursIconImageView: UIImageView!
+    
     
     // MARK: Service View Outlets
     @IBOutlet weak var serviceView: UIView!
@@ -78,12 +85,14 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTheme()
+        
         infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
-        servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -127,6 +136,75 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func setupTheme() {
+        
+        // Buttons
+        startMapButton.setTitle("  Start Map", for: .normal)
+        startMapButton.setTitleColor(.white, for: .normal)
+        startMapButton.backgroundColor = .customDarkPurple
+        
+        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        startMapButton.tintColor = UIColor.white
+        startMapButton.setImage(nearMeColoredIcon, for: .normal)
+        
+        locationButton.setTitle("LOCATION", for: .normal)
+        locationButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .disabled)
+        locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
+        locationButton.backgroundColor = .customDarkPurple
+        
+        servicesButton.setTitle("SERVICES", for: .normal)
+        servicesButton.setTitleColor(.white, for: .selected)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        servicesButton.backgroundColor = .customDarkPurple
+        
+        detailsButton.setTitle("DETAILS", for: .normal)
+        detailsButton.setTitleColor(.white, for: .selected)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        detailsButton.backgroundColor = .customDarkPurple
+        
+        // Fonts
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailNameLabel.textColor = UIColor.customLightBlack
+        serviceDetailAddressLabel.font = Appearance.lightFont
+        serviceDetailDistanceLabel.font = Appearance.lightFont
+        serviceDetailWalkTimeLabel.font = Appearance.lightFont
+        serviceDetailPhoneLabel.font = Appearance.lightFont
+        serviceDetailHoursLabel.font = Appearance.lightFont
+        
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        servicesInfoNameLabel.textColor = .customLightBlack
+        serviesInfoTextView.font = Appearance.lightFont
+        
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsNameLabel.textColor = .customLightBlack
+        detailsTextView.font = Appearance.lightFont
+        
+        // Icon Colors
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        addressIconImageView.tintColor = .customDarkPurple
+        addressIconImageView.image = placeColoredIcon
+        
+        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        transitIconImageView.tintColor = .customDarkPurple
+        transitIconImageView.image = busColoredIcon
+        
+        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        walkIconImageView.tintColor = .customDarkPurple
+        walkIconImageView.image = walkColoredIcon
+        
+        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        phoneIconImageView.tintColor = .customDarkPurple
+        phoneIconImageView.image = phoneColoredIcon
+        
+        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        hoursIconImageView.tintColor = .customDarkPurple
+        hoursIconImageView.image = clockColoredIcon
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

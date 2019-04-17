@@ -54,7 +54,7 @@ class IndividualResource: Decodable {
     var longitude: String?
     
     var name: String
-    var phone: Any
+    var phone: Any?
     var postalCode: String?
     var state: String
     
