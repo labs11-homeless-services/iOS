@@ -132,17 +132,17 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
 //        startMapButton.setTitleColor(.white, for: .normal)
 //        startMapButton.backgroundColor = .customDarkPurple
         
-        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .headline, size: 36)
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
         serviceDetailAddressLabel.font = Appearance.lightFont
         serviceDetailDistanceLabel.font = Appearance.lightFont
         serviceDetailWalkTimeLabel.font = Appearance.lightFont
         serviceDetailPhoneLabel.font = Appearance.lightFont
-        serviceDetailHoursLabel.font = Appearance.regularFont
+        serviceDetailHoursLabel.font = Appearance.lightFont
         
-        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .headline, size: 36)
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
         serviesInfoTextView.font = Appearance.lightFont
         
-        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .headline, size: 36)
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
         detailsTextView.font = Appearance.lightFont
         
     }
