@@ -52,6 +52,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = true
         serviceView.isHidden = true
         infoView.isHidden = false
+        
+        locationButton.setTitleColor(.white, for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        
         updateViews()
     }
     
@@ -59,6 +64,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = true
         serviceView.isHidden = false
         infoView.isHidden = true
+        
+        servicesButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        
         updateViews()
     }
     
@@ -66,6 +76,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = false
         serviceView.isHidden = true
         infoView.isHidden = true
+        
+        detailsButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        
         updateViews()
     }
     
@@ -156,13 +171,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         locationButton.backgroundColor = .customDarkPurple
         
         servicesButton.setTitle("SERVICES", for: .normal)
-        servicesButton.setTitleColor(.white, for: .selected)
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
         servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
         servicesButton.backgroundColor = .customDarkPurple
         
         detailsButton.setTitle("DETAILS", for: .normal)
-        detailsButton.setTitleColor(.white, for: .selected)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
         detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
         detailsButton.backgroundColor = .customDarkPurple

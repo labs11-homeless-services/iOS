@@ -282,6 +282,7 @@ class NetworkController {
                 
                 //print("Shelter objects array from search fetch: \(self.allShelterObjects)")
                 
+                self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
                 self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
                 self.allHealthCareObjects = decodedResponse.healthCare.all
