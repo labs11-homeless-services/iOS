@@ -53,6 +53,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.isHidden = true
         infoView.isHidden = false
         
+        locationButton.titleLabel?.font = Appearance.mediumFont
+        servicesButton.titleLabel?.font = Appearance.regularFont
+        detailsButton.titleLabel?.font = Appearance.regularFont
+        
         locationButton.setTitleColor(.white, for: .normal)
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
@@ -65,6 +69,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.isHidden = false
         infoView.isHidden = true
         
+        servicesButton.titleLabel?.font = Appearance.mediumFont
+        locationButton.titleLabel?.font = Appearance.regularFont
+        detailsButton.titleLabel?.font = Appearance.regularFont
+        
         servicesButton.setTitleColor(.white, for: .normal)
         locationButton.setTitleColor(.customLightestGray, for: .normal)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
@@ -76,6 +84,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = false
         serviceView.isHidden = true
         infoView.isHidden = true
+        
+        detailsButton.titleLabel?.font = Appearance.mediumFont
+        locationButton.titleLabel?.font = Appearance.regularFont
+        servicesButton.titleLabel?.font = Appearance.regularFont
         
         detailsButton.setTitleColor(.white, for: .normal)
         locationButton.setTitleColor(.customLightestGray, for: .normal)
@@ -166,7 +178,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         locationButton.setTitle("LOCATION", for: .normal)
         locationButton.setTitleColor(.white, for: .normal)
-        locationButton.setTitleColor(.customLightestGray, for: .disabled)
         locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
         locationButton.backgroundColor = .customDarkPurple
         
