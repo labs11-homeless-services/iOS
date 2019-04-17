@@ -47,7 +47,92 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     @IBOutlet weak var startMapButton: UIButton!
     
+    // MARK: - Properties
+    
+    var serviceDistance: String!
+    var serviceTravelDuration: String!
+    
+    var serviceCoordinates: CLLocationCoordinate2D?
+    let locationManager = CLLocationManager()
+    
+    let googleMapsController = GoogleMapsController()
+    var networkController: NetworkController?
+    
+    var serviceDetail: IndividualResource?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        mapView.delegate = self
+        
+        self.title = serviceDetail?.name
+        
+        setupTheme()
+        
+        detailsView.isHidden = true
+        serviceView.isHidden = true
+        infoView.isHidden = false
+
+        // Convert latitude/longitude strings to doubles
+        if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
+            return
+            // If there is not latitude and longitude in service details:
+            // We could show a message and say map unavailable
+            // Then show the user's location.
+        } else {
+            guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
+                let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
+                else {
+                    print("Latitude or Longitude is not a valid Double")
+                    return
+            }
+            
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
+            marker.title = serviceDetail?.address
+            marker.map = mapView
+            
+            mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
+            
+        }
+        updateViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func updateViews() {
+        
+        serviceDetailNameLabel.text = serviceDetail?.name
+        serviceDetailAddressLabel.text = serviceDetail?.address
+        
+        if let phoneJSON = serviceDetail?.phone {
+            serviceDetailPhoneLabel.text = phoneJSON as? String
+        }
+        //serviceDetailPhoneLabel.text = serviceDetail?.phone
+        serviceDetailHoursLabel.text = serviceDetail?.hours
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        serviceDetailDistanceLabel.text = unwrappedDistance
+        serviceDetailWalkTimeLabel.text = unwrappedDuration
+        // Services Tab Info
+        servicesInfoNameLabel.text = serviceDetail?.name
+        serviesInfoTextView.text = """
+        GED Prep Courses
+        """
+    }
+    
     // MARK: - Segmented Control Actions
+    
     @IBAction func locationTapped(_ sender: Any) {
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -96,140 +181,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
-    //var resultLatitude = navigationController
-
-    var serviceDistance: String!
-    var serviceTravelDuration: String!
-    
-    var serviceCoordinates: CLLocationCoordinate2D?
-    let locationManager = CLLocationManager()
-    
-    let googleMapsController = GoogleMapsController()
-    var networkController: NetworkController?
-    
-    var serviceDetail: IndividualResource?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupTheme()
-        
-        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        
-        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        
-        detailsView.isHidden = true
-        serviceView.isHidden = true
-        infoView.isHidden = false
-        
-        self.title = serviceDetail?.name
-        
-        mapView.delegate = self
-        
-        // Convert latitude/longitude strings to doubles
-        if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
-            return
-            // If there is not latitude and longitude in service details:
-            // We could show a message and say map unavailable
-            // Then show the user's location.
-        } else {
-            guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-                let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
-                else {
-                    print("Latitude or Longitude is not a valid Double")
-                    return
-            }
-            
-            let marker = GMSMarker()
-            marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
-            marker.title = serviceDetail?.address
-            marker.map = mapView
-            
-            mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
-            
-        }
-        updateViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func setupTheme() {
-        
-        // Buttons
-        startMapButton.setTitle("  Start Map", for: .normal)
-        startMapButton.setTitleColor(.white, for: .normal)
-        startMapButton.backgroundColor = .customDarkPurple
-        
-        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        startMapButton.tintColor = UIColor.white
-        startMapButton.setImage(nearMeColoredIcon, for: .normal)
-        
-        locationButton.setTitle("LOCATION", for: .normal)
-        locationButton.setTitleColor(.white, for: .normal)
-        locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
-        locationButton.backgroundColor = .customDarkPurple
-        
-        servicesButton.setTitle("SERVICES", for: .normal)
-        servicesButton.setTitleColor(.customLightestGray, for: .normal)
-        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
-        servicesButton.backgroundColor = .customDarkPurple
-        
-        detailsButton.setTitle("DETAILS", for: .normal)
-        detailsButton.setTitleColor(.customLightestGray, for: .normal)
-        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
-        detailsButton.backgroundColor = .customDarkPurple
-        
-        // Fonts
-        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
-        serviceDetailNameLabel.textColor = UIColor.customLightBlack
-        serviceDetailAddressLabel.font = Appearance.lightFont
-        serviceDetailDistanceLabel.font = Appearance.lightFont
-        serviceDetailWalkTimeLabel.font = Appearance.lightFont
-        serviceDetailPhoneLabel.font = Appearance.lightFont
-        serviceDetailHoursLabel.font = Appearance.lightFont
-        
-        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
-        servicesInfoNameLabel.textColor = .customLightBlack
-        serviesInfoTextView.font = Appearance.lightFont
-        
-        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
-        detailsNameLabel.textColor = .customLightBlack
-        detailsTextView.font = Appearance.lightFont
-        
-        // Icon Colors
-        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        addressIconImageView.tintColor = .customDarkPurple
-        addressIconImageView.image = placeColoredIcon
-        
-        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        transitIconImageView.tintColor = .customDarkPurple
-        transitIconImageView.image = busColoredIcon
-        
-        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        walkIconImageView.tintColor = .customDarkPurple
-        walkIconImageView.image = walkColoredIcon
-        
-        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        phoneIconImageView.tintColor = .customDarkPurple
-        phoneIconImageView.image = phoneColoredIcon
-        
-        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        hoursIconImageView.tintColor = .customDarkPurple
-        hoursIconImageView.image = clockColoredIcon
-        
-    }
+    // MARK: - Location & Maps Management
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -241,28 +193,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
         getServiceDistanceAndDuration()
         updateViews()
-    }
-    
-    func updateViews() {
-
-        serviceDetailNameLabel.text = serviceDetail?.name
-        serviceDetailAddressLabel.text = serviceDetail?.address
-        
-        if let phoneJSON = serviceDetail?.phone {
-            serviceDetailPhoneLabel.text = phoneJSON as? String
-        }
-        //serviceDetailPhoneLabel.text = serviceDetail?.phone
-        serviceDetailHoursLabel.text = serviceDetail?.hours
-        
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        serviceDetailDistanceLabel.text = unwrappedDistance
-        serviceDetailWalkTimeLabel.text = unwrappedDuration
-        // Services Tab Info
-        servicesInfoNameLabel.text = serviceDetail?.name
-        serviesInfoTextView.text = """
-        GED Prep Courses
-        """
     }
     
     @IBAction func launchMapsButton(_ sender: Any) {
@@ -306,6 +236,79 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 self.updateViews()
             }
         }
+    }
+    
+    func setupTheme() {
+        
+        // Button
+        startMapButton.setTitle("  Start Map", for: .normal)
+        startMapButton.setTitleColor(.white, for: .normal)
+        startMapButton.backgroundColor = .customDarkPurple
+        
+        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        startMapButton.tintColor = UIColor.white
+        startMapButton.setImage(nearMeColoredIcon, for: .normal)
+        
+        // Segmented Control
+        locationButton.setTitle("LOCATION", for: .normal)
+        locationButton.setTitleColor(.white, for: .normal)
+        locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
+        locationButton.backgroundColor = .customDarkPurple
+        
+        servicesButton.setTitle("SERVICES", for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        servicesButton.backgroundColor = .customDarkPurple
+        
+        detailsButton.setTitle("DETAILS", for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        detailsButton.backgroundColor = .customDarkPurple
+        
+        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        // Fonts
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailNameLabel.textColor = UIColor.customLightBlack
+        serviceDetailAddressLabel.font = Appearance.lightFont
+        serviceDetailDistanceLabel.font = Appearance.lightFont
+        serviceDetailWalkTimeLabel.font = Appearance.lightFont
+        serviceDetailPhoneLabel.font = Appearance.lightFont
+        serviceDetailHoursLabel.font = Appearance.lightFont
+        
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        servicesInfoNameLabel.textColor = .customLightBlack
+        serviesInfoTextView.font = Appearance.lightFont
+        
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsNameLabel.textColor = .customLightBlack
+        detailsTextView.font = Appearance.lightFont
+        
+        // Icon Colors
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        addressIconImageView.tintColor = .customDarkPurple
+        addressIconImageView.image = placeColoredIcon
+        
+        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        transitIconImageView.tintColor = .customDarkPurple
+        transitIconImageView.image = busColoredIcon
+        
+        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        walkIconImageView.tintColor = .customDarkPurple
+        walkIconImageView.image = walkColoredIcon
+        
+        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        phoneIconImageView.tintColor = .customDarkPurple
+        phoneIconImageView.image = phoneColoredIcon
+        
+        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        hoursIconImageView.tintColor = .customDarkPurple
+        hoursIconImageView.image = clockColoredIcon
         
     }
 
