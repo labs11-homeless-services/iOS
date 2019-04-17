@@ -30,6 +30,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCategory: String!
 
+    var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
     var categoryController = CategoryController()
@@ -121,6 +122,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
             let indexPath = tableView.indexPathForSelectedRow else { return }
             let subcategoryDetails = networkController?.subcategoryNames[indexPath.row]
         
+            destination.googleMapsController = googleMapsController
             destination.networkController = networkController
             destination.selectedSubcategory = subcategoryDetails
         }

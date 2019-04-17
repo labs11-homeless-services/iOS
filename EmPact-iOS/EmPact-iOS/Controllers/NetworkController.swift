@@ -165,7 +165,6 @@ class NetworkController {
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
         //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
-        
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(tempCategorySelection.lowercased())
             .appendingPathComponent(subcategory.rawValue)
@@ -249,8 +248,6 @@ class NetworkController {
         let requestURL = NetworkController.baseURL
             .appendingPathExtension("json")
         
-        print(requestURL)
-        
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error ) in
             if let error = error {
                 NSLog("Error fetching data for search: \(error)")
@@ -273,6 +270,7 @@ class NetworkController {
                 
                 //print("Shelter objects array from search fetch: \(self.allShelterObjects)")
                 
+                self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
                 self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
                 self.allHealthCareObjects = decodedResponse.healthCare.all
@@ -317,7 +315,6 @@ class NetworkController {
                 completion(error)
             }
         }.resume()
-        
     }
     
     // MARK: - Properties for FetchAll

@@ -70,7 +70,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     var serviceCoordinates: CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
     
-    let googleMapsController = GoogleMapsController()
+    var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
     var serviceDetail: IndividualResource?
@@ -189,13 +189,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
             let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
         
-        googleMapsController.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
+        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
             if let error = error {
                 print("Error fetching distance to chosen service: \(error)")
             }
             
-            self.serviceDistance = self.googleMapsController.serviceDistance
-            self.serviceTravelDuration = self.googleMapsController.serviceTravelDuration
+            self.serviceDistance = self.googleMapsController?.serviceDistance
+            self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
             
             print("serviceDistance: \(String(describing: self.serviceDistance))")
             print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
@@ -204,7 +204,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 self.updateViews()
             }
         }
-        
     }
 
 }

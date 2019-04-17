@@ -27,6 +27,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     var selectedSubcategory: String!
     
+    var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
     override func viewDidLoad() {
@@ -124,6 +125,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             let indexPath = tableView.indexPathForSelectedRow else { return }
         
         // Pass the selected object to the new view controller.
+        destination.googleMapsController = googleMapsController
         destination.networkController = networkController
         
         if networkController?.subcategoryDetails == nil {
