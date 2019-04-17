@@ -15,6 +15,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var subcategoriesTitleLabel: UILabel!
+    @IBOutlet weak var subcategoriesTitleView: UIView!
+    @IBOutlet weak var viewDetailsButton: UIButton!
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
         networkController?.subcategoryNames = []
@@ -38,21 +40,24 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.barTintColor = UIColor.white
         searchBar.placeholder = "Search"
         
+        subcategoriesTitleLabel.textColor = UIColor.white
+        
+        //subcategoryTextView.text = "1101 E. Turner Camp Road, Inverness, FL 34453"
+        
+        subcategoriesTitleView.layer.cornerRadius = 5
+        subcategoriesTitleView.backgroundColor = UIColor.customDarkPurple
+        
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
         if networkController?.tempCategorySelection == "" {
             self.title = ""
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+            subcategoriesTitleLabel.text = "\(selectedSubcategory.uppercased()) \(unwrappedTempCategorySelection.uppercased()) within New York City, NY"
         }
         
         
-//        
-//        if unwrappedTempCategorySelection == "" {
-//            self.title = ""
-//        } else {
-//            
-//        }
-
         
     }
     

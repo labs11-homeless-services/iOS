@@ -14,7 +14,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
     
-
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var servicesButton: UIButton!
+    @IBOutlet weak var detailsButton: UIButton!
     
     // MARK: Info View Outlets
     @IBOutlet weak var infoView: UIView!
@@ -34,6 +37,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var detailsNameLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
+    
+    @IBOutlet weak var startMapButton: UIButton!
     
     // MARK: - Segmented Control Actions
     @IBAction func locationTapped(_ sender: Any) {
