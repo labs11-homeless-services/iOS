@@ -28,6 +28,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var serviceDetailPhoneLabel: UILabel!
     @IBOutlet weak var serviceDetailHoursLabel: UILabel!
     
+    @IBOutlet weak var addressIconImageView: UIImageView!
+    @IBOutlet weak var transitIconImageView: UIImageView!
+    @IBOutlet weak var walkIconImageView: UIImageView!
+    @IBOutlet weak var phoneIconImageView: UIImageView!
+    @IBOutlet weak var hoursIconImageView: UIImageView!
+    
+    
     // MARK: Service View Outlets
     @IBOutlet weak var serviceView: UIView!
     @IBOutlet weak var servicesInfoNameLabel: UILabel!
@@ -133,11 +140,15 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     func setupTheme() {
         
-//        startMapButton.setTitle("Start Map", for: .normal)
-//        startMapButton.setTitleColor(.white, for: .normal)
-//        startMapButton.backgroundColor = .customDarkPurple
+        // Buttons
+        startMapButton.setTitle("Start Map", for: .normal)
+        startMapButton.setTitleColor(.white, for: .normal)
+        startMapButton.backgroundColor = .customDarkPurple
         
+        
+        // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailNameLabel.textColor = UIColor.customLightBlack
         serviceDetailAddressLabel.font = Appearance.lightFont
         serviceDetailDistanceLabel.font = Appearance.lightFont
         serviceDetailWalkTimeLabel.font = Appearance.lightFont
@@ -145,10 +156,33 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailHoursLabel.font = Appearance.lightFont
         
         servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        servicesInfoNameLabel.textColor = .customLightBlack
         serviesInfoTextView.font = Appearance.lightFont
         
         detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsNameLabel.textColor = .customLightBlack
         detailsTextView.font = Appearance.lightFont
+        
+        // Icon Colors
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        addressIconImageView.tintColor = .customDarkPurple
+        addressIconImageView.image = placeColoredIcon
+        
+        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        transitIconImageView.tintColor = .customDarkPurple
+        transitIconImageView.image = busColoredIcon
+        
+        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        walkIconImageView.tintColor = .customDarkPurple
+        walkIconImageView.image = walkColoredIcon
+        
+        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        phoneIconImageView.tintColor = .customDarkPurple
+        phoneIconImageView.image = phoneColoredIcon
+        
+        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        hoursIconImageView.tintColor = .customDarkPurple
+        hoursIconImageView.image = clockColoredIcon
         
     }
     

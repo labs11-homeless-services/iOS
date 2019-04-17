@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UjT-y9-lna">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UjT-y9-lna">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--EmPact-->
         <scene sceneID="qHG-Tl-TMp">
@@ -41,7 +46,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-qf-zji">
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-qf-zji">
                                 <rect key="frame" x="0.0" y="116" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -199,7 +204,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Trw-Pb-zkS" userLabel="Contact Stack">
                                                                 <rect key="frame" x="5" y="7" width="285" height="20"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-Po-4VI" userLabel="Phone Icon">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="xeW-Po-4VI" userLabel="Phone Icon">
                                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="Nes-iu-IQF"/>
@@ -213,7 +218,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-CQ-IBd" userLabel="Hours Icon">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-CQ-IBd" userLabel="Hours Icon">
                                                                         <rect key="frame" x="146.5" y="0.0" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="0yI-Dz-bpe"/>
@@ -247,7 +252,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C0M-XW-KB3" userLabel="Address Stack">
                                                                 <rect key="frame" x="5" y="7" width="285" height="20"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="Prf-Rw-iGh" userLabel="Address Icon">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place" translatesAutoresizingMaskIntoConstraints="NO" id="Prf-Rw-iGh" userLabel="Address Icon">
                                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="2kg-F6-pnk"/>
@@ -280,7 +285,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYj-gS-Pnk" userLabel="Directions Stack">
                                                                 <rect key="frame" x="5" y="7" width="285" height="20"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-mk-hU6" userLabel="Public Icon">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus" translatesAutoresizingMaskIntoConstraints="NO" id="XhT-mk-hU6" userLabel="Public Icon">
                                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="LKH-qK-2RV"/>
@@ -294,7 +299,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="eM2-zn-oxB" userLabel="Walk Icon">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walk" translatesAutoresizingMaskIntoConstraints="NO" id="eM2-zn-oxB" userLabel="Walk Icon">
                                                                         <rect key="frame" x="146.5" y="0.0" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="4Qd-zP-F7G"/>
@@ -752,7 +757,7 @@
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Dm-0N-5OB">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                                             <subviews>
-                                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="wtf-TX-uNd" userLabel="Address Icon">
+                                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place" translatesAutoresizingMaskIntoConstraints="NO" id="wtf-TX-uNd" userLabel="Address Icon">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                                                     <constraints>
                                                                                                         <constraint firstAttribute="width" constant="30" id="g8b-qH-p35"/>
@@ -796,7 +801,7 @@
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cHF-6N-YEy" userLabel="Phone Stack">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="40"/>
                                                                                     <subviews>
-                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-MB-xRL" userLabel="Phone Icon">
+                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-MB-xRL" userLabel="Phone Icon">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="30" id="HEb-JE-Rr2"/>
@@ -826,7 +831,7 @@
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zIq-J7-tcO" userLabel="Hours Stack">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="40"/>
                                                                                     <subviews>
-                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-hc-5Sm" userLabel="Hours Icon">
+                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-hc-5Sm" userLabel="Hours Icon">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="30" id="17M-Cc-ovC"/>
@@ -986,8 +991,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="MUC-f1-LmS" firstAttribute="top" secondItem="dL5-OW-IaU" secondAttribute="top" id="1fj-UX-BMz"/>
-                                    <constraint firstItem="MUC-f1-LmS" firstAttribute="leading" secondItem="dL5-OW-IaU" secondAttribute="leading" id="X2E-hI-LOO"/>
-                                    <constraint firstAttribute="trailing" secondItem="MUC-f1-LmS" secondAttribute="trailing" id="XHw-Yq-EJX"/>
+                                    <constraint firstAttribute="trailing" secondItem="MUC-f1-LmS" secondAttribute="trailing" constant="15" id="M6p-b1-gxa"/>
+                                    <constraint firstItem="MUC-f1-LmS" firstAttribute="leading" secondItem="dL5-OW-IaU" secondAttribute="leading" constant="15" id="UCh-5d-lo5"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-5L-hLr">
@@ -1076,7 +1081,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="op0-EZ-sEU" userLabel="Address Stack">
                                         <rect key="frame" x="8" y="68" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-uN-KB8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-uN-KB8">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="OfB-jA-nUf"/>
@@ -1095,7 +1100,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="APV-2t-tdm" userLabel="Location Stack">
                                         <rect key="frame" x="8" y="96" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="Cey-2T-GUn">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bus" translatesAutoresizingMaskIntoConstraints="NO" id="Cey-2T-GUn">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="veU-mW-kpe"/>
@@ -1109,7 +1114,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdi-kZ-ZOc">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walk" translatesAutoresizingMaskIntoConstraints="NO" id="Cdi-kZ-ZOc">
                                                 <rect key="frame" x="163.5" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="IEf-tX-Pk0"/>
@@ -1131,7 +1136,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hSP-l1-m1D" userLabel="Phone Stack">
                                         <rect key="frame" x="8" y="124" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="RSq-Kb-R2M">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="RSq-Kb-R2M">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="RSq-Kb-R2M" secondAttribute="height" id="Dke-x8-6m3"/>
@@ -1150,7 +1155,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zLo-ka-Ds9" userLabel="Hours Stack">
                                         <rect key="frame" x="8" y="152" width="319" height="20"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="public transportation" translatesAutoresizingMaskIntoConstraints="NO" id="s2c-TT-edC">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="s2c-TT-edC">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="s2c-TT-edC" secondAttribute="height" id="3uQ-DL-2ZX"/>
@@ -1158,7 +1163,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="sax-cn-kJw"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 (352) 344 - 8111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAT-QZ-n9P">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 hours, 7 days a week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAT-QZ-n9P">
                                                 <rect key="frame" x="28" y="0.0" width="291" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
@@ -1189,15 +1194,21 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q24-JB-WOx" customClass="GMSMapView">
-                                <rect key="frame" x="20" y="446" width="335" height="167.5"/>
+                                <rect key="frame" x="20" y="436" width="335" height="167.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="q24-JB-WOx" secondAttribute="height" multiplier="6:3" id="VLb-fp-sBJ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Fl-gkr">
-                                <rect key="frame" x="154" y="621.5" width="67" height="30"/>
-                                <state key="normal" title="View Map"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Fl-gkr">
+                                <rect key="frame" x="70" y="611.5" width="235" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="zpO-q8-hzj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                                <state key="normal" title="  Start Map" image="near_me">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="launchMapsButton:" destination="kk6-0y-WL5" eventType="touchUpInside" id="Zmc-m9-KBz"/>
                                 </connections>
@@ -1221,7 +1232,9 @@
                             <constraint firstItem="q9V-5L-hLr" firstAttribute="top" secondItem="20U-54-fO9" secondAttribute="bottom" constant="20" id="hS0-mW-tjs"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="20U-54-fO9" secondAttribute="trailing" constant="40" id="j6q-C7-BG8"/>
                             <constraint firstItem="q9V-5L-hLr" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="20" id="jWD-Ef-e2x"/>
+                            <constraint firstItem="dUw-Fl-gkr" firstAttribute="leading" secondItem="q24-JB-WOx" secondAttribute="leading" constant="50" id="jct-nD-7Dv"/>
                             <constraint firstItem="dUw-Fl-gkr" firstAttribute="centerX" secondItem="XMe-cl-Yme" secondAttribute="centerX" id="mT9-Xd-PDv"/>
+                            <constraint firstItem="q24-JB-WOx" firstAttribute="trailing" secondItem="dUw-Fl-gkr" secondAttribute="trailing" constant="50" id="obd-ru-FUx"/>
                             <constraint firstItem="g6N-S8-NBd" firstAttribute="top" secondItem="20U-54-fO9" secondAttribute="bottom" constant="20" id="p9H-yR-icf"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="q24-JB-WOx" secondAttribute="trailing" constant="20" id="sVF-yf-Vc2"/>
                             <constraint firstItem="20U-54-fO9" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="40" id="v7f-uj-GxA"/>
@@ -1234,13 +1247,16 @@
                         <barButtonItem key="rightBarButtonItem" title="Español" id="iFQ-tK-faU"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressIconImageView" destination="Cbn-uN-KB8" id="wAp-4p-6TE"/>
                         <outlet property="detailsButton" destination="Ojp-VR-Wbr" id="9uz-eU-hIF"/>
                         <outlet property="detailsNameLabel" destination="qtQ-Zk-DwI" id="tou-fh-EBO"/>
                         <outlet property="detailsTextView" destination="n5M-c5-MIT" id="Zab-0i-nHV"/>
                         <outlet property="detailsView" destination="g6N-S8-NBd" id="WOC-f9-ccp"/>
+                        <outlet property="hoursIconImageView" destination="s2c-TT-edC" id="xY5-Cc-bhV"/>
                         <outlet property="infoView" destination="OgC-q7-hjb" id="cCA-TG-5NQ"/>
                         <outlet property="locationButton" destination="nYp-MF-sCa" id="Rf4-6k-fS2"/>
                         <outlet property="mapView" destination="q24-JB-WOx" id="3fw-7W-J4M"/>
+                        <outlet property="phoneIconImageView" destination="RSq-Kb-R2M" id="04O-wG-4c7"/>
                         <outlet property="searchBar" destination="MUC-f1-LmS" id="lpY-cQ-I0x"/>
                         <outlet property="serviceDetailAddressLabel" destination="twJ-mn-wGX" id="krH-uW-tMo"/>
                         <outlet property="serviceDetailDistanceLabel" destination="88Z-Gj-BRr" id="X9D-TI-IWi"/>
@@ -1253,6 +1269,8 @@
                         <outlet property="servicesInfoNameLabel" destination="Og2-ec-Xca" id="rBa-1i-TVd"/>
                         <outlet property="serviesInfoTextView" destination="3Px-8h-QWY" id="PGm-9N-txO"/>
                         <outlet property="startMapButton" destination="dUw-Fl-gkr" id="9L6-hs-498"/>
+                        <outlet property="transitIconImageView" destination="Cey-2T-GUn" id="XoG-ad-Y23"/>
+                        <outlet property="walkIconImageView" destination="Cdi-kZ-ZOc" id="84p-VB-413"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gwh-5o-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1298,7 +1316,12 @@
     </scenes>
     <resources>
         <image name="C-shelter" width="60" height="56"/>
-        <image name="public transportation" width="60" height="44"/>
+        <image name="bus" width="24" height="24"/>
+        <image name="clock" width="24" height="24"/>
+        <image name="near_me" width="24" height="24"/>
+        <image name="phone" width="24" height="24"/>
+        <image name="place" width="24" height="24"/>
+        <image name="walk" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="d27-Sl-fNX"/>

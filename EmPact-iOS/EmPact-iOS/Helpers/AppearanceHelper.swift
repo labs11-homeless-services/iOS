@@ -50,8 +50,10 @@ enum Appearance {
         UISearchBar.appearance().searchBarStyle = UISearchBar.Style.minimal
         UISearchBar.appearance().barTintColor = UIColor.white
         UISearchBar.appearance().placeholder = "Search"
+        UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = regularFont
+        UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.customLightestGray
         
-        
+        UILabel.appearance().textColor = UIColor.customDarkGray
         
         
     }
