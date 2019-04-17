@@ -451,6 +451,7 @@
                         <outlet property="walkImageView" destination="eM2-zn-oxB" id="mzj-1v-XK5"/>
                         <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="WGJ-jW-BT6"/>
                         <segue destination="zem-mX-p5a" kind="show" identifier="searchResultsSegue" id="d27-Sl-fNX"/>
+                        <segue destination="kk6-0y-WL5" kind="show" identifier="shelterNearestYouSegue" id="EQM-Nn-GBT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXs-nM-FQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1343,6 +1344,7 @@
         <image name="walk" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="EQM-Nn-GBT"/>
         <segue reference="d27-Sl-fNX"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
