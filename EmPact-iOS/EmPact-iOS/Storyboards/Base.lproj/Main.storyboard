@@ -425,6 +425,7 @@
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="addressImageView" destination="Prf-Rw-iGh" id="8vj-tv-vW0"/>
                         <outlet property="addressView" destination="5xm-NF-gPN" id="hI6-vw-u7y"/>
                         <outlet property="categoriesCollectionView" destination="JUh-ah-XMf" id="YJI-8c-nKS"/>
                         <outlet property="categoriesScrollView" destination="EDU-uA-BJS" id="ev1-f4-D9p"/>
@@ -433,8 +434,10 @@
                         <outlet property="distanceView" destination="pAK-K6-tLd" id="S1o-Fm-vuq"/>
                         <outlet property="helpLabel" destination="NnQ-Qv-uX1" id="vqk-p3-KuG"/>
                         <outlet property="helpView" destination="eEY-AX-X0E" id="GuV-a2-oNg"/>
+                        <outlet property="hoursImageView" destination="ODC-CQ-IBd" id="xoO-Eh-FtE"/>
                         <outlet property="nearestShelterLabel" destination="A1T-51-ynV" id="CmG-TI-vRb"/>
                         <outlet property="nearestShelterView" destination="RR8-Ai-K0Q" id="2f0-ML-9x3"/>
+                        <outlet property="phoneImageView" destination="xeW-Po-4VI" id="Zg8-dG-3SR"/>
                         <outlet property="shelterAddressLabel" destination="kZ4-dM-BNs" id="www-Co-yPN"/>
                         <outlet property="shelterDistanceLabel" destination="viE-OP-RoB" id="1Im-dj-72g"/>
                         <outlet property="shelterDurationLabel" destination="QO0-Fd-j6v" id="KmY-U0-mAS"/>
@@ -442,8 +445,10 @@
                         <outlet property="shelterNameLabel" destination="3K0-1V-7az" id="3Kv-48-Yhg"/>
                         <outlet property="shelterPhoneLabel" destination="JFi-yv-4zE" id="a8o-B0-svJ"/>
                         <outlet property="shelterView" destination="PUL-Br-Y8K" id="HJq-IN-zOF"/>
+                        <outlet property="transitImageView" destination="XhT-mk-hU6" id="WHw-ed-GRu"/>
                         <outlet property="viewDetailsButton" destination="qfa-NP-tL1" id="Ft6-wU-BDt"/>
                         <outlet property="viewMapButton" destination="fpN-e2-2Pz" id="TvU-PA-VAk"/>
+                        <outlet property="walkImageView" destination="eM2-zn-oxB" id="mzj-1v-XK5"/>
                         <segue destination="Jjd-21-FMI" kind="presentation" identifier="modalSubcategoryMenu" id="WGJ-jW-BT6"/>
                         <segue destination="zem-mX-p5a" kind="show" identifier="searchResultsSegue" id="d27-Sl-fNX"/>
                     </connections>
@@ -478,7 +483,7 @@
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmc-Fz-mYd">
+                                                    <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmc-Fz-mYd">
                                                         <rect key="frame" x="232.5" y="0.0" width="42.5" height="42.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Zmc-Fz-mYd" secondAttribute="height" id="vQJ-PW-Ca1"/>

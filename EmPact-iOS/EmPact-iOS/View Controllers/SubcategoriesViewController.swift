@@ -87,6 +87,23 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.tintColor = .customDarkPurple
         spanishButton.setImage(tapColoredIcon, for: .normal)
         
+        // Home Button
+        homeButton.setTitle("HOME", for: .normal)
+        homeButton.setTitleColor(.customDarkPurple, for: .normal)
+        homeButton.backgroundColor = .white
+        
+        let homeColoredIcon = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        homeButton.tintColor = .customDarkPurple
+        homeButton.setImage(homeColoredIcon, for: .normal)
+        
+        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitleColor(.white, for: .normal)
+        closeButton.backgroundColor = .customDarkPurple
+        
+        let closeColoredIcon = UIImage(named: "Sharp")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        closeButton.tintColor = .white
+        closeButton.setImage(closeColoredIcon, for: .normal)
+        
         topView.backgroundColor = UIColor.customDarkPurple
         homeButton.backgroundColor = UIColor.white
         homeButton.tintColor = UIColor.customDarkPurple

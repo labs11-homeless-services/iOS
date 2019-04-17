@@ -44,6 +44,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var viewMapButton: UIButton!
     @IBOutlet weak var viewDetailsButton: UIButton!
     
+    @IBOutlet weak var addressImageView: UIImageView!
+    @IBOutlet weak var transitImageView: UIImageView!
+    @IBOutlet weak var walkImageView: UIImageView!
+    @IBOutlet weak var phoneImageView: UIImageView!
+    @IBOutlet weak var hoursImageView: UIImageView!
+    
     @IBAction func viewMapClicked(_ sender: Any) {
     }
     @IBAction func viewDetailsClicked(_ sender: Any) {
@@ -66,17 +72,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
-
         setupTheme()
 
-        collectionViewSearchBar.searchBarStyle = UISearchBar.Style.minimal
-        collectionViewSearchBar.barTintColor = UIColor.white
-        collectionViewSearchBar.placeholder = "Search"
-        
-        helpView.backgroundColor = UIColor.darkGray
-        helpView.layer.cornerRadius = 5
-        helpLabel.textColor = UIColor.white
-        
         shelterView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         addressView.layer.borderWidth = 0.25
@@ -85,14 +82,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         distanceView.layer.borderColor = UIColor.lightGray.cgColor
         contactView.layer.borderWidth = 0.25
         contactView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        viewDetailsButton.backgroundColor = UIColor.darkGray
-        viewDetailsButton.layer.cornerRadius = 5
-        viewMapButton.layer.borderWidth = 0.25
-        viewMapButton.layer.borderColor = UIColor.lightGray.cgColor
-        
-        nearestShelterView.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
-        nearestShelterLabel.textColor = UIColor.customDarkPurple
 
     }
     
@@ -119,12 +108,57 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         helpView.layer.cornerRadius = 5
         helpLabel.textColor = UIColor.white
         
-        viewDetailsButton.setTitle("VIEW DETAILS", for: .normal)
+        viewDetailsButton.setTitle("  VIEW DETAILS", for: .normal)
         viewDetailsButton.setTitleColor(.white, for: .normal)
+        viewDetailsButton.titleLabel?.font = Appearance.boldFont
         viewDetailsButton.backgroundColor = .customDarkPurple
+        viewDetailsButton.layer.cornerRadius = 5
         
-        viewMapButton.setTitle("View Map", for: .normal)
+        let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        viewDetailsButton.tintColor = .white
+        viewDetailsButton.setImage(launchColoredIcon, for: .normal)
+        
+        viewMapButton.setTitle("  View Map", for: .normal)
         viewMapButton.setTitleColor(UIColor.customDarkPurple, for: .normal)
+        viewMapButton.backgroundColor = .white
+        viewMapButton.layer.borderWidth = 0.25
+        viewMapButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        viewMapButton.tintColor = .customDarkPurple
+        viewMapButton.setImage(nearMeColoredIcon, for: .normal)
+        
+        shelterNameLabel.textColor = .customDarkBlack
+        shelterNameLabel.font = Appearance.regularFont
+        
+        nearestShelterLabel.textColor = .customDarkPurple
+        nearestShelterLabel.font = Appearance.boldFont
+        nearestShelterView.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        
+        helpView.backgroundColor = UIColor.customDarkPurple
+        helpView.layer.cornerRadius = 5
+        helpLabel.textColor = UIColor.white
+        
+        // Icon Colors
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        addressImageView.tintColor = .customDarkPurple
+        addressImageView.image = placeColoredIcon
+        
+        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        transitImageView.tintColor = .customDarkPurple
+        transitImageView.image = busColoredIcon
+        
+        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        walkImageView.tintColor = .customDarkPurple
+        walkImageView.image = walkColoredIcon
+        
+        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        phoneImageView.tintColor = .customDarkPurple
+        phoneImageView.image = phoneColoredIcon
+        
+        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        hoursImageView.tintColor = .customDarkPurple
+        hoursImageView.image = clockColoredIcon
         
     }
     
