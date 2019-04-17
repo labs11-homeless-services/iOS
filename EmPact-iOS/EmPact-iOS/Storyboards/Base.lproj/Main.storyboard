@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UjT-y9-lna">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UjT-y9-lna">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -998,17 +998,15 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-OW-IaU" userLabel="Search Stack">
-                                <rect key="frame" x="0.0" y="116" width="375" height="56"/>
+                                <rect key="frame" x="15" y="116" width="345" height="56"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-f1-LmS">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-f1-LmS">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="MUC-f1-LmS" firstAttribute="top" secondItem="dL5-OW-IaU" secondAttribute="top" id="1fj-UX-BMz"/>
-                                    <constraint firstAttribute="trailing" secondItem="MUC-f1-LmS" secondAttribute="trailing" constant="15" id="M6p-b1-gxa"/>
-                                    <constraint firstItem="MUC-f1-LmS" firstAttribute="leading" secondItem="dL5-OW-IaU" secondAttribute="leading" constant="15" id="UCh-5d-lo5"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-5L-hLr">
@@ -1234,12 +1232,12 @@
                         <constraints>
                             <constraint firstItem="20U-54-fO9" firstAttribute="top" secondItem="dL5-OW-IaU" secondAttribute="bottom" constant="20" id="7mt-iX-scd"/>
                             <constraint firstItem="g6N-S8-NBd" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="20" id="8JO-eY-H5C"/>
-                            <constraint firstAttribute="trailing" secondItem="dL5-OW-IaU" secondAttribute="trailing" id="FYu-PW-pXo"/>
+                            <constraint firstAttribute="trailing" secondItem="dL5-OW-IaU" secondAttribute="trailing" constant="15" id="FYu-PW-pXo"/>
                             <constraint firstItem="q24-JB-WOx" firstAttribute="centerX" secondItem="XMe-cl-Yme" secondAttribute="centerX" id="FzK-tc-JiN"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="g6N-S8-NBd" secondAttribute="trailing" constant="20" id="HTm-8x-GmS"/>
                             <constraint firstItem="OgC-q7-hjb" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="20" id="LWM-Zv-9xI"/>
                             <constraint firstItem="20U-54-fO9" firstAttribute="centerX" secondItem="XMe-cl-Yme" secondAttribute="centerX" id="Ony-MK-aIE"/>
-                            <constraint firstItem="dL5-OW-IaU" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" id="PMT-yO-dFh"/>
+                            <constraint firstItem="dL5-OW-IaU" firstAttribute="leading" secondItem="LmX-Ue-zzX" secondAttribute="leading" constant="15" id="PMT-yO-dFh"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="OgC-q7-hjb" secondAttribute="trailing" constant="20" id="Pvd-Je-FWw"/>
                             <constraint firstItem="dL5-OW-IaU" firstAttribute="top" secondItem="LmX-Ue-zzX" secondAttribute="top" id="USq-op-Her"/>
                             <constraint firstItem="LmX-Ue-zzX" firstAttribute="trailing" secondItem="q9V-5L-hLr" secondAttribute="trailing" constant="20" id="YTb-AE-God"/>

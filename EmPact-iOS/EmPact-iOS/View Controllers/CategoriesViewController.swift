@@ -128,20 +128,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        networkController.fetchCategoryNames { (error) in
-
-            if let error = error {
-                NSLog("Error fetching categories: \(error)")
-            }
-            DispatchQueue.main.async {
-                self.categoriesCollectionView.reloadData()
-            }
-        }
-    }
-    
     func setupTheme() {
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
