@@ -24,7 +24,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         networkController?.tempCategorySelection = ""
         selectedSubcategory = ""
         performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
-        
     }
     
     var selectedSubcategory: String!
@@ -34,23 +33,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTheme()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
         searchBar.delegate = self
-        
-        searchBar.searchBarStyle = UISearchBar.Style.minimal
-        searchBar.barTintColor = UIColor.white
-        searchBar.placeholder = "Search"
-        
-        subcategoriesTitleLabel.textColor = UIColor.white
-        
-        //subcategoryTextView.text = "1101 E. Turner Camp Road, Inverness, FL 34453"
-        
-        subcategoriesTitleView.layer.cornerRadius = 5
-        subcategoriesTitleView.backgroundColor = UIColor.customDarkPurple
-        
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         if networkController?.tempCategorySelection == "" {
             self.title = "Search Results"
@@ -59,7 +47,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
             subcategoriesTitleLabel.text = "\(selectedSubcategory.uppercased()) \(unwrappedTempCategorySelection.uppercased()) within New York City, NY"
         }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,13 +65,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             })
         }
 
-    }
-    
-    func setupTheme() {
-        
-        
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -141,9 +121,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
             cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
             
-            if filteredSubcategoryDetail.hours == nil {
-                cell.serviceHoursLabel.isHidden = true
-                cell.serviceHoursIcon.isHidden = true
+            if filteredSubcategoryDetail.hours == "" {
+                cell.serviceHoursLabel.text = "Please call for hours"
+                //cell.serviceHoursIcon.isHidden = true
             }
         } else {
             // Display the subcategory resources
@@ -164,12 +144,22 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             cell.serviceHoursLabel.text = subcategoryDetail?.hours
             
             if subcategoryDetail?.hours == nil {
-                cell.serviceHoursLabel.isHidden = true
-                cell.serviceHoursIcon.isHidden = true
+                cell.serviceHoursLabel.text = "Please call for hours"
+                //cell.serviceHoursIcon.isHidden = true
             }
         }
         return cell
     }
+    
+    @IBAction func spanishButtonClicked(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
     
     // MARK: - Search Bar
     
@@ -235,19 +225,18 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                 destination.serviceDetail = serviceDetail
             }
         }
-        
-
-        
-//        if networkController?.shelterSubcategoryDetails == nil {
-//            return
-//        } else {
-//            let shelterServiceDetail = networkController?.shelterSubcategoryDetails[indexPath.row]
-//            destination.shelterServiceDetail = shelterServiceDetail
-//        }
-            
     }
     
-
+    // MARK: - Theme
     
+    func setupTheme() {
+        
+        subcategoriesTitleLabel.textColor = UIColor.white
+        subcategoriesTitleView.backgroundColor = UIColor.customDarkPurple
+        subcategoriesTitleLabel.backgroundColor = .customDarkPurple
+        subcategoriesTitleView.layer.cornerRadius = 5
+        
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+    }
 
 }

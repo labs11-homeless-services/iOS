@@ -47,30 +47,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     @IBOutlet weak var startMapButton: UIButton!
     
-    // MARK: - Segmented Control Actions
-    @IBAction func locationTapped(_ sender: Any) {
-        detailsView.isHidden = true
-        serviceView.isHidden = true
-        infoView.isHidden = false
-        updateViews()
-    }
+    // MARK: - Properties
     
-    @IBAction func servicesTapped(_ sender: Any) {
-        detailsView.isHidden = true
-        serviceView.isHidden = false
-        infoView.isHidden = true
-        updateViews()
-    }
-    
-    @IBAction func detailsTapped(_ sender: Any) {
-        detailsView.isHidden = false
-        serviceView.isHidden = true
-        infoView.isHidden = true
-        updateViews()
-    }
-    
-    //var resultLatitude = navigationController
-
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
@@ -85,23 +63,16 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
+        
+        self.title = serviceDetail?.name
+        
         setupTheme()
-        
-        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        
-        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         detailsView.isHidden = true
         serviceView.isHidden = true
         infoView.isHidden = false
-        
-        self.title = serviceDetail?.name
-        
-        mapView.delegate = self
-        
+
         // Convert latitude/longitude strings to doubles
         if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
             return
@@ -138,74 +109,136 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
-    func setupTheme() {
+    func updateViews() {
         
-        // Buttons
-        startMapButton.setTitle("  Start Map", for: .normal)
-        startMapButton.setTitleColor(.white, for: .normal)
-        startMapButton.backgroundColor = .customDarkPurple
+        serviceDetailNameLabel.text = serviceDetail?.name
+        serviceDetailAddressLabel.text = serviceDetail?.address
         
-        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        startMapButton.tintColor = UIColor.white
-        startMapButton.setImage(nearMeColoredIcon, for: .normal)
+        if serviceDetail?.phone == nil {
+            serviceDetailPhoneLabel.text = ""
+            phoneIconImageView.tintColor = .white
+        } else {
+            if let phoneJSON = serviceDetail?.phone {
+                serviceDetailPhoneLabel.text = phoneJSON as? String
+            }
+        }
         
-        locationButton.setTitle("LOCATION", for: .normal)
+
+        if serviceDetail?.hours == nil {
+            serviceDetailHoursLabel.text = ""
+            hoursIconImageView.tintColor = .white
+        } else {
+           serviceDetailHoursLabel.text = serviceDetail?.hours
+        }
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        
+        serviceDetailDistanceLabel.text = unwrappedDistance
+        serviceDetailWalkTimeLabel.text = unwrappedDuration
+        
+        if serviceDistance == nil {
+            serviceDetailDistanceLabel.text = ""
+            transitIconImageView.tintColor = .white
+        }
+        
+        if serviceTravelDuration == nil {
+            serviceDetailWalkTimeLabel.text = ""
+            walkIconImageView.tintColor = .white
+        }
+        
+        // Services Tab Info
+        servicesInfoNameLabel.text = serviceDetail?.name
+        serviesInfoTextView.text = """
+        GED Prep Courses
+        """
+    }
+    
+    // MARK: - Segmented Control Actions
+    
+    @IBAction func locationTapped(_ sender: Any) {
+        detailsView.isHidden = true
+        serviceView.isHidden = true
+        infoView.isHidden = false
+        
+        locationButton.titleLabel?.font = Appearance.mediumFont
+        servicesButton.titleLabel?.font = Appearance.regularFont
+        detailsButton.titleLabel?.font = Appearance.regularFont
+        
         locationButton.setTitleColor(.white, for: .normal)
-        locationButton.setTitleColor(.customLightestGray, for: .disabled)
-        locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
-        locationButton.backgroundColor = .customDarkPurple
-        
-        servicesButton.setTitle("SERVICES", for: .normal)
-        servicesButton.setTitleColor(.white, for: .selected)
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
-        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
-        servicesButton.backgroundColor = .customDarkPurple
-        
-        detailsButton.setTitle("DETAILS", for: .normal)
-        detailsButton.setTitleColor(.white, for: .selected)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
-        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
-        detailsButton.backgroundColor = .customDarkPurple
         
-        // Fonts
-        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
-        serviceDetailNameLabel.textColor = UIColor.customLightBlack
-        serviceDetailAddressLabel.font = Appearance.lightFont
-        serviceDetailDistanceLabel.font = Appearance.lightFont
-        serviceDetailWalkTimeLabel.font = Appearance.lightFont
-        serviceDetailPhoneLabel.font = Appearance.lightFont
-        serviceDetailHoursLabel.font = Appearance.lightFont
+        updateViews()
+    }
+    
+    @IBAction func servicesTapped(_ sender: Any) {
+        detailsView.isHidden = true
+        serviceView.isHidden = false
+        infoView.isHidden = true
         
-        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
-        servicesInfoNameLabel.textColor = .customLightBlack
-        serviesInfoTextView.font = Appearance.lightFont
+        servicesButton.titleLabel?.font = Appearance.mediumFont
+        locationButton.titleLabel?.font = Appearance.regularFont
+        detailsButton.titleLabel?.font = Appearance.regularFont
         
-        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
-        detailsNameLabel.textColor = .customLightBlack
-        detailsTextView.font = Appearance.lightFont
+        servicesButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
         
-        // Icon Colors
-        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        addressIconImageView.tintColor = .customDarkPurple
-        addressIconImageView.image = placeColoredIcon
+        updateViews()
+    }
+    
+    @IBAction func detailsTapped(_ sender: Any) {
+        detailsView.isHidden = false
+        serviceView.isHidden = true
+        infoView.isHidden = true
         
-        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        transitIconImageView.tintColor = .customDarkPurple
-        transitIconImageView.image = busColoredIcon
+        detailsButton.titleLabel?.font = Appearance.mediumFont
+        locationButton.titleLabel?.font = Appearance.regularFont
+        servicesButton.titleLabel?.font = Appearance.regularFont
         
-        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        walkIconImageView.tintColor = .customDarkPurple
-        walkIconImageView.image = walkColoredIcon
+        detailsButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
         
-        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        phoneIconImageView.tintColor = .customDarkPurple
-        phoneIconImageView.image = phoneColoredIcon
+        updateViews()
+    }
+    
+    @IBAction func spanishButtonTapped(_ sender: Any) {
         
-        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        hoursIconImageView.tintColor = .customDarkPurple
-        hoursIconImageView.image = clockColoredIcon
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    // MARK: - UI Search Bar
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        filterServiceResults()
+        
+        performSegue(withIdentifier: "backToAllResultsSegue", sender: nil)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
     }
+    
+    func filterServiceResults() {
+        // Grab the text, make sure it's not empty
+        guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
+            return
+        }
+        
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        
+        networkController?.subcategoryDetails = matchingObjects
+    }
+    
+    // MARK: - Location & Maps Management
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -217,28 +250,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
         getServiceDistanceAndDuration()
         updateViews()
-    }
-    
-    func updateViews() {
-
-        serviceDetailNameLabel.text = serviceDetail?.name
-        serviceDetailAddressLabel.text = serviceDetail?.address
-        
-        if let phoneJSON = serviceDetail?.phone {
-            serviceDetailPhoneLabel.text = phoneJSON as? String
-        }
-        //serviceDetailPhoneLabel.text = serviceDetail?.phone
-        serviceDetailHoursLabel.text = serviceDetail?.hours
-        
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        serviceDetailDistanceLabel.text = unwrappedDistance
-        serviceDetailWalkTimeLabel.text = unwrappedDuration
-        // Services Tab Info
-        servicesInfoNameLabel.text = serviceDetail?.name
-        serviesInfoTextView.text = """
-        GED Prep Courses
-        """
     }
     
     @IBAction func launchMapsButton(_ sender: Any) {
@@ -282,6 +293,80 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 self.updateViews()
             }
         }
+    }
+    
+    func setupTheme() {
+        
+        // Button
+        startMapButton.setTitle("  Start Map", for: .normal)
+        startMapButton.setTitleColor(.white, for: .normal)
+        startMapButton.backgroundColor = .customDarkPurple
+        
+        let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        startMapButton.tintColor = UIColor.white
+        startMapButton.setImage(nearMeColoredIcon, for: .normal)
+        
+        // Segmented Control
+        locationButton.setTitle("LOCATION", for: .normal)
+        locationButton.setTitleColor(.white, for: .normal)
+        locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
+        locationButton.backgroundColor = .customDarkPurple
+        
+        servicesButton.setTitle("SERVICES", for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        servicesButton.backgroundColor = .customDarkPurple
+        
+        detailsButton.setTitle("DETAILS", for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        detailsButton.backgroundColor = .customDarkPurple
+        
+        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        // Fonts
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailNameLabel.textColor = UIColor.customLightBlack
+        serviceDetailAddressLabel.font = Appearance.lightFont
+        serviceDetailDistanceLabel.font = Appearance.lightFont
+        serviceDetailWalkTimeLabel.font = Appearance.lightFont
+        serviceDetailPhoneLabel.font = Appearance.lightFont
+        serviceDetailHoursLabel.font = Appearance.lightFont
+        
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        servicesInfoNameLabel.textColor = .customLightBlack
+        serviesInfoTextView.font = Appearance.lightFont
+        
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsNameLabel.textColor = .customLightBlack
+        detailsTextView.font = Appearance.lightFont
+        
+        // Icon Colors
+        let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        addressIconImageView.tintColor = .customDarkPurple
+        addressIconImageView.image = placeColoredIcon
+        
+        let busColoredIcon = UIImage(named: "bus")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        transitIconImageView.tintColor = .customDarkPurple
+        transitIconImageView.image = busColoredIcon
+        
+        let walkColoredIcon = UIImage(named: "walk")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        walkIconImageView.tintColor = .customDarkPurple
+        walkIconImageView.image = walkColoredIcon
+        
+        let phoneColoredIcon = UIImage(named: "phone")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        phoneIconImageView.tintColor = .customDarkPurple
+        phoneIconImageView.image = phoneColoredIcon
+        
+        let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        hoursIconImageView.tintColor = .customDarkPurple
+        hoursIconImageView.image = clockColoredIcon
+        
     }
 
 }

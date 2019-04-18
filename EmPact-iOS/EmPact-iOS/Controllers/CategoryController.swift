@@ -44,39 +44,39 @@ class CategoryController {
         } else if tempSubcategoryName == "women" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.women.rawValue)
         } else if tempSubcategoryName == "youth" {
-            subcategoryIconImage = UIImage(named: "S-church")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.youth.rawValue)
         } else if tempSubcategoryName == "all" {
             subcategoryIconImage = UIImage(named: "S-church")
         } else if tempSubcategoryName == "ged" {
-            subcategoryIconImage = UIImage(named: "C-outreach-services")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.ged.rawValue)
         } else if tempSubcategoryName == "publicComputers" {
-            subcategoryIconImage = UIImage(named: "S-church")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.publicComputers.rawValue)
         } else if tempSubcategoryName == "foodPantries" {
-            subcategoryIconImage = UIImage(named: "C-food")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.foodPantries.rawValue)
         } else if tempSubcategoryName == "foodStamps" {
-            subcategoryIconImage = UIImage(named: "C-food")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.foodStamps.rawValue)
         } else if tempSubcategoryName == "clinics" {
-            subcategoryIconImage = UIImage(named: "C-health-care")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.clinics.rawValue)
         } else if tempSubcategoryName == "emergency" {
-            subcategoryIconImage = UIImage(named: "C-emergency")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.emergency.rawValue)
         } else if tempSubcategoryName == "hiv" {
-            subcategoryIconImage = UIImage(named: "C-health-care")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.hiv.rawValue)
         } else if tempSubcategoryName == "mentalHealth" {
-            subcategoryIconImage = UIImage(named: "C-jobs")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.mentalHealth.rawValue)
         } else if tempSubcategoryName == "rehab" {
-            subcategoryIconImage = UIImage(named: "S-drugs")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.rehab.rawValue)
         } else if tempSubcategoryName == "bathrooms" {
-            subcategoryIconImage = UIImage(named: "C-hygiene")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.bathrooms.rawValue)
         } else if tempSubcategoryName == "showers" {
-            subcategoryIconImage = UIImage(named: "C-hygiene")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.showers.rawValue)
         } else if tempSubcategoryName == "benefits" {
             subcategoryIconImage = UIImage(named: "C-jobs")
         } else if tempSubcategoryName == "afterSchool" {
-            subcategoryIconImage = UIImage(named: "C-outreach-services")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.afterSchool.rawValue)
         } else if tempSubcategoryName == "domesticViolence" {
             subcategoryIconImage = UIImage(named: "S-abuse")
         } else if tempSubcategoryName == "socialServices" {
-            subcategoryIconImage = UIImage(named: "C-outreach-services")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.socialServices.rawValue)
         }
     }
 }
