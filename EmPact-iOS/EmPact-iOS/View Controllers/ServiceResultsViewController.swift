@@ -121,9 +121,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
             cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
             
-            if filteredSubcategoryDetail.hours == nil {
-                cell.serviceHoursLabel.isHidden = true
-                cell.serviceHoursIcon.isHidden = true
+            if filteredSubcategoryDetail.hours == "" {
+                cell.serviceHoursLabel.text = "Please call for hours"
+                //cell.serviceHoursIcon.isHidden = true
             }
         } else {
             // Display the subcategory resources
@@ -144,12 +144,22 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             cell.serviceHoursLabel.text = subcategoryDetail?.hours
             
             if subcategoryDetail?.hours == nil {
-                cell.serviceHoursLabel.isHidden = true
-                cell.serviceHoursIcon.isHidden = true
+                cell.serviceHoursLabel.text = "Please call for hours"
+                //cell.serviceHoursIcon.isHidden = true
             }
         }
         return cell
     }
+    
+    @IBAction func spanishButtonClicked(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
     
     // MARK: - Search Bar
     

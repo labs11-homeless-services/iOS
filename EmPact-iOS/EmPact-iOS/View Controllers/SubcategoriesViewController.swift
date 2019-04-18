@@ -122,6 +122,16 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    @IBAction func spanishButtonClicked(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    
     // MARK: - Hamburger Menu Actions
     @IBAction func closeMenu(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -159,6 +169,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.backgroundColor = .white
         spanishView.backgroundColor = .customDarkPurple
         spanishButton.layer.cornerRadius = 5
+        spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
         let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         spanishButton.tintColor = .customDarkPurple

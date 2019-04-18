@@ -204,6 +204,40 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
+    @IBAction func spanishButtonTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    // MARK: - UI Search Bar
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        filterServiceResults()
+        
+        performSegue(withIdentifier: "backToAllResultsSegue", sender: nil)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func filterServiceResults() {
+        // Grab the text, make sure it's not empty
+        guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
+            return
+        }
+        
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        
+        networkController?.subcategoryDetails = matchingObjects
+    }
+    
     // MARK: - Location & Maps Management
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
