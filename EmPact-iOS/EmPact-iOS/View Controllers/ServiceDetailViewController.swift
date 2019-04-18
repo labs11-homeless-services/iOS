@@ -114,16 +114,39 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailNameLabel.text = serviceDetail?.name
         serviceDetailAddressLabel.text = serviceDetail?.address
         
-        if let phoneJSON = serviceDetail?.phone {
-            serviceDetailPhoneLabel.text = phoneJSON as? String
+        if serviceDetail?.phone == nil {
+            serviceDetailPhoneLabel.text = ""
+            phoneIconImageView.tintColor = .white
+        } else {
+            if let phoneJSON = serviceDetail?.phone {
+                serviceDetailPhoneLabel.text = phoneJSON as? String
+            }
         }
-        //serviceDetailPhoneLabel.text = serviceDetail?.phone
-        serviceDetailHoursLabel.text = serviceDetail?.hours
+        
+
+        if serviceDetail?.hours == nil {
+            serviceDetailHoursLabel.text = ""
+            hoursIconImageView.tintColor = .white
+        } else {
+           serviceDetailHoursLabel.text = serviceDetail?.hours
+        }
         
         guard let unwrappedDistance = serviceDistance,
             let unwrappedDuration = serviceTravelDuration else { return }
+        
         serviceDetailDistanceLabel.text = unwrappedDistance
         serviceDetailWalkTimeLabel.text = unwrappedDuration
+        
+        if serviceDistance == nil {
+            serviceDetailDistanceLabel.text = ""
+            transitIconImageView.tintColor = .white
+        }
+        
+        if serviceTravelDuration == nil {
+            serviceDetailWalkTimeLabel.text = ""
+            walkIconImageView.tintColor = .white
+        }
+        
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
         serviesInfoTextView.text = """
