@@ -258,9 +258,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         shelterNameLabel.text = nearestShelter?.name
         shelterAddressLabel.text = nearestShelter?.address
         shelterHoursLabel.text = nearestShelter?.hours
+        if nearestShelter?.hours == nil {
+            hoursImageView.tintColor = .white
+        }
         
         if let phoneJSON = nearestShelter?.phone {
             shelterPhoneLabel.text = phoneJSON as? String
+        } else if nearestShelter?.phone == nil {
+            phoneImageView.tintColor = .white
         }
         
         guard let unwrappedDistance = serviceDistance,
