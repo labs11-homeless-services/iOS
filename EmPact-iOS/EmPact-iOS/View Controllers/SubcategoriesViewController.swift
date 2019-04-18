@@ -36,6 +36,22 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var categoryController = CategoryController()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupTheme()
+        
+        categoryTitleLabel.text = selectedCategory
+        
+        categoryController.getIconImage(from: selectedCategory)
+        categoryTitleImage.image = categoryController.iconImage
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -51,27 +67,10 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
                     self.tableView.reloadData()
 
                 }
-                
             })
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupTheme()
-        
-        categoryTitleLabel.text = selectedCategory
-        
-        categoryController.getIconImage(from: selectedCategory)
-        categoryTitleImage.image = categoryController.iconImage
 
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-    
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return networkController?.subcategoryNames.count ?? 0
     }

@@ -33,6 +33,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupTheme()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -221,6 +223,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         subcategoriesTitleLabel.textColor = UIColor.white
         subcategoriesTitleView.backgroundColor = UIColor.customDarkPurple
+        subcategoriesTitleLabel.backgroundColor = .customDarkPurple
         subcategoriesTitleView.layer.cornerRadius = 5
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
