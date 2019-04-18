@@ -151,6 +151,16 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
+    @IBAction func spanishButtonClicked(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    
     // MARK: - Search Bar
     
     // Tell the delegate that the search button was tapped

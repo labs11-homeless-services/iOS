@@ -453,7 +453,11 @@
                         <viewLayoutGuide key="safeArea" id="AcF-FV-YZa"/>
                     </view>
                     <navigationItem key="navigationItem" title="Categories" id="b3X-Nw-Vab">
-                        <barButtonItem key="rightBarButtonItem" title="Español" id="3lH-fr-aHO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Español" id="3lH-fr-aHO">
+                            <connections>
+                                <action selector="spanishButtonClicked:" destination="0tP-UG-PIs" id="BeR-ph-MBX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
@@ -551,6 +555,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi2-Nw-KNm">
                                                                 <rect key="frame" x="5" y="10" width="105" height="35"/>
                                                                 <state key="normal" title="Español" image="tap"/>
+                                                                <connections>
+                                                                    <action selector="spanishButtonClicked:" destination="Jjd-21-FMI" eventType="touchUpInside" id="2tg-Bo-kse"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.22352941176470589" green="0.23137254901960785" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -969,7 +976,11 @@
                                 <action selector="unwindToSubcategoriesVCWithSegue:" destination="zem-mX-p5a" id="0Qx-h9-dbB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Español" id="P18-MJ-1Cp"/>
+                        <barButtonItem key="rightBarButtonItem" title="Español" id="P18-MJ-1Cp">
+                            <connections>
+                                <action selector="spanishButtonClicked:" destination="zem-mX-p5a" id="TfZ-xP-LDR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="cYi-Ac-EoW" id="sOc-YF-fbs"/>
@@ -1292,7 +1303,11 @@
                         <viewLayoutGuide key="safeArea" id="LmX-Ue-zzX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Citrus County Abuse Shelter" id="aXl-kM-Yn3">
-                        <barButtonItem key="rightBarButtonItem" title="Español" id="iFQ-tK-faU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Español" id="iFQ-tK-faU">
+                            <connections>
+                                <action selector="spanishButtonTapped:" destination="kk6-0y-WL5" id="0Ol-sT-DcK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addressIconImageView" destination="Cbn-uN-KB8" id="wAp-4p-6TE"/>
