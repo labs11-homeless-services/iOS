@@ -23,20 +23,20 @@ enum SubcategoryIconImages: String {
     case all
     case women = "S-woman"
     case men = "S-man"
-    case youth
-    case ged
-    case publicComputers
-    case foodPantries
-    case foodStamps
-    case clinics
-    case emergency
-    case hiv
-    case mentalHealth
-    case rehab
-    case bathrooms
-    case showers
+    case youth = "S-youth"
+    case ged = "S-GED"
+    case publicComputers = "S-computers"
+    case foodPantries = "S-food_pantry"
+    case foodStamps = "S-food_stamps"
+    case clinics = "S-clinic"
+    case emergency = "S-emergency"
+    case hiv = "S-hiv_aids"
+    case mentalHealth = "S-mental_health"
+    case rehab = "S-rehab"
+    case bathrooms = "S-bathroom"
+    case showers = "S-shower"
     case benefits
-    case afterSchool
+    case afterSchool = "S-after_school"
     case domesticViolence
-    case socialServices
+    case socialServices = "S-social_service"
 }

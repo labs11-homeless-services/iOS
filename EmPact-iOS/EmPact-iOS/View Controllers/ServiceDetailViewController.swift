@@ -47,37 +47,15 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     @IBOutlet weak var startMapButton: UIButton!
     
-    // MARK: - Segmented Control Actions
-    @IBAction func locationTapped(_ sender: Any) {
-        detailsView.isHidden = true
-        serviceView.isHidden = true
-        infoView.isHidden = false
-        updateViews()
-    }
+    // MARK: - Properties
     
-    @IBAction func servicesTapped(_ sender: Any) {
-        detailsView.isHidden = true
-        serviceView.isHidden = false
-        infoView.isHidden = true
-        updateViews()
-    }
-    
-    @IBAction func detailsTapped(_ sender: Any) {
-        detailsView.isHidden = false
-        serviceView.isHidden = true
-        infoView.isHidden = true
-        updateViews()
-    }
-    
-    //var resultLatitude = navigationController
-
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
     var serviceCoordinates: CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
     
-    let googleMapsController = GoogleMapsController()
+    var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
     var serviceDetail: IndividualResource?
@@ -85,23 +63,16 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
+        
+        self.title = serviceDetail?.name
+        
         setupTheme()
-        
-        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        
-        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         detailsView.isHidden = true
         serviceView.isHidden = true
         infoView.isHidden = false
-        
-        self.title = serviceDetail?.name
-        
-        mapView.delegate = self
-        
+
         // Convert latitude/longitude strings to doubles
         if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
             return
@@ -138,9 +109,195 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
+    func updateViews() {
+        
+        serviceDetailNameLabel.text = serviceDetail?.name
+        serviceDetailAddressLabel.text = serviceDetail?.address
+        
+        if serviceDetail?.phone == nil {
+            serviceDetailPhoneLabel.text = ""
+            phoneIconImageView.tintColor = .white
+        } else {
+            if let phoneJSON = serviceDetail?.phone {
+                serviceDetailPhoneLabel.text = phoneJSON as? String
+            }
+        }
+        
+
+        if serviceDetail?.hours == nil {
+            serviceDetailHoursLabel.text = ""
+            hoursIconImageView.tintColor = .white
+        } else {
+           serviceDetailHoursLabel.text = serviceDetail?.hours
+        }
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        
+        serviceDetailDistanceLabel.text = unwrappedDistance
+        serviceDetailWalkTimeLabel.text = unwrappedDuration
+        
+        if serviceDistance == nil {
+            serviceDetailDistanceLabel.text = ""
+            transitIconImageView.tintColor = .white
+        }
+        
+        if serviceTravelDuration == nil {
+            serviceDetailWalkTimeLabel.text = ""
+            walkIconImageView.tintColor = .white
+        }
+        
+        // Services Tab Info
+        servicesInfoNameLabel.text = serviceDetail?.name
+        serviesInfoTextView.text = """
+        GED Prep Courses
+        """
+    }
+    
+    // MARK: - Segmented Control Actions
+    
+    @IBAction func locationTapped(_ sender: Any) {
+        detailsView.isHidden = true
+        serviceView.isHidden = true
+        infoView.isHidden = false
+        
+        locationButton.titleLabel?.font = Appearance.mediumFont
+        servicesButton.titleLabel?.font = Appearance.regularFont
+        detailsButton.titleLabel?.font = Appearance.regularFont
+        
+        locationButton.setTitleColor(.white, for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        
+        updateViews()
+    }
+    
+    @IBAction func servicesTapped(_ sender: Any) {
+        detailsView.isHidden = true
+        serviceView.isHidden = false
+        infoView.isHidden = true
+        
+        servicesButton.titleLabel?.font = Appearance.mediumFont
+        locationButton.titleLabel?.font = Appearance.regularFont
+        detailsButton.titleLabel?.font = Appearance.regularFont
+        
+        servicesButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .normal)
+        detailsButton.setTitleColor(.customLightestGray, for: .normal)
+        
+        updateViews()
+    }
+    
+    @IBAction func detailsTapped(_ sender: Any) {
+        detailsView.isHidden = false
+        serviceView.isHidden = true
+        infoView.isHidden = true
+        
+        detailsButton.titleLabel?.font = Appearance.mediumFont
+        locationButton.titleLabel?.font = Appearance.regularFont
+        servicesButton.titleLabel?.font = Appearance.regularFont
+        
+        detailsButton.setTitleColor(.white, for: .normal)
+        locationButton.setTitleColor(.customLightestGray, for: .normal)
+        servicesButton.setTitleColor(.customLightestGray, for: .normal)
+        
+        updateViews()
+    }
+    
+    @IBAction func spanishButtonTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    // MARK: - UI Search Bar
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        filterServiceResults()
+        
+        performSegue(withIdentifier: "backToAllResultsSegue", sender: nil)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func filterServiceResults() {
+        // Grab the text, make sure it's not empty
+        guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
+            return
+        }
+        
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        
+        networkController?.subcategoryDetails = matchingObjects
+    }
+    
+    // MARK: - Location & Maps Management
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            serviceCoordinates = manager.location?.coordinate
+            print("serviceCoordinates: \(serviceCoordinates)")
+            locationManager.stopUpdatingLocation()
+        } else {
+            print("User location is unavailable")
+        }
+        getServiceDistanceAndDuration()
+        updateViews()
+    }
+    
+    @IBAction func launchMapsButton(_ sender: Any) {
+        
+        // Form Directions URL
+        // https://www.google.com/maps/dir/?api=1 // &parameters
+        // https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
+        // https://www.google.com/maps/dir/?api=1&origin=40.7829,73.9654&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
+        // origin: if none, the map will provide a blank form to allow a user to enter the origin // OPTIONAL
+        // destination: comma-separated latitude/longitude coordinates
+        // travelmode (optional): driving, walking, bicycling, transit
+        
+        guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
+        
+        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit")
+        
+        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
+     
+            UIApplication.shared.open(url, options: [:])
+        }
+    }
+    
+    private func getServiceDistanceAndDuration() {
+        
+        guard let unwrappedServiceCoordinate = serviceCoordinates,
+            let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
+            let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
+        
+        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
+            if let error = error {
+                print("Error fetching distance to chosen service: \(error)")
+            }
+            
+            self.serviceDistance = self.googleMapsController?.serviceDistance
+            self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
+            
+            print("serviceDistance: \(String(describing: self.serviceDistance))")
+            print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
+            
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
+        }
+    }
+    
     func setupTheme() {
         
-        // Buttons
+        // Button
         startMapButton.setTitle("  Start Map", for: .normal)
         startMapButton.setTitleColor(.white, for: .normal)
         startMapButton.backgroundColor = .customDarkPurple
@@ -149,23 +306,28 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         startMapButton.tintColor = UIColor.white
         startMapButton.setImage(nearMeColoredIcon, for: .normal)
         
+        // Segmented Control
         locationButton.setTitle("LOCATION", for: .normal)
         locationButton.setTitleColor(.white, for: .normal)
-        locationButton.setTitleColor(.customLightestGray, for: .disabled)
         locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
         locationButton.backgroundColor = .customDarkPurple
         
         servicesButton.setTitle("SERVICES", for: .normal)
-        servicesButton.setTitleColor(.white, for: .selected)
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
         servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
         servicesButton.backgroundColor = .customDarkPurple
         
         detailsButton.setTitle("DETAILS", for: .normal)
-        detailsButton.setTitleColor(.white, for: .selected)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
         detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
         detailsButton.backgroundColor = .customDarkPurple
+        
+        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        
+        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
@@ -204,84 +366,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         let clockColoredIcon = UIImage(named: "clock")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         hoursIconImageView.tintColor = .customDarkPurple
         hoursIconImageView.image = clockColoredIcon
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            serviceCoordinates = manager.location?.coordinate
-            print("serviceCoordinates: \(serviceCoordinates)")
-            locationManager.stopUpdatingLocation()
-        } else {
-            print("User location is unavailable")
-        }
-        getServiceDistanceAndDuration()
-        updateViews()
-    }
-    
-    func updateViews() {
-
-        serviceDetailNameLabel.text = serviceDetail?.name
-        serviceDetailAddressLabel.text = serviceDetail?.address
-        
-        if let phoneJSON = serviceDetail?.phone {
-            serviceDetailPhoneLabel.text = phoneJSON as? String
-        }
-        //serviceDetailPhoneLabel.text = serviceDetail?.phone
-        serviceDetailHoursLabel.text = serviceDetail?.hours
-        
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        serviceDetailDistanceLabel.text = unwrappedDistance
-        serviceDetailWalkTimeLabel.text = unwrappedDuration
-        // Services Tab Info
-        servicesInfoNameLabel.text = serviceDetail?.name
-        serviesInfoTextView.text = """
-        GED Prep Courses
-        """
-    }
-    
-    @IBAction func launchMapsButton(_ sender: Any) {
-        
-        // Form Directions URL
-        // https://www.google.com/maps/dir/?api=1 // &parameters
-        // https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
-        // https://www.google.com/maps/dir/?api=1&origin=40.7829,73.9654&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
-        // origin: if none, the map will provide a blank form to allow a user to enter the origin // OPTIONAL
-        // destination: comma-separated latitude/longitude coordinates
-        // travelmode (optional): driving, walking, bicycling, transit
-        
-        guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
-        
-        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit")
-        
-        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
-     
-            UIApplication.shared.open(url, options: [:])
-        }
-    }
-    
-    private func getServiceDistanceAndDuration() {
-        
-        guard let unwrappedServiceCoordinate = serviceCoordinates,
-            let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-            let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
-        
-        googleMapsController.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
-            if let error = error {
-                print("Error fetching distance to chosen service: \(error)")
-            }
-            
-            self.serviceDistance = self.googleMapsController.serviceDistance
-            self.serviceTravelDuration = self.googleMapsController.serviceTravelDuration
-            
-            print("serviceDistance: \(String(describing: self.serviceDistance))")
-            print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
-            
-            DispatchQueue.main.async {
-                self.updateViews()
-            }
-        }
         
     }
 
