@@ -56,11 +56,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         //performSegue(withIdentifier: "", sender: nil)
     }
     
-    
-    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-        //dismiss(animated: true, completion: nil)
-    }
-    
     var serviceDistance: String!
     var serviceTravelDuration: String!
     

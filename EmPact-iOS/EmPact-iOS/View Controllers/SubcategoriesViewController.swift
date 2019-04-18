@@ -23,11 +23,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
-//    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-//        networkController?.subcategoryNames = []
-//        networkController?.subcategoryDetails = []
-//        dismiss(animated: true, completion: nil)
-//    } // We might need to rename this.
+    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
+    
+    }
     
     var selectedCategory: String!
 
@@ -180,7 +178,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Hamburger Menu Variables
     var interactor:Interactor? = nil
     var menuActionDelegate:MenuActionDelegate? = nil
-    let menuItems = ["First", "Second"]
     
     // MARK: - Hamburger Menu Methods
     func delay(seconds: Double, completion:@escaping ()->()) {
