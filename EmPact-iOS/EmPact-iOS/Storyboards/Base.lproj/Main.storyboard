@@ -16,7 +16,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--EmPact-->
+        <!--Language Selection View Controller-->
         <scene sceneID="qHG-Tl-TMp">
             <objects>
                 <viewController id="L3M-VF-e8P" customClass="LanguageSelectionViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,12 +24,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="JL6-Py-ksV">
-                                <rect key="frame" x="146" y="287" width="83" height="93"/>
+                            <searchBar contentMode="redraw" verticalHuggingPriority="251" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-qf-zji">
+                                <rect key="frame" x="20" y="210.5" width="335" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHh-rK-WI2">
+                                <rect key="frame" x="-2" y="116" width="379" height="16"/>
+                                <color key="backgroundColor" red="0.22352941179999999" green="0.23137254900000001" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="O8Q-km-Rcg"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search and find resources that will help ease your homeless pains..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gE-hM-I0i">
+                                <rect key="frame" x="40" y="162" width="295" height="33.5"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="landing_page_image" translatesAutoresizingMaskIntoConstraints="NO" id="8hy-oe-c9l">
+                                <rect key="frame" x="0.0" y="281.5" width="375" height="296.5"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JL6-Py-ksV">
+                                <rect key="frame" x="64" y="598" width="247" height="49"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GU-ab-k0d">
-                                        <rect key="frame" x="0.0" y="0.0" width="83" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="49"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="12" minY="10" maxX="20" maxY="10"/>
                                         <state key="normal" title="English"/>
                                         <connections>
                                             <action selector="englishButtonClicked:" destination="L3M-VF-e8P" eventType="touchUpInside" id="4mM-hV-44P"/>
@@ -37,8 +58,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyj-4M-Pmy">
-                                        <rect key="frame" x="0.0" y="52" width="83" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <rect key="frame" x="135" y="0.0" width="112" height="49"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="12" minY="10" maxX="20" maxY="10"/>
                                         <state key="normal" title="Español"/>
                                         <connections>
                                             <action selector="espanolButtonClicked:" destination="L3M-VF-e8P" eventType="touchUpInside" id="J1O-cY-wW6"/>
@@ -46,23 +68,33 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="1Ag-qf-zji">
-                                <rect key="frame" x="0.0" y="116" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1Ag-qf-zji" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" id="8Pd-7S-eGn"/>
-                            <constraint firstItem="1Ag-qf-zji" firstAttribute="top" secondItem="8AQ-Va-4rq" secondAttribute="top" id="N18-Hb-aFD"/>
+                            <constraint firstItem="8AQ-Va-4rq" firstAttribute="trailing" secondItem="1gE-hM-I0i" secondAttribute="trailing" constant="40" id="33I-3a-kJG"/>
+                            <constraint firstItem="tHh-rK-WI2" firstAttribute="leading" secondItem="vQA-Tf-rlF" secondAttribute="leading" constant="-2" id="3Kh-os-LN1"/>
+                            <constraint firstItem="1gE-hM-I0i" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" constant="40" id="BQO-5i-3yz"/>
+                            <constraint firstItem="8hy-oe-c9l" firstAttribute="top" secondItem="1Ag-qf-zji" secondAttribute="bottom" constant="15" id="BX1-n0-rAK"/>
+                            <constraint firstItem="8AQ-Va-4rq" firstAttribute="trailing" secondItem="8hy-oe-c9l" secondAttribute="trailing" id="DDB-aH-1re"/>
+                            <constraint firstItem="8hy-oe-c9l" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" id="ENd-Xk-0uQ"/>
+                            <constraint firstItem="1Ag-qf-zji" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" constant="20" id="MNy-5y-RF4"/>
+                            <constraint firstItem="tHh-rK-WI2" firstAttribute="top" secondItem="8AQ-Va-4rq" secondAttribute="top" id="N1r-Z6-2HS"/>
+                            <constraint firstItem="JL6-Py-ksV" firstAttribute="top" secondItem="8hy-oe-c9l" secondAttribute="bottom" constant="20" id="Ok7-rQ-Lp9"/>
                             <constraint firstItem="JL6-Py-ksV" firstAttribute="centerX" secondItem="vQA-Tf-rlF" secondAttribute="centerX" id="Slv-v3-CEG"/>
-                            <constraint firstItem="JL6-Py-ksV" firstAttribute="centerY" secondItem="vQA-Tf-rlF" secondAttribute="centerY" id="bGG-zo-xBn"/>
-                            <constraint firstItem="1Ag-qf-zji" firstAttribute="trailing" secondItem="8AQ-Va-4rq" secondAttribute="trailing" id="qdf-te-5VE"/>
+                            <constraint firstItem="1Ag-qf-zji" firstAttribute="top" secondItem="1gE-hM-I0i" secondAttribute="bottom" constant="15" id="VgF-kB-Da8"/>
+                            <constraint firstItem="8AQ-Va-4rq" firstAttribute="bottom" secondItem="JL6-Py-ksV" secondAttribute="bottom" constant="20" id="h7D-H1-owf"/>
+                            <constraint firstItem="1Ag-qf-zji" firstAttribute="trailing" secondItem="8AQ-Va-4rq" secondAttribute="trailing" constant="-20" id="kNL-BE-rWA"/>
+                            <constraint firstItem="1gE-hM-I0i" firstAttribute="top" secondItem="tHh-rK-WI2" secondAttribute="bottom" constant="30" id="ke1-vM-Aj9"/>
+                            <constraint firstItem="tHh-rK-WI2" firstAttribute="trailing" secondItem="vQA-Tf-rlF" secondAttribute="trailing" constant="2" id="oLG-ya-w2K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8AQ-Va-4rq"/>
                     </view>
-                    <navigationItem key="navigationItem" title="EmPact" id="kKg-Yk-sIL"/>
+                    <navigationItem key="navigationItem" id="kKg-Yk-sIL"/>
                     <connections>
+                        <outlet property="englishButton" destination="5GU-ab-k0d" id="AHZ-YC-GYp"/>
+                        <outlet property="navBarExtensionView" destination="tHh-rK-WI2" id="vT5-Zi-DIm"/>
+                        <outlet property="searchTagLineLabel" destination="1gE-hM-I0i" id="48d-Xx-Bxz"/>
+                        <outlet property="spanishButton" destination="Eyj-4M-Pmy" id="CfN-7K-pek"/>
                         <segue destination="0tP-UG-PIs" kind="show" identifier="showCategoriesSegue" id="sI5-lG-G3I"/>
                     </connections>
                 </viewController>
@@ -850,7 +882,7 @@
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clX-nS-YBC">
                                                                                             <rect key="frame" x="38" y="0.0" width="247" height="40"/>
                                                                                             <subviews>
-                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Monday - Friday 9 a.m. - 7 p.m." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaU-4h-thL" userLabel="Hours Label">
+                                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Monday - Friday 9 a.m. - 7 p.m." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaU-4h-thL" userLabel="Hours Label">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="123.5" height="40"/>
                                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                     <nil key="textColor"/>
@@ -1336,6 +1368,7 @@
         <image name="bus" width="24" height="24"/>
         <image name="clock" width="24" height="24"/>
         <image name="home" width="24" height="24"/>
+        <image name="landing_page_image" width="330" height="240"/>
         <image name="launch" width="24" height="24"/>
         <image name="near_me" width="24" height="24"/>
         <image name="phone" width="24" height="24"/>

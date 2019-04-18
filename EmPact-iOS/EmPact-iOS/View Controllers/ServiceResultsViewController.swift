@@ -121,9 +121,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
             cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
             
-            if filteredSubcategoryDetail.hours == nil {
-                cell.serviceHoursLabel.isHidden = true
-                cell.serviceHoursIcon.isHidden = true
+            if filteredSubcategoryDetail.hours == "" {
+                cell.serviceHoursLabel.text = "Please call for hours"
+                //cell.serviceHoursIcon.isHidden = true
             }
         } else {
             // Display the subcategory resources
@@ -144,8 +144,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             cell.serviceHoursLabel.text = subcategoryDetail?.hours
             
             if subcategoryDetail?.hours == nil {
-                cell.serviceHoursLabel.isHidden = true
-                cell.serviceHoursIcon.isHidden = true
+                cell.serviceHoursLabel.text = "Please call for hours"
+                //cell.serviceHoursIcon.isHidden = true
             }
         }
         return cell

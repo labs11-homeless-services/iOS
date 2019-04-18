@@ -159,6 +159,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.backgroundColor = .white
         spanishView.backgroundColor = .customDarkPurple
         spanishButton.layer.cornerRadius = 5
+        spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
         let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         spanishButton.tintColor = .customDarkPurple
