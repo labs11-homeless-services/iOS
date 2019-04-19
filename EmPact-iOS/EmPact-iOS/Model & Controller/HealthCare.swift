@@ -23,7 +23,7 @@ struct HealthCare: Decodable {
                 "clinics": clinics,
                 "emergency": emergency,
                 "hiv": hiv,
-                "mentalHealth": mentalHealth,
+                "mental health": mentalHealth,
                 "rehab": rehab,
                 "women": women]
     }

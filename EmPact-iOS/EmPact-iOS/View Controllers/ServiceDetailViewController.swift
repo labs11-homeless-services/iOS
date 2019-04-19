@@ -218,8 +218,9 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchBar.resignFirstResponder()
-        filterServiceResults()
         
+        filterServiceResults()
+
         performSegue(withIdentifier: "backToAllResultsSegue", sender: nil)
     }
     

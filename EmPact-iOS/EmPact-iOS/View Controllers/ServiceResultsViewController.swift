@@ -45,7 +45,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
-            subcategoriesTitleLabel.text = "\(selectedSubcategory.uppercased()) \(unwrappedTempCategorySelection.uppercased()) within New York City, NY"
+            subcategoriesTitleLabel.text = "\(selectedSubcategory.uppercased()) | \(unwrappedTempCategorySelection.uppercased()) within New York City, NY"
         }
     }
     

@@ -20,6 +20,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var subcategoryLabel: UILabel!
     @IBOutlet weak var categoryTitleLabel: UILabel!
     @IBOutlet weak var categoryTitleImage: UIImageView!
+    @IBOutlet weak var hamburgerSideButton: UIButton!
+    
+    @IBOutlet var hamburgerView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -57,18 +60,39 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         print(Category(rawValue: selectedCategory.lowercased()))
        
-        guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
-        if networkController?.subcategoryNames.count ?? 0 < 1 {
-            networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+        if selectedCategory.lowercased() == "health care" || selectedCategory.lowercased() == "legal administrative" || selectedCategory.lowercased() == "outreach services" {
+            
+            guard let underscoredPassedCategory = UnderscoredCategory(rawValue: selectedCategory.lowercased()) else { return }
+            networkController?.fetchSubcategoriesUnderscoredNames(underscoredPassedCategory, completion: { ([String], error) in
                 if let error = error {
-                    NSLog("Error fetching categories: \(error)")
+                    NSLog("Error fetching underscored categories: \(error)")
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-
+                    
                 }
             })
+            
+        } else {
+            guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
+            if networkController?.subcategoryNames.count ?? 0 < 1 {
+                print("selectedCategory: \(selectedCategory)")
+                print("selectedCategory lowercased: \(selectedCategory.lowercased())")
+                networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+                    if let error = error {
+                        NSLog("Error fetching categories: \(error)")
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        
+                    }
+                })
+                
+            }
         }
+
+        hamburgerSideButton.backgroundColor = UIColor.clear
+        hamburgerView.backgroundColor = UIColor.clear
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,6 +126,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
         
         networkController?.tempSubcategorySelection = subcategoryAtIndexPath
+        print("tempSubcategorySelection: \(networkController?.tempSubcategorySelection)")
         networkController?.determineSubcategoryDetailFetch()
     }
     

@@ -16,9 +16,9 @@ struct OutreachServices: Decodable {
     var _all: [IndividualResource]
     
     var outreachDictionary: [String: [IndividualResource]] {
-        return ["afterSchool": afterSchool,
-                "domesticViolence": domesticViolence,
-                "socialServices": socialServices,
+        return ["after school": afterSchool,
+                "domestic violence": domesticViolence,
+                "social services": socialServices,
                 "all": _all]
     }
     var dictionary: NSDictionary {
