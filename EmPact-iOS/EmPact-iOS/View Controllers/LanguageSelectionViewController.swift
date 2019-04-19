@@ -21,7 +21,6 @@ class LanguageSelectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupTheme()
-        
         setupViews()
         
         let logoImage = UIImage(named: "logo")
@@ -37,7 +36,6 @@ class LanguageSelectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupTheme()
-        
         setupViews()
     }
     
@@ -45,13 +43,10 @@ class LanguageSelectionViewController: UIViewController {
         
     }
     
-    
     @IBAction func espanolButtonClicked(_ sender: Any) {
         
         let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
         self.present(alert, animated: true)
     }
     
@@ -61,7 +56,6 @@ class LanguageSelectionViewController: UIViewController {
         navBarExtensionView.layer.cornerRadius = 16
         navBarExtensionView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         // .layerMaxXMinYCorner = top right
-        
     }
     
     func setupTheme() {
@@ -90,8 +84,6 @@ class LanguageSelectionViewController: UIViewController {
         spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        
-        
     }
     
 }

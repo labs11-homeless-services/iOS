@@ -12,7 +12,7 @@ enum Category: String, Decodable {
     case education
     case legal //= "legal_administrative"
     case food
-    case healthCare = "health_care"
+    case healthCare = "health care"
     case outreach //= "outreach_services"
     case hygiene
     case shelters

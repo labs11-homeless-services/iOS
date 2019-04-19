@@ -207,7 +207,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             print("User location is unavailable")
         }
         getNearestShelter()
-        //updateViews()
     }
     
     // MARK: - Shelter Nearest You Method
@@ -290,7 +289,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "searchResultsSegue" {
             let searchDestinationVC = segue.destination as! ServiceResultsViewController
             searchDestinationVC.networkController = networkController
-            
         }
         
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
