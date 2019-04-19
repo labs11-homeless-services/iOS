@@ -17,7 +17,7 @@ struct Education: Decodable {
     var educationDictionary: [String: [IndividualResource]] {
         return ["all": all,
                 "ged": ged,
-                "publicComputers": publicComputers]
+                "public computers": publicComputers]
     }
     var dictionary: NSDictionary {
         return educationDictionary as NSDictionary
