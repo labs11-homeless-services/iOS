@@ -49,11 +49,11 @@ class CategoryController {
             subcategoryIconImage = UIImage(named: "S-church")
         } else if tempSubcategoryName == "ged" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.ged.rawValue)
-        } else if tempSubcategoryName == "publicComputers" {
+        } else if tempSubcategoryName == "public computers" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.publicComputers.rawValue)
-        } else if tempSubcategoryName == "foodPantries" {
+        } else if tempSubcategoryName == "food pantries" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.foodPantries.rawValue)
-        } else if tempSubcategoryName == "foodStamps" {
+        } else if tempSubcategoryName == "food stamps" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.foodStamps.rawValue)
         } else if tempSubcategoryName == "clinics" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.clinics.rawValue)
@@ -61,7 +61,7 @@ class CategoryController {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.emergency.rawValue)
         } else if tempSubcategoryName == "hiv" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.hiv.rawValue)
-        } else if tempSubcategoryName == "mentalHealth" {
+        } else if tempSubcategoryName == "mental health" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.mentalHealth.rawValue)
         } else if tempSubcategoryName == "rehab" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.rehab.rawValue)
@@ -71,11 +71,11 @@ class CategoryController {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.showers.rawValue)
         } else if tempSubcategoryName == "benefits" {
             subcategoryIconImage = UIImage(named: "C-jobs")
-        } else if tempSubcategoryName == "afterSchool" {
+        } else if tempSubcategoryName == "after school" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.afterSchool.rawValue)
-        } else if tempSubcategoryName == "domesticViolence" {
-            subcategoryIconImage = UIImage(named: "S-abuse")
-        } else if tempSubcategoryName == "socialServices" {
+        } else if tempSubcategoryName == "domestic violence" {
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.domesticViolence.rawValue)
+        } else if tempSubcategoryName == "social services" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.socialServices.rawValue)
         }
     }

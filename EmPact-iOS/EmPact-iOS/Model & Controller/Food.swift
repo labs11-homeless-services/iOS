@@ -16,8 +16,8 @@ struct Food: Decodable {
     
     var foodDictionary: [String: [IndividualResource]] {
         return ["all": all,
-                "foodPantries": foodPantries,
-                "foodStamps": foodStamps]
+                "food pantries": foodPantries,
+                "food stamps": foodStamps]
     }
     var dictionary: NSDictionary {
         return foodDictionary as NSDictionary
