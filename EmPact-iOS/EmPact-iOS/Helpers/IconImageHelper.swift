@@ -37,6 +37,6 @@ enum SubcategoryIconImages: String {
     case showers = "S-shower"
     case benefits
     case afterSchool = "S-after_school"
-    case domesticViolence
+    case domesticViolence = "S-abuse"
     case socialServices = "S-social_service"
 }

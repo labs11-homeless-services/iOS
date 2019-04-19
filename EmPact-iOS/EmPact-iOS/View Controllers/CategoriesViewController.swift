@@ -165,7 +165,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let categoryAtIndexPath = networkController.categoryNames[indexPath.row]
+        
+        print("categoryAtIndexPath: \(categoryAtIndexPath)")
         networkController.tempCategorySelection = categoryAtIndexPath
+        
+        print("networkController.tempCategorySelection: \(networkController.tempCategorySelection)")
+        print("networkController.categoryNames: \(networkController.categoryNames)")
 
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
@@ -411,7 +416,7 @@ extension CategoriesViewController : MenuActionDelegate {
     }
     
     func reopenMenu(){
-        performSegue(withIdentifier: "showResultsTableVC", sender: nil)
+        performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
         
     }
 }

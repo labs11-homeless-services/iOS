@@ -66,6 +66,9 @@ class LanguageSelectionViewController: UIViewController {
         
         searchTagLineLabel.textColor = .customDarkPurple
         
+        self.navigationController?.navigationBar.layer.cornerRadius = 16
+        self.navigationController?.navigationBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
         let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         englishButton.setTitle("English  ", for: .normal)
         englishButton.backgroundColor = .customDarkPurple
@@ -87,3 +90,5 @@ class LanguageSelectionViewController: UIViewController {
     }
     
 }
+
+
