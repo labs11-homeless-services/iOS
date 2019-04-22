@@ -38,6 +38,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         self.hideKeyboard()
         
+        networkController?.subcategoryDetails = []
+        
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.barTintColor = nil
@@ -72,6 +74,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.text = ""
         
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
+        print("unwrappedSubcategoryAtIndexPath: \(unwrappedSubcategoryAtIndexPath)")
         if (networkController?.subcategoryDetails.count ?? 0) < 1 {
             networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
                 if let error = error {
@@ -90,9 +93,10 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         if searchBarIsEmpty() == false {
             return matchingObjects?.count ?? 0
-            //return NetworkController.filteredObjects.count
+        } else {
+            return networkController?.subcategoryDetails.count ?? 0
         }
-        return networkController?.subcategoryDetails.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,7 +131,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         // Display the search results
         if searchBarIsEmpty() == false {
             guard let filteredSubcategoryDetail = matchingObjects?[indexPath.row] else { return cell }
-            //let filteredSubcategoryDetail = NetworkController.filteredObjects[indexPath.row]
             
             // Name
             cell.serviceNameLabel.text = filteredSubcategoryDetail.name
@@ -229,15 +232,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
             self.networkController?.searchTerm = searchTerm
             
-            //NetworkController.filteredObjects = []
-            
             // Filter through array to see if keywords contain the text entered by user
             let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
             
+            // Set the value of matchingObjects to the results of the filter
             self.matchingObjects = matchingObjects
-            
-            // Set the value of filteredObjects to the results of the filter
-            //NetworkController.filteredObjects = matchingObjects
+
             self.tableView.reloadData()
         }
     }
