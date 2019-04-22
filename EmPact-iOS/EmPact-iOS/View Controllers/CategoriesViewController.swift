@@ -195,7 +195,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        searchBar.resignFirstResponder()
     }
     
     func filterServiceResults() {

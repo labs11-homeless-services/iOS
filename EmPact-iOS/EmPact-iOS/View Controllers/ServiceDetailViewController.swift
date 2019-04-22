@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
@@ -64,6 +64,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         super.viewDidLoad()
         
         mapView.delegate = self
+        searchBar.delegate = self
         
         self.title = serviceDetail?.name
         
@@ -250,7 +251,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        searchBar.resignFirstResponder()
     }
     
     func filterServiceResults() {
@@ -258,6 +259,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
             return
         }
+        
+        networkController?.searchTerm = searchTerm
         
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
@@ -318,6 +321,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             DispatchQueue.main.async {
                 self.updateViews()
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToAllResultsSegue" {
+            let destination = segue.destination as! ServiceResultsViewController
+            destination.networkController = networkController
         }
     }
     

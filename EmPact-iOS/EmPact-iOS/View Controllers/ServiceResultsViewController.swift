@@ -47,9 +47,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.dataSource = self
         searchBar.delegate = self
         
-        if networkController?.tempCategorySelection == "" {
+        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
             self.title = "Search Results"
             guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+        } else if selectedSubcategory == "" || selectedSubcategory == nil {
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            self.title = "Search Results"
             subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
@@ -116,43 +120,57 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         // Display the search results
         if searchBarIsEmpty() == false {
             let filteredSubcategoryDetail = NetworkController.filteredObjects[indexPath.row]
-            cell.serviceNameLabel.text = filteredSubcategoryDetail.name
-            cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
             
+            // Name
+            cell.serviceNameLabel.text = filteredSubcategoryDetail.name
+            
+            // Address
+            cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
+            if filteredSubcategoryDetail.address == nil || filteredSubcategoryDetail.address == "" {
+                cell.serviceAddressLabel.text = "Address unavailable"
+            }
+            
+            // Phone
             if let phoneJSON = filteredSubcategoryDetail.phone {
                 cell.servicePhoneLabel.text = phoneJSON as? String
             }
-            
             if filteredSubcategoryDetail.phone == nil || filteredSubcategoryDetail.phone as? String == "" {
                 cell.servicePhoneLabel.text = "Phone number unavailable"
             }
             
+            // Hours
             cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
-            
-            if filteredSubcategoryDetail.hours == "" {
+            if filteredSubcategoryDetail.hours == nil || filteredSubcategoryDetail.hours == "" {
                 cell.serviceHoursLabel.text = "Please call for hours"
-                //cell.serviceHoursIcon.isHidden = true
             }
-        } else {
-            // Display the subcategory resources
-            let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
-            cell.serviceNameLabel.text = subcategoryDetail?.name
-            cell.serviceAddressLabel.text = subcategoryDetail?.address
             
+        // Display the subcategory resources
+        } else {
+            
+            let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
+            
+            // Name
+            cell.serviceNameLabel.text = subcategoryDetail?.name
+            
+            // Address
+            cell.serviceAddressLabel.text = subcategoryDetail?.address
+            if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
+                cell.serviceAddressLabel.text = "Address unavailable"
+            }
+            
+            // Phone
             if let phoneJSON = subcategoryDetail?.phone {
                 cell.servicePhoneLabel.text = phoneJSON as? String
             }
-            
             if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
                 cell.servicePhoneLabel.text = "Phone number unavailable"
             }
             
-            // Either hide labels or write "Unavailable"
+            // Hours
             cell.serviceHoursLabel.text = subcategoryDetail?.hours
             
-            if subcategoryDetail?.hours == nil {
+            if subcategoryDetail?.hours == nil || subcategoryDetail?.hours == "" {
                 cell.serviceHoursLabel.text = "Please call for hours"
-                //cell.serviceHoursIcon.isHidden = true
             }
         }
         return cell
