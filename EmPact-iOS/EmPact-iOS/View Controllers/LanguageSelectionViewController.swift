@@ -52,6 +52,8 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         
+        searchBar.text = ""
+        
         setupTheme()
         
         setupViews()

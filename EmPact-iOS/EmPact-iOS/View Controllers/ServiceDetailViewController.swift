@@ -63,6 +63,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboard()
+        
         mapView.delegate = self
         searchBar.delegate = self
         
@@ -101,6 +103,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        searchBar.text = ""
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self

@@ -34,6 +34,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboard()
+        
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.barTintColor = nil
@@ -64,6 +66,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        searchBar.text = ""
         
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
         if (networkController?.subcategoryDetails.count ?? 0) < 1 {

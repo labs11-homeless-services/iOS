@@ -70,6 +70,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboard()
+        
         networkController?.subcategoryNames = []
         
         // Set Delegate & DataSource
@@ -89,6 +91,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        collectionViewSearchBar.text = ""
         
         networkController?.subcategoryNames = []
         
@@ -432,5 +436,7 @@ extension CategoriesViewController : MenuActionDelegate {
         
     }
 }
+
+
 
 
