@@ -128,12 +128,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
         
-//        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit")
-//        
-//        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
-//            
-//            UIApplication.shared.open(url, options: [:])
-//        }
+        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(nearestShelter?.latitude!),\(nearestShelter?.longitude!)&travelmode=transit")
+        
+        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(nearestShelter!.latitude!),\(nearestShelter!.longitude!)&travelmode=transit") {
+            
+            UIApplication.shared.open(url, options: [:])
+        }
     }
     @IBAction func viewDetailsClicked(_ sender: Any) {
         performSegue(withIdentifier: "shelterNearestYouSegue", sender: nil)
@@ -286,6 +286,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         shelterNameLabel.text = nearestShelter?.name
         shelterAddressLabel.text = nearestShelter?.address
         shelterHoursLabel.text = nearestShelter?.hours
+        shelterHoursLabel.adjustsFontSizeToFitWidth = true
         if nearestShelter?.hours == nil {
             shelterHoursLabel.text = "Please call for hours"
         }
@@ -322,6 +323,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
             destination.selectedCategory = networkController?.tempCategorySelection
+        }
+        
+        if segue.identifier == "shelterNearestYouSegue" {
+            let destination = segue.destination as! ServiceDetailViewController
+            destination.networkController = networkController
+            destination.serviceDetail = nearestShelter
+            destination.serviceDistance = self.serviceDistance
+            destination.serviceTravelDuration = self.serviceTravelDuration
         }
     }
     

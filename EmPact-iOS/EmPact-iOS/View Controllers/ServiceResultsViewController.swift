@@ -31,6 +31,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
+    var matchingObjects: [IndividualResource]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,7 +89,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchBarIsEmpty() == false {
-            return NetworkController.filteredObjects.count
+            return matchingObjects?.count ?? 0
+            //return NetworkController.filteredObjects.count
         }
         return networkController?.subcategoryDetails.count ?? 0
     }
@@ -123,7 +126,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         // Display the search results
         if searchBarIsEmpty() == false {
-            let filteredSubcategoryDetail = NetworkController.filteredObjects[indexPath.row]
+            guard let filteredSubcategoryDetail = matchingObjects?[indexPath.row] else { return cell }
+            //let filteredSubcategoryDetail = NetworkController.filteredObjects[indexPath.row]
             
             // Name
             cell.serviceNameLabel.text = filteredSubcategoryDetail.name
@@ -198,10 +202,18 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         filterServiceResults()
         
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.title = "Search Results"
+            guard let unwrappedSearchTerm = self.networkController?.searchTerm else { return }
+            self.subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+            
+            self.tableView.reloadData()
+        }
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        //networkController?.subcategoryDetails = []
         tableView.reloadData()
     }
     
@@ -210,15 +222,22 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         DispatchQueue.main.async {
             guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
                 // If no search term, display all of the search results
-                NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
+                //matchingObjects = self.networkController?.subcategoryDetails
+                //NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
                 return
             }
+            
+            self.networkController?.searchTerm = searchTerm
+            
+            //NetworkController.filteredObjects = []
             
             // Filter through array to see if keywords contain the text entered by user
             let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
             
+            self.matchingObjects = matchingObjects
+            
             // Set the value of filteredObjects to the results of the filter
-            NetworkController.filteredObjects = matchingObjects
+            //NetworkController.filteredObjects = matchingObjects
             self.tableView.reloadData()
         }
     }

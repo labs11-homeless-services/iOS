@@ -92,7 +92,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
-            marker.title = serviceDetail?.address
+            marker.title = serviceDetail?.name
             marker.map = mapView
             
             mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
@@ -117,11 +117,15 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     func updateViews() {
         
         serviceDetailNameLabel.text = serviceDetail?.name
-        serviceDetailAddressLabel.text = serviceDetail?.address
+        
+        if serviceDetail?.address == nil {
+            serviceDetailAddressLabel.text = "Address unavailable"
+        } else {
+            serviceDetailAddressLabel.text = serviceDetail?.address
+        }
         
         if serviceDetail?.phone == nil {
-            serviceDetailPhoneLabel.text = ""
-            phoneIconImageView.tintColor = .white
+            serviceDetailPhoneLabel.text = "Phone number unavailable"
         } else {
             if let phoneJSON = serviceDetail?.phone {
                 serviceDetailPhoneLabel.text = phoneJSON as? String
@@ -130,8 +134,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
 
         if serviceDetail?.hours == nil {
-            serviceDetailHoursLabel.text = ""
-            hoursIconImageView.tintColor = .white
+            serviceDetailHoursLabel.text = "Please call for hours"
         } else {
            serviceDetailHoursLabel.text = serviceDetail?.hours
         }
@@ -143,13 +146,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailWalkTimeLabel.text = unwrappedDuration
         
         if serviceDistance == nil {
-            serviceDetailDistanceLabel.text = ""
-            transitIconImageView.tintColor = .white
+            serviceDetailDistanceLabel.text = "Unavailable"
         }
         
         if serviceTravelDuration == nil {
-            serviceDetailWalkTimeLabel.text = ""
-            walkIconImageView.tintColor = .white
+            serviceDetailWalkTimeLabel.text = "Unavailable"
         }
         
         // Services Tab Info
