@@ -34,6 +34,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.barTintColor = nil
+        
+        // Set navigation bar to the default color
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        
         setupTheme()
 
         self.tableView.delegate = self
@@ -42,6 +49,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         if networkController?.tempCategorySelection == "" {
             self.title = "Search Results"
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
@@ -115,8 +124,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             if filteredSubcategoryDetail.phone == nil || filteredSubcategoryDetail.phone as? String == "" {
-                cell.servicePhoneLabel.isHidden = true
-                cell.servicePhoneIcon.isHidden = true
+                cell.servicePhoneLabel.text = "Phone number unavailable"
             }
             
             cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
@@ -136,8 +144,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
-                cell.servicePhoneLabel.isHidden = true
-                cell.servicePhoneIcon.isHidden = true
+                cell.servicePhoneLabel.text = "Phone number unavailable"
             }
             
             // Either hide labels or write "Unavailable"
@@ -186,7 +193,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             // Filter through array to see if keywords contain the text entered by user
-            var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+            let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
             
             // Set the value of filteredObjects to the results of the filter
             NetworkController.filteredObjects = matchingObjects
