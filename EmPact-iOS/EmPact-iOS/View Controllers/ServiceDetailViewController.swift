@@ -149,14 +149,34 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
-        if let servicesJSON = serviceDetail?.services {
-            serviesInfoTextView.text = servicesJSON as? String
-        }
+        serviesInfoTextView.text =
+        """
+        Social Services
+        Housing
+        Medical
+        Respite Bed Program
+        Community Groups
+        """
+            
+            
+            
+//        if let servicesJSON = serviceDetail?.services {
+//            serviesInfoTextView.text = servicesJSON as? String
+//        }
         
+        
+        // Details Tab Info
         detailsNameLabel.text = serviceDetail?.name
-        if let detailsJSON = serviceDetail?.details {
-            detailsTextView.text =  detailsJSON as? String
-        }
+        detailsTextView.text =
+        """
+        Valid ID required
+        Please call ahead
+        Pets not allowed
+        """
+        
+//        if let detailsJSON = serviceDetail?.details {
+//            detailsTextView.text = detailsJSON as? String
+//        }
     }
     
     // MARK: - Segmented Control Actions
@@ -239,7 +259,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             return
         }
         
-        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
         networkController?.subcategoryDetails = matchingObjects
     }

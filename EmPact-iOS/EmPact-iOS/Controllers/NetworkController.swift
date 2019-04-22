@@ -12,6 +12,8 @@ class NetworkController {
     
     // MARK: - Properties
     
+    var searchTerm = ""
+    
     var tempSubcategorySelection = ""
     var subcategoryAtIndexPath: Subcategory!
     

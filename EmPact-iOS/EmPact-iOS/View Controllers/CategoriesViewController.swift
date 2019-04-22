@@ -51,7 +51,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var hoursImageView: UIImageView!
     
     let categoryController = CategoryController()
-    let networkController = NetworkController()
+    var networkController: NetworkController?
     let cacheController = CacheController()
     
     var serviceCoordinates: CLLocationCoordinate2D?
@@ -70,10 +70,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        networkController?.subcategoryNames = []
+        
         // Set Delegate & DataSource
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
+        
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.barTintColor = nil
         
         setupTheme()
         
@@ -84,6 +90,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        networkController?.subcategoryNames = []
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -91,7 +99,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             locationManager.startUpdatingLocation()
         }
         
-        networkController.fetchCategoryNames { (error) in
+        networkController?.fetchCategoryNames { (error) in
             
             if let error = error {
                 NSLog("Error fetching categories: \(error)")
@@ -129,17 +137,18 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-        //dismiss(animated: true, completion: nil)
+        
+        //performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return networkController.categoryNames.count
+        return networkController?.categoryNames.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
-        let category = networkController.categoryNames[indexPath.row]
+        guard let category = networkController?.categoryNames[indexPath.row] else { return cell}
         cell.categoryNameLabel.text = category.uppercased()
         
         categoryController.getIconImage(from: category)
@@ -164,13 +173,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let categoryAtIndexPath = networkController.categoryNames[indexPath.row]
+        guard let categoryAtIndexPath = networkController?.categoryNames[indexPath.row] else { return }
         
         print("categoryAtIndexPath: \(categoryAtIndexPath)")
-        networkController.tempCategorySelection = categoryAtIndexPath
+        networkController?.tempCategorySelection = categoryAtIndexPath
         
-        print("networkController.tempCategorySelection: \(networkController.tempCategorySelection)")
-        print("networkController.categoryNames: \(networkController.categoryNames)")
+        print("networkController.tempCategorySelection: \(networkController?.tempCategorySelection)")
+        print("networkController.categoryNames: \(networkController?.categoryNames)")
 
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
@@ -196,9 +205,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
-        let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
-        networkController.subcategoryDetails = matchingObjects
+        networkController?.subcategoryDetails = matchingObjects
     }
 
     // MARK: - Shelter Nearest User Location
@@ -212,6 +221,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             print("User location is unavailable")
         }
         getNearestShelter()
+        //updateViews()
     }
     
     // MARK: - Shelter Nearest You Method
@@ -256,7 +266,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             
             let fetchedShelter = self.googleMapsController.serviceAddresses[ shelterIndex ]
             var splitAddress = fetchedShelter.split(separator: " ")
-            let addressNumber = splitAddress[0]
+            var addressNumber = splitAddress[0]
             
             for eachShelter in NetworkController.allShelterObjects {
                 
@@ -273,13 +283,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         shelterAddressLabel.text = nearestShelter?.address
         shelterHoursLabel.text = nearestShelter?.hours
         if nearestShelter?.hours == nil {
-            hoursImageView.tintColor = .white
+            shelterHoursLabel.text = "Please call for hours"
         }
         
         if let phoneJSON = nearestShelter?.phone {
             shelterPhoneLabel.text = phoneJSON as? String
         } else if nearestShelter?.phone == nil {
-            phoneImageView.tintColor = .white
+            shelterPhoneLabel.text = "Phone number unavailable"
         }
         
         guard let unwrappedDistance = serviceDistance,
@@ -294,6 +304,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "searchResultsSegue" {
             let searchDestinationVC = segue.destination as! ServiceResultsViewController
             searchDestinationVC.networkController = networkController
+            
         }
         
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
@@ -306,7 +317,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             let destination = segue.destination as! SubcategoriesViewController
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
-            destination.selectedCategory = networkController.tempCategorySelection
+            destination.selectedCategory = networkController?.tempCategorySelection
         }
     }
     
@@ -314,6 +325,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func setupTheme() {
         
+        // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         

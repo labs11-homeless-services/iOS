@@ -13,6 +13,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var spanishView: UIView!
     @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var closeLabel: UILabel!
     @IBOutlet weak var spanishButton: UIButton!
     
     @IBOutlet weak var topView: UIView!
@@ -41,6 +42,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         setupTheme()
+        
+        
         
         categoryTitleLabel.text = selectedCategory
         
@@ -157,6 +160,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: - Hamburger Menu Actions
     @IBAction func closeMenu(_ sender: Any) {
+        networkController?.subcategoryNames = []
         dismiss(animated: true, completion: nil)
         networkController?.subcategoryNames = []
     }
@@ -200,11 +204,12 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.setImage(tapColoredIcon, for: .normal)
         
         // Home Button
-        homeButton.setTitle("HOME", for: .normal)
-        homeButton.setTitleColor(.customDarkPurple, for: .normal)
-        homeButton.backgroundColor = .white
+//        homeButton.setTitle("HOME", for: .normal)
+//        homeButton.setTitleColor(.customDarkPurple, for: .normal)
+//        homeButton.backgroundColor = .white
         
         let homeColoredIcon = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+
         homeButton.tintColor = .customDarkPurple
         homeButton.setImage(homeColoredIcon, for: .normal)
         
@@ -216,6 +221,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         let closeColoredIcon = UIImage(named: "Sharp")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         closeButton.tintColor = .white
         closeButton.setImage(closeColoredIcon, for: .normal)
+        
+        closeLabel.backgroundColor = .customDarkPurple
+        closeLabel.textColor = .white
         
         // Top Bar
         topView.backgroundColor = UIColor.customDarkPurple
