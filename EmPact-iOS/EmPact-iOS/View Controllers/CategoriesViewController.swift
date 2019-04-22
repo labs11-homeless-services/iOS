@@ -196,7 +196,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
-        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
+        let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) })
         
         networkController.subcategoryDetails = matchingObjects
     }
@@ -256,7 +256,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             
             let fetchedShelter = self.googleMapsController.serviceAddresses[ shelterIndex ]
             var splitAddress = fetchedShelter.split(separator: " ")
-            var addressNumber = splitAddress[0]
+            let addressNumber = splitAddress[0]
             
             for eachShelter in NetworkController.allShelterObjects {
                 

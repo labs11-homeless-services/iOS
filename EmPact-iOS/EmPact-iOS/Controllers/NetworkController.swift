@@ -251,8 +251,8 @@ class NetworkController {
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
-        var underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
-        var underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
+        let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
+        let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
         
         //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
         let requestURL = NetworkController.baseURL

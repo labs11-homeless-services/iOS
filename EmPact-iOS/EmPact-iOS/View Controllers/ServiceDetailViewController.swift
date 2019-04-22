@@ -149,9 +149,14 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
-        serviesInfoTextView.text = """
-        GED Prep Courses
-        """
+        if let servicesJSON = serviceDetail?.services {
+            serviesInfoTextView.text = servicesJSON as? String
+        }
+        
+        detailsNameLabel.text = serviceDetail?.name
+        if let detailsJSON = serviceDetail?.details {
+            detailsTextView.text =  detailsJSON as? String
+        }
     }
     
     // MARK: - Segmented Control Actions
