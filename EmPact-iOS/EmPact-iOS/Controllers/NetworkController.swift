@@ -80,8 +80,6 @@ class NetworkController {
             .appendingPathComponent("\(category.rawValue)")
             .appendingPathExtension("json")
         
-        print(requestURL)
-        
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
                 NSLog("error fetching tasks: \(error)")
@@ -103,7 +101,6 @@ class NetworkController {
 //                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
 //                    for decodedResponseDictionary in decodedResponse.dictionary {
 //                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-//                        print(decodedResponseDictionary.key)
 //                    }
 //                }
                 
@@ -133,7 +130,6 @@ class NetworkController {
 //                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
 //                    for decodedResponseDictionary in decodedResponse.dictionary {
 //                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-//                        print(decodedResponseDictionary.key)
 //
 //                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
 //                    }
@@ -155,7 +151,6 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        //print(decodedResponseDictionary.key)
                     }
                     
                 case .jobs:
@@ -190,8 +185,6 @@ class NetworkController {
             .appendingPathComponent("\(newCategoryName)")
             .appendingPathExtension("json")
         
-        print(requestURL)
-        
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
                 NSLog("error fetching tasks: \(error)")
@@ -213,7 +206,6 @@ class NetworkController {
 //                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
 //                    for decodedResponseDictionary in decodedResponse.dictionary {
 //                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-//                        print(decodedResponseDictionary.key)
 //                    }
 //                }
                 

@@ -348,7 +348,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         viewDetailsButton.setTitle("  VIEW DETAILS", for: .normal)
         viewDetailsButton.setTitleColor(.white, for: .normal)
-        viewDetailsButton.titleLabel?.font = Appearance.boldFont
+        //viewDetailsButton.titleLabel?.font = Appearance.boldFont
         viewDetailsButton.backgroundColor = .customDarkPurple
         viewDetailsButton.layer.cornerRadius = 5
         

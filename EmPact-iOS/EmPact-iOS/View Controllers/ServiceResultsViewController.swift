@@ -23,7 +23,11 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         networkController?.subcategoryDetails = []
         networkController?.tempCategorySelection = ""
         selectedSubcategory = ""
-        performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        
+        if segue.identifier == "unwindToSubcategoriesVC" {
+            networkController?.subcategoryDetails = []
+            performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        }
     }
     
     var selectedSubcategory: String!
@@ -157,6 +161,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                 //cell.serviceHoursIcon.isHidden = true
             }
         }
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
@@ -211,6 +216,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "backToCategories" {
+            networkController?.subcategoryDetails = []
+            let destination = segue.destination as! CategoriesViewController
+            //performSegue(withIdentifier: "backToCategories", sender: self)
+        }
         
         // Get the new view controller using segue.destination.
         guard let destination = segue.destination as? ServiceDetailViewController,
