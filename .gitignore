@@ -2,6 +2,8 @@
 .xcuserdatad
 .DS_Store
 
+Constants.swift
+
 *.xcuserstate
 *.xcuserdatad
 *.DS_Store
