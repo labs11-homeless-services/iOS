@@ -23,7 +23,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         networkController?.subcategoryDetails = []
         networkController?.tempCategorySelection = ""
         selectedSubcategory = ""
-        performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        
+        // If statement accounts for if hamburger menu was skipped over
+        if segue.identifier == "unwindToSubcategoriesVC" {
+            performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        }
+        
     }
     
     var selectedSubcategory: String!

@@ -49,10 +49,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         setupTheme()
-<<<<<<< HEAD
-
-        categoryTitleLabel.text = selectedCategory
-=======
         
         if selectedCategory == "Outreach Services" {
             categoryTitleLabel.text = "OUTREACH"
@@ -63,7 +59,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         }
 
         categoryTitleLabel.adjustsFontSizeToFitWidth = true
->>>>>>> master
         
         categoryController.getIconImage(from: selectedCategory)
         categoryTitleImage.image = categoryController.iconImage
