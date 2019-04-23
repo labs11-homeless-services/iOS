@@ -11,9 +11,9 @@ import UIKit
 class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchBarView: UIView!
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var subcategoriesTitleLabel: UILabel!
     @IBOutlet weak var subcategoriesTitleView: UIView!
     @IBOutlet weak var viewDetailsButton: UIButton!
@@ -127,6 +127,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         cell.viewDetailsButton.setImage(launchColoredIcon, for: .normal)
         
         cell.viewDetailsButton.layer.cornerRadius = 5
+        cell.resultsView.layer.borderColor = UIColor.lightGray.cgColor
+        cell.resultsView.layer.borderWidth = 0.5
         
         // Display the search results
         if searchBarIsEmpty() == false {
@@ -286,5 +288,10 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
-
+    
 }
+
+
+
+
+
