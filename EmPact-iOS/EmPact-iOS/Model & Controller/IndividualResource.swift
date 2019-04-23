@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class IndividualResource: Decodable {
     
     enum IndividualResourceCodingKeys: String, CodingKey {

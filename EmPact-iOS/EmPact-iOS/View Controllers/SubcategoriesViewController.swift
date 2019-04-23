@@ -44,9 +44,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         setupTheme()
-        
-        
-        
+
         categoryTitleLabel.text = selectedCategory
         
         categoryController.getIconImage(from: selectedCategory)

@@ -20,7 +20,6 @@
 		11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7B225D04620064EFB5 /* PresentMenuAnimator.swift */; };
 		11D79C80225D04630064EFB5 /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7C225D04620064EFB5 /* MenuHelper.swift */; };
 		11D79C81225D04630064EFB5 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D79C7D225D04630064EFB5 /* Interactor.swift */; };
-		8428C5FA225D5DFD0036B295 /* ShelterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */; };
 		842DE2032252C4D200BBE2FB /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2022252C4D100BBE2FB /* Education.swift */; };
 		842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */; };
 		842DE2072252CEBF00BBE2FB /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE2062252CEBF00BBE2FB /* Food.swift */; };
@@ -84,7 +83,6 @@
 		11D79C7D225D04630064EFB5 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmPact_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAC893F8D7D615995098A1B /* Pods-EmPact-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.release.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelterDetails.swift; sourceTree = "<group>"; };
 		842DE2022252C4D100BBE2FB /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		842DE2042252CE2900BBE2FB /* LegalAdministrative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalAdministrative.swift; sourceTree = "<group>"; };
 		842DE2062252CEBF00BBE2FB /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
 				84B3A4AF2260078300F06DC4 /* GoogleDistance.swift */,
-				8428C5F9225D5DFD0036B295 /* ShelterDetails.swift */,
 			);
 			path = "Model & Controller";
 			sourceTree = "<group>";
@@ -490,7 +487,6 @@
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				84B3A4B222652E2A00F06DC4 /* CacheController.swift in Sources */,
-				8428C5FA225D5DFD0036B295 /* ShelterDetails.swift in Sources */,
 				842DE2092252CF0100BBE2FB /* HealthCare.swift in Sources */,
 				84B3A4DD2267882200F06DC4 /* Border.swift in Sources */,
 				847A7ED72255754E00A62A5F /* SubcategoriesViewController.swift in Sources */,

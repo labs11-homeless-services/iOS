@@ -211,6 +211,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
+//        var matchingObjects = NetworkController.filteredObjects.filter {(individualResource: IndividualResource) -> Bool in
+//            return individualResource.keywords.contains(searchTerm.lowercased()) || individualResource.name.contains(searchTerm.lowercased())
+//        }
+
+        
         networkController?.subcategoryDetails = matchingObjects
     }
 
