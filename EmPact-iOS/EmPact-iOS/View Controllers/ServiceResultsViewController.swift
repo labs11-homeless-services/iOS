@@ -26,7 +26,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         // If statement accounts for if hamburger menu was skipped over
         if segue.identifier == "unwindToSubcategoriesVC" {
+            networkController?.subcategoryDetails = []
             performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        }
+        
+        if segue.identifier == "landingToServiceResultsSegue" {
+            networkController?.subcategoryDetails = []
+            performSegue(withIdentifier: "landingToServiceResultsSegue", sender: self)
         }
         
     }
@@ -43,7 +49,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         self.hideKeyboard()
         
-        networkController?.subcategoryDetails = []
+        //networkController?.subcategoryDetails = []
         
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
@@ -77,6 +83,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         searchBar.text = ""
+        
+        //networkController?.subcategoryDetails = []
         
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
         print("unwrappedSubcategoryAtIndexPath: \(unwrappedSubcategoryAtIndexPath)")
@@ -136,7 +144,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         cell.resultsView.layer.borderWidth = 0.5
         
         // Display the search results
-        if searchBarIsEmpty() == false {
+        //if searchBarIsEmpty() == false {
+        if matchingObjects != nil {
             guard let filteredSubcategoryDetail = matchingObjects?[indexPath.row] else { return cell }
             
             // Name
@@ -210,6 +219,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
+        networkController?.subcategoryDetails = []
+        matchingObjects = []
+        
         filterServiceResults()
         
         DispatchQueue.main.async {
@@ -263,8 +275,10 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             let indexPath = tableView.indexPathForSelectedRow else { return }
         
         // Pass the search results array
-        if searchBarIsEmpty() == false {
-            let serviceDetail = NetworkController.filteredObjects[indexPath.row]
+        //if searchBarIsEmpty() == false {
+        if matchingObjects != nil {
+            //let serviceDetail = NetworkController.filteredObjects[indexPath.row]
+            let serviceDetail = matchingObjects?[indexPath.row]
             destination.serviceDetail = serviceDetail
             destination.googleMapsController = googleMapsController
             destination.networkController = networkController
