@@ -31,9 +31,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-    
-    }
+//    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
+//    
+//    }
     
     @IBAction func homeButton(_ sender: Any) {
     }
@@ -142,6 +142,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         networkController?.tempSubcategorySelection = subcategoryAtIndexPath
         print("tempSubcategorySelection: \(networkController?.tempSubcategorySelection)")
         networkController?.determineSubcategoryDetailFetch()
+        
+        networkController?.subcategoryDetails = []
     }
     
     // MARK: - Navigation
