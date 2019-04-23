@@ -164,32 +164,27 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
 
         if let servicesJSON = serviceDetail?.services {
             if let arrayJSON = servicesJSON as? [String] {
-                var newString = ""
-                var newArray: [String] = []
-                for eachString in arrayJSON {
-                    newString = "- \(eachString)"
-                    newArray.append(newString)
-                }
-                
-                
-                let stringOfServices = newArray.joined(separator: "\n")
-                serviesInfoTextView.text = stringOfServices
+                var bulletedArray = arrayJSON.map { "- \($0)" }
+
+                let stringOfServices = bulletedArray.joined(separator: "\n")
+                serviesInfoTextView.text = stringOfServices.capitalized
+            } else if let stringJSON = servicesJSON as? String {
+                serviesInfoTextView.text = stringJSON
             }
-            //serviesInfoTextView.text = servicesJSON as? [String]
         }
-        
         
         // Details Tab Info
         detailsNameLabel.text = serviceDetail?.name
-//        detailsTextView.text =
-//        """
-//        Valid ID required
-//        Please call ahead
-//        Pets not allowed
-//        """
         
         if let detailsJSON = serviceDetail?.details {
-            detailsTextView.text = detailsJSON as? String
+            if let arrayJSON = detailsJSON as? [String] {
+                var bulletedArray = arrayJSON.map { "- \($0)" }
+                
+                let stringOfDetails = bulletedArray.joined(separator: "\n")
+                detailsTextView.text = stringOfDetails.capitalized
+            } else if let stringJSON = detailsJSON as? String {
+                detailsTextView.text = stringJSON
+            }
         }
         
         // Adjustable Font sizes
