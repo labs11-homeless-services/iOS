@@ -23,6 +23,8 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboard()
+        
         // Set Delegate
         searchBar.delegate = self
         
@@ -49,6 +51,8 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
+        
+        searchBar.text = ""
         
         setupTheme()
         
@@ -93,6 +97,10 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         }
         
         networkController.searchTerm = searchTerm
+        
+//        let matchingObjects = NetworkController.filteredObjects.filter {(individualResource: IndividualResource) -> Bool in
+//            return individualResource.keywords.contains(searchTerm.lowercased()) || individualResource.name.contains(searchTerm.lowercased())
+//        }
         
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
@@ -151,6 +159,19 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         
     }
     
+}
+
+extension UIViewController {
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 

@@ -23,7 +23,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         networkController?.subcategoryDetails = []
         networkController?.tempCategorySelection = ""
         selectedSubcategory = ""
-        performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        
+        // If statement accounts for if hamburger menu was skipped over
+        if segue.identifier == "unwindToSubcategoriesVC" {
+            performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+        }
+        
     }
     
     var selectedSubcategory: String!
@@ -31,8 +36,14 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
+    var matchingObjects: [IndividualResource]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideKeyboard()
+        
+        networkController?.subcategoryDetails = []
         
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
@@ -47,9 +58,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.dataSource = self
         searchBar.delegate = self
         
-        if networkController?.tempCategorySelection == "" {
+        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
             self.title = "Search Results"
             guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+        } else if selectedSubcategory == "" || selectedSubcategory == nil {
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            self.title = "Search Results"
             subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
@@ -61,7 +76,10 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        searchBar.text = ""
+        
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
+        print("unwrappedSubcategoryAtIndexPath: \(unwrappedSubcategoryAtIndexPath)")
         if (networkController?.subcategoryDetails.count ?? 0) < 1 {
             networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
                 if let error = error {
@@ -79,9 +97,11 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if searchBarIsEmpty() == false {
-            return NetworkController.filteredObjects.count
+            return matchingObjects?.count ?? 0
+        } else {
+            return networkController?.subcategoryDetails.count ?? 0
         }
-        return networkController?.subcategoryDetails.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,44 +137,58 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         // Display the search results
         if searchBarIsEmpty() == false {
-            let filteredSubcategoryDetail = NetworkController.filteredObjects[indexPath.row]
-            cell.serviceNameLabel.text = filteredSubcategoryDetail.name
-            cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
+            guard let filteredSubcategoryDetail = matchingObjects?[indexPath.row] else { return cell }
             
+            // Name
+            cell.serviceNameLabel.text = filteredSubcategoryDetail.name
+            
+            // Address
+            cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
+            if filteredSubcategoryDetail.address == nil || filteredSubcategoryDetail.address == "" {
+                cell.serviceAddressLabel.text = "Address unavailable"
+            }
+            
+            // Phone
             if let phoneJSON = filteredSubcategoryDetail.phone {
                 cell.servicePhoneLabel.text = phoneJSON as? String
             }
-            
             if filteredSubcategoryDetail.phone == nil || filteredSubcategoryDetail.phone as? String == "" {
                 cell.servicePhoneLabel.text = "Phone number unavailable"
             }
             
+            // Hours
             cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
-            
-            if filteredSubcategoryDetail.hours == "" {
+            if filteredSubcategoryDetail.hours == nil || filteredSubcategoryDetail.hours == "" {
                 cell.serviceHoursLabel.text = "Please call for hours"
-                //cell.serviceHoursIcon.isHidden = true
             }
-        } else {
-            // Display the subcategory resources
-            let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
-            cell.serviceNameLabel.text = subcategoryDetail?.name
-            cell.serviceAddressLabel.text = subcategoryDetail?.address
             
+        // Display the subcategory resources
+        } else {
+            
+            let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
+            
+            // Name
+            cell.serviceNameLabel.text = subcategoryDetail?.name
+            
+            // Address
+            cell.serviceAddressLabel.text = subcategoryDetail?.address
+            if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
+                cell.serviceAddressLabel.text = "Address unavailable"
+            }
+            
+            // Phone
             if let phoneJSON = subcategoryDetail?.phone {
                 cell.servicePhoneLabel.text = phoneJSON as? String
             }
-            
             if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
                 cell.servicePhoneLabel.text = "Phone number unavailable"
             }
             
-            // Either hide labels or write "Unavailable"
+            // Hours
             cell.serviceHoursLabel.text = subcategoryDetail?.hours
             
-            if subcategoryDetail?.hours == nil {
+            if subcategoryDetail?.hours == nil || subcategoryDetail?.hours == "" {
                 cell.serviceHoursLabel.text = "Please call for hours"
-                //cell.serviceHoursIcon.isHidden = true
             }
         }
         return cell
@@ -178,10 +212,18 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         filterServiceResults()
         
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.title = "Search Results"
+            guard let unwrappedSearchTerm = self.networkController?.searchTerm else { return }
+            self.subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+            
+            self.tableView.reloadData()
+        }
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        //networkController?.subcategoryDetails = []
         tableView.reloadData()
     }
     
@@ -190,15 +232,19 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         DispatchQueue.main.async {
             guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
                 // If no search term, display all of the search results
-                NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
+                //matchingObjects = self.networkController?.subcategoryDetails
+                //NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
                 return
             }
+            
+            self.networkController?.searchTerm = searchTerm
             
             // Filter through array to see if keywords contain the text entered by user
             let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
             
-            // Set the value of filteredObjects to the results of the filter
-            NetworkController.filteredObjects = matchingObjects
+            // Set the value of matchingObjects to the results of the filter
+            self.matchingObjects = matchingObjects
+
             self.tableView.reloadData()
         }
     }

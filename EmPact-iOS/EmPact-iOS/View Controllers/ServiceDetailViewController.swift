@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
@@ -68,7 +68,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboard()
+        
         mapView.delegate = self
+        searchBar.delegate = self
         
         self.title = serviceDetail?.name
         
@@ -94,7 +97,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
-            marker.title = serviceDetail?.address
+            marker.title = serviceDetail?.name
             marker.map = mapView
             
             mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
@@ -107,6 +110,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        searchBar.text = ""
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -118,11 +123,15 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     func updateViews() {
         
         serviceDetailNameLabel.text = serviceDetail?.name
-        serviceDetailAddressLabel.text = serviceDetail?.address
+        
+        if serviceDetail?.address == nil {
+            serviceDetailAddressLabel.text = "Address unavailable"
+        } else {
+            serviceDetailAddressLabel.text = serviceDetail?.address
+        }
         
         if serviceDetail?.phone == nil {
-            serviceDetailPhoneLabel.text = ""
-            phoneIconImageView.tintColor = .white
+            serviceDetailPhoneLabel.text = "Phone number unavailable"
         } else {
             if let phoneJSON = serviceDetail?.phone {
                 serviceDetailPhoneLabel.text = phoneJSON as? String
@@ -131,8 +140,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
 
         if serviceDetail?.hours == nil {
-            serviceDetailHoursLabel.text = ""
-            hoursIconImageView.tintColor = .white
+            serviceDetailHoursLabel.text = "Please call for hours"
         } else {
            serviceDetailHoursLabel.text = serviceDetail?.hours
         }
@@ -144,13 +152,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailWalkTimeLabel.text = unwrappedDuration
         
         if serviceDistance == nil {
-            serviceDetailDistanceLabel.text = ""
-            transitIconImageView.tintColor = .white
+            serviceDetailDistanceLabel.text = "Unavailable"
         }
         
         if serviceTravelDuration == nil {
-            serviceDetailWalkTimeLabel.text = ""
-            walkIconImageView.tintColor = .white
+            serviceDetailWalkTimeLabel.text = "Unavailable"
         }
         
         // Services Tab Info
@@ -269,7 +275,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        searchBar.resignFirstResponder()
     }
     
     func filterServiceResults() {
@@ -277,6 +283,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
             return
         }
+        
+        networkController?.searchTerm = searchTerm
         
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
@@ -337,6 +345,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             DispatchQueue.main.async {
                 self.updateViews()
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToAllResultsSegue" {
+            let destination = segue.destination as! ServiceResultsViewController
+            destination.networkController = networkController
         }
     }
     
