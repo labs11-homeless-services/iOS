@@ -28,7 +28,7 @@ class IndividualResource: Decodable {
         enum AllDetails: String, CodingKey {
             case hours
             case additionalInformation = "additional_information"
-            
+
             enum AllHours: String, CodingKey {
                 case friday
                 case monday

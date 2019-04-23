@@ -161,34 +161,45 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
-        serviesInfoTextView.text =
-        """
-        Social Services
-        Housing
-        Medical
-        Respite Bed Program
-        Community Groups
-        """
-            
-            
-            
-//        if let servicesJSON = serviceDetail?.services {
-//            serviesInfoTextView.text = servicesJSON as? String
-//        }
+
+        if let servicesJSON = serviceDetail?.services {
+            if let arrayJSON = servicesJSON as? [String] {
+                var newString = ""
+                var newArray: [String] = []
+                for eachString in arrayJSON {
+                    newString = "- \(eachString)"
+                    newArray.append(newString)
+                }
+                
+                
+                let stringOfServices = newArray.joined(separator: "\n")
+                serviesInfoTextView.text = stringOfServices
+            }
+            //serviesInfoTextView.text = servicesJSON as? [String]
+        }
         
         
         // Details Tab Info
         detailsNameLabel.text = serviceDetail?.name
-        detailsTextView.text =
-        """
-        Valid ID required
-        Please call ahead
-        Pets not allowed
-        """
+//        detailsTextView.text =
+//        """
+//        Valid ID required
+//        Please call ahead
+//        Pets not allowed
+//        """
         
-//        if let detailsJSON = serviceDetail?.details {
-//            detailsTextView.text = detailsJSON as? String
-//        }
+        if let detailsJSON = serviceDetail?.details {
+            detailsTextView.text = detailsJSON as? String
+        }
+        
+        // Adjustable Font sizes
+        servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailAddressLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailDistanceLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailWalkTimeLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailPhoneLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailHoursLabel.adjustsFontSizeToFitWidth = true
     }
     
     // MARK: - Segmented Control Actions
@@ -388,9 +399,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        
-        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
