@@ -10,10 +10,10 @@ import Foundation
 
 enum Category: String, Decodable {
     case education
-    //case legal = "legal administrative"
+    case legal = "legal administrative"
     case food
-    //case healthCare = "health care"
-    //case outreach = "outreach services"
+    case healthCare = "health care"
+    case outreach = "outreach services"
     case hygiene
     case shelters
     case jobs

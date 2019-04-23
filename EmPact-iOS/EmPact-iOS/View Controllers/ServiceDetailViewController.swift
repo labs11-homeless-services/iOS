@@ -169,7 +169,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 let stringOfServices = bulletedArray.joined(separator: "\n")
                 serviesInfoTextView.text = stringOfServices.capitalized
             } else if let stringJSON = servicesJSON as? String {
-                serviesInfoTextView.text = stringJSON
+                if stringJSON == "" {
+                    serviesInfoTextView.text = "Please call for services"
+                } else {
+                    serviesInfoTextView.text = stringJSON
+                }  
             }
         }
         
@@ -183,7 +187,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 let stringOfDetails = bulletedArray.joined(separator: "\n")
                 detailsTextView.text = stringOfDetails.capitalized
             } else if let stringJSON = detailsJSON as? String {
-                detailsTextView.text = stringJSON
+                if stringJSON == "" {
+                    detailsTextView.text = "Please call for details"
+                } else {
+                    detailsTextView.text = stringJSON
+                }
             }
         }
         
