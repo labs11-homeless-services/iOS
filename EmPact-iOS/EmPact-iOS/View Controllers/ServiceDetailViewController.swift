@@ -15,12 +15,17 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var mapView: GMSMapView!
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentButtonView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var servicesButton: UIButton!
     @IBOutlet weak var detailsButton: UIButton!
     
     // MARK: Info View Outlets
     @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var infoTravelView: UIView!
+    @IBOutlet weak var infoAddressView: UIView!
+    @IBOutlet weak var infoPhoneView: UIView!
+    
     @IBOutlet weak var serviceDetailNameLabel: UILabel!
     @IBOutlet weak var serviceDetailAddressLabel: UILabel!
     @IBOutlet weak var serviceDetailDistanceLabel: UILabel!
@@ -95,6 +100,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
             
         }
+        locationButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
         updateViews()
     }
     
@@ -186,6 +192,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.isHidden = true
         infoView.isHidden = false
         
+        locationButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
+        detailsButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
+        servicesButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
+        
         locationButton.titleLabel?.font = Appearance.mediumFont
         servicesButton.titleLabel?.font = Appearance.regularFont
         detailsButton.titleLabel?.font = Appearance.regularFont
@@ -194,6 +204,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
         
+        
         updateViews()
     }
     
@@ -201,6 +212,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = true
         serviceView.isHidden = false
         infoView.isHidden = true
+        
+        servicesButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
+        detailsButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
+        locationButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
         
         servicesButton.titleLabel?.font = Appearance.mediumFont
         locationButton.titleLabel?.font = Appearance.regularFont
@@ -217,6 +232,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = false
         serviceView.isHidden = true
         infoView.isHidden = true
+        
+        detailsButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
+        servicesButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
+        locationButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
         
         detailsButton.titleLabel?.font = Appearance.mediumFont
         locationButton.titleLabel?.font = Appearance.regularFont
@@ -331,8 +350,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         let nearMeColoredIcon = UIImage(named: "near_me")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         startMapButton.tintColor = UIColor.white
         startMapButton.setImage(nearMeColoredIcon, for: .normal)
+        mapView.layer.borderWidth = 0.5
+        mapView.layer.borderColor = UIColor.gray.cgColor
         
         // Segmented Control
+        segmentButtonView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         locationButton.setTitle("LOCATION", for: .normal)
         locationButton.setTitleColor(.white, for: .normal)
         locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
@@ -393,6 +415,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         hoursIconImageView.tintColor = .customDarkPurple
         hoursIconImageView.image = clockColoredIcon
         
+        // Info View Borders
+        infoTravelView.layer.borderColor = UIColor.lightGray.cgColor
+        infoTravelView.layer.borderWidth = 0.25
+        infoAddressView.layer.borderColor = UIColor.lightGray.cgColor
+        infoAddressView.layer.borderWidth = 0.25
+        infoPhoneView.layer.borderColor = UIColor.lightGray.cgColor
+        infoPhoneView.layer.borderWidth = 0.25
     }
 
 }

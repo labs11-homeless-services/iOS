@@ -149,7 +149,20 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         guard let category = networkController?.categoryNames[indexPath.row] else { return cell}
-        cell.categoryNameLabel.text = category.uppercased()
+        
+        cell.categoryNameLabel.adjustsFontSizeToFitWidth = true
+        
+        if category == "Outreach Services" {
+            cell.categoryNameLabel.text = "OUTREACH"
+        } else if category == "Legal Administrative" {
+             cell.categoryNameLabel.text = "LEGAL"
+        } else if category == "Health Care" {
+            cell.categoryNameLabel.text = "HEALTH CARE"
+        } else if category == "Educaiton" {
+            cell.categoryNameLabel.text = "EDUCATION"
+        } else {
+            cell.categoryNameLabel.text = category.uppercased()
+        }
         
         categoryController.getIconImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
@@ -355,6 +368,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         shelterNameLabel.textColor = .customDarkBlack
         shelterNameLabel.font = Appearance.regularFont
+        shelterDistanceLabel.layer.addBorder(edge: .left, color: .lightGray, thickness: 0.25)
         
         nearestShelterLabel.textColor = .customDarkPurple
         nearestShelterLabel.font = Appearance.boldFont

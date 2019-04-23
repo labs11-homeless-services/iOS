@@ -15,7 +15,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var closeLabel: UILabel!
     @IBOutlet weak var spanishButton: UIButton!
+    @IBOutlet weak var homeLabelStackView: UIStackView!
+    @IBOutlet weak var homeButtonText: UIButton!
     
+    
+    @IBOutlet weak var homeView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var subcategoryLabel: UILabel!
@@ -31,6 +35,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     }
     
+    @IBAction func homeButton(_ sender: Any) {
+    }
+    
     var selectedCategory: String!
 
     var googleMapsController: GoogleMapsController?
@@ -43,9 +50,15 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         setupTheme()
         
-        
-        
-        categoryTitleLabel.text = selectedCategory
+        if selectedCategory == "Outreach Services" {
+            categoryTitleLabel.text = "OUTREACH"
+        } else if selectedCategory == "Legal Administrative" {
+            categoryTitleLabel.text = "LEGAL"
+        } else {
+            categoryTitleLabel.text = selectedCategory.uppercased()
+        }
+
+        categoryTitleLabel.adjustsFontSizeToFitWidth = true
         
         categoryController.getIconImage(from: selectedCategory)
         categoryTitleImage.image = categoryController.iconImage
@@ -190,6 +203,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     func setupTheme() {
         
         // Spanish Button
+        spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         spanishButton.setTitle("Español", for: .normal)
         spanishButton.setTitleColor(.customDarkPurple, for: .normal)
         spanishButton.backgroundColor = .white
@@ -204,6 +218,13 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.setImage(tapColoredIcon, for: .normal)
         
         // Home Button
+        //homeLabelStackView.backgroundColor = UIColor.white
+        homeView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        homeButton.backgroundColor = UIColor.white
+        homeButton.tintColor = UIColor.white
+        homeButtonText.backgroundColor = UIColor.white
+        homeButtonText.tintColor = UIColor.customDarkPurple
+        
 //        homeButton.setTitle("HOME", for: .normal)
 //        homeButton.setTitleColor(.customDarkPurple, for: .normal)
 //        homeButton.backgroundColor = .white
@@ -227,11 +248,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         // Top Bar
         topView.backgroundColor = UIColor.customDarkPurple
-        homeButton.backgroundColor = UIColor.white
-        homeButton.tintColor = UIColor.customDarkPurple
         
         categoryTitleLabel.textColor = .white
-        categoryTitleLabel.font = Appearance.boldFont
+        //categoryTitleLabel.font = Appearance.boldFont
         
         subcategoryLabel.textColor = UIColor.customLightPurple
     }
