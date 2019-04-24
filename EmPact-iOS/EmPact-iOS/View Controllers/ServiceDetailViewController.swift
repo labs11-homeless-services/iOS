@@ -9,12 +9,11 @@
 import UIKit
 import GoogleMaps
 
-class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
     // Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
 
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentButtonView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var servicesButton: UIButton!
@@ -75,7 +74,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         self.hideKeyboard()
         
         mapView.delegate = self
-        searchBar.delegate = self
         
         if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
             self.title = serviceDetail?.name
@@ -137,8 +135,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        searchBar.text = ""
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -310,36 +306,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         self.present(alert, animated: true)
     }
     
-    // MARK: - UI Search Bar
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        searchBar.resignFirstResponder()
-        
-        filterServiceResults()
-
-        performSegue(withIdentifier: "backToAllResultsSegue", sender: nil)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func filterServiceResults() {
-        // Grab the text, make sure it's not empty
-        guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
-            return
-        }
-        
-        networkController?.searchTerm = searchTerm
-        
-        let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
-        
-        networkController?.subcategoryDetails = matchingObjects
-    }
-    
     // MARK: - Location & Maps Management
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             serviceCoordinates = manager.location?.coordinate
