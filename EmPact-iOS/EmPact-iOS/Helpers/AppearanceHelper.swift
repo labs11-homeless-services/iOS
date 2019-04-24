@@ -55,7 +55,7 @@ enum Appearance {
         
         UILabel.appearance().textColor = UIColor.customDarkGray
         
-        
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.customDarkBlack]
     }
     
     

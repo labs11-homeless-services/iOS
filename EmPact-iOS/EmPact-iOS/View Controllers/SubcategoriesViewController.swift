@@ -196,7 +196,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - Theme
-    
     func setupTheme() {
         
         // Spanish Button
@@ -215,7 +214,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.setImage(tapColoredIcon, for: .normal)
         
         // Home Button
-        //homeLabelStackView.backgroundColor = UIColor.white
         homeView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         homeButton.backgroundColor = UIColor.white
         homeButton.tintColor = UIColor.white
