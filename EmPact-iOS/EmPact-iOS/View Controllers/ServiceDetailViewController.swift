@@ -173,7 +173,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                     serviesInfoTextView.text = "Please call for services"
                 } else {
                     serviesInfoTextView.text = stringJSON
-                }  
+                }
             }
         }
         
@@ -340,6 +340,16 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     }
     
     private func getServiceDistanceAndDuration() {
+        
+        guard serviceDetail?.latitude != nil  else {
+            NSLog("serviceDetail's latitude was found nil")
+            return
+        }
+        
+        guard serviceDetail?.longitude != nil  else {
+            NSLog("serviceDetail's longitude was found nil")
+            return
+        }
         
         guard let unwrappedServiceCoordinate = serviceCoordinates,
             let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
