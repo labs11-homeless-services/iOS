@@ -16,7 +16,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var subcategoriesTitleLabel: UILabel!
     @IBOutlet weak var subcategoriesTitleView: UIView!
-    @IBOutlet weak var viewDetailsButton: UIButton!
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
         networkController?.subcategoryNames = []
@@ -34,7 +33,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             networkController?.subcategoryDetails = []
             performSegue(withIdentifier: "landingToServiceResultsSegue", sender: self)
         }
-        
     }
     
     var selectedSubcategory: String!
@@ -138,6 +136,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.viewDetailsButton.tintColor = UIColor.white
         cell.viewDetailsButton.setImage(launchColoredIcon, for: .normal)
+        cell.viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         cell.viewDetailsButton.layer.cornerRadius = 5
         cell.resultsView.layer.borderColor = UIColor.lightGray.cgColor
@@ -206,6 +205,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                 cell.serviceHoursLabel.text = "Please call for hours"
             }
         }
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
@@ -276,6 +276,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "backToCategories" {
+            networkController?.subcategoryDetails = []
+            let destination = segue.destination as! CategoriesViewController
+            //performSegue(withIdentifier: "backToCategories", sender: self)
+        }
+        
         // Get the new view controller using segue.destination.
         guard let destination = segue.destination as? ServiceDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -312,6 +318,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         subcategoriesTitleView.layer.cornerRadius = 5
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        subcategoriesTitleView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
     }
     
 }
