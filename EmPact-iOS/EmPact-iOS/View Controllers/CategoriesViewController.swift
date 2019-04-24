@@ -369,6 +369,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         //viewDetailsButton.titleLabel?.font = Appearance.boldFont
         viewDetailsButton.backgroundColor = .customDarkPurple
         viewDetailsButton.layer.cornerRadius = 5
+        viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         viewDetailsButton.tintColor = .white
@@ -395,6 +396,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         helpView.backgroundColor = UIColor.customDarkPurple
         helpView.layer.cornerRadius = 5
         helpLabel.textColor = UIColor.white
+        helpView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         // Icon Colors
         let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)

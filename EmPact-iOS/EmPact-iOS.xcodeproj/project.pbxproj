@@ -11,6 +11,8 @@
 		112A221022569C550008E54B /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220F22569C550008E54B /* CategoryController.swift */; };
 		112ABB262267EB7500989F24 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112ABB252267EB7400989F24 /* GoogleDistance.swift */; };
 		119F5736226A4151007A74FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5735226A4151007A74FC /* Constants.swift */; };
+		119F5738226FBF3F007A74FC /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */; };
+		119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */; };
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
 		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
@@ -73,6 +75,8 @@
 		112A220F22569C550008E54B /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		112ABB252267EB7400989F24 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDistance.swift; sourceTree = "<group>"; };
 		119F5735226A4151007A74FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */,
 				847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */,
 				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
+				119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				847A7ED62255754E00A62A5F /* SubcategoriesViewController.swift */,
 				847A7ECE22553CD000A62A5F /* ServiceResultsViewController.swift */,
 				847A7ED022553CD600A62A5F /* ServiceDetailViewController.swift */,
+				119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -488,6 +494,7 @@
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
+				119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */,
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				84B3A4B222652E2A00F06DC4 /* CacheController.swift in Sources */,
@@ -496,6 +503,7 @@
 				847A7ED72255754E00A62A5F /* SubcategoriesViewController.swift in Sources */,
 				846264F2224D9910009A21A2 /* AppearanceHelper.swift in Sources */,
 				11D79C79225BD6840064EFB5 /* IndividualResource.swift in Sources */,
+				119F5738226FBF3F007A74FC /* SearchResultsViewController.swift in Sources */,
 				847A7ECF22553CD000A62A5F /* ServiceResultsViewController.swift in Sources */,
 				842DE2032252C4D200BBE2FB /* Education.swift in Sources */,
 				847A7ED122553CD700A62A5F /* ServiceDetailViewController.swift in Sources */,
