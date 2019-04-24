@@ -222,7 +222,6 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        print("Switch statement healthcare's decodedResponseKey: \(decodedResponseDictionary.key)")
                         
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
@@ -253,8 +252,6 @@ class NetworkController {
             .appendingPathComponent(underscoredTempCategory)
             .appendingPathComponent(underscoredSubcategory)
             .appendingPathExtension("json")
-        
-        print(requestURL)
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
@@ -324,7 +321,6 @@ class NetworkController {
             subcategoryAtIndexPath = Subcategory.socialServices
         }
         
-        //fetchSubcategoryDetails(subcategoryAtIndexPath)
     }
     
     // MARK: - Search Fetch
@@ -392,8 +388,6 @@ class NetworkController {
                     self.filteredObjects.append(eachObject)
                 }
                 
-                // print("Total list of objects after fetch inside the filteredObjects array: \(self.filteredObjects)")
- 
                 completion(nil)
                 
             } catch {
@@ -418,35 +412,3 @@ class NetworkController {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//    func determineSubcategoryFetch(completion: @escaping CompletionHandler = { _ in }) {
-//
-//        if tempCategorySelection == "Shelters" {
-//            fetchSubcategoriesNames(Category.shelters)
-//        } else if tempCategorySelection == "Health Care" {
-//            fetchSubcategoriesNames(Category.healthcare)
-//        } else if tempCategorySelection == "Food" {
-//            fetchSubcategoriesNames(Category.food)
-//        } else if tempCategorySelection == "Hygiene" {
-//            fetchSubcategoriesNames(Category.hygiene)
-//        } else if tempCategorySelection == "Outreach Services" {
-//            fetchSubcategoriesNames(Category.outreach)
-//        } else if tempCategorySelection == "Education" {
-//            fetchSubcategoriesNames(Category.education)
-//        } else if tempCategorySelection == "Legal Administrative" {
-//            fetchSubcategoriesNames(Category.legal)
-//        } else if tempCategorySelection == "Jobs" {
-//            fetchSubcategoriesNames(Category.jobs)
-//        }
-//    }

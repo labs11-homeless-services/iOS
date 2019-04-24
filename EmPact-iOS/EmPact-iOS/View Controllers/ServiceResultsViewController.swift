@@ -85,7 +85,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         //networkController?.subcategoryDetails = []
         
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
-        print("unwrappedSubcategoryAtIndexPath: \(unwrappedSubcategoryAtIndexPath)")
         if (networkController?.subcategoryDetails.count ?? 0) < 1 {
             networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
                 if let error = error {
@@ -206,15 +205,11 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func spanishButtonClicked(_ sender: Any) {
         
         let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
         self.present(alert, animated: true)
     }
     
-    
     // MARK: - Search Bar
-    
     // Tell the delegate that the search button was tapped
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -231,7 +226,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             
             self.tableView.reloadData()
         }
-        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -47,10 +47,6 @@ enum Subcategory: String, Decodable {
     case socialServices = "social services"
 }
 
-//enum Resources: String, Decodable {
-//    case individualResource
-//    case shelterResource
-//}
 
 
 

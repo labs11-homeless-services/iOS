@@ -160,7 +160,7 @@
                                     <constraint firstAttribute="height" constant="468" id="Aan-Qh-dmL"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="254" id="do2-N8-pLn" customClass="SearchResultsTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" rowHeight="254" id="do2-N8-pLn" customClass="SearchResultsTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="355" height="254"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="do2-N8-pLn" id="Ivx-QA-qXL">
@@ -363,6 +363,7 @@
                                             <outlet property="searchResultNameLabel" destination="8iD-2A-j8G" id="8Ph-zJ-yaZ"/>
                                             <outlet property="searchResultsView" destination="gsb-4L-VfH" id="587-ki-UQ7"/>
                                             <outlet property="viewButton" destination="kja-Co-v4o" id="CJd-0G-Mb7"/>
+                                            <segue destination="kk6-0y-WL5" kind="show" identifier="searchResultsToDetails" id="zrv-iP-tk5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -392,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uuL-18-J7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2276" y="1059.2203898050975"/>
+            <point key="canvasLocation" x="462" y="1058"/>
         </scene>
         <!--Categories-->
         <scene sceneID="Fn9-Nh-ekR">
@@ -786,7 +787,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXs-nM-FQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="390"/>
+            <point key="canvasLocation" x="1462" y="90"/>
         </scene>
         <!--Subcategories View Controller-->
         <scene sceneID="2rm-iy-dV4">
@@ -1101,7 +1102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2p-ck-kVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2276" y="248.72563718140933"/>
+            <point key="canvasLocation" x="2524" y="240"/>
         </scene>
         <!--Shelters - Men-->
         <scene sceneID="DSe-Wt-ueS">
@@ -1112,11 +1113,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cYi-Ac-EoW">
-                                <rect key="frame" x="15" y="20" width="345" height="56"/>
+                                <rect key="frame" x="15" y="64" width="345" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8K8-u8-cMq">
-                                <rect key="frame" x="0.0" y="76" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="82"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epB-FQ-WNl">
                                         <rect key="frame" x="25" y="22" width="325" height="39"/>
@@ -1146,7 +1147,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="257" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t2t-NX-Rw1">
-                                <rect key="frame" x="10" y="158" width="355" height="509"/>
+                                <rect key="frame" x="10" y="202" width="355" height="465"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceResultCell" rowHeight="254" id="eb7-v2-PZu" customClass="ServiceResultTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
@@ -1389,7 +1390,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBE-gr-hJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="KGc-DN-LJv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4044" y="248.72563718140933"/>
+            <point key="canvasLocation" x="1462" y="1057"/>
         </scene>
         <!--Citrus County Abuse Shelter-->
         <scene sceneID="NJn-hU-LVO">
@@ -1400,7 +1401,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-OW-IaU" userLabel="Search Stack">
-                                <rect key="frame" x="15" y="30" width="345" height="56"/>
+                                <rect key="frame" x="15" y="74" width="345" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUC-f1-LmS">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
@@ -1415,7 +1416,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2m-cz-9ii">
-                                <rect key="frame" x="30" y="96" width="315" height="39"/>
+                                <rect key="frame" x="30" y="140" width="315" height="39"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20U-54-fO9">
                                         <rect key="frame" x="0.0" y="-1" width="315" height="40"/>
@@ -1459,7 +1460,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-5L-hLr">
-                                <rect key="frame" x="20" y="146" width="335" height="245"/>
+                                <rect key="frame" x="20" y="190" width="335" height="245"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-ec-Xca">
                                         <rect key="frame" x="8" y="8" width="319" height="49"/>
@@ -1496,7 +1497,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6N-S8-NBd" userLabel="Details View">
-                                <rect key="frame" x="20" y="146" width="335" height="245"/>
+                                <rect key="frame" x="20" y="190" width="335" height="245"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtQ-Zk-DwI">
                                         <rect key="frame" x="8" y="8" width="319" height="49"/>
@@ -1533,7 +1534,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1f-os-uhn" userLabel="Shelter Card">
-                                <rect key="frame" x="20" y="146" width="335" height="245"/>
+                                <rect key="frame" x="20" y="190" width="335" height="245"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TC-mR-8TL" userLabel="Name Label">
                                         <rect key="frame" x="8" y="8" width="319" height="49"/>
@@ -1704,14 +1705,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q24-JB-WOx" customClass="GMSMapView">
-                                <rect key="frame" x="20" y="411" width="335" height="139.5"/>
+                                <rect key="frame" x="20" y="455" width="335" height="139.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="q24-JB-WOx" secondAttribute="height" multiplier="6:2.5" id="VLb-fp-sBJ"/>
                                 </constraints>
                             </view>
                             <view tag="-1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wza-50-ix5">
-                                <rect key="frame" x="20" y="411" width="335" height="139.5"/>
+                                <rect key="frame" x="20" y="455" width="335" height="139.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyJ-9o-NR6">
                                         <rect key="frame" x="89.5" y="56" width="156" height="27.5"/>
@@ -1727,7 +1728,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Fl-gkr">
-                                <rect key="frame" x="70" y="558.5" width="235" height="35"/>
+                                <rect key="frame" x="70" y="602.5" width="235" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="zpO-q8-hzj"/>
                                 </constraints>
@@ -1819,7 +1820,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gwh-5o-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4666.3999999999996" y="248.72563718140933"/>
+            <point key="canvasLocation" x="2524" y="1057"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tul-sl-5zu">
@@ -1855,7 +1856,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXp-ZU-bvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3156" y="249"/>
+            <point key="canvasLocation" x="3396" y="240"/>
         </scene>
     </scenes>
     <resources>
@@ -1872,7 +1873,7 @@
         <image name="walk" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IhC-DS-dSC"/>
+        <segue reference="zrv-iP-tk5"/>
         <segue reference="BRR-cb-Fvu"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
