@@ -33,6 +33,8 @@ enum Appearance {
     static let blackFont = UIFont(name: "SFProDisplay-Black", size: UIFont.labelFontSize)
     static let mediumFont = UIFont(name: "SFProDisplay-Medium", size: UIFont.labelFontSize)
     
+    //static let heavyItalicFont = UIFont(name: "SFProDisplay-HeavyItalic", size: UIFont.smallSystemFontSize //labelFontSize)
+    
     // Scalable font
     static func scaledNameLabelFont(with textStyle: UIFont.TextStyle, size: CGFloat) -> UIFont {
         guard let font = boldFont else { fatalError() }
