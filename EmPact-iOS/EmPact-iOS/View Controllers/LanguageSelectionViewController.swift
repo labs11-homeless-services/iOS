@@ -109,11 +109,12 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
             let destination = segue.destination as! SearchResultsViewController
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
-        } else {
-            let destination = segue.destination as! CategoriesViewController
-            destination.networkController = networkController
-            //destination.googleMapsController = googleMapsController
         }
+//        else {
+//            let destination = segue.destination as! CategoriesViewController
+//            destination.networkController = networkController
+//            //destination.googleMapsController = googleMapsController
+//        }
         
 //        if segue.identifier == "landingToServiceResultsSegue" {
 //            let destination = segue.destination as! ServiceResultsViewController

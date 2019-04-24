@@ -67,6 +67,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     var networkController: NetworkController?
     
     var serviceDetail: IndividualResource?
+    var selectedSubcategory: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +77,18 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         mapView.delegate = self
         searchBar.delegate = self
         
-        self.title = serviceDetail?.name
+        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
+            self.title = serviceDetail?.name
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+        } else if selectedSubcategory == "" || selectedSubcategory == nil {
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            self.title = serviceDetail?.name
+        } else {
+            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
+            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        }
+
+        //self.title = serviceDetail?.name
         
         setupTheme()
         
@@ -109,13 +121,18 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
             marker.title = serviceDetail?.name
+            mapView.selectedMarker = marker
+            //marker.appearAnimation = .pop
             marker.map = mapView
             
             mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
             
         }
         locationButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
-        updateViews()
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,14 +146,19 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+        
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+        }
     }
     
     func updateViews() {
         
         serviceDetailNameLabel.text = serviceDetail?.name
         
-        if serviceDetail?.address == nil {
-            serviceDetailAddressLabel.text = "Address unavailable"
+        if serviceDetail?.address == nil || serviceDetail?.address == "" {
+            serviceDetailAddressLabel.text = "Address Unavailable"
         } else {
             serviceDetailAddressLabel.text = serviceDetail?.address
         }
@@ -156,27 +178,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
            serviceDetailHoursLabel.text = serviceDetail?.hours
         }
         
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        
-        serviceDetailDistanceLabel.text = unwrappedDistance
-        serviceDetailWalkTimeLabel.text = unwrappedDuration
-        
-        if serviceDistance == nil {
-            serviceDetailDistanceLabel.text = "Unavailable"
-        }
-        
-        if serviceTravelDuration == nil {
-            serviceDetailWalkTimeLabel.text = "Unavailable"
-        }
-        
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
-
+        
         if let servicesJSON = serviceDetail?.services {
             if let arrayJSON = servicesJSON as? [String] {
                 var bulletedArray = arrayJSON.map { "- \($0)" }
-
+                
                 let stringOfServices = bulletedArray.joined(separator: "\n")
                 serviesInfoTextView.text = stringOfServices.capitalized
             } else if let stringJSON = servicesJSON as? String {
@@ -214,6 +222,22 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailWalkTimeLabel.adjustsFontSizeToFitWidth = true
         serviceDetailPhoneLabel.adjustsFontSizeToFitWidth = true
         serviceDetailHoursLabel.adjustsFontSizeToFitWidth = true
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        
+        serviceDetailDistanceLabel.text = unwrappedDistance
+        serviceDetailWalkTimeLabel.text = unwrappedDuration
+        
+        if serviceDistance == nil {
+            serviceDetailDistanceLabel.text = "Unavailable"
+        }
+        
+        if serviceTravelDuration == nil {
+            serviceDetailWalkTimeLabel.text = "Unavailable"
+        }
+
+
     }
     
     // MARK: - Segmented Control Actions

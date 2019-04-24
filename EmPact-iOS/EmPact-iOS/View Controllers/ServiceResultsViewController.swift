@@ -286,10 +286,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             //let serviceDetail = NetworkController.filteredObjects[indexPath.row]
             let serviceDetail = matchingObjects?[indexPath.row]
             destination.serviceDetail = serviceDetail
+            destination.selectedSubcategory = selectedSubcategory
             destination.googleMapsController = googleMapsController
             destination.networkController = networkController
         } else {
             // Pass the subcategory results array
+            destination.selectedSubcategory = selectedSubcategory
             destination.googleMapsController = googleMapsController
             destination.networkController = networkController
             
