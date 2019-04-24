@@ -147,6 +147,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         if matchingObjects != nil {
             guard let filteredSubcategoryDetail = matchingObjects?[indexPath.row] else { return cell }
             
+            // Adjust fonts
+            cell.serviceNameLabel.adjustsFontSizeToFitWidth = true
+            cell.serviceAddressLabel.adjustsFontSizeToFitWidth = true
+            cell.servicePhoneLabel.adjustsFontSizeToFitWidth = true
+            cell.serviceHoursLabel.adjustsFontSizeToFitWidth = true
+            
             // Name
             cell.serviceNameLabel.text = filteredSubcategoryDetail.name
             

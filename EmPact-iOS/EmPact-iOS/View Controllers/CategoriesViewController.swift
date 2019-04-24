@@ -319,6 +319,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             let unwrappedDuration = serviceTravelDuration else { return }
         shelterDistanceLabel.text = unwrappedDistance
         shelterDurationLabel.text = unwrappedDuration
+        
+        // Adjust fonts
+        shelterNameLabel.adjustsFontSizeToFitWidth = true
+        shelterAddressLabel.adjustsFontSizeToFitWidth = true
+        shelterHoursLabel.adjustsFontSizeToFitWidth = true
+        shelterPhoneLabel.adjustsFontSizeToFitWidth = true
+        shelterDistanceLabel.adjustsFontSizeToFitWidth = true
+        shelterDurationLabel.adjustsFontSizeToFitWidth = true
     }
     
     // MARK: - Navigation
