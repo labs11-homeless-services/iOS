@@ -25,6 +25,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var infoTravelView: UIView!
     @IBOutlet weak var infoAddressView: UIView!
     @IBOutlet weak var infoPhoneView: UIView!
+    @IBOutlet weak var infoHoursView: UIView!
     
     @IBOutlet weak var serviceDetailNameLabel: UILabel!
     @IBOutlet weak var serviceDetailAddressLabel: UILabel!
@@ -50,6 +51,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var detailsNameLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     
+    @IBOutlet weak var mapUnavailableView: UIView!
+    @IBOutlet weak var mapUnavailableLabel: UILabel!
     @IBOutlet weak var startMapButton: UIButton!
     
     // MARK: - Properties
@@ -80,13 +83,21 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsView.isHidden = true
         serviceView.isHidden = true
         infoView.isHidden = false
+        mapUnavailableView.isHidden = true
+        mapUnavailableView.alpha = 0.5
+        mapUnavailableLabel.isHidden = true
+        mapUnavailableView.backgroundColor = .customDarkPurple
 
         // Convert latitude/longitude strings to doubles
         if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
-            return
-            // If there is not latitude and longitude in service details:
-            // We could show a message and say map unavailable
-            // Then show the user's location.
+            mapUnavailableView.isHidden = false
+            mapUnavailableLabel.isHidden = false
+            mapUnavailableLabel.textColor = .white
+            
+            startMapButton.isHidden = true
+            serviceDetailDistanceLabel.text = "Unavailable"
+            serviceDetailWalkTimeLabel.text = "Unavailable"
+        
         } else {
             guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
                 let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
@@ -437,6 +448,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         infoAddressView.layer.borderWidth = 0.25
         infoPhoneView.layer.borderColor = UIColor.lightGray.cgColor
         infoPhoneView.layer.borderWidth = 0.25
+        infoHoursView.layer.borderColor = UIColor.lightGray.cgColor
+        infoHoursView.layer.borderWidth = 0.25
     }
 
 }
