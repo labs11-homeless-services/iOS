@@ -82,7 +82,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         
         filterServiceResults()
         
-        performSegue(withIdentifier: "landingToServiceResultsSegue", sender: nil)
+        performSegue(withIdentifier: "showSearchResults", sender: nil)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -105,13 +105,23 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "landingToServiceResultsSegue" {
-            let destination = segue.destination as! ServiceResultsViewController
+        if segue.identifier == "showSearchResults" {
+            let destination = segue.destination as! SearchResultsViewController
             destination.networkController = networkController
+            destination.googleMapsController = googleMapsController
         } else {
             let destination = segue.destination as! CategoriesViewController
             destination.networkController = networkController
+            //destination.googleMapsController = googleMapsController
         }
+        
+//        if segue.identifier == "landingToServiceResultsSegue" {
+//            let destination = segue.destination as! ServiceResultsViewController
+//            destination.networkController = networkController
+//        } else {
+//            let destination = segue.destination as! CategoriesViewController
+//            destination.networkController = networkController
+//        }
     }
     
     func setupViews() {

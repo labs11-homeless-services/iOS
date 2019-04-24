@@ -125,11 +125,20 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
+        networkController?.subcategoryDetails = []
+        
         filterServiceResults()
+        
+        DispatchQueue.main.async {
+            guard let unwrappedSearchTerm = self.networkController?.searchTerm else { return }
+            self.searchedTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+            
+            self.tableView.reloadData()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        tableView.reloadData()
     }
     
     func filterServiceResults() {
