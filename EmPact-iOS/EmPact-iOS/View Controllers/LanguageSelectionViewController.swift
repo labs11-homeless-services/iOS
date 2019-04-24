@@ -35,7 +35,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         setupViews()
 
         // Add title logo
-        let logoImage = UIImage(named: "logo")
+        let logoImage = UIImage(named: "iPhone logo Nu")
         let imageView = UIImageView(image: logoImage)
         imageView.contentMode = .scaleAspectFit
         

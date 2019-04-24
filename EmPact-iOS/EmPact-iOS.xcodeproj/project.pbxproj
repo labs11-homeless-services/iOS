@@ -13,6 +13,7 @@
 		119F5736226A4151007A74FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5735226A4151007A74FC /* Constants.swift */; };
 		119F5738226FBF3F007A74FC /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */; };
 		119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */; };
+		119F573C2270BD7D007A74FC /* iPhone logo Nu.png in Resources */ = {isa = PBXBuildFile; fileRef = 119F573B2270BD7A007A74FC /* iPhone logo Nu.png */; };
 		11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09896224E91FB006F8B9D /* CategoriesViewController.swift */; };
 		11A09899224E9237006F8B9D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */; };
 		11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A098BA2253CBF8006F8B9D /* Categories.swift */; };
@@ -77,6 +78,7 @@
 		119F5735226A4151007A74FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
+		119F573B2270BD7A007A74FC /* iPhone logo Nu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone logo Nu.png"; sourceTree = "<group>"; };
 		11A09896224E91FB006F8B9D /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		11A09898224E9237006F8B9D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		11A098BA2253CBF8006F8B9D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				84B3A4B722667C2D00F06DC4 /* Fonts */,
 				846264D0224D9803009A21A2 /* AppDelegate.swift */,
+				119F573B2270BD7A007A74FC /* iPhone logo Nu.png */,
 				846264D7224D9805009A21A2 /* Assets.xcassets */,
 				846264DC224D9805009A21A2 /* Info.plist */,
 			);
@@ -399,6 +402,7 @@
 				84B3A4D822667CE600F06DC4 /* SF-Pro-Display-Thin.otf in Resources */,
 				846264DB224D9805009A21A2 /* LaunchScreen.storyboard in Resources */,
 				84B3A4CD22667CC100F06DC4 /* SF-Pro-Display-BoldItalic.otf in Resources */,
+				119F573C2270BD7D007A74FC /* iPhone logo Nu.png in Resources */,
 				84B3A4D722667CE300F06DC4 /* SF-Pro-Display-SemiboldItalic.otf in Resources */,
 				84B3A4CE22667CC400F06DC4 /* SF-Pro-Display-Heavy.otf in Resources */,
 				84B3A4DA22667CEB00F06DC4 /* SF-Pro-Display-Ultralight.otf in Resources */,
