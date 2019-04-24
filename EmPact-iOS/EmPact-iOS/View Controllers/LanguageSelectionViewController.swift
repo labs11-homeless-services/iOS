@@ -142,6 +142,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         englishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         englishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         englishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        englishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         spanishButton.setTitle("Español  ", for: .normal)
         spanishButton.backgroundColor = .customDarkPurple
@@ -151,6 +152,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
     }
 }
 
