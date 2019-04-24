@@ -50,6 +50,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var phoneImageView: UIImageView!
     @IBOutlet weak var hoursImageView: UIImageView!
     
+    @IBOutlet weak var bottomBarView: UIView!
+    
     let categoryController = CategoryController()
     var networkController: NetworkController?
     let cacheController = CacheController()
@@ -432,6 +434,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         contactView.layer.borderWidth = 0.25
         contactView.layer.borderColor = UIColor.lightGray.cgColor
         
+        bottomBarView.backgroundColor = .customLightPurple
     }
     
     // MARK: - Hamburger Menu Variables
