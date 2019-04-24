@@ -71,8 +71,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        print(Category(rawValue: selectedCategory.lowercased()))
        
 //        if selectedCategory.lowercased() == "health care" || selectedCategory.lowercased() == "legal administrative" || selectedCategory.lowercased() == "outreach services" {
 //
@@ -90,8 +88,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
 //        } else {
             guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
             if networkController?.subcategoryNames.count ?? 0 < 1 {
-                print("selectedCategory: \(selectedCategory)")
-                print("selectedCategory lowercased: \(selectedCategory.lowercased())")
                 networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
                     if let error = error {
                         NSLog("Error fetching categories: \(error)")
@@ -140,7 +136,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
         
         networkController?.tempSubcategorySelection = subcategoryAtIndexPath
-        print("tempSubcategorySelection: \(networkController?.tempSubcategorySelection)")
         networkController?.determineSubcategoryDetailFetch()
         
         networkController?.subcategoryDetails = []
@@ -226,10 +221,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         homeButton.tintColor = UIColor.white
         homeButtonText.backgroundColor = UIColor.white
         homeButtonText.tintColor = UIColor.customDarkPurple
-        
-//        homeButton.setTitle("HOME", for: .normal)
-//        homeButton.setTitleColor(.customDarkPurple, for: .normal)
-//        homeButton.backgroundColor = .white
         
         let homeColoredIcon = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
 

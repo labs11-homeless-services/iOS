@@ -13,7 +13,6 @@ class CategoryController {
     var networkController = NetworkController()
     var iconImage: UIImage!
     var subcategoryIconImage: UIImage!
-    //var tempCategoryName = ""
     var tempSubcategoryName = ""
 
     func getIconImage(from category: String) {

@@ -16,10 +16,6 @@ extension UIColor {
     
     static let customLightPurple = UIColor(red: 0.40, green: 0.38, blue: 0.46, alpha: 1.0)
     
-    // Custom Segmented Control
-    // Buttons
-    // ServiceResultsViewController top label
-    // "MEN SHELTERS withing Citrus County, FL"
     static let customDarkPurple = UIColor(red: 0.25, green: 0.26, blue: 0.38, alpha: 1.0)
     
     static let customLightestGray = UIColor(red: 0.47, green: 0.49, blue: 0.55, alpha: 1.0)

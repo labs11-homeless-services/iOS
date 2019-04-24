@@ -151,10 +151,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        
-        
     }
-    
 }
 
 extension UIViewController {

@@ -50,6 +50,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var phoneImageView: UIImageView!
     @IBOutlet weak var hoursImageView: UIImageView!
     
+    @IBOutlet weak var bottomBarView: UIView!
+    
     let categoryController = CategoryController()
     var networkController: NetworkController?
     let cacheController = CacheController()
@@ -128,7 +130,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
         
-        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(nearestShelter?.latitude!),\(nearestShelter?.longitude!)&travelmode=transit")
+        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(String(describing: nearestShelter?.latitude!)),\(String(describing: nearestShelter?.longitude!))&travelmode=transit")
         
         if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(nearestShelter!.latitude!),\(nearestShelter!.longitude!)&travelmode=transit") {
             
@@ -192,11 +194,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         guard let categoryAtIndexPath = networkController?.categoryNames[indexPath.row] else { return }
         
-        print("categoryAtIndexPath: \(categoryAtIndexPath)")
         networkController?.tempCategorySelection = categoryAtIndexPath
-        
-        print("networkController.tempCategorySelection: \(networkController?.tempCategorySelection)")
-        print("networkController.categoryNames: \(networkController?.categoryNames)")
 
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
@@ -222,7 +220,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
-        var matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
+        let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
         
 //        var matchingObjects = NetworkController.filteredObjects.filter {(individualResource: IndividualResource) -> Bool in
 //            return individualResource.keywords.contains(searchTerm.lowercased()) || individualResource.name.contains(searchTerm.lowercased())
@@ -288,7 +286,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             
             let fetchedShelter = self.googleMapsController.serviceAddresses[ shelterIndex ]
             var splitAddress = fetchedShelter.split(separator: " ")
-            var addressNumber = splitAddress[0]
+            let addressNumber = splitAddress[0]
             
             for eachShelter in NetworkController.allShelterObjects {
                 
@@ -436,6 +434,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         contactView.layer.borderWidth = 0.25
         contactView.layer.borderColor = UIColor.lightGray.cgColor
         
+        bottomBarView.backgroundColor = .customLightPurple
     }
     
     // MARK: - Hamburger Menu Variables
