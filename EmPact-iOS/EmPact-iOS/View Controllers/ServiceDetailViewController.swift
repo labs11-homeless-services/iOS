@@ -172,34 +172,48 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
-        serviesInfoTextView.text =
-        """
-        Social Services
-        Housing
-        Medical
-        Respite Bed Program
-        Community Groups
-        """
-            
-            
-            
-//        if let servicesJSON = serviceDetail?.services {
-//            serviesInfoTextView.text = servicesJSON as? String
-//        }
-        
+
+        if let servicesJSON = serviceDetail?.services {
+            if let arrayJSON = servicesJSON as? [String] {
+                var bulletedArray = arrayJSON.map { "- \($0)" }
+
+                let stringOfServices = bulletedArray.joined(separator: "\n")
+                serviesInfoTextView.text = stringOfServices.capitalized
+            } else if let stringJSON = servicesJSON as? String {
+                if stringJSON == "" {
+                    serviesInfoTextView.text = "Please call for services"
+                } else {
+                    serviesInfoTextView.text = stringJSON
+                }
+            }
+        }
         
         // Details Tab Info
         detailsNameLabel.text = serviceDetail?.name
-        detailsTextView.text =
-        """
-        Valid ID required
-        Please call ahead
-        Pets not allowed
-        """
         
-//        if let detailsJSON = serviceDetail?.details {
-//            detailsTextView.text = detailsJSON as? String
-//        }
+        if let detailsJSON = serviceDetail?.details {
+            if let arrayJSON = detailsJSON as? [String] {
+                var bulletedArray = arrayJSON.map { "- \($0)" }
+                
+                let stringOfDetails = bulletedArray.joined(separator: "\n")
+                detailsTextView.text = stringOfDetails.capitalized
+            } else if let stringJSON = detailsJSON as? String {
+                if stringJSON == "" {
+                    detailsTextView.text = "Please call for details"
+                } else {
+                    detailsTextView.text = stringJSON
+                }
+            }
+        }
+        
+        // Adjustable Font sizes
+        servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailAddressLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailDistanceLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailWalkTimeLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailPhoneLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailHoursLabel.adjustsFontSizeToFitWidth = true
     }
     
     // MARK: - Segmented Control Actions
@@ -335,6 +349,16 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     private func getServiceDistanceAndDuration() {
         
+        guard serviceDetail?.latitude != nil  else {
+            NSLog("serviceDetail's latitude was found nil")
+            return
+        }
+        
+        guard serviceDetail?.longitude != nil  else {
+            NSLog("serviceDetail's longitude was found nil")
+            return
+        }
+        
         guard let unwrappedServiceCoordinate = serviceCoordinates,
             let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
             let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
@@ -396,9 +420,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        
-        //servicesInfoNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        //serviceDetailNameLabel.setLabelShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
