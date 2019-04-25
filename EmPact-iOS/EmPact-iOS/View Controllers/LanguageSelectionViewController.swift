@@ -10,6 +10,7 @@ import UIKit
 
 class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var navBarExtensionView: UIView!
     @IBOutlet weak var searchTagLineLabel: UILabel!
     @IBOutlet weak var englishButton: UIButton!
@@ -28,29 +29,53 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         // Set Delegate
         searchBar.delegate = self
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.largeTitleDisplayMode = .always
+        
         
         setupTheme()
         
         setupViews()
+        
+        setUpNavigationBarTitleImage()
 
         // Add title logo
-        let logoImage = UIImage(named: "iPhone logo Nu")
-        let imageView = UIImageView(image: logoImage)
+//        let logoImage = UIImage(named: "nu logo")
+//        let imageView = UIImageView(image: logoImage)
+//        imageView.contentMode = .scaleAspectFit
+//
+//        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+//        imageView.frame = titleView.bounds
+//        titleView.addSubview(imageView)
+//
+//        self.navigationItem.titleView = titleView
+        
+    }
+    
+    func setUpNavigationBarTitleImage() {
+        let navController = navigationController!
+        
+        let image = UIImage(named: "iPhone logo Nu2")!
+        let imageView = UIImageView(image: image)
+        
+        let bannerWidth = navController.navigationBar.frame.size.width
+        let bannerHeight = navController.navigationBar.frame.size.height
+        
+        let bannerX = bannerWidth / 2 - image.size.width / 2
+        let bannerY = bannerHeight / 2 - image.size.height / 2
+        
+        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
         imageView.contentMode = .scaleAspectFit
-        
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-        
-        imageView.frame = titleView.bounds
-        titleView.addSubview(imageView)
-        
-        self.navigationItem.titleView = titleView
-        
+        imageView.center = navController.navigationBar.center
+        navigationItem.titleView = imageView
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidLoad()
+        super.viewWillAppear(animated)
+        
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationItem.largeTitleDisplayMode = .always
         
         searchBar.text = ""
         
@@ -143,6 +168,10 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
 
         searchTagLineLabel.textColor = .customDarkPurple
+        
+        logoLabel.text = "Serving the boroughs of NYC"
+        logoLabel.backgroundColor = .customDarkPurple
+        logoLabel.textColor = .white
         
         let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         englishButton.setTitle("English  ", for: .normal)
