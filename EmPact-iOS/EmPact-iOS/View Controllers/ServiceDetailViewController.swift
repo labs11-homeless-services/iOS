@@ -42,11 +42,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // MARK: Service View Outlets
     @IBOutlet weak var serviceView: UIView!
     @IBOutlet weak var servicesInfoNameLabel: UILabel!
+    @IBOutlet weak var primaryServicesLabel: UILabel!
     @IBOutlet weak var serviesInfoTextView: UITextView!
     
     // MARK: Detail View Outlets
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var detailsNameLabel: UILabel!
+    @IBOutlet weak var admissionDetailsLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     
     @IBOutlet weak var mapUnavailableView: UIView!
@@ -359,6 +361,9 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             }
         }
         
+        serviesInfoTextView.font = Appearance.lightFont
+        detailsTextView.font = Appearance.lightFont
+        
         // Adjustable Font sizes
         servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
         serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
@@ -425,7 +430,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
         
         // Fonts
-        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         serviceDetailNameLabel.textColor = UIColor.customLightBlack
         serviceDetailAddressLabel.font = Appearance.lightFont
         serviceDetailDistanceLabel.font = Appearance.lightFont
@@ -433,13 +438,17 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailPhoneLabel.font = Appearance.lightFont
         serviceDetailHoursLabel.font = Appearance.lightFont
         
-        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         servicesInfoNameLabel.textColor = .customLightBlack
+        primaryServicesLabel.textColor = .customDarkPurple
         serviesInfoTextView.font = Appearance.lightFont
+        serviesInfoTextView.textColor = .customLightBlack
         
-        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         detailsNameLabel.textColor = .customLightBlack
+        admissionDetailsLabel.textColor = .customDarkPurple
         detailsTextView.font = Appearance.lightFont
+        detailsTextView.textColor = UIColor.customLightBlack
         
         // Icon Colors
         let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)

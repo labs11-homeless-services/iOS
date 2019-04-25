@@ -10,6 +10,7 @@ import UIKit
 
 class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var navBarExtensionView: UIView!
     @IBOutlet weak var searchTagLineLabel: UILabel!
     @IBOutlet weak var englishButton: UIButton!
@@ -54,7 +55,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     func setUpNavigationBarTitleImage() {
         let navController = navigationController!
         
-        let image = UIImage(named: "nu logo")!
+        let image = UIImage(named: "iPhone logo Nu2")!
         let imageView = UIImageView(image: image)
         
         let bannerWidth = navController.navigationBar.frame.size.width
@@ -167,6 +168,10 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
 
         searchTagLineLabel.textColor = .customDarkPurple
+        
+        logoLabel.text = "Serving the boroughs of NYC"
+        logoLabel.backgroundColor = .customDarkPurple
+        logoLabel.textColor = .white
         
         let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         englishButton.setTitle("English  ", for: .normal)

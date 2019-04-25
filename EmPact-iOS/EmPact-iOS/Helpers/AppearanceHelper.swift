@@ -29,6 +29,7 @@ enum Appearance {
     static let lightFont = UIFont(name: "SFProDisplay-Light", size: UIFont.labelFontSize)
     static let ultraLightItalicFont = UIFont(name: "SFProDisplay-UltralightItalic", size: UIFont.labelFontSize)
     static let italicFont = UIFont(name: "SFProDisplay-Italic", size: UIFont.labelFontSize)
+    static let serviceAndDetailFont = UIFont(name: "SFProDisplay-Light", size: UIFont.smallSystemFontSize)
     static let lightItalicFont = UIFont(name: "SFProDisplay-LightItalic", size: UIFont.labelFontSize)
     static let blackFont = UIFont(name: "SFProDisplay-Black", size: UIFont.labelFontSize)
     
@@ -60,6 +61,8 @@ enum Appearance {
         
         // Labels
         UILabel.appearance().textColor = UIColor.customDarkGray
+        
+        UITextView.appearance().font = serviceAndDetailFont
         
         // Navigation Bar
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.customDarkBlack, NSAttributedString.Key.font: semiboldFont]
