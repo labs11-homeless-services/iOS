@@ -16,7 +16,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var spanishButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    //let googleMapsController = GoogleMapsController()
+    let googleMapsController = GoogleMapsController()
     
     let networkController = NetworkController()
     
@@ -132,10 +132,11 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         if segue.identifier == "showSearchResults" {
             let destination = segue.destination as! SearchResultsViewController
             destination.networkController = networkController
-            //destination.googleMapsController = googleMapsController
+            destination.googleMapsController = googleMapsController
         } else {
             let destination = segue.destination as! CategoriesViewController
             destination.networkController = networkController
+            destination.googleMapsController = googleMapsController
         }
         
 //        if segue.identifier == "landingToServiceResultsSegue" {

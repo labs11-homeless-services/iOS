@@ -89,8 +89,8 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.searchResultsView.layer.borderWidth = 0.5
         
         // Name
-        cell.searchResultNameLabel.text = subcategoryDetail?.name
-        
+        let alteredString = subcategoryDetail?.name.replacingOccurrences(of: "Â", with: "")
+        cell.searchResultNameLabel.text = alteredString
         // Address
         if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
             cell.addressLabel.text = "Address unavailable"
@@ -181,5 +181,4 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
     }
 
-    
 }

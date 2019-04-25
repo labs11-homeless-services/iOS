@@ -153,7 +153,8 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             cell.serviceHoursLabel.adjustsFontSizeToFitWidth = true
             
             // Name
-            cell.serviceNameLabel.text = filteredSubcategoryDetail.name
+            let alteredString = filteredSubcategoryDetail.name.replacingOccurrences(of: "Â", with: "")
+            cell.serviceNameLabel.text = alteredString
             
             // Address
             if filteredSubcategoryDetail.address == nil || filteredSubcategoryDetail.address == "" {
@@ -275,7 +276,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == "backToCategories" {
             networkController?.subcategoryDetails = []
             let destination = segue.destination as! CategoriesViewController
-            //performSegue(withIdentifier: "backToCategories", sender: self)
         }
         
         // Get the new view controller using segue.destination.
