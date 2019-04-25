@@ -156,23 +156,24 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             cell.serviceNameLabel.text = filteredSubcategoryDetail.name
             
             // Address
-            cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
             if filteredSubcategoryDetail.address == nil || filteredSubcategoryDetail.address == "" {
                 cell.serviceAddressLabel.text = "Address unavailable"
+            } else {
+                cell.serviceAddressLabel.text = filteredSubcategoryDetail.address
             }
             
             // Phone
-            if let phoneJSON = filteredSubcategoryDetail.phone {
-                cell.servicePhoneLabel.text = phoneJSON as? String
-            }
             if filteredSubcategoryDetail.phone == nil || filteredSubcategoryDetail.phone as? String == "" {
                 cell.servicePhoneLabel.text = "Phone number unavailable"
+            } else if let phoneJSON = filteredSubcategoryDetail.phone {
+                cell.servicePhoneLabel.text = phoneJSON as? String
             }
             
             // Hours
-            cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
             if filteredSubcategoryDetail.hours == nil || filteredSubcategoryDetail.hours == "" {
                 cell.serviceHoursLabel.text = "Please call for hours"
+            } else {
+                cell.serviceHoursLabel.text = filteredSubcategoryDetail.hours
             }
             
         // Display the subcategory resources
@@ -184,25 +185,26 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             cell.serviceNameLabel.text = subcategoryDetail?.name
             
             // Address
-            cell.serviceAddressLabel.text = subcategoryDetail?.address
             if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
                 cell.serviceAddressLabel.text = "Address unavailable"
+            } else {
+                cell.serviceAddressLabel.text = subcategoryDetail?.address
             }
             
             // Phone
-            if let phoneJSON = subcategoryDetail?.phone {
-                cell.servicePhoneLabel.text = phoneJSON as? String
-            }
             if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == ""{
                 cell.servicePhoneLabel.text = "Phone number unavailable"
+            } else if let phoneJSON = subcategoryDetail?.phone {
+                cell.servicePhoneLabel.text = phoneJSON as? String
             }
             
             // Hours
-            cell.serviceHoursLabel.text = subcategoryDetail?.hours
-            
             if subcategoryDetail?.hours == nil || subcategoryDetail?.hours == "" {
                 cell.serviceHoursLabel.text = "Please call for hours"
+            } else {
+                cell.serviceHoursLabel.text = subcategoryDetail?.hours
             }
+            
         }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell

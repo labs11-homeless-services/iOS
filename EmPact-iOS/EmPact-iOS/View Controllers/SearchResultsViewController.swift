@@ -29,6 +29,8 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.hideKeyboard()
         
+        setupTheme()
+        
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.barTintColor = nil
@@ -90,23 +92,24 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.searchResultNameLabel.text = subcategoryDetail?.name
         
         // Address
-        cell.addressLabel.text = subcategoryDetail?.address
         if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
             cell.addressLabel.text = "Address unavailable"
+        } else {
+            cell.addressLabel.text = subcategoryDetail?.address
         }
         
         // Phone
-        if let phoneJSON = subcategoryDetail?.phone {
-            cell.phoneLabel.text = phoneJSON as? String
-        }
         if subcategoryDetail?.phone == nil || subcategoryDetail?.phone as? String == "" {
             cell.phoneLabel.text = "Phone number unavailable"
+        } else if let phoneJSON = subcategoryDetail?.phone {
+            cell.phoneLabel.text = phoneJSON as? String
         }
         
         // Hours
-        cell.hoursLabel.text = subcategoryDetail?.hours
         if subcategoryDetail?.hours == nil || subcategoryDetail?.hours == "" {
             cell.hoursLabel.text = "Please call for hours"
+        } else {
+            cell.hoursLabel.text = subcategoryDetail?.hours
         }
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -166,6 +169,16 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             let serviceDetail = networkController?.subcategoryDetails[indexPath.row]
             destination.serviceDetail = serviceDetail
         }
+    }
+    
+    func setupTheme() {
+        searchedTitleLabel.textColor = UIColor.white
+        searchedTitleLabel.backgroundColor = UIColor.customDarkPurple
+        searchedView.backgroundColor = .customDarkPurple
+        searchedView.layer.cornerRadius = 5
+        
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
     }
 
 

@@ -159,13 +159,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.categoryNameLabel.adjustsFontSizeToFitWidth = true
         
         if category == "Outreach Services" {
-            cell.categoryNameLabel.text = "OUTREACH"
+            cell.categoryNameLabel.text = " OUTREACH "
         } else if category == "Legal Administrative" {
              cell.categoryNameLabel.text = "LEGAL"
         } else if category == "Health Care" {
-            cell.categoryNameLabel.text = "HEALTH CARE"
-        } else if category == "Educaiton" {
-            cell.categoryNameLabel.text = "EDUCATION"
+            cell.categoryNameLabel.text = " HEALTHCARE "
+        } else if category == "Education" {
+            cell.categoryNameLabel.text = " EDUCATION "
         } else {
             cell.categoryNameLabel.text = category.uppercased()
         }
@@ -221,12 +221,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
-        
-//        var matchingObjects = NetworkController.filteredObjects.filter {(individualResource: IndividualResource) -> Bool in
-//            return individualResource.keywords.contains(searchTerm.lowercased()) || individualResource.name.contains(searchTerm.lowercased())
-//        }
 
-        
         networkController?.subcategoryDetails = matchingObjects
     }
 
@@ -300,11 +295,18 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     private func updateNearestShelter() {
         
         shelterNameLabel.text = nearestShelter?.name
-        shelterAddressLabel.text = nearestShelter?.address
-        shelterHoursLabel.text = nearestShelter?.hours
-        shelterHoursLabel.adjustsFontSizeToFitWidth = true
-        if nearestShelter?.hours == nil {
+        
+        if nearestShelter?.address == nil || nearestShelter?.address == "" {
+            shelterAddressLabel.text = "Address unavailable"
+        } else {
+            shelterAddressLabel.text = nearestShelter?.address
+        }
+        
+        if nearestShelter?.hours == nil || nearestShelter?.hours == "" {
             shelterHoursLabel.text = "Please call for hours"
+        } else {
+            shelterHoursLabel.text = nearestShelter?.hours
+            shelterHoursLabel.adjustsFontSizeToFitWidth = true
         }
         
         if let phoneJSON = nearestShelter?.phone {
@@ -313,10 +315,19 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             shelterPhoneLabel.text = "Phone number unavailable"
         }
         
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        shelterDistanceLabel.text = unwrappedDistance
-        shelterDurationLabel.text = unwrappedDuration
+        if serviceDistance == nil || serviceDistance == "" {
+            shelterDistanceLabel.text = "Unavailable"
+        } else {
+            guard let unwrappedDistance = serviceDistance else { return }
+            shelterDistanceLabel.text = unwrappedDistance
+        }
+        
+        if serviceTravelDuration == nil || serviceTravelDuration == "" {
+            shelterDurationLabel.text = "Unavailable"
+        } else {
+            guard let unwrappedDuration = serviceTravelDuration else { return }
+            shelterDurationLabel.text = unwrappedDuration
+        }
         
         // Adjust fonts
         shelterNameLabel.adjustsFontSizeToFitWidth = true
