@@ -66,6 +66,21 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     var serviceDetail: IndividualResource?
     var selectedSubcategory: String!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        DispatchQueue.main.async {
+            self.updateViews()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -138,24 +153,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-        
-        DispatchQueue.main.async {
-            self.updateViews()
-            
-        }
-    }
-    
     // MARK: - Segmented Control Actions
-    
     @IBAction func locationTapped(_ sender: Any) {
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -258,21 +256,21 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     private func getServiceDistanceAndDuration() {
         
-//        guard serviceDetail?.latitude != nil  else {
-//            NSLog("serviceDetail's latitude was found nil")
+//        guard serviceDetail?.latitude != nil, serviceDetail?.longitude != nil  else { NSLog("serviceDetail's latitude or longitude was found nil")
 //            return
 //        }
-//
-//        guard serviceDetail?.longitude != nil  else {
-//            NSLog("serviceDetail's longitude was found nil")
-//            return
-//        }
-        
+
         guard let unwrappedServiceCoordinate = serviceCoordinates,
-            let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-            let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
+            let unwrappedDestLatitude = serviceDetail?.latitude,
+            let unwrappedDestLongitude = serviceDetail?.longitude else { return }
         
-        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
+        guard let latitudeDouble = NumberFormatter().number(from: unwrappedDestLatitude)?.doubleValue,
+        let longitudeDouble = NumberFormatter().number(from: unwrappedDestLongitude)?.doubleValue else { return }
+        
+        print("unwrappedDestLat / Long: \(unwrappedDestLatitude) \(unwrappedDestLongitude)")
+        print("unwrappedServiceCoordinates Lat / Long: \(unwrappedServiceCoordinate.latitude) \(unwrappedServiceCoordinate.longitude)")
+        
+        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, latitudeDouble, longitudeDouble) { (error) in
             if let error = error {
                 NSLog("Error fetching distance to chosen service: \(error)")
             }
@@ -324,7 +322,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedServices: [String] = []
                 for arrayItems in arrayJSON {
-                    var service = "\(index). \(arrayItems)"
+                    var service = " \(index).  \(arrayItems)"
                     index += 1
                     orderedServices.append(service)
                 }
@@ -348,7 +346,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedDetails: [String] = []
                 for arrayItems in arrayJSON {
-                    var details = "\(index). \(arrayItems)"
+                    var details = " \(index).  \(arrayItems)"
                     index += 1
                     orderedDetails.append(details)
                 }
@@ -392,6 +390,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         if segue.identifier == "backToAllResultsSegue" {
             let destination = segue.destination as! ServiceResultsViewController
             destination.networkController = networkController
+            destination.googleMapsController = googleMapsController
         }
     }
     

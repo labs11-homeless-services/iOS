@@ -52,12 +52,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var bottomBarView: UIView!
     
+    var googleMapsController: GoogleMapsController?
     let categoryController = CategoryController()
     var networkController: NetworkController?
     let cacheController = CacheController()
     
     var serviceCoordinates: CLLocationCoordinate2D?
-
+    let locationManager = CLLocationManager()
+    
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
@@ -65,10 +67,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     var nearestDistance: [Element]?
     var destinationAddresses: [String]?
     
-    let locationManager = CLLocationManager()
-    
-    let googleMapsController = GoogleMapsController()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -247,13 +245,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
         
-        googleMapsController.fetchNearestShelter(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude) { (error) in
+        googleMapsController?.fetchNearestShelter(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude) { (error) in
             if let error = error {
                 print("Error fetching distance to chosen service: \(error)")
             }
 
-            self.serviceDistance = self.googleMapsController.serviceDistance
-            self.serviceTravelDuration = self.googleMapsController.serviceTravelDuration
+            self.serviceDistance = self.googleMapsController?.serviceDistance
+            self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
             
             print("serviceDistance: \(String(describing: self.serviceDistance))")
             print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
@@ -262,8 +260,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.updateNearestShelter()
             }
             
-            self.destinationAddresses = self.googleMapsController.serviceAddresses
-            self.nearestDistance = self.googleMapsController.googleDistanceResponse[0].elements
+            self.destinationAddresses = self.googleMapsController?.serviceAddresses
+            self.nearestDistance = self.googleMapsController?.googleDistanceResponse[0].elements
             
             guard var unwrappedShelters = self.nearestDistance else { return }
             
@@ -282,8 +280,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 index += 1
             }
             
-            let fetchedShelter = self.googleMapsController.serviceAddresses[ shelterIndex ]
-            var splitAddress = fetchedShelter.split(separator: " ")
+            let fetchedShelter = self.googleMapsController?.serviceAddresses[ shelterIndex ]
+            guard let splitAddress = fetchedShelter?.split(separator: " ") else { return }
             let addressNumber = splitAddress[0]
             
             for eachShelter in NetworkController.allShelterObjects {
@@ -347,7 +345,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "searchResultsSegue" {
             let searchDestinationVC = segue.destination as! ServiceResultsViewController
             searchDestinationVC.networkController = networkController
-            
+            searchDestinationVC.googleMapsController = googleMapsController
         }
         
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
@@ -366,6 +364,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "shelterNearestYouSegue" {
             let destination = segue.destination as! ServiceDetailViewController
             destination.networkController = networkController
+            destination.googleMapsController = googleMapsController
             destination.serviceDetail = nearestShelter
             destination.serviceDistance = self.serviceDistance
             destination.serviceTravelDuration = self.serviceTravelDuration
