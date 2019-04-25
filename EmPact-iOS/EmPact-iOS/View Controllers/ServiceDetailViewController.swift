@@ -99,7 +99,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         mapUnavailableView.backgroundColor = .customDarkPurple
 
         // Convert latitude/longitude strings to doubles
-        if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
+        if serviceDetail?.latitude == nil || serviceDetail?.latitude == "" || serviceDetail?.longitude == nil || serviceDetail?.longitude == "" {
             mapUnavailableView.isHidden = false
             mapUnavailableLabel.isHidden = false
             mapUnavailableLabel.textColor = .white
@@ -107,6 +107,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             startMapButton.isHidden = true
             serviceDetailDistanceLabel.text = "Unavailable"
             serviceDetailWalkTimeLabel.text = "Unavailable"
+            
+            // Set default map to Central Park
+            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 13.0)
+            mapView.camera = camera
         
         } else {
             guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
@@ -116,8 +120,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                     return
             }
             
+            // Embedded Map
+            
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
+            
             marker.title = serviceDetail?.name
             mapView.selectedMarker = marker
             //marker.appearAnimation = .pop
@@ -159,7 +166,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             serviceDetailAddressLabel.text = serviceDetail?.address
         }
         
-        if serviceDetail?.phone == nil {
+        if serviceDetail?.phone == nil || serviceDetail?.phone as? String == "" {
             serviceDetailPhoneLabel.text = "Phone number unavailable"
         } else {
             if let phoneJSON = serviceDetail?.phone {
@@ -167,8 +174,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             }
         }
         
-
-        if serviceDetail?.hours == nil {
+        if serviceDetail?.hours == nil || serviceDetail?.hours == "" {
             serviceDetailHoursLabel.text = "Please call for hours"
         } else {
            serviceDetailHoursLabel.text = serviceDetail?.hours
@@ -225,15 +231,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailDistanceLabel.text = unwrappedDistance
         serviceDetailWalkTimeLabel.text = unwrappedDuration
         
-        if serviceDistance == nil {
+        if serviceDistance == nil || serviceDistance == "" {
             serviceDetailDistanceLabel.text = "Unavailable"
         }
         
-        if serviceTravelDuration == nil {
+        if serviceTravelDuration == nil || serviceTravelDuration == "" {
             serviceDetailWalkTimeLabel.text = "Unavailable"
         }
-
-
     }
     
     // MARK: - Segmented Control Actions
