@@ -42,11 +42,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // MARK: Service View Outlets
     @IBOutlet weak var serviceView: UIView!
     @IBOutlet weak var servicesInfoNameLabel: UILabel!
+    @IBOutlet weak var primaryServicesLabel: UILabel!
     @IBOutlet weak var serviesInfoTextView: UITextView!
     
     // MARK: Detail View Outlets
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var detailsNameLabel: UILabel!
+    @IBOutlet weak var admissionDetailsLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     
     @IBOutlet weak var mapUnavailableView: UIView!
@@ -65,21 +67,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     var serviceDetail: IndividualResource?
     var selectedSubcategory: String!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-        
-        DispatchQueue.main.async {
-            self.updateViews()
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +109,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             serviceDetailWalkTimeLabel.text = "Unavailable"
             
             // Set default map to Central Park
-            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 13.0)
+            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 14.0)
             mapView.camera = camera
         
         } else {
@@ -153,7 +140,24 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+        }
+    }
+    
     // MARK: - Segmented Control Actions
+    
     @IBAction func locationTapped(_ sender: Any) {
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -256,21 +260,17 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     private func getServiceDistanceAndDuration() {
         
-//        guard serviceDetail?.latitude != nil, serviceDetail?.longitude != nil  else { NSLog("serviceDetail's latitude or longitude was found nil")
-//            return
-//        }
-
+        guard serviceDetail?.latitude != nil, serviceDetail?.longitude != nil
+            else {
+                NSLog("serviceDetail's latitude or longitude was found nil")
+                return
+        }
+        
         guard let unwrappedServiceCoordinate = serviceCoordinates,
-            let unwrappedDestLatitude = serviceDetail?.latitude,
-            let unwrappedDestLongitude = serviceDetail?.longitude else { return }
+            let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
+            let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
         
-        guard let latitudeDouble = NumberFormatter().number(from: unwrappedDestLatitude)?.doubleValue,
-        let longitudeDouble = NumberFormatter().number(from: unwrappedDestLongitude)?.doubleValue else { return }
-        
-        print("unwrappedDestLat / Long: \(unwrappedDestLatitude) \(unwrappedDestLongitude)")
-        print("unwrappedServiceCoordinates Lat / Long: \(unwrappedServiceCoordinate.latitude) \(unwrappedServiceCoordinate.longitude)")
-        
-        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, latitudeDouble, longitudeDouble) { (error) in
+        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
             if let error = error {
                 NSLog("Error fetching distance to chosen service: \(error)")
             }
@@ -292,7 +292,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailNameLabel.text = serviceDetail?.name
         
         if serviceDetail?.address == nil || serviceDetail?.address == "" {
-            
             serviceDetailAddressLabel.text = "Address Unavailable"
         } else {
             serviceDetailAddressLabel.text = serviceDetail?.address
@@ -322,7 +321,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedServices: [String] = []
                 for arrayItems in arrayJSON {
-                    var service = " \(index).  \(arrayItems)"
+                    var service = "  \(index).    \(arrayItems)"
                     index += 1
                     orderedServices.append(service)
                 }
@@ -346,7 +345,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedDetails: [String] = []
                 for arrayItems in arrayJSON {
-                    var details = " \(index).  \(arrayItems)"
+                    var details = "  \(index).    \(arrayItems)"
                     index += 1
                     orderedDetails.append(details)
                 }
@@ -361,7 +360,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 }
             }
         }
-        
+
         // Adjustable Font sizes
         servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
         serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
@@ -390,7 +389,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         if segue.identifier == "backToAllResultsSegue" {
             let destination = segue.destination as! ServiceResultsViewController
             destination.networkController = networkController
-            destination.googleMapsController = googleMapsController
         }
     }
     
@@ -429,7 +427,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         // Fonts
-        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         serviceDetailNameLabel.textColor = UIColor.customLightBlack
         serviceDetailAddressLabel.font = Appearance.lightFont
         serviceDetailDistanceLabel.font = Appearance.lightFont
@@ -437,13 +435,17 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailPhoneLabel.font = Appearance.lightFont
         serviceDetailHoursLabel.font = Appearance.lightFont
         
-        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         servicesInfoNameLabel.textColor = .customLightBlack
-        serviesInfoTextView.font = Appearance.lightFont
+        primaryServicesLabel.textColor = .customDarkPurple
+        serviesInfoTextView.font = Appearance.serviceAndDetailFont
+        serviesInfoTextView.textColor = .customLightBlack
         
-        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
+        detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         detailsNameLabel.textColor = .customLightBlack
-        detailsTextView.font = Appearance.lightFont
+        admissionDetailsLabel.textColor = .customDarkPurple
+        detailsTextView.font = Appearance.serviceAndDetailFont
+        detailsTextView.textColor = UIColor.customLightBlack
         
         // Icon Colors
         let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)

@@ -31,6 +31,10 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
+//    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
+//    
+//    }
+    
     @IBAction func homeButton(_ sender: Any) {
     }
     
@@ -68,19 +72,17 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
-            guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
-            if networkController?.subcategoryNames.count ?? 0 < 1 {
-                networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
-                    if let error = error {
-                        NSLog("Error fetching categories: \(error)")
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        
-                    }
-                })
-                
-            
+        guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
+        if networkController?.subcategoryNames.count ?? 0 < 1 {
+            networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+                if let error = error {
+                    NSLog("Error fetching categories: \(error)")
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    
+                }
+            })
         }
 
         hamburgerSideButton.backgroundColor = UIColor.clear

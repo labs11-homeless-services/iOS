@@ -19,7 +19,7 @@ enum Appearance {
     static let ultraLightFont = UIFont(name: "SFProDisplay-Ultralight", size: UIFont.labelFontSize)
     static let heavyFont = UIFont(name: "SFProDisplay-Heavy", size: UIFont.labelFontSize)
     static let boldItalicFont = UIFont(name: "SFProDisplay-BoldItalic", size: UIFont.labelFontSize)
-    static let semiboldItalicFont = UIFont(name: "SFProDisplay-SemiboldItalic", size: UIFont.labelFontSize)
+    static let semiboldItalicFont = UIFont(name: "SFProDisplay-SemiboldItalic", size: UIFont.systemFontSize)
     static let regularFont = UIFont(name: "SFProDisplay-Regular", size: UIFont.labelFontSize)
     static let boldFont = UIFont(name: "SFProDisplay-Bold", size: UIFont.labelFontSize)
     static let mediumItalicFont = UIFont(name: "SFProDisplay-MediumItalic", size: UIFont.labelFontSize)
@@ -29,6 +29,8 @@ enum Appearance {
     static let lightFont = UIFont(name: "SFProDisplay-Light", size: UIFont.labelFontSize)
     static let ultraLightItalicFont = UIFont(name: "SFProDisplay-UltralightItalic", size: UIFont.labelFontSize)
     static let italicFont = UIFont(name: "SFProDisplay-Italic", size: UIFont.labelFontSize)
+    
+    static let serviceAndDetailFont = UIFont(name: "SFProDisplay-Light", size: 14)
     static let lightItalicFont = UIFont(name: "SFProDisplay-LightItalic", size: UIFont.labelFontSize)
     static let blackFont = UIFont(name: "SFProDisplay-Black", size: UIFont.labelFontSize)
     
@@ -47,19 +49,26 @@ enum Appearance {
     
     static func setupTheme() {
         
+        // Search Bars
+        // Search bar color & theme
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.white
-        
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self])
-        
         UISearchBar.appearance().searchBarStyle = UISearchBar.Style.minimal
         UISearchBar.appearance().barTintColor = UIColor.white
+        
+        // Text of search bar
         UISearchBar.appearance().placeholder = "Search"
         UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = regularFont
         UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.customLightestGray
         
+        // Labels
         UILabel.appearance().textColor = UIColor.customDarkGray
         
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.customDarkBlack]
+//        UITextView.appearance().font = serviceAndDetailFont
+        
+        // Navigation Bar
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.customDarkBlack, NSAttributedString.Key.font: semiboldFont]
+        UIBarButtonItem.appearance().tintColor = UIColor(red:0.31, green:0.36, blue:0.46, alpha:1.0)
+        // Purple: UIColor(red: 0.28, green: 0.19, blue: 0.60, alpha: 1.0)
     }
     
     

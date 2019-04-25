@@ -45,7 +45,7 @@ class CategoryController {
         } else if tempSubcategoryName == "youth" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.youth.rawValue)
         } else if tempSubcategoryName == "all" {
-            subcategoryIconImage = UIImage(named: "S-church")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.all.rawValue)
         } else if tempSubcategoryName == "ged" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.ged.rawValue)
         } else if tempSubcategoryName == "public computers" {
@@ -69,7 +69,7 @@ class CategoryController {
         } else if tempSubcategoryName == "showers" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.showers.rawValue)
         } else if tempSubcategoryName == "benefits" {
-            subcategoryIconImage = UIImage(named: "C-jobs")
+            subcategoryIconImage = UIImage(named: SubcategoryIconImages.benefits.rawValue)
         } else if tempSubcategoryName == "after school" {
             subcategoryIconImage = UIImage(named: SubcategoryIconImages.afterSchool.rawValue)
         } else if tempSubcategoryName == "domestic violence" {

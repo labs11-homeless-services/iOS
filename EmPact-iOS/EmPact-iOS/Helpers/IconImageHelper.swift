@@ -20,7 +20,7 @@ enum CategoryIconImages: String {
 }
 
 enum SubcategoryIconImages: String {
-    case all
+    case all = "S-all"
     case women = "S-woman"
     case men = "S-man"
     case youth = "S-youth"
@@ -33,9 +33,9 @@ enum SubcategoryIconImages: String {
     case hiv = "S-hiv_aids"
     case mentalHealth = "S-mental_health"
     case rehab = "S-rehab"
-    case bathrooms = "S-bathroom"
+    case bathrooms = "S-bathroom-1"
     case showers = "S-shower"
-    case benefits
+    case benefits = "S-health_ins"
     case afterSchool = "S-after_school"
     case domesticViolence = "S-abuse"
     case socialServices = "S-social_service"
