@@ -141,10 +141,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         performSegue(withIdentifier: "shelterNearestYouSegue", sender: nil)
     }
     
-    
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-        
         //performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+    }
+    
+    // MARK - Collection View Data Source Methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 40
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -163,7 +166,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         } else if category == "Legal Administrative" {
              cell.categoryNameLabel.text = "LEGAL"
         } else if category == "Health Care" {
-            cell.categoryNameLabel.text = "HEALTH CARE"
+            cell.categoryNameLabel.text = "HEALTHCARE"
         } else if category == "Educaiton" {
             cell.categoryNameLabel.text = "EDUCATION"
         } else {
@@ -315,7 +318,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         guard let unwrappedDistance = serviceDistance,
             let unwrappedDuration = serviceTravelDuration else { return }
-        shelterDistanceLabel.text = unwrappedDistance
+        shelterDistanceLabel.text = "\(unwrappedDistance)les away"
         shelterDurationLabel.text = unwrappedDuration
         
         // Adjust fonts

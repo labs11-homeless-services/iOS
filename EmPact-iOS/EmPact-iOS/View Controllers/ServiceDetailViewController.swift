@@ -131,8 +131,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         serviceDetailNameLabel.text = serviceDetail?.name
         
-        if serviceDetail?.address == nil {
-            serviceDetailAddressLabel.text = "Address unavailable"
+        if serviceDetail?.address == nil || serviceDetail?.address == "" {
+            serviceDetailAddressLabel.text = "Latitude: \(serviceDetail?.latitude), Longitude: \(serviceDetail?.longitude)"
         } else {
             serviceDetailAddressLabel.text = serviceDetail?.address
         }
@@ -145,35 +145,27 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             }
         }
         
-
+        
         if serviceDetail?.hours == nil {
             serviceDetailHoursLabel.text = "Please call for hours"
         } else {
-           serviceDetailHoursLabel.text = serviceDetail?.hours
-        }
-        
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        
-        serviceDetailDistanceLabel.text = unwrappedDistance
-        serviceDetailWalkTimeLabel.text = unwrappedDuration
-        
-        if serviceDistance == nil {
-            serviceDetailDistanceLabel.text = "Unavailable"
-        }
-        
-        if serviceTravelDuration == nil {
-            serviceDetailWalkTimeLabel.text = "Unavailable"
+            serviceDetailHoursLabel.text = serviceDetail?.hours
         }
         
         // Services Tab Info
         servicesInfoNameLabel.text = serviceDetail?.name
-
+        
         if let servicesJSON = serviceDetail?.services {
             if let arrayJSON = servicesJSON as? [String] {
-                var bulletedArray = arrayJSON.map { "- \($0)" }
-
-                let stringOfServices = bulletedArray.joined(separator: "\n")
+                var index = 1
+                var orderedServices: [String] = []
+                for arrayItems in arrayJSON {
+                    var service = "\(index). \(arrayItems)"
+                    index += 1
+                    orderedServices.append(service)
+                }
+                
+                let stringOfServices = orderedServices.joined(separator: "\n")
                 serviesInfoTextView.text = stringOfServices.capitalized
             } else if let stringJSON = servicesJSON as? String {
                 if stringJSON == "" {
@@ -189,9 +181,15 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         if let detailsJSON = serviceDetail?.details {
             if let arrayJSON = detailsJSON as? [String] {
-                var bulletedArray = arrayJSON.map { "- \($0)" }
+                var index = 1
+                var orderedDetails: [String] = []
+                for arrayItems in arrayJSON {
+                    var details = "\(index). \(arrayItems)"
+                    index += 1
+                    orderedDetails.append(details)
+                }
                 
-                let stringOfDetails = bulletedArray.joined(separator: "\n")
+                let stringOfDetails = orderedDetails.joined(separator: "\n")
                 detailsTextView.text = stringOfDetails.capitalized
             } else if let stringJSON = detailsJSON as? String {
                 if stringJSON == "" {
@@ -210,6 +208,20 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailWalkTimeLabel.adjustsFontSizeToFitWidth = true
         serviceDetailPhoneLabel.adjustsFontSizeToFitWidth = true
         serviceDetailHoursLabel.adjustsFontSizeToFitWidth = true
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        
+        serviceDetailDistanceLabel.text = unwrappedDistance
+        serviceDetailWalkTimeLabel.text = unwrappedDuration
+        
+        if serviceDistance == nil {
+            serviceDetailDistanceLabel.text = "Unavailable"
+        }
+        
+        if serviceTravelDuration == nil {
+            serviceDetailWalkTimeLabel.text = "Unavailable"
+        }
     }
     
     // MARK: - Segmented Control Actions
@@ -224,8 +236,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         servicesButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
         
         locationButton.titleLabel?.font = Appearance.mediumFont
-        servicesButton.titleLabel?.font = Appearance.regularFont
-        detailsButton.titleLabel?.font = Appearance.regularFont
+        servicesButton.titleLabel?.font = Appearance.smallRegularFont
+        detailsButton.titleLabel?.font = Appearance.smallRegularFont
         
         locationButton.setTitleColor(.white, for: .normal)
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
@@ -245,8 +257,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         locationButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
         
         servicesButton.titleLabel?.font = Appearance.mediumFont
-        locationButton.titleLabel?.font = Appearance.regularFont
-        detailsButton.titleLabel?.font = Appearance.regularFont
+        locationButton.titleLabel?.font = Appearance.smallRegularFont
+        detailsButton.titleLabel?.font = Appearance.smallRegularFont
         
         servicesButton.setTitleColor(.white, for: .normal)
         locationButton.setTitleColor(.customLightestGray, for: .normal)
@@ -265,8 +277,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         locationButton.layer.addBorder(edge: .bottom, color: .customDarkPurple, thickness: 3)
         
         detailsButton.titleLabel?.font = Appearance.mediumFont
-        locationButton.titleLabel?.font = Appearance.regularFont
-        servicesButton.titleLabel?.font = Appearance.regularFont
+        locationButton.titleLabel?.font = Appearance.smallRegularFont
+        servicesButton.titleLabel?.font = Appearance.smallRegularFont
         
         detailsButton.setTitleColor(.white, for: .normal)
         locationButton.setTitleColor(.customLightestGray, for: .normal)
@@ -376,12 +388,12 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         servicesButton.setTitle("SERVICES", for: .normal)
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
-        servicesButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        servicesButton.titleLabel?.font = Appearance.smallRegularFont // when not selected, regular when elected
         servicesButton.backgroundColor = .customDarkPurple
         
         detailsButton.setTitle("DETAILS", for: .normal)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
-        detailsButton.titleLabel?.font = Appearance.regularFont // when not selected, regular when elected
+        detailsButton.titleLabel?.font = Appearance.smallRegularFont // when not selected, regular when elected
         detailsButton.backgroundColor = .customDarkPurple
         
         infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
