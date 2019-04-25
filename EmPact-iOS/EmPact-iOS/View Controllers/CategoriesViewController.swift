@@ -223,6 +223,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         
+        networkController?.searchTerm = searchTerm
+        
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
 
         networkController?.subcategoryDetails = matchingObjects
@@ -297,7 +299,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     private func updateNearestShelter() {
         
-        shelterNameLabel.text = nearestShelter?.name
+        if nearestShelter?.name == nil || nearestShelter?.name == "" {
+            shelterNameLabel.text = "Nearest Shelter Unknown"
+        } else {
+            shelterNameLabel.text = nearestShelter?.name
+        }
+        
         
         if nearestShelter?.address == nil || nearestShelter?.address == "" {
             shelterAddressLabel.text = "Address unavailable"

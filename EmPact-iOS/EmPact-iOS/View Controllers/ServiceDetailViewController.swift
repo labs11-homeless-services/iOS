@@ -258,15 +258,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     private func getServiceDistanceAndDuration() {
         
-//        guard serviceDetail?.latitude != nil  else {
-//            NSLog("serviceDetail's latitude was found nil")
-//            return
-//        }
-//
-//        guard serviceDetail?.longitude != nil  else {
-//            NSLog("serviceDetail's longitude was found nil")
-//            return
-//        }
+        guard serviceDetail?.latitude != nil, serviceDetail?.longitude != nil
+            else {
+                NSLog("serviceDetail's latitude or longitude was found nil")
+                return
+        }
         
         guard let unwrappedServiceCoordinate = serviceCoordinates,
             let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
@@ -294,7 +290,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailNameLabel.text = serviceDetail?.name
         
         if serviceDetail?.address == nil || serviceDetail?.address == "" {
-            
             serviceDetailAddressLabel.text = "Address Unavailable"
         } else {
             serviceDetailAddressLabel.text = serviceDetail?.address
@@ -324,7 +319,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedServices: [String] = []
                 for arrayItems in arrayJSON {
-                    var service = "\(index). \(arrayItems)"
+                    var service = "  \(index).    \(arrayItems)"
                     index += 1
                     orderedServices.append(service)
                 }
@@ -348,7 +343,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedDetails: [String] = []
                 for arrayItems in arrayJSON {
-                    var details = "\(index). \(arrayItems)"
+                    var details = "  \(index).    \(arrayItems)"
                     index += 1
                     orderedDetails.append(details)
                 }

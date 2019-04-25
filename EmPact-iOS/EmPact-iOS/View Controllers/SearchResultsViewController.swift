@@ -181,14 +181,5 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
     }
 
-    func setupTheme() {
-        searchedTitleLabel.textColor = UIColor.white
-        searchedTitleLabel.backgroundColor = UIColor.customDarkPurple
-        searchedView.backgroundColor = .customDarkPurple
-        searchedView.layer.cornerRadius = 5
-        
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-    }
     
 }

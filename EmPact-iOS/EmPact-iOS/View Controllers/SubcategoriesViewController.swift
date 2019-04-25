@@ -72,33 +72,17 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
-//        if selectedCategory.lowercased() == "health care" || selectedCategory.lowercased() == "legal administrative" || selectedCategory.lowercased() == "outreach services" {
-//
-//            guard let underscoredPassedCategory = UnderscoredCategory(rawValue: selectedCategory.lowercased()) else { return }
-//            networkController?.fetchSubcategoriesUnderscoredNames(underscoredPassedCategory, completion: { ([String], error) in
-//                if let error = error {
-//                    NSLog("Error fetching underscored categories: \(error)")
-//                }
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//
-//                }
-//            })
-//
-//        } else {
-            guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
-            if networkController?.subcategoryNames.count ?? 0 < 1 {
-                networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
-                    if let error = error {
-                        NSLog("Error fetching categories: \(error)")
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        
-                    }
-                })
-                
-            
+        guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
+        if networkController?.subcategoryNames.count ?? 0 < 1 {
+            networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+                if let error = error {
+                    NSLog("Error fetching categories: \(error)")
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    
+                }
+            })
         }
 
         hamburgerSideButton.backgroundColor = UIColor.clear
