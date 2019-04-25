@@ -141,10 +141,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         performSegue(withIdentifier: "shelterNearestYouSegue", sender: nil)
     }
     
-    
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-        
         //performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
+    }
+    
+    // MARK - Collection View Data Source Methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 40
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -236,7 +239,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             print("User location is unavailable")
         }
         getNearestShelter()
-        //updateViews()
+        updateNearestShelter()
     }
     
     // MARK: - Shelter Nearest You Method

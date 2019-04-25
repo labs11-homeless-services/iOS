@@ -31,7 +31,9 @@ enum Appearance {
     static let italicFont = UIFont(name: "SFProDisplay-Italic", size: UIFont.labelFontSize)
     static let lightItalicFont = UIFont(name: "SFProDisplay-LightItalic", size: UIFont.labelFontSize)
     static let blackFont = UIFont(name: "SFProDisplay-Black", size: UIFont.labelFontSize)
-    static let mediumFont = UIFont(name: "SFProDisplay-Medium", size: UIFont.labelFontSize)
+    
+    static let mediumFont = UIFont(name: "SFProDisplay-Medium", size: UIFont.smallSystemFontSize)
+    static let smallRegularFont = UIFont(name: "SFProDisplay-Regular", size: UIFont.smallSystemFontSize)
     
     //static let heavyItalicFont = UIFont(name: "SFProDisplay-HeavyItalic", size: UIFont.smallSystemFontSize //labelFontSize)
     

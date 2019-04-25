@@ -37,10 +37,12 @@ class GoogleMapsController {
             let queryItemImperial = URLQueryItem(name: "units", value: "imperial")
             let queryItemOrigin = URLQueryItem(name: "origins", value: originString)
             let queryItemDestination = URLQueryItem(name: "destinations", value: destinationString)
+            let queryItemTravelMode = URLQueryItem(name: "mode", value:"walking")
             let queryItemKey = URLQueryItem(name: "key", value: apiKey)
         
-        components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemKey]
+        components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         let requestURL = components.url
+        print("requestURL: \(requestURL)")
         
         URLSession.shared.dataTask(with: requestURL!) { ( data, _, error) in
             if let error = error {
@@ -83,9 +85,10 @@ class GoogleMapsController {
         let queryItemImperial = URLQueryItem(name: "units", value: "imperial")
         let queryItemOrigin = URLQueryItem(name: "origins", value: originString)
         let queryItemDestination = URLQueryItem(name: "destinations", value: destinationString)
+        let queryItemTravelMode = URLQueryItem(name: "mode", value:"walking")
         let queryItemKey = URLQueryItem(name: "key", value: "\(apiKey)")
         
-        components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemKey]
+        components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         guard let requestURL = components.url else { return }
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
