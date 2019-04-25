@@ -14,8 +14,8 @@
         <array key="SF-Pro-Display-Bold.otf">
             <string>SFProDisplay-Bold</string>
         </array>
-        <array key="SF-Pro-Display-Light.otf">
-            <string>SFProDisplay-Light</string>
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
         </array>
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
@@ -113,12 +113,12 @@
                             <constraint firstItem="tHh-rK-WI2" firstAttribute="leading" secondItem="vQA-Tf-rlF" secondAttribute="leading" constant="-3" id="3Kh-os-LN1"/>
                             <constraint firstItem="fdO-Ye-Sop" firstAttribute="top" secondItem="tHh-rK-WI2" secondAttribute="bottom" constant="25" id="8rw-uR-XQW"/>
                             <constraint firstItem="8AQ-Va-4rq" firstAttribute="trailing" secondItem="8hy-oe-c9l" secondAttribute="trailing" id="DDB-aH-1re"/>
-                            <constraint firstItem="8hy-oe-c9l" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" id="ENd-Xk-0uQ"/>
                             <constraint firstItem="tHh-rK-WI2" firstAttribute="top" secondItem="8AQ-Va-4rq" secondAttribute="top" id="N1r-Z6-2HS"/>
                             <constraint firstItem="JL6-Py-ksV" firstAttribute="top" secondItem="8hy-oe-c9l" secondAttribute="bottom" constant="10" id="Ok7-rQ-Lp9"/>
                             <constraint firstItem="8hy-oe-c9l" firstAttribute="top" secondItem="fdO-Ye-Sop" secondAttribute="bottom" constant="10" id="R9W-np-8Lr"/>
                             <constraint firstItem="JL6-Py-ksV" firstAttribute="centerX" secondItem="vQA-Tf-rlF" secondAttribute="centerX" id="Slv-v3-CEG"/>
                             <constraint firstAttribute="trailing" secondItem="fdO-Ye-Sop" secondAttribute="trailing" constant="20" id="Uia-a6-gLY"/>
+                            <constraint firstItem="8hy-oe-c9l" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" id="XmC-Tp-eZP"/>
                             <constraint firstItem="tHh-rK-WI2" firstAttribute="trailing" secondItem="vQA-Tf-rlF" secondAttribute="trailing" constant="3" id="oLG-ya-w2K"/>
                             <constraint firstItem="fdO-Ye-Sop" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" constant="20" id="rcH-Q8-yHy"/>
                         </constraints>
@@ -1049,16 +1049,16 @@
                                         <rect key="frame" x="28" y="117" width="262" height="57"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="U0L-mL-ebM">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="57"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="16.5" height="57"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M2b-tH-H7j">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="16.5" height="40.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" priority="750" constant="50" id="leW-Be-8Ov"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNg-kT-dCp">
-                                                        <rect key="frame" x="0.0" y="45.5" width="50" height="11.5"/>
+                                                        <rect key="frame" x="0.0" y="45.5" width="16.5" height="11.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1069,7 +1069,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vi-Op-3wI">
-                                                <rect key="frame" x="139" y="0.0" width="123" height="57"/>
+                                                <rect key="frame" x="105.5" y="0.0" width="156.5" height="57"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi2-Nw-KNm">
                                                         <rect key="frame" x="0.0" y="9.5" width="120" height="38"/>
@@ -1457,7 +1457,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2m-cz-9ii">
                                 <rect key="frame" x="30" y="94" width="315" height="41"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20U-54-fO9">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="20U-54-fO9">
                                         <rect key="frame" x="0.0" y="-1" width="315" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -1757,8 +1757,8 @@
                                 <rect key="frame" x="20" y="440" width="335" height="153.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Unavailable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyJ-9o-NR6">
-                                        <rect key="frame" x="20" y="63" width="295" height="27.5"/>
-                                        <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="23"/>
+                                        <rect key="frame" x="20" y="61" width="295" height="31.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>

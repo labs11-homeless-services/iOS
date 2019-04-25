@@ -109,7 +109,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             serviceDetailWalkTimeLabel.text = "Unavailable"
             
             // Set default map to Central Park
-            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 13.0)
+            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 14.0)
             mapView.camera = camera
         
         } else {
@@ -360,10 +360,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 }
             }
         }
-        
-        serviesInfoTextView.font = Appearance.lightFont
-        detailsTextView.font = Appearance.lightFont
-        
+
         // Adjustable Font sizes
         servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
         serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
@@ -441,13 +438,13 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         servicesInfoNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         servicesInfoNameLabel.textColor = .customLightBlack
         primaryServicesLabel.textColor = .customDarkPurple
-        serviesInfoTextView.font = Appearance.lightFont
+        serviesInfoTextView.font = Appearance.serviceAndDetailFont
         serviesInfoTextView.textColor = .customLightBlack
         
         detailsNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)
         detailsNameLabel.textColor = .customLightBlack
         admissionDetailsLabel.textColor = .customDarkPurple
-        detailsTextView.font = Appearance.lightFont
+        detailsTextView.font = Appearance.serviceAndDetailFont
         detailsTextView.textColor = UIColor.customLightBlack
         
         // Icon Colors
