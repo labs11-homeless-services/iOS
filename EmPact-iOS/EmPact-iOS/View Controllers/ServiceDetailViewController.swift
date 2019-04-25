@@ -97,7 +97,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         mapUnavailableView.backgroundColor = .customDarkPurple
 
         // Convert latitude/longitude strings to doubles
-        if serviceDetail?.latitude == nil || serviceDetail?.longitude == nil {
+        if serviceDetail?.latitude == nil || serviceDetail?.latitude == "" || serviceDetail?.longitude == nil || serviceDetail?.longitude == "" {
             mapUnavailableView.isHidden = false
             mapUnavailableLabel.isHidden = false
             mapUnavailableLabel.textColor = .white
@@ -105,6 +105,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             startMapButton.isHidden = true
             serviceDetailDistanceLabel.text = "Unavailable"
             serviceDetailWalkTimeLabel.text = "Unavailable"
+            
+            // Set default map to Central Park
+            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 13.0)
+            mapView.camera = camera
         
         } else {
             guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
@@ -114,8 +118,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                     return
             }
             
+            // Embedded Map
+            
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
+            
             marker.title = serviceDetail?.name
             mapView.selectedMarker = marker
             //marker.appearAnimation = .pop

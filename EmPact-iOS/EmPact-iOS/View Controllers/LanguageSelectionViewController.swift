@@ -109,8 +109,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
             let destination = segue.destination as! SearchResultsViewController
             destination.networkController = networkController
             //destination.googleMapsController = googleMapsController
-        }
-        else {
+        } else {
             let destination = segue.destination as! CategoriesViewController
             destination.networkController = networkController
         }
@@ -122,6 +121,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
 //            let destination = segue.destination as! CategoriesViewController
 //            destination.networkController = networkController
 //        }
+
     }
     
     func setupViews() {
