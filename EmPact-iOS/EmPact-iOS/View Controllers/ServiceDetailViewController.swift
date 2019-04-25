@@ -66,6 +66,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     var networkController: NetworkController?
     
     var serviceDetail: IndividualResource?
+    var selectedSubcategory: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +75,18 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         mapView.delegate = self
         
-        self.title = serviceDetail?.name
+        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
+            self.title = serviceDetail?.name
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+        } else if selectedSubcategory == "" || selectedSubcategory == nil {
+            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+            self.title = serviceDetail?.name
+        } else {
+            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
+            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        }
+
+        //self.title = serviceDetail?.name
         
         setupTheme()
         
@@ -107,13 +119,18 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
             marker.title = serviceDetail?.name
+            mapView.selectedMarker = marker
+            //marker.appearAnimation = .pop
             marker.map = mapView
             
             mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
             
         }
         locationButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
-        updateViews()
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +142,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+        
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+        }
     }
     
     func updateViews() {
@@ -132,7 +154,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceDetailNameLabel.text = serviceDetail?.name
         
         if serviceDetail?.address == nil || serviceDetail?.address == "" {
-            serviceDetailAddressLabel.text = "Latitude: \(serviceDetail?.latitude), Longitude: \(serviceDetail?.longitude)"
+
+            serviceDetailAddressLabel.text = "Address Unavailable"
         } else {
             serviceDetailAddressLabel.text = serviceDetail?.address
         }
@@ -149,7 +172,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         if serviceDetail?.hours == nil {
             serviceDetailHoursLabel.text = "Please call for hours"
         } else {
-            serviceDetailHoursLabel.text = serviceDetail?.hours
+           serviceDetailHoursLabel.text = serviceDetail?.hours
         }
         
         // Services Tab Info
@@ -157,6 +180,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         if let servicesJSON = serviceDetail?.services {
             if let arrayJSON = servicesJSON as? [String] {
+
                 var index = 1
                 var orderedServices: [String] = []
                 for arrayItems in arrayJSON {

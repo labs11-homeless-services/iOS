@@ -259,8 +259,8 @@
 				11A09896224E91FB006F8B9D /* CategoriesViewController.swift */,
 				847A7ED62255754E00A62A5F /* SubcategoriesViewController.swift */,
 				847A7ECE22553CD000A62A5F /* ServiceResultsViewController.swift */,
-				847A7ED022553CD600A62A5F /* ServiceDetailViewController.swift */,
 				119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */,
+				847A7ED022553CD600A62A5F /* ServiceDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
