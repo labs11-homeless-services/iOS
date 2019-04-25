@@ -244,7 +244,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             print("User location is unavailable")
         }
         getNearestShelter()
-        //updateViews()
+        updateNearestShelter()
     }
     
     // MARK: - Shelter Nearest You Method

@@ -39,7 +39,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var phoneIconImageView: UIImageView!
     @IBOutlet weak var hoursIconImageView: UIImageView!
     
-    
     // MARK: Service View Outlets
     @IBOutlet weak var serviceView: UIView!
     @IBOutlet weak var servicesInfoNameLabel: UILabel!
@@ -55,7 +54,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var startMapButton: UIButton!
     
     // MARK: - Properties
-    
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
@@ -149,105 +147,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
-    func updateViews() {
-        
-        serviceDetailNameLabel.text = serviceDetail?.name
-        
-        if serviceDetail?.address == nil || serviceDetail?.address == "" {
-
-            serviceDetailAddressLabel.text = "Address Unavailable"
-        } else {
-            serviceDetailAddressLabel.text = serviceDetail?.address
-        }
-        
-        if serviceDetail?.phone == nil {
-            serviceDetailPhoneLabel.text = "Phone number unavailable"
-        } else {
-            if let phoneJSON = serviceDetail?.phone {
-                serviceDetailPhoneLabel.text = phoneJSON as? String
-            }
-        }
-        
-        
-        if serviceDetail?.hours == nil {
-            serviceDetailHoursLabel.text = "Please call for hours"
-        } else {
-           serviceDetailHoursLabel.text = serviceDetail?.hours
-        }
-        
-        // Services Tab Info
-        servicesInfoNameLabel.text = serviceDetail?.name
-        
-        if let servicesJSON = serviceDetail?.services {
-            if let arrayJSON = servicesJSON as? [String] {
-
-                var index = 1
-                var orderedServices: [String] = []
-                for arrayItems in arrayJSON {
-                    var service = "\(index). \(arrayItems)"
-                    index += 1
-                    orderedServices.append(service)
-                }
-                
-                let stringOfServices = orderedServices.joined(separator: "\n")
-                serviesInfoTextView.text = stringOfServices.capitalized
-            } else if let stringJSON = servicesJSON as? String {
-                if stringJSON == "" {
-                    serviesInfoTextView.text = "Please call for services"
-                } else {
-                    serviesInfoTextView.text = stringJSON
-                }
-            }
-        }
-        
-        // Details Tab Info
-        detailsNameLabel.text = serviceDetail?.name
-        
-        if let detailsJSON = serviceDetail?.details {
-            if let arrayJSON = detailsJSON as? [String] {
-                var index = 1
-                var orderedDetails: [String] = []
-                for arrayItems in arrayJSON {
-                    var details = "\(index). \(arrayItems)"
-                    index += 1
-                    orderedDetails.append(details)
-                }
-                
-                let stringOfDetails = orderedDetails.joined(separator: "\n")
-                detailsTextView.text = stringOfDetails.capitalized
-            } else if let stringJSON = detailsJSON as? String {
-                if stringJSON == "" {
-                    detailsTextView.text = "Please call for details"
-                } else {
-                    detailsTextView.text = stringJSON
-                }
-            }
-        }
-        
-        // Adjustable Font sizes
-        servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
-        serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
-        serviceDetailAddressLabel.adjustsFontSizeToFitWidth = true
-        serviceDetailDistanceLabel.adjustsFontSizeToFitWidth = true
-        serviceDetailWalkTimeLabel.adjustsFontSizeToFitWidth = true
-        serviceDetailPhoneLabel.adjustsFontSizeToFitWidth = true
-        serviceDetailHoursLabel.adjustsFontSizeToFitWidth = true
-        
-        guard let unwrappedDistance = serviceDistance,
-            let unwrappedDuration = serviceTravelDuration else { return }
-        
-        serviceDetailDistanceLabel.text = unwrappedDistance
-        serviceDetailWalkTimeLabel.text = unwrappedDuration
-        
-        if serviceDistance == nil {
-            serviceDetailDistanceLabel.text = "Unavailable"
-        }
-        
-        if serviceTravelDuration == nil {
-            serviceDetailWalkTimeLabel.text = "Unavailable"
-        }
-    }
-    
     // MARK: - Segmented Control Actions
     
     @IBAction func locationTapped(_ sender: Any) {
@@ -320,11 +219,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     // MARK: - Location & Maps Management
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            serviceCoordinates = manager.location?.coordinate
-            locationManager.stopUpdatingLocation()
+        serviceCoordinates = manager.location?.coordinate
+        if locations.first != nil {
+            manager.stopUpdatingLocation()
         } else {
-            print("User location is unavailable")
+            NSLog("User location is unavailable")
         }
         getServiceDistanceAndDuration()
         updateViews()
@@ -352,15 +251,15 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     private func getServiceDistanceAndDuration() {
         
-        guard serviceDetail?.latitude != nil  else {
-            NSLog("serviceDetail's latitude was found nil")
-            return
-        }
-        
-        guard serviceDetail?.longitude != nil  else {
-            NSLog("serviceDetail's longitude was found nil")
-            return
-        }
+//        guard serviceDetail?.latitude != nil  else {
+//            NSLog("serviceDetail's latitude was found nil")
+//            return
+//        }
+//
+//        guard serviceDetail?.longitude != nil  else {
+//            NSLog("serviceDetail's longitude was found nil")
+//            return
+//        }
         
         guard let unwrappedServiceCoordinate = serviceCoordinates,
             let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
@@ -368,7 +267,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
             if let error = error {
-                print("Error fetching distance to chosen service: \(error)")
+                NSLog("Error fetching distance to chosen service: \(error)")
             }
             
             self.serviceDistance = self.googleMapsController?.serviceDistance
@@ -380,6 +279,105 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             DispatchQueue.main.async {
                 self.updateViews()
             }
+        }
+    }
+    
+    func updateViews() {
+        
+        serviceDetailNameLabel.text = serviceDetail?.name
+        
+        if serviceDetail?.address == nil || serviceDetail?.address == "" {
+            
+            serviceDetailAddressLabel.text = "Address Unavailable"
+        } else {
+            serviceDetailAddressLabel.text = serviceDetail?.address
+        }
+        
+        if serviceDetail?.phone == nil {
+            serviceDetailPhoneLabel.text = "Phone number unavailable"
+        } else {
+            if let phoneJSON = serviceDetail?.phone {
+                serviceDetailPhoneLabel.text = phoneJSON as? String
+            }
+        }
+        
+        
+        if serviceDetail?.hours == nil {
+            serviceDetailHoursLabel.text = "Please call for hours"
+        } else {
+            serviceDetailHoursLabel.text = serviceDetail?.hours
+        }
+        
+        // Services Tab Info
+        servicesInfoNameLabel.text = serviceDetail?.name
+        
+        if let servicesJSON = serviceDetail?.services {
+            if let arrayJSON = servicesJSON as? [String] {
+                
+                var index = 1
+                var orderedServices: [String] = []
+                for arrayItems in arrayJSON {
+                    var service = "\(index). \(arrayItems)"
+                    index += 1
+                    orderedServices.append(service)
+                }
+                
+                let stringOfServices = orderedServices.joined(separator: "\n")
+                serviesInfoTextView.text = stringOfServices.capitalized
+            } else if let stringJSON = servicesJSON as? String {
+                if stringJSON == "" {
+                    serviesInfoTextView.text = "Please call for services"
+                } else {
+                    serviesInfoTextView.text = stringJSON
+                }
+            }
+        }
+        
+        // Details Tab Info
+        detailsNameLabel.text = serviceDetail?.name
+        
+        if let detailsJSON = serviceDetail?.details {
+            if let arrayJSON = detailsJSON as? [String] {
+                var index = 1
+                var orderedDetails: [String] = []
+                for arrayItems in arrayJSON {
+                    var details = "\(index). \(arrayItems)"
+                    index += 1
+                    orderedDetails.append(details)
+                }
+                
+                let stringOfDetails = orderedDetails.joined(separator: "\n")
+                detailsTextView.text = stringOfDetails.capitalized
+            } else if let stringJSON = detailsJSON as? String {
+                if stringJSON == "" {
+                    detailsTextView.text = "Please call for details"
+                } else {
+                    detailsTextView.text = stringJSON
+                }
+            }
+        }
+        
+        // Adjustable Font sizes
+        servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailAddressLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailDistanceLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailWalkTimeLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailPhoneLabel.adjustsFontSizeToFitWidth = true
+        serviceDetailHoursLabel.adjustsFontSizeToFitWidth = true
+        
+        guard let unwrappedDistance = serviceDistance,
+            let unwrappedDuration = serviceTravelDuration else { return }
+        
+        serviceDetailDistanceLabel.text = unwrappedDistance
+        serviceDetailWalkTimeLabel.text = unwrappedDuration
+        
+        if serviceDistance == nil {
+            serviceDetailDistanceLabel.text = "Unavailable"
+        }
+        
+        if serviceTravelDuration == nil {
+            serviceDetailWalkTimeLabel.text = "Unavailable"
         }
     }
     
