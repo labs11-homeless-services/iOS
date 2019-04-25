@@ -181,7 +181,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     func setupTheme() {
         
         // Spanish Button
-        spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         spanishButton.setTitle("Español", for: .normal)
         spanishButton.setTitleColor(.customDarkPurple, for: .normal)
         spanishButton.backgroundColor = .white
@@ -196,7 +196,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         spanishButton.setImage(tapColoredIcon, for: .normal)
         
         // Home Button
-        homeView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        homeView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         homeButton.backgroundColor = UIColor.white
         homeButton.tintColor = UIColor.white
         homeButtonText.backgroundColor = UIColor.white

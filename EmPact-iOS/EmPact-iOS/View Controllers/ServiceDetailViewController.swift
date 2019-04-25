@@ -107,7 +107,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.isHidden = true
         infoView.isHidden = false
         mapUnavailableView.isHidden = true
-        mapUnavailableView.alpha = 0.5
+        mapUnavailableView.alpha = 0.75
         mapUnavailableLabel.isHidden = true
         mapUnavailableView.backgroundColor = .customDarkPurple
 
@@ -408,7 +408,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         mapView.layer.borderColor = UIColor.gray.cgColor
         
         // Segmented Control
-        segmentButtonView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        segmentButtonView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         locationButton.setTitle("LOCATION", for: .normal)
         locationButton.setTitleColor(.white, for: .normal)
         locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
@@ -424,9 +424,9 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsButton.titleLabel?.font = Appearance.smallRegularFont // when not selected, regular when elected
         detailsButton.backgroundColor = .customDarkPurple
         
-        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
+        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
+        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 36)
