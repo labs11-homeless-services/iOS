@@ -2,7 +2,7 @@
 //  IndividualResource.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/8/19.
+//  Created by Audrey Welch on 4/8/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -130,15 +130,3 @@ struct IndividualResourceTopLevel: Decodable {
     
     var JSON: [IndividualResource]
 }
-
-
-
-
-// Education & Jobs - latitude/longitude is decodeIfPresent
-// Education - no "postal code" - decodeIfPresent
-// Education - Index 31 doesn't have a "phone key"
-// Take out all the arrays in details/services and make them strings
-// Hygiene has no "details" or "services"
-// Hygiene has no "address"
-// Hygiene has phone numbers as both ints and strings
-// No fetches for underscored Subcategories

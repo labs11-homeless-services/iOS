@@ -2,7 +2,7 @@
 //  CategoriesViewController.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 3/29/19.
+//  Created by Jonah Bergevin on 3/29/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -183,11 +183,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         cell.categoryNameLabel.textColor = UIColor.white
         
-//        cell.contentView.setViewShadow(color: UIColor.black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-//        cell.contentView.layer.cornerRadius = 10
-//        cell.contentView.layer.borderColor = UIColor.customLightestGray.cgColor
-//        cell.contentView.layer.borderWidth = 2
-        
         return cell
     }
 
@@ -215,8 +210,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func filterServiceResults() {
+        
         // Grab the text, make sure it's not empty
-
         guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
             return
         }
@@ -242,7 +237,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         updateNearestShelter()
     }
     
-    // MARK: - Shelter Nearest You Method
+    // Shelter Nearest You Method
     private func getNearestShelter() {
         
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
@@ -392,7 +387,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         viewDetailsButton.setTitle("  VIEW DETAILS", for: .normal)
         viewDetailsButton.setTitleColor(.white, for: .normal)
-        //viewDetailsButton.titleLabel?.font = Appearance.boldFont
         viewDetailsButton.backgroundColor = .customDarkPurple
         viewDetailsButton.layer.cornerRadius = 5
         viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
@@ -490,10 +484,5 @@ extension CategoriesViewController : MenuActionDelegate {
     
     func reopenMenu(){
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
-        
     }
 }
-
-
-
-

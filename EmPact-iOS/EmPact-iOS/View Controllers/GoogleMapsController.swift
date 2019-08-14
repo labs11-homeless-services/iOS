@@ -2,7 +2,7 @@
 //  GoogleMapsController.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/10/19.
+//  Created by Jonah Bergevin on 4/10/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 

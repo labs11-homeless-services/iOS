@@ -37,8 +37,6 @@ enum Appearance {
     static let mediumFont = UIFont(name: "SFProDisplay-Medium", size: UIFont.smallSystemFontSize)
     static let smallRegularFont = UIFont(name: "SFProDisplay-Regular", size: UIFont.smallSystemFontSize)
     
-    //static let heavyItalicFont = UIFont(name: "SFProDisplay-HeavyItalic", size: UIFont.smallSystemFontSize //labelFontSize)
-    
     // Scalable font
     static func scaledNameLabelFont(with textStyle: UIFont.TextStyle, size: CGFloat) -> UIFont {
         guard let font = boldFont else { fatalError() }
@@ -63,13 +61,8 @@ enum Appearance {
         // Labels
         UILabel.appearance().textColor = UIColor.customDarkGray
         
-//        UITextView.appearance().font = serviceAndDetailFont
-        
         // Navigation Bar
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.customDarkBlack, NSAttributedString.Key.font: semiboldFont]
         UIBarButtonItem.appearance().tintColor = UIColor(red:0.31, green:0.36, blue:0.46, alpha:1.0)
-        // Purple: UIColor(red: 0.28, green: 0.19, blue: 0.60, alpha: 1.0)
     }
-    
-    
 }
