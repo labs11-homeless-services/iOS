@@ -25,17 +25,30 @@ This application assists people experiencing homelessness to become aware of and
 
 4. Core Location Library
 
-![Image Homepage](App_Images/IMG_4685.jpeg)
-![Image Homepage](App_Images/IMG_4687.jpeg)
-![Image Homepage](App_Images/IMG_4688.jpeg)
-![Image Homepage](App_Images/IMG_4690.jpeg)
-![Image Homepage](App_Images/IMG_4692.jpeg)
-![Image Homepage](App_Images/IMG_4693.jpeg)
-![Image Homepage](App_Images/IMG_4694.jpeg)
-![Image Homepage](App_Images/IMG_4695.jpeg)
-![Image Homepage](App_Images/IMG_4696.jpeg)
-![Image Homepage](App_Images/IMG_4697.jpeg)
-![Image Homepage](App_Images/IMG_4698.jpeg)
-![Image Homepage](App_Images/IMG_4699.jpeg)
-![Image Homepage](App_Images/IMG_4700.jpeg)
-![Image Spanish Coming Soon](App_Images/IMG_4686.jpeg)
+<img width = "400" height="700" src=App_Images/IMG_4685.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4687.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4688.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4690.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4692.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4693.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4694.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4695.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4696.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4697.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4698.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4699.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4700.jpeg>
+<br />
+<img width = "400" height="700" src=App_Images/IMG_4686.jpeg>
