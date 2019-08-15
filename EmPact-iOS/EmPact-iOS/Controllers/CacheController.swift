@@ -1,9 +1,8 @@
-
 //
 //  CacheController.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/15/19.
+//  Created by Jonah Bergevin on 4/15/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -93,20 +92,6 @@ class CacheController {
                 for eachObject in allOutreachServicesObjects {
                     filteredObjects.append(eachObject)
                 }
-                
-                
-//                for eachObject in self.allShelterObjects {
-//
-//                    var keywordStringsArray = eachObject.keywords.components(separatedBy: ", ")
-//                    print(keywordStringsArray)
-//
-//                    for eachKeyword in keywordStringsArray {
-//                        self.cache.setObject( eachObject, forKey: eachKeyword as NSString )
-//                    }
-//                }
-//
-//                print(self.cache.object(forKey: "shelter")?.address)
-//                print(self.cache.object(forKey: "drop-in")?.address)
 
                 completion(nil)
             } catch {
@@ -114,14 +99,5 @@ class CacheController {
                 completion(error)
             }
         }.resume()
-        
     }
-    
 }
-
-//extension IndividualResource {
-//    func matches(searchTerm: String) -> Bool {
-//        return keywords.contains(where: { $0.contains(newSearchText) })
-//    }
-//}
-

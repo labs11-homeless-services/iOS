@@ -28,5 +28,4 @@ class ServiceResultTableViewCell: UITableViewCell {
     @IBAction func viewButton(_ sender: Any) {
         
     }
-    
 }

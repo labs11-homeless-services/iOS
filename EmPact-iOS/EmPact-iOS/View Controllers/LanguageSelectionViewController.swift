@@ -29,27 +29,11 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         // Set Delegate
         searchBar.delegate = self
         
-        //navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.largeTitleDisplayMode = .always
-        
-        
         setupTheme()
         
         setupViews()
         
         setUpNavigationBarTitleImage()
-
-        // Add title logo
-//        let logoImage = UIImage(named: "nu logo")
-//        let imageView = UIImageView(image: logoImage)
-//        imageView.contentMode = .scaleAspectFit
-//
-//        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-//        imageView.frame = titleView.bounds
-//        titleView.addSubview(imageView)
-//
-//        self.navigationItem.titleView = titleView
-        
     }
     
     func setUpNavigationBarTitleImage() {
@@ -73,9 +57,6 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //navigationController?.navigationBar.prefersLargeTitles = true
-        //navigationItem.largeTitleDisplayMode = .always
         
         searchBar.text = ""
         
@@ -115,8 +96,8 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     }
     
     func filterServiceResults() {
-        // Grab the text, make sure it's not empty
         
+        // Grab the text, make sure it's not empty
         guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
             return
         }
@@ -139,15 +120,6 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
         }
-        
-//        if segue.identifier == "landingToServiceResultsSegue" {
-//            let destination = segue.destination as! ServiceResultsViewController
-//            destination.networkController = networkController
-//        } else {
-//            let destination = segue.destination as! CategoriesViewController
-//            destination.networkController = networkController
-//        }
-
     }
     
     func setupViews() {
@@ -208,5 +180,3 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
-
-

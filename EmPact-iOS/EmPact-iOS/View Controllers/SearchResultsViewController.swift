@@ -2,7 +2,7 @@
 //  SearchResultsViewController.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/23/19.
+//  Created by Jonah Bergevin on 4/23/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -91,6 +91,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         // Name
         let alteredString = subcategoryDetail?.name.replacingOccurrences(of: "Â", with: "")
         cell.searchResultNameLabel.text = alteredString
+        
         // Address
         if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
             cell.addressLabel.text = "Address unavailable"
@@ -180,5 +181,4 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
     }
-
 }

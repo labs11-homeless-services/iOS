@@ -64,5 +64,4 @@ struct MenuHelper {
             break
         }
     }
-    
 }

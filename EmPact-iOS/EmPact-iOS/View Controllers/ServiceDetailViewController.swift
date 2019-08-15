@@ -85,8 +85,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
         }
-
-        //self.title = serviceDetail?.name
         
         setupTheme()
         
@@ -175,7 +173,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
         detailsButton.setTitleColor(.customLightestGray, for: .normal)
         
-        
         updateViews()
     }
     
@@ -244,7 +241,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         // https://www.google.com/maps/dir/?api=1 // &parameters
         // https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
         // https://www.google.com/maps/dir/?api=1&origin=40.7829,73.9654&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
-        // origin: if none, the map will provide a blank form to allow a user to enter the origin // OPTIONAL
+        // origin (optional): if none, the map will provide a blank form to allow a user to enter the origin
         // destination: comma-separated latitude/longitude coordinates
         // travelmode (optional): driving, walking, bicycling, transit
         
@@ -304,7 +301,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 serviceDetailPhoneLabel.text = phoneJSON as? String
             }
         }
-        
         
         if serviceDetail?.hours == nil {
             serviceDetailHoursLabel.text = "Please call for hours"
@@ -478,5 +474,4 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         infoHoursView.layer.borderColor = UIColor.lightGray.cgColor
         infoHoursView.layer.borderWidth = 0.25
     }
-
 }

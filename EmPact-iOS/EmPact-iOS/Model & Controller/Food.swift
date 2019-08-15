@@ -23,4 +23,3 @@ struct Food: Decodable {
         return foodDictionary as NSDictionary
     }
 }
-

@@ -76,14 +76,12 @@ class NetworkController {
     // SUBCATEGORY NAMES
     func fetchSubcategoriesNames(_ category: Category, completion: @escaping Handler = { _, _ in }) {
 
+        // Match rawValues to JSON
         let underscoredCategory = category.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
         
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredCategory)
-            //.appendingPathComponent("\(category.rawValue)")
             .appendingPathExtension("json")
-        
-        print(requestURL)
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
@@ -102,6 +100,8 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
+                // Switch on category to decode specific model object
+                // Once decoded, loop through the dictionary in the model object and add the keys of the dictionary to our subcategoryNames array, which will be used to populate the hamburger menu
                 switch category {
                 case .education:
                     let decodedResponse = try jsonDecoder.decode(Education.self, from: data)
@@ -150,9 +150,9 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        //print(decodedResponseDictionary.key)
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
-                    
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
@@ -169,88 +169,13 @@ class NetworkController {
         }.resume()
     }
     
-    func fetchSubcategoriesUnderscoredNames(_ category: UnderscoredCategory, completion: @escaping Handler = { _, _ in }) {
-        
-        var newCategoryName = ""
-        
-        if category.rawValue == "health care" {
-            newCategoryName = "health_care"
-        } else if category.rawValue == "legal administrative" {
-            newCategoryName = "legal_administrative"
-        } else if category.rawValue == "outreach services" {
-            newCategoryName = "outreach_services"
-        }
-       
-        let requestURL = NetworkController.baseURL
-            .appendingPathComponent("\(newCategoryName)")
-            .appendingPathExtension("json")
-        
-        print(requestURL)
-        
-        URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
-            if let error = error {
-                NSLog("error fetching tasks: \(error)")
-                completion(self.subcategoryNames, error)
-                return
-            }
-            
-            guard let data = data else {
-                NSLog("no data returned from data task.")
-                completion(self.subcategoryNames, NSError())
-                return
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            do {
-//                if category.rawValue == "health care" {
-//                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
-//                    for decodedResponseDictionary in decodedResponse.dictionary {
-//                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-//                        print(decodedResponseDictionary.key)
-//                    }
-//                }
-                
-                switch category {
-
-                case .legal:
-                    let decodedResponse = try jsonDecoder.decode(LegalAdministrative.self, from: data)
-                    for decodedResponseDictionary in decodedResponse.dictionary {
-                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        
-                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
-                    }
-                case .healthCare:
-                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
-                    for decodedResponseDictionary in decodedResponse.dictionary {
-                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        
-                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
-                    }
-                case .outreach:
-                    let decodedResponse = try jsonDecoder.decode(OutreachServices.self, from: data)
-                    for decodedResponseDictionary in decodedResponse.dictionary {
-                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        
-                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
-                    }
-                }
-                completion(self.subcategoryNames, nil)
-            } catch {
-                NSLog("error decoding entries: \(error)")
-                completion(self.subcategoryNames, error)
-            }
-            }.resume()
-    }
-    
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
+        // Match rawValues to JSON
         let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
         let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
         
-        //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredTempCategory)
             .appendingPathComponent(underscoredSubcategory)
@@ -270,7 +195,7 @@ class NetworkController {
             }
             
             let jsonDecoder = JSONDecoder()
-            //jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
                 let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
@@ -282,6 +207,7 @@ class NetworkController {
         }.resume()
     }
     
+    // Determine which subcategory will be a parameter in the detail fetch
     func determineSubcategoryDetailFetch() {
         
         if Subcategory.all.rawValue == tempSubcategorySelection {
@@ -353,8 +279,6 @@ class NetworkController {
                 
                 let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
                 
-                //print("Shelter objects array from search fetch: \(self.allShelterObjects)")
-                
                 self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
                 self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
@@ -413,5 +337,3 @@ class NetworkController {
     
     static var filteredObjects: [IndividualResource] = []
 }
-
-

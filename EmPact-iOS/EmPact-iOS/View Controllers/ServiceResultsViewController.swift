@@ -23,7 +23,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         networkController?.tempCategorySelection = ""
         selectedSubcategory = ""
         
-        // If statement accounts for if hamburger menu was skipped over
+        // If-statement accounts for if hamburger menu was skipped over
         if segue.identifier == "unwindToSubcategoriesVC" {
             networkController?.subcategoryDetails = []
             performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
@@ -46,8 +46,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         self.hideKeyboard()
-        
-        //networkController?.subcategoryDetails = []
         
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
@@ -82,8 +80,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         searchBar.text = ""
         
-        //networkController?.subcategoryDetails = []
-        
         guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
         if (networkController?.subcategoryDetails.count ?? 0) < 1 {
             networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
@@ -96,7 +92,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                 }
             })
         }
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +101,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         } else {
             return networkController?.subcategoryDetails.count ?? 0
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,7 +136,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         cell.resultsView.layer.borderWidth = 0.5
         
         // Display the search results
-        //if searchBarIsEmpty() == false {
         if matchingObjects != nil {
             guard let filteredSubcategoryDetail = matchingObjects?[indexPath.row] else { return cell }
             
@@ -238,7 +231,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        //networkController?.subcategoryDetails = []
+        
         tableView.reloadData()
     }
     
@@ -283,7 +276,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             let indexPath = tableView.indexPathForSelectedRow else { return }
         
         // Pass the search results array
-        //if searchBarIsEmpty() == false {
         if matchingObjects != nil {
             //let serviceDetail = NetworkController.filteredObjects[indexPath.row]
             let serviceDetail = matchingObjects?[indexPath.row]
@@ -320,8 +312,3 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
 }
-
-
-
-
-
