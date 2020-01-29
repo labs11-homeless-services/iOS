@@ -1,7 +1,10 @@
 # EmPact - iOS
 
+![Screenshot 2020-01-28 17 35 27](https://user-images.githubusercontent.com/26590934/73320571-97090d80-41f4-11ea-8a9f-dd561324bec3.png)
+
 ## Overview
 This application assists people experiencing homelessness to become aware of and locate resources. The integration of technology in homelessness resource distribution will improve accessibility, increase impact, and empower the homeless population.
+
 
 ## Features:
 1. Search for surrounding resources in New York City by category, including shelters, healthcare, food, hygiene, outreach services, education, legal administrative, and jobs.
@@ -16,6 +19,7 @@ This application assists people experiencing homelessness to become aware of and
 
 6. Ability for application to be translated into Spanish coming soon.
 
+
 ## Technology Used:
 1. Google Maps API with CocoaPods (Apply for a new API key here: https://developers.google.com/maps/documentation/ios-sdk/get-api-key)
 
@@ -25,23 +29,10 @@ This application assists people experiencing homelessness to become aware of and
 
 4. Core Location Library
 
+
 ## See Web App ReadMe for additional details on using the web app.
 Web App Readme: https://github.com/labs11-homeless-services/web/blob/master/README.md
 
-## About the iOS Team:
-
-![audrey](https://user-images.githubusercontent.com/26590934/73319690-ff0a2480-41f1-11ea-80f7-cb1dc3fbed29.jpg)
-
-### Audrey Welch - iOS Developer
-GitHub: https://github.com/audreywelch  
-LinkedIn: www.linkedin.com/in/audrey-welch-ios
-
-![jonah2](https://user-images.githubusercontent.com/26590934/73319694-02051500-41f2-11ea-960c-c5298755d3ca.jpg)
-
-### Jonah Bergevin - iOS Developer
-
-GitHub: https://github.com/JDB0rg  
-LinkedIn: https://www.linkedin.com/in/jonah-bergevin
 
 ## App Images:
 <img width = "400" height="700" src=https://user-images.githubusercontent.com/26590934/73319772-3e387580-41f2-11ea-82c7-a4b4bc298597.jpg>
@@ -58,3 +49,17 @@ LinkedIn: https://www.linkedin.com/in/jonah-bergevin
 <br />
 <img width = "400" height="700" src=https://user-images.githubusercontent.com/26590934/73319799-4db7be80-41f2-11ea-8bc2-4980bef3eca0.jpg>
 
+## About the iOS Team:
+
+![audrey](https://user-images.githubusercontent.com/26590934/73319690-ff0a2480-41f1-11ea-80f7-cb1dc3fbed29.jpg)
+
+### Audrey Welch - iOS Developer
+GitHub: https://github.com/audreywelch  
+LinkedIn: www.linkedin.com/in/audrey-welch-ios
+
+![jonah2](https://user-images.githubusercontent.com/26590934/73319694-02051500-41f2-11ea-960c-c5298755d3ca.jpg)
+
+### Jonah Bergevin - iOS Developer
+
+GitHub: https://github.com/JDB0rg  
+LinkedIn: https://www.linkedin.com/in/jonah-bergevin
