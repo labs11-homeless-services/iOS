@@ -212,7 +212,7 @@ class NetworkController {
         
         if Subcategory.all.rawValue == tempSubcategorySelection {
             subcategoryAtIndexPath = Subcategory.all
-        } else if tempSubcategorySelection == Subcategory.women.rawValue {
+        } else if Subcategory.women.rawValue == tempSubcategorySelection {
             subcategoryAtIndexPath = Subcategory.women
         } else if Subcategory.men.rawValue == tempSubcategorySelection {
             subcategoryAtIndexPath = Subcategory.men

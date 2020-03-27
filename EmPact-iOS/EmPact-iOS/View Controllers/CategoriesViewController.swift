@@ -171,7 +171,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.categoryNameLabel.text = category.uppercased()
         }
         
-        categoryController.getIconImage(from: category)
+        categoryController.getCategoryImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
         cell.cellView.backgroundColor = UIColor.customDarkGray

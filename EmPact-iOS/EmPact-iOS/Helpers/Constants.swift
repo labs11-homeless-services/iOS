@@ -8,4 +8,4 @@
 
 import Foundation
 
-let apiKey = "AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4"
+let apiKey = "AIzaSyCfELV1-3bIDR5WdoF7TpkZ-xymTCE42J4" // "AIzaSyD2VA4VZXz5Hj7mr7s4L8Oybt1rX2fp7f4"
