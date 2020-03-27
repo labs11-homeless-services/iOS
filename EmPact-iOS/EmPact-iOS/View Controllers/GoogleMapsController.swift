@@ -20,6 +20,10 @@ class GoogleMapsController {
     var destinationLatitude: Double = 0
     var destinationLongitude: Double = 0
     
+    var nearestShelterString: String!
+    var shelterAddressArrays: [String] = []
+    var allShelterObjects: [IndividualResource] = []
+    
     typealias CompletionHandler = (Error?) -> Void
     static var baseURL: URL! { return URL( string: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial" ) }
     
@@ -42,7 +46,6 @@ class GoogleMapsController {
         
         components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         let requestURL = components.url
-        print("requestURL: \(requestURL)")
         
         URLSession.shared.dataTask(with: requestURL!) { ( data, _, error) in
             if let error = error {
@@ -50,12 +53,15 @@ class GoogleMapsController {
                 completion(error)
                 return
             }
+            
             guard let data = data else {
                 NSLog("no data returned from data task.")
                 completion(NSError())
                 return
             }
+            
             let jsonDecoder = JSONDecoder()
+            
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
                 let googleDistanceResponse = decodedResponse.rows
@@ -68,7 +74,25 @@ class GoogleMapsController {
             } catch {
                 completion(error)
             }
-            }.resume()
+        }.resume()
+    }
+    
+    func createAddressString() -> String {
+        
+        shelterAddressArrays = NetworkController.allShelterObjects.map({ $0.address!
+            .trimmingCharacters(in: .whitespaces)
+            .split(separator: ",")
+            .joined()
+        })
+        
+        var combinedAddressArray: [String] = []
+        combinedAddressArray.append(contentsOf: shelterAddressArrays)
+        
+        let formattedShelterArray = combinedAddressArray.map({ $0.replacingOccurrences(of: " ", with: "+") })
+        
+        nearestShelterString = formattedShelterArray.map({ $0 + "|" }).joined()
+        
+        return nearestShelterString
     }
     
 
@@ -77,7 +101,7 @@ class GoogleMapsController {
                              completion: @escaping CompletionHandler = { _ in }) {
         
         let originString = String(originLatitude) + "," + String(originLongitude)
-        let destinationString = "120+East+32nd+Street+New+York+NY+10016|800+Barretto+St+The+Bronx+NY+10474|257+West+30th+Street+New+York+NY+10001|2402+Atlantic+Avenue|25+Central+Avenue|703+Lexington+Avenue+Brooklyn+NY+11221|2402+Atlantic+Avenue|550+10th+Avenue+New+York+NY+10018"
+        let destinationString = createAddressString()
         
         guard var components = URLComponents(url: GoogleMapsController.baseURL, resolvingAgainstBaseURL: true) else {
             fatalError("Unable to resolve baseURL to components")
@@ -92,29 +116,36 @@ class GoogleMapsController {
         guard let requestURL = components.url else { return }
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
+            
             if let error = error {
                 NSLog("error fetching tasks: \(error)")
                 completion(error)
                 return
             }
+            
             guard let data = data else {
                 NSLog("no data returned from data task.")
                 completion(NSError())
                 return
             }
+            
             let jsonDecoder = JSONDecoder()
+            
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
                 
                 self.googleDistanceResponse = decodedResponse.rows
+                
                 self.serviceDistance = self.googleDistanceResponse[0].elements[0].distance.text
+                
                 self.serviceTravelDuration = self.googleDistanceResponse[0].elements[0].duration.text
+                
                 self.serviceAddresses = decodedResponse.destinationAddresses
                 
                 completion(nil)
             } catch {
                 completion(error)
             }
-            }.resume()
+        }.resume()
     }
 }

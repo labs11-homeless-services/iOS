@@ -55,7 +55,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
         categoryTitleLabel.adjustsFontSizeToFitWidth = true
         
-        categoryController.getIconImage(from: selectedCategory)
+        categoryController.getCategoryImage(from: selectedCategory)
         categoryTitleImage.image = categoryController.iconImage
         
         self.tableView.delegate = self
@@ -97,7 +97,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.subcategoryNameLabel.textColor = .customDarkGray
         
         categoryController.tempSubcategoryName = subcategory
-        categoryController.getSubcategoryIconImage()
+        categoryController.getSubcategoryImages()
         cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
         let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
