@@ -25,7 +25,7 @@ enum UnderscoredCategory: String, Decodable {
     case outreach = "outreach services"
 }
 
-enum Subcategory: String, Decodable {
+enum Subcategory: String, Decodable, CaseIterable {
     case all
     case women
     case men

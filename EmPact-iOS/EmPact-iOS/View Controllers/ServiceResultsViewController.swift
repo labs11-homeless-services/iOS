@@ -277,7 +277,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         if segue.identifier == "backToCategories" {
             networkController?.subcategoryDetails = []
-            let destination = segue.destination as! CategoriesViewController
+            let _ = segue.destination as! CategoriesViewController
         }
         
         // Get the new view controller using segue.destination.

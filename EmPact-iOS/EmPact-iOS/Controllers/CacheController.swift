@@ -15,7 +15,6 @@ class CacheController {
     static var resourceObject: IndividualResource?
     
     // MARK: - Properties for FetchAll
-    
     static var allShelterObjects: [IndividualResource] = []
     static var allEducationObjects: [IndividualResource] = []
     static var allLegalAdminObjects: [IndividualResource] = []
@@ -94,7 +93,6 @@ class CacheController {
                     filteredObjects.append(eachObject)
                 }
                 
-                
 //                for eachObject in self.allShelterObjects {
 //
 //                    var keywordStringsArray = eachObject.keywords.components(separatedBy: ", ")
@@ -114,14 +112,7 @@ class CacheController {
                 completion(error)
             }
         }.resume()
-        
     }
-    
 }
 
-//extension IndividualResource {
-//    func matches(searchTerm: String) -> Bool {
-//        return keywords.contains(where: { $0.contains(newSearchText) })
-//    }
-//}
 

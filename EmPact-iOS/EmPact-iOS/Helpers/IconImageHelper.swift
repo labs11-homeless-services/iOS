@@ -9,34 +9,67 @@
 import Foundation
 
 enum CategoryIconImages: String {
-    case shelter = "C-shelter"
-    case education = "C-education"
-    case food = "C-food"
-    case healthcare = "C-health-care"
-    case hygiene = "C-hygiene"
-    case outreach = "C-outreach-services"
-    case legal = "C-legal"
-    case jobs = "C-jobs"
+    case shelter = "C-Shelters"
+    case education = "C-Education"
+    case food = "C-Food"
+    case healthcare = "C-Healthcare"
+    case hygiene = "C-Hygiene"
+    case outreach = "C-Outreachservices"
+    case legal = "C-Legal"
+    case jobs = "C-Jobs"
 }
 
-enum SubcategoryIconImages: String {
+extension CategoryIconImages {
+    static let allItems: [CategoryIconImages] = [.shelter,
+                                        .education,
+                                        .food,
+                                        .healthcare,
+                                        .hygiene,
+                                        .outreach,
+                                        .legal,
+                                        .jobs]
+}
+
+enum SubcategoryIconImages: String, CaseIterable {
     case all = "S-all"
-    case women = "S-woman"
-    case men = "S-man"
+    case women = "S-women"
+    case men = "S-men"
     case youth = "S-youth"
     case ged = "S-GED"
     case publicComputers = "S-computers"
-    case foodPantries = "S-food_pantry"
-    case foodStamps = "S-food_stamps"
+    case foodPantries = "S-foodPantries"
+    case foodStamps = "S-foodStamps"
     case clinics = "S-clinic"
     case emergency = "S-emergency"
-    case hiv = "S-hiv_aids"
-    case mentalHealth = "S-mental_health"
+    case hiv = "S-hiv"
+    case mentalHealth = "S-mentalHealth"
     case rehab = "S-rehab"
-    case bathrooms = "S-bathroom-1"
-    case showers = "S-shower"
-    case benefits = "S-health_ins"
-    case afterSchool = "S-after_school"
+    case bathrooms = "S-bathroom"
+    case showers = "S-showers"
+    case benefits = "S-benefits"
+    case afterSchool = "S-afterSchool"
     case domesticViolence = "S-abuse"
-    case socialServices = "S-social_service"
+    case socialServices = "S-socialService"
+}
+
+extension SubcategoryIconImages {
+    static let allItems: [SubcategoryIconImages] = [.all,
+                                        .women,
+                                        .men,
+                                        .youth,
+                                        .ged,
+                                        .publicComputers,
+                                        .foodPantries,
+                                        .foodStamps,
+                                        .clinics,
+                                        .emergency,
+                                        .hiv,
+                                        .mentalHealth,
+                                        .rehab,
+                                        .bathrooms,
+                                        .showers,
+                                        .benefits,
+                                        .afterSchool,
+                                        .domesticViolence,
+                                        .socialServices]
 }

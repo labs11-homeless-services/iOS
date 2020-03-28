@@ -79,12 +79,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
-        navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.barTintColor = nil
         
         setupTheme()
-        
         updateNearestShelter()
         
     }
@@ -135,6 +131,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             UIApplication.shared.open(url, options: [:])
         }
     }
+    
     @IBAction func viewDetailsClicked(_ sender: Any) {
         performSegue(withIdentifier: "shelterNearestYouSegue", sender: nil)
     }
@@ -170,8 +167,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         } else {
             cell.categoryNameLabel.text = category.uppercased()
         }
-        
-        categoryController.getIconImage(from: category)
+   
+        categoryController.getCategoryImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
         cell.cellView.backgroundColor = UIColor.customDarkGray
@@ -229,7 +226,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     // MARK: - Shelter Nearest User Location
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         serviceCoordinates = manager.location?.coordinate
         if locations.first != nil {
@@ -264,19 +260,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             self.destinationAddresses = self.googleMapsController?.serviceAddresses
             self.nearestDistance = self.googleMapsController?.googleDistanceResponse[0].elements
             
-            guard var unwrappedShelters = self.nearestDistance else { return }
+            guard let unwrappedShelters = self.nearestDistance else { return }
             
             var shelter = unwrappedShelters[0] //.distance.value
             var index = 0
             var shelterIndex = 0
-            var shelterTuple = (shelterIndex, shelter)
             
             for each in unwrappedShelters {
  
                 if each.distance.value < shelter.distance.value {
                     shelter = each
                     shelterIndex = index
-                    shelterTuple = (shelterIndex, shelter)
                 }
                 index += 1
             }
@@ -380,6 +374,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     // MARK: - Theme
     
     func setupTheme() {
+        
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.barTintColor = nil
         
         // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)

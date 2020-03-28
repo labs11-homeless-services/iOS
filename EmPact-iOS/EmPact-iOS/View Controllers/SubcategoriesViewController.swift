@@ -39,7 +39,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     var selectedCategory: String!
-
+    
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
@@ -60,7 +60,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
 
         categoryTitleLabel.adjustsFontSizeToFitWidth = true
         
-        categoryController.getIconImage(from: selectedCategory)
+        categoryController.getCategoryImage(from: selectedCategory)
         categoryTitleImage.image = categoryController.iconImage
         
         self.tableView.delegate = self
@@ -102,7 +102,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.subcategoryNameLabel.textColor = .customDarkGray
         
         categoryController.tempSubcategoryName = subcategory
-        categoryController.getSubcategoryIconImage()
+        categoryController.getSubcategoaryImages()
+        
         cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
         let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
@@ -120,7 +121,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
         
         networkController?.tempSubcategorySelection = subcategoryAtIndexPath
-        networkController?.determineSubcategoryDetailFetch()
+        //networkController?.determineSubcategoryDetailFetch()
+        
+        networkController?.determineSubcategoryDetailsFetch()
         
         networkController?.subcategoryDetails = []
     }
@@ -160,7 +163,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - Hamburger Menu Variables
-    var interactor:Interactor? = nil
+    var interactor: Interactor? = nil
     var menuActionDelegate:MenuActionDelegate? = nil
     
     // MARK: - Hamburger Menu Methods
@@ -231,3 +234,4 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
 }
+

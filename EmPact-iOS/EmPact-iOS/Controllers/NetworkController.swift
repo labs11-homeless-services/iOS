@@ -204,13 +204,6 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
-//                if category.rawValue == "health care" {
-//                    let decodedResponse = try jsonDecoder.decode(HealthCare.self, from: data)
-//                    for decodedResponseDictionary in decodedResponse.dictionary {
-//                        self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-//                        print(decodedResponseDictionary.key)
-//                    }
-//                }
                 
                 switch category {
 
@@ -282,50 +275,15 @@ class NetworkController {
         }.resume()
     }
     
-    func determineSubcategoryDetailFetch() {
+    func determineSubcategoryDetailsFetch() {
         
-        if Subcategory.all.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.all
-        } else if tempSubcategorySelection == Subcategory.women.rawValue {
-            subcategoryAtIndexPath = Subcategory.women
-        } else if Subcategory.men.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.men
-        } else if Subcategory.youth.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.youth
-        } else if Subcategory.ged.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.ged
-        } else if Subcategory.publicComputers.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.publicComputers
-        } else if Subcategory.foodPantries.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.foodPantries
-        } else if Subcategory.foodStamps.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.foodStamps
-        } else if Subcategory.clinics.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.clinics
-        } else if Subcategory.emergency.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.emergency
-        } else if Subcategory.hiv.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.hiv
-        } else if Subcategory.mentalHealth.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.mentalHealth
-        } else if Subcategory.rehab.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.rehab
-        } else if Subcategory.bathrooms.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.bathrooms
-        } else if Subcategory.showers.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.showers
-        } else if Subcategory.benefits.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.benefits
-        } else if Subcategory.afterSchool.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.afterSchool
-        } else if Subcategory.domesticViolence.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.domesticViolence
-        } else if Subcategory.socialServices.rawValue == tempSubcategorySelection {
-            subcategoryAtIndexPath = Subcategory.socialServices
+        if subcategoryNames.contains(tempSubcategorySelection) {
+            subcategoryAtIndexPath = Subcategory.init(rawValue: tempSubcategorySelection) ?? Subcategory.all
+        } else {
+            NSLog("Error finding matching subcategory")
         }
-        
     }
-    
+
     // MARK: - Search Fetch
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
@@ -401,7 +359,6 @@ class NetworkController {
     }
     
     // MARK: - Properties for FetchAll
-    
     static var allShelterObjects: [IndividualResource] = []
     static var allEducationObjects: [IndividualResource] = []
     static var allLegalAdminObjects: [IndividualResource] = []

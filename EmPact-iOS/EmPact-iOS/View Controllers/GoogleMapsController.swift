@@ -20,9 +20,14 @@ class GoogleMapsController {
     var destinationLatitude: Double = 0
     var destinationLongitude: Double = 0
     
+    var nearestShelterString: String!
+    var shelterAddressArrays: [String] = []
+    var allShelterObjects: [IndividualResource] = []
+    
     typealias CompletionHandler = (Error?) -> Void
     static var baseURL: URL! { return URL( string: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial" ) }
     
+    // MARK: - Google Distance Matrix Details View
     func fetchServiceDistance(_ originLatitude: Double,
                               _ originLongitude: Double,
                               _ destinationLatitude: Double,
@@ -42,7 +47,6 @@ class GoogleMapsController {
         
         components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         let requestURL = components.url
-        print("requestURL: \(requestURL)")
         
         URLSession.shared.dataTask(with: requestURL!) { ( data, _, error) in
             if let error = error {
@@ -71,13 +75,29 @@ class GoogleMapsController {
             }.resume()
     }
     
-
+    func createAddressString() -> String {
+        
+        shelterAddressArrays = NetworkController.allShelterObjects.map({ $0.address!
+            .trimmingCharacters(in: .whitespaces)
+            .split(separator: ",")
+            .joined()
+        })
+        
+        var combinedAddressArray: [String] = []
+        combinedAddressArray.append(contentsOf: shelterAddressArrays)
+        
+        let formattedShelterArray = combinedAddressArray.map({ $0.replacingOccurrences(of: " ", with: "+") })
+        nearestShelterString = formattedShelterArray.map({ $0 + "|" }).joined()
+        return nearestShelterString
+    }
+    
+    // MARK: - Google Distance Matrix for Shelter Nearest You
     func fetchNearestShelter(_ originLatitude: Double,
                              _ originLongitude: Double,
                              completion: @escaping CompletionHandler = { _ in }) {
         
         let originString = String(originLatitude) + "," + String(originLongitude)
-        let destinationString = "120+East+32nd+Street+New+York+NY+10016|800+Barretto+St+The+Bronx+NY+10474|257+West+30th+Street+New+York+NY+10001|2402+Atlantic+Avenue|25+Central+Avenue|703+Lexington+Avenue+Brooklyn+NY+11221|2402+Atlantic+Avenue|550+10th+Avenue+New+York+NY+10018"
+        let destinationString = createAddressString()
         
         guard var components = URLComponents(url: GoogleMapsController.baseURL, resolvingAgainstBaseURL: true) else {
             fatalError("Unable to resolve baseURL to components")
@@ -90,7 +110,7 @@ class GoogleMapsController {
         
         components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         guard let requestURL = components.url else { return }
-        
+        print("Nearest Shelter URL: \(requestURL)")
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
                 NSLog("error fetching tasks: \(error)")
