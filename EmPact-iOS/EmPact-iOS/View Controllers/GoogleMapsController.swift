@@ -84,12 +84,9 @@ class GoogleMapsController {
             .split(separator: ",")
             .joined()
         })
-        
         var combinedAddressArray: [String] = []
         combinedAddressArray.append(contentsOf: shelterAddressArrays)
-        
         let formattedShelterArray = combinedAddressArray.map({ $0.replacingOccurrences(of: " ", with: "+") })
-        
         nearestShelterString = formattedShelterArray.map({ $0 + "|" }).joined()
         
         return nearestShelterString
@@ -122,26 +119,19 @@ class GoogleMapsController {
                 completion(error)
                 return
             }
-            
             guard let data = data else {
                 NSLog("no data returned from data task.")
                 completion(NSError())
                 return
             }
-            
             let jsonDecoder = JSONDecoder()
-            
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
-                
                 self.googleDistanceResponse = decodedResponse.rows
-                
                 self.serviceDistance = self.googleDistanceResponse[0].elements[0].distance.text
                 
                 self.serviceTravelDuration = self.googleDistanceResponse[0].elements[0].duration.text
-                
                 self.serviceAddresses = decodedResponse.destinationAddresses
-                
                 completion(nil)
             } catch {
                 completion(error)
