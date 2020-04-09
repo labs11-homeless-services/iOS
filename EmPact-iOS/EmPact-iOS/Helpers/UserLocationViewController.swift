@@ -2,7 +2,7 @@
 //  UserLocationViewController.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/4/19.
+//  Created by Jonah Bergevin on 4/4/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -24,7 +24,6 @@ class UserLocationViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
-
 }
 
 extension UserLocationViewController: CLLocationManagerDelegate {
@@ -33,5 +32,4 @@ extension UserLocationViewController: CLLocationManagerDelegate {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
-
 }

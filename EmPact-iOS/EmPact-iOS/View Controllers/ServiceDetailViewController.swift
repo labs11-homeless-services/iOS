@@ -471,5 +471,4 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         infoHoursView.layer.borderColor = UIColor.lightGray.cgColor
         infoHoursView.layer.borderWidth = 0.25
     }
-
 }

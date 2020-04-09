@@ -176,6 +176,7 @@
 		846264C4224D9803009A21A2 = {
 			isa = PBXGroup;
 			children = (
+				119F5735226A4151007A74FC /* Constants.swift */,
 				846264CF224D9803009A21A2 /* EmPact-iOS */,
 				846264CE224D9803009A21A2 /* Products */,
 				847A7ED5225573F200A62A5F /* Recovered References */,

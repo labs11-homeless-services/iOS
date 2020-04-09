@@ -23,5 +23,3 @@ struct Education: Decodable {
         return educationDictionary as NSDictionary
     }
 }
-
-

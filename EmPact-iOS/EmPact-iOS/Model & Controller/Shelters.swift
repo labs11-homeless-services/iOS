@@ -26,7 +26,3 @@ struct Shelters: Decodable {
     }
 
 }
-
-
-
-

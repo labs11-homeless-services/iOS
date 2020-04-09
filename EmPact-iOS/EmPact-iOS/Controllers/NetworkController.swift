@@ -76,14 +76,12 @@ class NetworkController {
     // SUBCATEGORY NAMES
     func fetchSubcategoriesNames(_ category: Category, completion: @escaping Handler = { _, _ in }) {
 
+        // Match rawValues to JSON
         let underscoredCategory = category.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
         
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredCategory)
-            //.appendingPathComponent("\(category.rawValue)")
             .appendingPathExtension("json")
-        
-        print(requestURL)
         
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             if let error = error {
@@ -102,6 +100,8 @@ class NetworkController {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
+                // Switch on category to decode specific model object
+                // Once decoded, loop through the dictionary in the model object and add the keys of the dictionary to our subcategoryNames array, which will be used to populate the hamburger menu
                 switch category {
                 case .education:
                     let decodedResponse = try jsonDecoder.decode(Education.self, from: data)
@@ -150,9 +150,9 @@ class NetworkController {
                     let decodedResponse = try jsonDecoder.decode(Shelters.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-                        //print(decodedResponseDictionary.key)
+                        
+                        self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
-                    
                 case .jobs:
                     let decodedResponse = try jsonDecoder.decode(Jobs.self, from: data)
                     for decodedResponseDictionary in decodedResponse.dictionary {
@@ -240,10 +240,10 @@ class NetworkController {
     // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
+        // Match rawValues to JSON
         let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
         let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
         
-        //guard var tempSubcategory = Subcategory(rawValue: subcategory) else { return }
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredTempCategory)
             .appendingPathComponent(underscoredSubcategory)
@@ -263,7 +263,7 @@ class NetworkController {
             }
             
             let jsonDecoder = JSONDecoder()
-            //jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
                 let decodedResponse = try jsonDecoder.decode([IndividualResource].self, from: data)
@@ -275,7 +275,8 @@ class NetworkController {
         }.resume()
     }
     
-    func determineSubcategoryDetailsFetch() {
+    // Determine which subcategory will be a parameter in the detail fetch
+    func determineSubcategoryDetailFetch() {
         
         if subcategoryNames.contains(tempSubcategorySelection) {
             subcategoryAtIndexPath = Subcategory.init(rawValue: tempSubcategorySelection) ?? Subcategory.all
@@ -310,8 +311,6 @@ class NetworkController {
             do {
                 
                 let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
-                
-                //print("Shelter objects array from search fetch: \(self.allShelterObjects)")
                 
                 self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
@@ -370,5 +369,3 @@ class NetworkController {
     
     static var filteredObjects: [IndividualResource] = []
 }
-
-

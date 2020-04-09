@@ -119,5 +119,3 @@ struct IndividualResourceTopLevel: Decodable {
     
     var JSON: [IndividualResource]
 }
-
-

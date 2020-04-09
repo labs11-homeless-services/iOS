@@ -60,8 +60,5 @@ enum Appearance {
         // Navigation Bar
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.customDarkBlack, NSAttributedString.Key.font: Appearance.semiboldFont!]
         UIBarButtonItem.appearance().tintColor = UIColor(red:0.31, green:0.36, blue:0.46, alpha:1.0)
-        // Purple: UIColor(red: 0.28, green: 0.19, blue: 0.60, alpha: 1.0)
     }
-    
-    
 }

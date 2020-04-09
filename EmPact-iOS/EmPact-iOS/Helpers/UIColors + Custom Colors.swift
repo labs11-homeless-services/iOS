@@ -28,5 +28,4 @@ extension UIColor {
     static let customLightBlack = UIColor(red: 0.20, green: 0.19, blue: 0.19, alpha: 1.0)
     
     static let customDarkBlack = UIColor(red: 0.09, green: 0.09, blue: 0.09, alpha: 1.0)
-    
 }

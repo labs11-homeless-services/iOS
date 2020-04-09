@@ -18,7 +18,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var homeLabelStackView: UIStackView!
     @IBOutlet weak var homeButtonText: UIButton!
     
-    
     @IBOutlet weak var homeView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var middleView: UIView!
@@ -30,10 +29,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var hamburgerView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
-    
-//    @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-//    
-//    }
     
     @IBAction func homeButton(_ sender: Any) {
     }
@@ -102,8 +97,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.subcategoryNameLabel.textColor = .customDarkGray
         
         categoryController.tempSubcategoryName = subcategory
-        categoryController.getSubcategoaryImages()
-        
+        categoryController.getSubcategoryImages()
         cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
         let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
@@ -228,10 +222,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         topView.backgroundColor = UIColor.customDarkPurple
         
         categoryTitleLabel.textColor = .white
-        //categoryTitleLabel.font = Appearance.boldFont
         
         subcategoryLabel.textColor = UIColor.customLightPurple
     }
-    
 }
 

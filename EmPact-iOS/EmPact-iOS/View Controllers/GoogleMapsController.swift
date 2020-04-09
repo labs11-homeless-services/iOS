@@ -2,7 +2,7 @@
 //  GoogleMapsController.swift
 //  EmPact-iOS
 //
-//  Created by Madison Waters on 4/10/19.
+//  Created by Jonah Bergevin on 4/10/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
@@ -54,12 +54,15 @@ class GoogleMapsController {
                 completion(error)
                 return
             }
+            
             guard let data = data else {
                 NSLog("no data returned from data task.")
                 completion(NSError())
                 return
             }
+            
             let jsonDecoder = JSONDecoder()
+            
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
                 let googleDistanceResponse = decodedResponse.rows
@@ -72,7 +75,22 @@ class GoogleMapsController {
             } catch {
                 completion(error)
             }
-            }.resume()
+        }.resume()
+    }
+    
+    func createAddressString() -> String {
+        
+        shelterAddressArrays = NetworkController.allShelterObjects.map({ $0.address!
+            .trimmingCharacters(in: .whitespaces)
+            .split(separator: ",")
+            .joined()
+        })
+        var combinedAddressArray: [String] = []
+        combinedAddressArray.append(contentsOf: shelterAddressArrays)
+        let formattedShelterArray = combinedAddressArray.map({ $0.replacingOccurrences(of: " ", with: "+") })
+        nearestShelterString = formattedShelterArray.map({ $0 + "|" }).joined()
+        
+        return nearestShelterString
     }
     
     func createAddressString() -> String {
@@ -112,6 +130,7 @@ class GoogleMapsController {
         guard let requestURL = components.url else { return }
         print("Nearest Shelter URL: \(requestURL)")
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
+            
             if let error = error {
                 NSLog("error fetching tasks: \(error)")
                 completion(error)
@@ -125,16 +144,15 @@ class GoogleMapsController {
             let jsonDecoder = JSONDecoder()
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
-                
                 self.googleDistanceResponse = decodedResponse.rows
                 self.serviceDistance = self.googleDistanceResponse[0].elements[0].distance.text
+                
                 self.serviceTravelDuration = self.googleDistanceResponse[0].elements[0].duration.text
                 self.serviceAddresses = decodedResponse.destinationAddresses
-                
                 completion(nil)
             } catch {
                 completion(error)
             }
-            }.resume()
+        }.resume()
     }
 }
