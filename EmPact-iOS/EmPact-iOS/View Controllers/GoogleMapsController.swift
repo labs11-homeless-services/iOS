@@ -93,22 +93,6 @@ class GoogleMapsController {
         return nearestShelterString
     }
     
-    func createAddressString() -> String {
-        
-        shelterAddressArrays = NetworkController.allShelterObjects.map({ $0.address!
-            .trimmingCharacters(in: .whitespaces)
-            .split(separator: ",")
-            .joined()
-        })
-        
-        var combinedAddressArray: [String] = []
-        combinedAddressArray.append(contentsOf: shelterAddressArrays)
-        
-        let formattedShelterArray = combinedAddressArray.map({ $0.replacingOccurrences(of: " ", with: "+") })
-        nearestShelterString = formattedShelterArray.map({ $0 + "|" }).joined()
-        return nearestShelterString
-    }
-    
     // MARK: - Google Distance Matrix for Shelter Nearest You
     func fetchNearestShelter(_ originLatitude: Double,
                              _ originLongitude: Double,

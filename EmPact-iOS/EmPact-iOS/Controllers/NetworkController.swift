@@ -237,13 +237,11 @@ class NetworkController {
             }.resume()
     }
     
-    // SUBCATEGORY LIST RESULTS DETAILS
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
         // Match rawValues to JSON
         let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
         let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
-        
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredTempCategory)
             .appendingPathComponent(underscoredSubcategory)
@@ -277,7 +275,6 @@ class NetworkController {
     
     // Determine which subcategory will be a parameter in the detail fetch
     func determineSubcategoryDetailFetch() {
-        
         if subcategoryNames.contains(tempSubcategorySelection) {
             subcategoryAtIndexPath = Subcategory.init(rawValue: tempSubcategorySelection) ?? Subcategory.all
         } else {

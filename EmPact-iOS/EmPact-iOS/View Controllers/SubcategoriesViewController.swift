@@ -10,15 +10,9 @@ import UIKit
 
 class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var spanishView: UIView!
-    @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var closeLabel: UILabel!
-    @IBOutlet weak var spanishButton: UIButton!
-    @IBOutlet weak var homeLabelStackView: UIStackView!
-    @IBOutlet weak var homeButtonText: UIButton!
     
-    @IBOutlet weak var homeView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var subcategoryLabel: UILabel!
@@ -30,14 +24,10 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func homeButton(_ sender: Any) {
-    }
-    
     var selectedCategory: String!
     
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
-    
     var categoryController = CategoryController()
     
     override func viewDidLoad() {
@@ -111,14 +101,9 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         guard let subcategoryAtIndexPath = networkController?.subcategoryNames[indexPath.row] else { return }
-        
         networkController?.tempSubcategorySelection = subcategoryAtIndexPath
-        //networkController?.determineSubcategoryDetailFetch()
-        
-        networkController?.determineSubcategoryDetailsFetch()
-        
+        networkController?.determineSubcategoryDetailFetch()
         networkController?.subcategoryDetails = []
     }
     
@@ -140,11 +125,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func spanishButtonClicked(_ sender: Any) {
-        
         let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
         self.present(alert, animated: true)
     }
     
@@ -155,7 +137,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         dismiss(animated: true, completion: nil)
         networkController?.subcategoryNames = []
     }
-    
     // MARK: - Hamburger Menu Variables
     var interactor: Interactor? = nil
     var menuActionDelegate:MenuActionDelegate? = nil
@@ -167,7 +148,6 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
             completion()
         }
     }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         dismiss(animated: true){
             self.delay(seconds: 0.5){
@@ -175,37 +155,8 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
     }
-    
     // MARK: - Theme
     func setupTheme() {
-        
-        // Spanish Button
-        spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
-        spanishButton.setTitle("Español", for: .normal)
-        spanishButton.setTitleColor(.customDarkPurple, for: .normal)
-        spanishButton.backgroundColor = .white
-        spanishView.backgroundColor = .customDarkPurple
-        spanishButton.layer.cornerRadius = 5
-        spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        
-        let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        spanishButton.tintColor = .customDarkPurple
-        spanishButton.setImage(tapColoredIcon, for: .normal)
-        
-        // Home Button
-        homeView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
-        homeButton.backgroundColor = UIColor.white
-        homeButton.tintColor = UIColor.white
-        homeButtonText.backgroundColor = UIColor.white
-        homeButtonText.tintColor = UIColor.customDarkPurple
-        
-        let homeColoredIcon = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-
-        homeButton.tintColor = .customDarkPurple
-        homeButton.setImage(homeColoredIcon, for: .normal)
-        
         // Close Button
         closeButton.setTitle("Close", for: .normal)
         closeButton.setTitleColor(.white, for: .normal)
@@ -214,15 +165,11 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         let closeColoredIcon = UIImage(named: "Sharp")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         closeButton.tintColor = .white
         closeButton.setImage(closeColoredIcon, for: .normal)
-        
         closeLabel.backgroundColor = .customDarkPurple
         closeLabel.textColor = .white
-        
         // Top Bar
         topView.backgroundColor = UIColor.customDarkPurple
-        
         categoryTitleLabel.textColor = .white
-        
         subcategoryLabel.textColor = UIColor.customLightPurple
     }
 }
