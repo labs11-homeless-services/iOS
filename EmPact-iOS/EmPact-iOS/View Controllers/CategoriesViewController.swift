@@ -79,12 +79,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
-        navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.barTintColor = nil
         
         setupTheme()
-        
         updateNearestShelter()
         
     }
@@ -135,6 +131,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             UIApplication.shared.open(url, options: [:])
         }
     }
+    
     @IBAction func viewDetailsClicked(_ sender: Any) {
         performSegue(withIdentifier: "shelterNearestYouSegue", sender: nil)
     }
@@ -179,7 +176,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.cellView.layer.borderColor = UIColor.white.cgColor
         cell.cellView.layer.borderWidth = 2
         
-        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.5, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         cell.categoryNameLabel.textColor = UIColor.white
         
@@ -224,12 +221,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     // MARK: - Shelter Nearest User Location
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            serviceCoordinates = manager.location?.coordinate
-            print("serviceCoordinates: \(String(describing: serviceCoordinates))")
-            locationManager.stopUpdatingLocation()
+        serviceCoordinates = manager.location?.coordinate
+        if locations.first != nil {
+            manager.stopUpdatingLocation()
         } else {
             print("User location is unavailable")
         }
@@ -260,19 +255,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             self.destinationAddresses = self.googleMapsController?.serviceAddresses
             self.nearestDistance = self.googleMapsController?.googleDistanceResponse[0].elements
             
-            guard var unwrappedShelters = self.nearestDistance else { return }
+            guard let unwrappedShelters = self.nearestDistance else { return }
             
             var shelter = unwrappedShelters[0] //.distance.value
             var index = 0
             var shelterIndex = 0
-            var shelterTuple = (shelterIndex, shelter)
             
             for each in unwrappedShelters {
  
                 if each.distance.value < shelter.distance.value {
                     shelter = each
                     shelterIndex = index
-                    shelterTuple = (shelterIndex, shelter)
                 }
                 index += 1
             }
@@ -377,6 +370,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func setupTheme() {
         
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.barTintColor = nil
+        
         // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -389,7 +386,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         viewDetailsButton.setTitleColor(.white, for: .normal)
         viewDetailsButton.backgroundColor = .customDarkPurple
         viewDetailsButton.layer.cornerRadius = 5
-        viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         viewDetailsButton.tintColor = .white
@@ -416,7 +413,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         helpView.backgroundColor = UIColor.customDarkPurple
         helpView.layer.cornerRadius = 5
         helpLabel.textColor = UIColor.white
-        helpView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        helpView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         // Icon Colors
         let placeColoredIcon = UIImage(named: "place")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
@@ -439,7 +436,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         hoursImageView.tintColor = .customDarkPurple
         hoursImageView.image = clockColoredIcon
         
-        shelterView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        shelterView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         addressView.layer.borderWidth = 0.25
         addressView.layer.borderColor = UIColor.lightGray.cgColor

@@ -82,7 +82,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.viewButton.tintColor = UIColor.white
         cell.viewButton.setImage(launchColoredIcon, for: .normal)
-        cell.viewButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        cell.viewButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         cell.viewButton.layer.cornerRadius = 5
         cell.searchResultsView.layer.borderColor = UIColor.lightGray.cgColor
@@ -179,6 +179,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         searchedView.layer.cornerRadius = 5
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
     }
 }

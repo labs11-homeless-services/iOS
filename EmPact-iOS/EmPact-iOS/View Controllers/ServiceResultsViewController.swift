@@ -129,7 +129,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         let launchColoredIcon = UIImage(named: "launch")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.viewDetailsButton.tintColor = UIColor.white
         cell.viewDetailsButton.setImage(launchColoredIcon, for: .normal)
-        cell.viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        cell.viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         cell.viewDetailsButton.layer.cornerRadius = 5
         cell.resultsView.layer.borderColor = UIColor.lightGray.cgColor
@@ -176,7 +176,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
             
             // Name
-            cell.serviceNameLabel.text = subcategoryDetail?.name
+            //cell.serviceNameLabel.text = subcategoryDetail?.name
+            let alteredString = subcategoryDetail?.name.replacingOccurrences(of: "Â", with: "")
+            cell.serviceNameLabel.text = alteredString
             
             // Address
             if subcategoryDetail?.address == nil || subcategoryDetail?.address == "" {
@@ -268,7 +270,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         if segue.identifier == "backToCategories" {
             networkController?.subcategoryDetails = []
-            let destination = segue.destination as! CategoriesViewController
+            let _ = segue.destination as! CategoriesViewController
         }
         
         // Get the new view controller using segue.destination.
@@ -308,7 +310,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         subcategoriesTitleView.layer.cornerRadius = 5
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        subcategoriesTitleView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        subcategoriesTitleView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
     }
     
 }
