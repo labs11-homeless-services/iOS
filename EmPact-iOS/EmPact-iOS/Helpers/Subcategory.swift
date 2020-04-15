@@ -30,7 +30,7 @@ enum Subcategory: String, Decodable {
     case women
     case men
     case youth
-    case ged
+    case ged = "GED"
     case publicComputers = "public computers"
     case foodPantries = "food pantries"
     case foodStamps = "food stamps"

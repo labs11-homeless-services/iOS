@@ -44,14 +44,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         setupTheme()
-        
-        if selectedCategory == "Outreach Services" {
-            categoryTitleLabel.text = "OUTREACH"
-        } else if selectedCategory == "Legal Administrative" {
-            categoryTitleLabel.text = "LEGAL"
-        } else {
-            categoryTitleLabel.text = selectedCategory.uppercased()
-        }
+        capitalize()
 
         categoryTitleLabel.adjustsFontSizeToFitWidth = true
         
@@ -93,20 +86,26 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
         guard let subcategory = networkController?.subcategoryNames[indexPath.row] else { fatalError("Unable to unwrap the subcategories and sort them") }
         
-        cell.subcategoryNameLabel.text = String(subcategory).capitalized
-        cell.subcategoryNameLabel.textColor = .customDarkGray
-        
-        categoryController.tempSubcategoryName = subcategory
-        categoryController.getSubcategoryImages()
-        cell.subcategoryImageView.image = categoryController.subcategoryIconImage
+        if subcategoryLabel.text == "Hiv" {
+            cell.subcategoryNameLabel.text = String(subcategory).uppercased()
+        }
+        if subcategoryLabel.text == "Ged" {
+            cell.subcategoryNameLabel.text = String(subcategory).uppercased()
+        } else {
+            cell.subcategoryNameLabel.text = String(subcategory).capitalized
+            cell.subcategoryNameLabel.textColor = .customDarkGray
+            
+            categoryController.tempSubcategoryName = subcategory
+            categoryController.getSubcategoryImages()
+            cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
-        let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        cell.nextArrowImageView.tintColor = .customDarkGray
-        cell.nextArrowImageView.image = coloredIcon
+            let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cell.nextArrowImageView.tintColor = .customDarkGray
+            cell.nextArrowImageView.image = coloredIcon
 
-        cell.cellView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
-        cell.cellView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)
-    
+            cell.cellView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
+            cell.cellView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)
+        }
         return cell
     }
     
@@ -174,8 +173,18 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    private func capitalize() {
+        if selectedCategory == "Outreach Services" {
+            categoryTitleLabel.text = "OUTREACH"
+        } else if selectedCategory == "Legal Administrative" {
+            categoryTitleLabel.text = "LEGAL"
+        } else {
+            categoryTitleLabel.text = selectedCategory.uppercased()
+        }
+    }
+    
     // MARK: - Theme
-    func setupTheme() {
+    private func setupTheme() {
         
         // Spanish Button
         spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
