@@ -11,15 +11,16 @@ import GoogleMaps
 
 class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-    // Outlet for MapView
+    // MARK: - Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
-
+    
+    // MARK: - Custom Segment Control Buttons
     @IBOutlet weak var segmentButtonView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var servicesButton: UIButton!
     @IBOutlet weak var detailsButton: UIButton!
     
-    // MARK: Info View Outlets
+    // MARK: - Info View Outlets
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var infoTravelView: UIView!
     @IBOutlet weak var infoAddressView: UIView!
@@ -51,6 +52,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBOutlet weak var admissionDetailsLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     
+    // MARK: - Map Unavailable Outlets
     @IBOutlet weak var mapUnavailableView: UIView!
     @IBOutlet weak var mapUnavailableLabel: UILabel!
     @IBOutlet weak var startMapButton: UIButton!
@@ -92,11 +94,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         serviceView.isHidden = true
         infoView.isHidden = false
         mapUnavailableView.isHidden = true
-        mapUnavailableView.alpha = 0.5
+        mapUnavailableView.alpha = 0.75
         mapUnavailableLabel.isHidden = true
         mapUnavailableView.backgroundColor = .customDarkPurple
 
-        // Convert latitude/longitude strings to doubles
+        // Convert latitude/longitude strings to doubles to get User Location
         if serviceDetail?.latitude == nil || serviceDetail?.latitude == "" || serviceDetail?.longitude == nil || serviceDetail?.longitude == "" {
             mapUnavailableView.isHidden = false
             mapUnavailableLabel.isHidden = false
@@ -118,8 +120,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                     return
             }
             
-            // Embedded Map
-            
+            // MARK: - Embedded Map
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
             
@@ -150,12 +151,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         
         DispatchQueue.main.async {
             self.updateViews()
-            
         }
     }
     
     // MARK: - Segmented Control Actions
-    
+    // MARK: - Action to display info in the Locations View
     @IBAction func locationTapped(_ sender: Any) {
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -176,6 +176,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
+    // MARK: - Action to display info in the Services View
     @IBAction func servicesTapped(_ sender: Any) {
         detailsView.isHidden = true
         serviceView.isHidden = false
@@ -196,6 +197,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
+    // MARK: - Action to display info in the Details View
     @IBAction func detailsTapped(_ sender: Any) {
         detailsView.isHidden = false
         serviceView.isHidden = true
@@ -216,6 +218,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
+    // MARK: - Change to Spanish Translation Action
     @IBAction func spanishButtonTapped(_ sender: Any) {
         
         let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
@@ -235,26 +238,17 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
+    // MARK: - Lauch Google Maps Action
     @IBAction func launchMapsButton(_ sender: Any) {
         
-        // Form Directions URL
-        // https://www.google.com/maps/dir/?api=1 // &parameters
-        // https://www.google.com/maps/dir/?api=1&origin=Space+Needle+Seattle+WA&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
-        // https://www.google.com/maps/dir/?api=1&origin=40.7829,73.9654&destination=Pike+Place+Market+Seattle+WA&travelmode=walking
-        // origin (optional): if none, the map will provide a blank form to allow a user to enter the origin
-        // destination: comma-separated latitude/longitude coordinates
-        // travelmode (optional): driving, walking, bicycling, transit
-        
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
-        
-        print("Launch Google Maps URL: https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit")
-        
         if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
      
             UIApplication.shared.open(url, options: [:])
         }
     }
     
+    // MARK: - Google Distance Matrix to get Walking Distance and Travel Duration
     private func getServiceDistanceAndDuration() {
         
         guard serviceDetail?.latitude != nil, serviceDetail?.longitude != nil
@@ -284,6 +278,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
+    // MARK: - Update View's Information Method
     func updateViews() {
         
         serviceDetailNameLabel.text = serviceDetail?.name
@@ -317,7 +312,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedServices: [String] = []
                 for arrayItems in arrayJSON {
-                    var service = "  \(index).    \(arrayItems)"
+                    let service = "  \(index).    \(arrayItems)"
                     index += 1
                     orderedServices.append(service)
                 }
@@ -341,7 +336,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
                 var index = 1
                 var orderedDetails: [String] = []
                 for arrayItems in arrayJSON {
-                    var details = "  \(index).    \(arrayItems)"
+                    let details = "  \(index).    \(arrayItems)"
                     index += 1
                     orderedDetails.append(details)
                 }
@@ -381,6 +376,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "backToAllResultsSegue" {
             let destination = segue.destination as! ServiceResultsViewController
@@ -388,6 +384,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
+    // MARK: - Appearance Theme Method
     func setupTheme() {
         
         // Button
@@ -402,7 +399,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         mapView.layer.borderColor = UIColor.gray.cgColor
         
         // Segmented Control
-        segmentButtonView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        segmentButtonView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         locationButton.setTitle("LOCATION", for: .normal)
         locationButton.setTitleColor(.white, for: .normal)
         locationButton.titleLabel?.font = Appearance.mediumFont // when selected, regular when not selected
@@ -418,9 +415,9 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         detailsButton.titleLabel?.font = Appearance.smallRegularFont // when not selected, regular when elected
         detailsButton.backgroundColor = .customDarkPurple
         
-        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
-        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        infoView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
+        detailsView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
+        serviceView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         // Fonts
         serviceDetailNameLabel.font = Appearance.scaledNameLabelFont(with: .title1, size: 40)

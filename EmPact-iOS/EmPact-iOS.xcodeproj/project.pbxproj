@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110A763123550D140030E33C /* NearestShelter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110A763023550D140030E33C /* NearestShelter.swift */; };
 		112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220D22566A910008E54B /* UserLocationViewController.swift */; };
 		112A221022569C550008E54B /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220F22569C550008E54B /* CategoryController.swift */; };
 		112ABB262267EB7500989F24 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112ABB252267EB7400989F24 /* GoogleDistance.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110A763023550D140030E33C /* NearestShelter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestShelter.swift; sourceTree = "<group>"; };
 		112A220D22566A910008E54B /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		112A220F22569C550008E54B /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		112ABB252267EB7400989F24 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDistance.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				11A098C022552031006F8B9D /* Subcategory.swift */,
 				112A220D22566A910008E54B /* UserLocationViewController.swift */,
 				84B3A4DC2267881F00F06DC4 /* Border.swift */,
+				119F5735226A4151007A74FC /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				847A7ED822557B2800A62A5F /* OutreachServices.swift */,
 				11D79C78225BD6840064EFB5 /* IndividualResource.swift */,
 				112ABB252267EB7400989F24 /* GoogleDistance.swift */,
+				110A763023550D140030E33C /* NearestShelter.swift */,
 			);
 			path = "Model & Controller";
 			sourceTree = "<group>";
@@ -499,6 +503,7 @@
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
 				119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */,
+				110A763123550D140030E33C /* NearestShelter.swift in Sources */,
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				84B3A4B222652E2A00F06DC4 /* CacheController.swift in Sources */,
@@ -661,13 +666,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BH59G2VDQ6;
+				DEVELOPMENT_TEAM = KZQGC2NP54;
 				INFOPLIST_FILE = "EmPact-iOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.empact;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.audjon.EmPact-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -680,13 +685,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BH59G2VDQ6;
+				DEVELOPMENT_TEAM = KZQGC2NP54;
 				INFOPLIST_FILE = "EmPact-iOS/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.empact;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.audjon.EmPact-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
