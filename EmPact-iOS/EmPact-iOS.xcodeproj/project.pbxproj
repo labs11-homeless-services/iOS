@@ -10,7 +10,6 @@
 		112A220E22566A910008E54B /* UserLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220D22566A910008E54B /* UserLocationViewController.swift */; };
 		112A221022569C550008E54B /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112A220F22569C550008E54B /* CategoryController.swift */; };
 		112ABB262267EB7500989F24 /* GoogleDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112ABB252267EB7400989F24 /* GoogleDistance.swift */; };
-		119F5736226A4151007A74FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5735226A4151007A74FC /* Constants.swift */; };
 		119F5738226FBF3F007A74FC /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */; };
 		119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */; };
 		119F573C2270BD7D007A74FC /* iPhone logo Nu.png in Resources */ = {isa = PBXBuildFile; fileRef = 119F573B2270BD7A007A74FC /* iPhone logo Nu.png */; };
@@ -68,6 +67,7 @@
 		84B3A4DA22667CEB00F06DC4 /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B3A4C922667C6D00F06DC4 /* SF-Pro-Display-Ultralight.otf */; };
 		84B3A4DB22667CEE00F06DC4 /* SF-Pro-Display-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B3A4B822667C6A00F06DC4 /* SF-Pro-Display-UltralightItalic.otf */; };
 		84B3A4DD2267882200F06DC4 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4DC2267881F00F06DC4 /* Border.swift */; };
+		84F19676243FD367007E4FA3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F19675243FD367007E4FA3 /* Constants.swift */; };
 		B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +75,6 @@
 		112A220D22566A910008E54B /* UserLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationViewController.swift; sourceTree = "<group>"; };
 		112A220F22569C550008E54B /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		112ABB252267EB7400989F24 /* GoogleDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDistance.swift; sourceTree = "<group>"; };
-		119F5735226A4151007A74FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		119F5737226FBF3E007A74FC /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		119F573B2270BD7A007A74FC /* iPhone logo Nu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone logo Nu.png"; sourceTree = "<group>"; };
@@ -137,6 +136,7 @@
 		84B3A4C822667C6D00F06DC4 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		84B3A4C922667C6D00F06DC4 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		84B3A4DC2267881F00F06DC4 /* Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
+		84F19675243FD367007E4FA3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.debug.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +174,7 @@
 		846264C4224D9803009A21A2 = {
 			isa = PBXGroup;
 			children = (
-				119F5735226A4151007A74FC /* Constants.swift */,
+				84F19675243FD367007E4FA3 /* Constants.swift */,
 				846264CF224D9803009A21A2 /* EmPact-iOS */,
 				846264CE224D9803009A21A2 /* Products */,
 				847A7ED5225573F200A62A5F /* Recovered References */,
@@ -476,7 +476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
-				119F5736226A4151007A74FC /* Constants.swift in Sources */,
 				11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */,
 				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
@@ -496,6 +495,7 @@
 				846264EA224D98A0009A21A2 /* FirebaseObject.swift in Sources */,
 				112ABB262267EB7500989F24 /* GoogleDistance.swift in Sources */,
 				846264EC224D98AF009A21A2 /* NetworkController.swift in Sources */,
+				84F19676243FD367007E4FA3 /* Constants.swift in Sources */,
 				842DE20B2252CFC000BBE2FB /* Hygiene.swift in Sources */,
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
 				119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */,

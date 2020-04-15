@@ -443,7 +443,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JUh-ah-XMf">
-                                                <rect key="frame" x="25" y="86" width="325" height="295.5"/>
+                                                <rect key="frame" x="25" y="85.5" width="325" height="296"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="280" id="M2z-jM-qMw"/>
@@ -515,10 +515,10 @@
                                                 </cells>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEY-AX-X0E">
-                                                <rect key="frame" x="25" y="20" width="325" height="36"/>
+                                                <rect key="frame" x="25" y="20" width="325" height="35.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you need HELP with?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnQ-Qv-uX1">
-                                                        <rect key="frame" x="10" y="10" width="305" height="16"/>
+                                                        <rect key="frame" x="10" y="10" width="305" height="15.5"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="13"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1070,7 +1070,7 @@
                                                 <rect key="frame" x="139" y="0.0" width="123" height="62.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi2-Nw-KNm">
-                                                        <rect key="frame" x="0.0" y="12.5" width="120" height="38"/>
+                                                        <rect key="frame" x="-24" y="12.5" width="144" height="38"/>
                                                         <color key="backgroundColor" red="1" green="0.26247141750000003" blue="0.2209172888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="38" id="AgD-F8-Erv"/>
