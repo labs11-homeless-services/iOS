@@ -154,6 +154,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
     }
+<<<<<<< HEAD
     
     private func capitalize() {
         if selectedCategory == "Outreach Services" {
@@ -166,7 +167,39 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - Theme
+    private func setupTheme() {
+        
+        // Spanish Button
+        spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        spanishButton.setTitle("Español", for: .normal)
+        spanishButton.setTitleColor(.customDarkPurple, for: .normal)
+        spanishButton.backgroundColor = .white
+        spanishView.backgroundColor = .customDarkPurple
+        spanishButton.layer.cornerRadius = 5
+        spanishButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        
+        let tapColoredIcon = UIImage(named: "tap")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        spanishButton.tintColor = .customDarkPurple
+        spanishButton.setImage(tapColoredIcon, for: .normal)
+        
+        // Home Button
+        homeView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 0, height: 1), radius: 1, viewCornerRadius: 0)
+        homeButton.backgroundColor = UIColor.white
+        homeButton.tintColor = UIColor.white
+        homeButtonText.backgroundColor = UIColor.white
+        homeButtonText.tintColor = UIColor.customDarkPurple
+        
+        let homeColoredIcon = UIImage(named: "home")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+
+        homeButton.tintColor = .customDarkPurple
+        homeButton.setImage(homeColoredIcon, for: .normal)
+        
+=======
+    // MARK: - Theme
     func setupTheme() {
+>>>>>>> e430ab7e59a910824dec1db97671911a771854a7
         // Close Button
         closeButton.setTitle("Close", for: .normal)
         closeButton.setTitleColor(.white, for: .normal)

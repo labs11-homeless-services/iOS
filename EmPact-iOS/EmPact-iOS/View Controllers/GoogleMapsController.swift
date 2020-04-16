@@ -27,6 +27,7 @@ class GoogleMapsController {
     typealias CompletionHandler = (Error?) -> Void
     static var baseURL: URL! { return URL( string: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial" ) }
     
+    // MARK: - Google Distance Matrix Details View
     func fetchServiceDistance(_ originLatitude: Double,
                               _ originLongitude: Double,
                               _ destinationLatitude: Double,
@@ -92,7 +93,7 @@ class GoogleMapsController {
         return nearestShelterString
     }
     
-
+    // MARK: - Google Distance Matrix for Shelter Nearest You
     func fetchNearestShelter(_ originLatitude: Double,
                              _ originLongitude: Double,
                              completion: @escaping CompletionHandler = { _ in }) {
@@ -111,7 +112,7 @@ class GoogleMapsController {
         
         components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         guard let requestURL = components.url else { return }
-        
+        print("Nearest Shelter URL: \(requestURL)")
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             
             if let error = error {

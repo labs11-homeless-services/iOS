@@ -14,7 +14,6 @@ class CacheController {
     static var resourceObject: IndividualResource?
     
     // MARK: - Properties for FetchAll
-    
     static var allShelterObjects: [IndividualResource] = []
     static var allEducationObjects: [IndividualResource] = []
     static var allLegalAdminObjects: [IndividualResource] = []
@@ -92,6 +91,19 @@ class CacheController {
                 for eachObject in allOutreachServicesObjects {
                     filteredObjects.append(eachObject)
                 }
+                
+//                for eachObject in self.allShelterObjects {
+//
+//                    var keywordStringsArray = eachObject.keywords.components(separatedBy: ", ")
+//                    print(keywordStringsArray)
+//
+//                    for eachKeyword in keywordStringsArray {
+//                        self.cache.setObject( eachObject, forKey: eachKeyword as NSString )
+//                    }
+//                }
+//
+//                print(self.cache.object(forKey: "shelter")?.address)
+//                print(self.cache.object(forKey: "drop-in")?.address)
 
                 completion(nil)
             } catch {

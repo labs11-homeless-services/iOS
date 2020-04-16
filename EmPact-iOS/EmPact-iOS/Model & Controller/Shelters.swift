@@ -2,7 +2,7 @@
 //  Shelters.swift
 //  EmPact-iOS
 //
-//  Created by Audrey Welch on 4/1/19.
+//  Created by Jonah Bergevin on 4/1/19.
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 

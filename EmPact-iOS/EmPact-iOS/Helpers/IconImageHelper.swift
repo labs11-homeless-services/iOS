@@ -30,7 +30,7 @@ extension CategoryIconImages {
                                         .jobs]
 }
 
-enum SubcategoryIconImages: String {
+enum SubcategoryIconImages: String, CaseIterable {
     case all = "S-all"
     case women = "S-women"
     case men = "S-men"

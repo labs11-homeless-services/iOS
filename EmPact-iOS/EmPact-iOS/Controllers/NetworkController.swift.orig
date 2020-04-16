@@ -240,8 +240,14 @@ class NetworkController {
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
         // Match rawValues to JSON
+<<<<<<< HEAD
+        let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").uppercased()//.lowercased()
+        let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").uppercased()//.lowercased()
+        
+=======
         let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
         let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
+>>>>>>> e430ab7e59a910824dec1db97671911a771854a7
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredTempCategory)
             .appendingPathComponent(underscoredSubcategory)
