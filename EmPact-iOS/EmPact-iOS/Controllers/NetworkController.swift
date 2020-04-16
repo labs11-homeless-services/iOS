@@ -283,7 +283,6 @@ class NetworkController {
     }
 
     // MARK: - Search Fetch
-    
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
