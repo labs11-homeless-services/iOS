@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SceneKit
 
 class CategoriesCollectionViewCell: UICollectionViewCell {
     
@@ -20,26 +21,29 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     var shadowLayer: CAShapeLayer!
     var cell: CategoriesCollectionViewCell!
     var cornerRadius: CGFloat = 25.0
-    var fillColor: UIColor = .blue // the color applied to the shadowLayer, rather than the view's backgroundColor
+    var fillColor: UIColor = .clear // the color applied to the shadowLayer, rather than the view's backgroundColor
+    
     
     func layoutSubviews(_ cell: UICollectionViewCell) {
         super.layoutSubviews()
-        
+                
         if shadowLayer == nil {
             self.shadowLayer = CAShapeLayer()
             
             self.shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
             self.shadowLayer.fillColor = fillColor.cgColor
             
-            self.shadowLayer.shadowColor = UIColor.black.cgColor
+            self.shadowLayer.shadowColor = UIColor.gray.cgColor
             self.shadowLayer.shadowPath = shadowLayer.path
-            self.shadowLayer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            self.shadowLayer.shadowOpacity = 0.6
-            self.shadowLayer.shadowRadius = 4
+            self.shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            self.shadowLayer.shadowOpacity = 0.8
+            self.shadowLayer.shadowRadius = 10 //4
+            //self.shadowLayer.cornerRadius = 10
             
             layer.insertSublayer(shadowLayer, at: 0)
         }
     }
+    
 }
 
 

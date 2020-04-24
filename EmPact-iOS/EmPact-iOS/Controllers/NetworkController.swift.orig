@@ -22,8 +22,6 @@ class NetworkController {
     
     var categoryNames: [String] = []
     var subcategoryNames: [String] = []
-    var sortedSubcategoryNames: [String] = []
-
     
     var tempCategoryDictionary: [String: [Any]] = [:]
     var tempSimpleDictionary: [String: Any] = [:]
@@ -131,7 +129,7 @@ class NetworkController {
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         print(decodedResponseDictionary.key)
-                    
+
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .outreach:
@@ -163,8 +161,7 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 }
-                self.sortedSubcategoryNames = self.capitalizeAndSort()
-                completion(self.sortedSubcategoryNames, nil)
+                completion(self.subcategoryNames, nil)
             } catch {
                 NSLog("error decoding entries: \(error)")
                 completion(self.subcategoryNames, error)
@@ -243,8 +240,14 @@ class NetworkController {
     func fetchSubcategoryDetails(_ subcategory: Subcategory, completion: @escaping CompletionHandler = { _ in }) {
         
         // Match rawValues to JSON
+<<<<<<< HEAD
+        let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").uppercased()//.lowercased()
+        let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").uppercased()//.lowercased()
+        
+=======
         let underscoredTempCategory = tempCategorySelection.replacingOccurrences(of: " ", with: "_").lowercased()
         let underscoredSubcategory = subcategory.rawValue.replacingOccurrences(of: " ", with: "_").lowercased()
+>>>>>>> e430ab7e59a910824dec1db97671911a771854a7
         let requestURL = NetworkController.baseURL
             .appendingPathComponent(underscoredTempCategory)
             .appendingPathComponent(underscoredSubcategory)
@@ -286,6 +289,7 @@ class NetworkController {
     }
 
     // MARK: - Search Fetch
+    
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         
         let requestURL = NetworkController.baseURL
@@ -354,18 +358,6 @@ class NetworkController {
                 completion(error)
             }
         }.resume()
-    }
-    
-    private func capitalizeAndSort() -> [String] {
-        if subcategoryNames.contains("hiv") {
-            subcategoryNames = ["All", "Clinics", "Emergency", "HIV", "Mental Health", "Rehab", "Women"]
-            return subcategoryNames
-        } else if subcategoryNames.contains("ged") {
-            subcategoryNames = ["All", "GED", "Public computers"]
-            return subcategoryNames
-        }
-        subcategoryNames = subcategoryNames.sorted().map { $0.capitalized }
-        return subcategoryNames
     }
     
     // MARK: - Properties for FetchAll

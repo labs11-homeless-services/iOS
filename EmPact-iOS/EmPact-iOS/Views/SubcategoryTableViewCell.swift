@@ -15,7 +15,6 @@ class SubcategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var subcategoryImageView: UIImageView!
     
     @IBOutlet weak var subcategoryNameLabel: UILabel!
-    
     @IBOutlet weak var nextArrowImageView: UIImageView!
     
     static let reuseIdentifer = "subcategoryNameCell"
