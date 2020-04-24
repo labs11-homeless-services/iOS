@@ -33,7 +33,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var shelterAddressLabel: UILabel!
     
-    
     @IBOutlet weak var distanceView: UIView!
     @IBOutlet weak var shelterDistanceLabel: UILabel!
     @IBOutlet weak var shelterDurationLabel: UILabel!
@@ -59,13 +58,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var serviceCoordinates: CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
-    
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
     var nearestShelter: IndividualResource?
     var nearestDistance: [Element]?
     var destinationAddresses: [String]?
+    
+    var screenSize: CGRect!
+    var screenWidth: CGFloat!
+    var screenHeight: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,11 +81,26 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollectionView.dataSource = self
         collectionViewSearchBar.delegate = self
         
-        
         setupTheme()
         updateNearestShelter()
-        
+        formatCellSpacing()
+
     }
+    
+    private func formatCellSpacing() {
+                
+       screenSize = UIScreen.main.bounds
+       screenWidth = screenSize.width
+       screenHeight = screenSize.height
+
+       let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+       layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+       layout.itemSize = CGSize(width: screenWidth/4, height: screenWidth/4)
+       layout.minimumInteritemSpacing = 6
+       layout.minimumLineSpacing = 10
+       categoriesCollectionView.backgroundColor = .white
+       categoriesCollectionView!.collectionViewLayout = layout
+   }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -113,12 +130,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBAction func spanishButtonClicked(_ sender: Any) {
         
         let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
         self.present(alert, animated: true)
     }
-    
     
     @IBAction func viewMapClicked(_ sender: Any) {
         
@@ -168,15 +182,31 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.categoryNameLabel.text = category.uppercased()
         }
         
+        //cell.layoutSubviews(cell)
+        cell.setCellShadow(cell: cell)
+        
+        //cell.contentView.layer.cornerRadius = 10
+//        cell.contentView.layer.borderWidth = 1.0
+//        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+//        cell.contentView.layer.masksToBounds = true;
+
+        //cell.layer.shadowColor = UIColor.black.cgColor;
+//        cell.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)//CGSizeMake(0, 2.0)
+//        cell.layer.shadowRadius = 2.0
+//        cell.layer.shadowOpacity = 0.5
+//        cell.layer.masksToBounds = false
+//        cell.layer.shadowPath = CGPath(roundedRect: cell.bounds, cornerWidth: 5.0, cornerHeight: 1.0, transform: nil)
+        //UIBezierPath(roundedRect: cell.bounds, cornerRadius: CGFloat(10))
+    
         categoryController.getCategoryImage(from: category)
         cell.categoryImageView.image = categoryController.iconImage
         
         cell.cellView.backgroundColor = UIColor.customDarkGray
-        cell.cellView.layer.cornerRadius = 10
+        cell.cellView.layer.cornerRadius = 12
         cell.cellView.layer.borderColor = UIColor.white.cgColor
-        cell.cellView.layer.borderWidth = 2
+        cell.cellView.layer.borderWidth = 1
         
-        cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
+        //cell.cellView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         cell.categoryNameLabel.textColor = UIColor.white
         
@@ -186,9 +216,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let categoryAtIndexPath = networkController?.categoryNames[indexPath.row] else { return }
-        
         networkController?.tempCategorySelection = categoryAtIndexPath
-
         performSegue(withIdentifier: "modalSubcategoryMenu", sender: nil)
     }
     
@@ -245,15 +273,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             self.serviceDistance = self.googleMapsController?.serviceDistance
             self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
             
-            print("serviceDistance: \(String(describing: self.serviceDistance))")
-            print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
-            
             DispatchQueue.main.async {
                 self.updateNearestShelter()
             }
             
             self.destinationAddresses = self.googleMapsController?.serviceAddresses
             self.nearestDistance = self.googleMapsController?.googleDistanceResponse[0].elements
+            // - FIXIT: Might have a race condition on line 281
             
             guard let unwrappedShelters = self.nearestDistance else { return }
             
@@ -290,8 +316,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         } else {
             shelterNameLabel.text = nearestShelter?.name
         }
-        
-        
+
         if nearestShelter?.address == nil || nearestShelter?.address == "" {
             shelterAddressLabel.text = "Address unavailable"
         } else {

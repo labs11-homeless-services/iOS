@@ -112,7 +112,6 @@ class GoogleMapsController {
         
         components.queryItems = [queryItemImperial, queryItemOrigin, queryItemDestination, queryItemTravelMode, queryItemKey]
         guard let requestURL = components.url else { return }
-        print("Nearest Shelter URL: \(requestURL)")
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error) in
             
             if let error = error {

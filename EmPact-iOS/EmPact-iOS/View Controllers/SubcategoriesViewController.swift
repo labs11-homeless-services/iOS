@@ -75,27 +75,20 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "subcategoryNameCell", for: indexPath) as! SubcategoryTableViewCell
         
         guard let subcategory = networkController?.subcategoryNames[indexPath.row] else { fatalError("Unable to unwrap the subcategories and sort them") }
+        cell.subcategoryNameLabel.text = String(subcategory)
+        cell.subcategoryNameLabel.textColor = .customDarkGray
         
-        if subcategoryLabel.text == "Hiv" {
-            cell.subcategoryNameLabel.text = String(subcategory).uppercased()
-        }
-        if subcategoryLabel.text == "Ged" {
-            cell.subcategoryNameLabel.text = String(subcategory).uppercased()
-        } else {
-            cell.subcategoryNameLabel.text = String(subcategory).capitalized
-            cell.subcategoryNameLabel.textColor = .customDarkGray
-            
-            categoryController.tempSubcategoryName = subcategory
-            categoryController.getSubcategoryImages()
-            cell.subcategoryImageView.image = categoryController.subcategoryIconImage
+        categoryController.tempSubcategoryName = subcategory
+        categoryController.getSubcategoryImages()
+        cell.subcategoryImageView.image = categoryController.subcategoryIconImage
 
-            let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-            cell.nextArrowImageView.tintColor = .customDarkGray
-            cell.nextArrowImageView.image = coloredIcon
+        let coloredIcon = UIImage(named: "right_arrow")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.nextArrowImageView.tintColor = .customDarkGray
+        cell.nextArrowImageView.image = coloredIcon
 
-            cell.cellView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
-            cell.cellView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)
-        }
+        cell.cellView.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
+        cell.cellView.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)
+    
         return cell
     }
     

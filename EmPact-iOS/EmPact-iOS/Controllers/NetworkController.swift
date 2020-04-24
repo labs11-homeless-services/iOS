@@ -22,6 +22,8 @@ class NetworkController {
     
     var categoryNames: [String] = []
     var subcategoryNames: [String] = []
+    var sortedSubcategoryNames: [String] = []
+
     
     var tempCategoryDictionary: [String: [Any]] = [:]
     var tempSimpleDictionary: [String: Any] = [:]
@@ -129,7 +131,7 @@ class NetworkController {
                     for decodedResponseDictionary in decodedResponse.dictionary {
                         self.subcategoryNames.append("\(decodedResponseDictionary.key)")
                         print(decodedResponseDictionary.key)
-
+                    
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 case .outreach:
@@ -161,7 +163,8 @@ class NetworkController {
                         self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
                     }
                 }
-                completion(self.subcategoryNames, nil)
+                self.sortedSubcategoryNames = self.capitalizeAndSort()
+                completion(self.sortedSubcategoryNames, nil)
             } catch {
                 NSLog("error decoding entries: \(error)")
                 completion(self.subcategoryNames, error)
@@ -352,6 +355,18 @@ class NetworkController {
                 completion(error)
             }
         }.resume()
+    }
+    
+    private func capitalizeAndSort() -> [String] {
+        if subcategoryNames.contains("hiv") {
+            subcategoryNames = ["All", "Clinics", "Emergency", "HIV", "Mental Health", "Rehab", "Women"]
+            return subcategoryNames
+        } else if subcategoryNames.contains("ged") {
+            subcategoryNames = ["All", "GED", "Public computers"]
+            return subcategoryNames
+        }
+        subcategoryNames = subcategoryNames.sorted().map { $0.capitalized }
+        return subcategoryNames
     }
     
     // MARK: - Properties for FetchAll
