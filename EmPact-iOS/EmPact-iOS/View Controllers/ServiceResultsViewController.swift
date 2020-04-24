@@ -54,44 +54,20 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
         
+        setSearchTitle()
         setupTheme()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
         searchBar.delegate = self
         
-        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
-            self.title = "Search Results"
-            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
-            subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
-        } else if selectedSubcategory == "" || selectedSubcategory == nil {
-            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
-            self.title = "Search Results"
-            subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
-        } else {
-            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
-            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
-            subcategoriesTitleLabel.text = "\(selectedSubcategory.uppercased()) | \(unwrappedTempCategorySelection.uppercased()) within New York City, NY"
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         searchBar.text = ""
-        
-        guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
-        if (networkController?.subcategoryDetails.count ?? 0) < 1 {
-            networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
-                if let error = error {
-                    NSLog("Error fetching subcategory details: \(error)")
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
-        }
+        unwrapSubAtIndexPath()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -233,7 +209,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
         tableView.reloadData()
     }
     
@@ -246,7 +221,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                 //NetworkController.filteredObjects = (self.networkController?.subcategoryDetails)!
                 return
             }
-            
             self.networkController?.searchTerm = searchTerm
             
             // Filter through array to see if keywords contain the text entered by user
@@ -264,8 +238,40 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         return searchBar.text?.isEmpty ?? true
     }
     
+    // MARK: - Private Methods
+    private func unwrapSubAtIndexPath() {
+        guard let unwrappedSubcategoryAtIndexPath = networkController?.subcategoryAtIndexPath else { return }
+           if (networkController?.subcategoryDetails.count ?? 0) < 1 {
+                   networkController?.fetchSubcategoryDetails(unwrappedSubcategoryAtIndexPath, completion: { (error) in
+                   if let error = error {
+                       NSLog("Error fetching subcategory details: \(error)")
+                   }
+                   
+                   DispatchQueue.main.async {
+                       self.tableView.reloadData()
+                   }
+               })
+           }
+    }
+    
+    private func setSearchTitle() {
+        guard let unwrappedSearchTerm = networkController?.searchTerm,
+        let subcategory = selectedSubcategory else { return }
+        
+           if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
+               self.title = "Search Results"
+               subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+           } else if selectedSubcategory == "" || selectedSubcategory == nil {
+               self.title = "Search Results"
+               subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
+           } else {
+               guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
+            self.title = "\(unwrappedTempCategorySelection) - \(String(describing: subcategory))"
+               subcategoriesTitleLabel.text = "\(subcategory) | \(unwrappedTempCategorySelection) within New York City, NY"
+           }
+    }
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "backToCategories" {
@@ -302,7 +308,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - Theme
     
-    func setupTheme() {
+    private func setupTheme() {
         
         subcategoriesTitleLabel.textColor = UIColor.white
         subcategoriesTitleView.backgroundColor = UIColor.customDarkPurple
@@ -312,5 +318,4 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         subcategoriesTitleView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
     }
-    
 }
