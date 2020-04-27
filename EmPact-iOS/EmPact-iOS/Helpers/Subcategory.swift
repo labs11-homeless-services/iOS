@@ -46,3 +46,4 @@ enum Subcategory: String, Decodable, CaseIterable {
     case domesticViolence = "domestic violence"
     case socialServices = "social services"
 }
+

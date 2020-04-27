@@ -25,7 +25,6 @@ class CategoryController {
         guard let subcategoryName = tempSubcategoryName else { return }
         
         if tempSubcategoryName == "HIV" {
-            print("Found HIV")
             let imageString = "S-\(subcategoryName)".split(separator: " ").joined()
                    subcategoryIconImage = UIImage(named: imageString)
         } else {

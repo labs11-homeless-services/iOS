@@ -113,6 +113,22 @@ class IndividualResource: Decodable {
             services = try container.decodeIfPresent([String].self, forKey: .services)
         }
     }
+    
+//    var resourceDictionary: [String: IndividualResource] {
+//        return ["education": Education,
+//                "legal": LegalAdministrative,
+//                "health": HealthCare,
+//                "food": Food,
+//                "hygiene": Hygiene,
+//                "shelters": Shelters,
+//                "jobs": Jobs,
+//                "outreach": OutreachServices
+//                ]
+//    }
+//    
+//    var dictionary: NSDictionary {
+//        return resourceDictionary as NSDictionary
+//    }
 }
 
 struct IndividualResourceTopLevel: Decodable {
