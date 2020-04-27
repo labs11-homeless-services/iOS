@@ -31,9 +31,7 @@ class CacheController {
         
         let requestURL = NetworkController.baseURL
             .appendingPathExtension("json")
-        
-        print(requestURL)
-        
+                
         URLSession.shared.dataTask(with: requestURL) { ( data, _, error ) in
             if let error = error {
                 NSLog("Error fetching data for search: \(error)")
@@ -53,9 +51,7 @@ class CacheController {
             do {
                 
                 let decodedResponse = try jsonDecoder.decode(FirebaseObject.self, from: data)
-                
-                print(decodedResponse.healthCare.clinics)
-                
+                                
                 self.allShelterObjects = decodedResponse.shelters.all
                 self.allEducationObjects = decodedResponse.education.all
                 self.allLegalAdminObjects = decodedResponse.legalAdministrative.all
@@ -91,19 +87,6 @@ class CacheController {
                 for eachObject in allOutreachServicesObjects {
                     filteredObjects.append(eachObject)
                 }
-                
-//                for eachObject in self.allShelterObjects {
-//
-//                    var keywordStringsArray = eachObject.keywords.components(separatedBy: ", ")
-//                    print(keywordStringsArray)
-//
-//                    for eachKeyword in keywordStringsArray {
-//                        self.cache.setObject( eachObject, forKey: eachKeyword as NSString )
-//                    }
-//                }
-//
-//                print(self.cache.object(forKey: "shelter")?.address)
-//                print(self.cache.object(forKey: "drop-in")?.address)
 
                 completion(nil)
             } catch {

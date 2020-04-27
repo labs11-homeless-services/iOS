@@ -116,7 +116,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
                 let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
                 else {
-                    print("Latitude or Longitude is not a valid Double")
+                    NSLog("Latitude or Longitude is not a valid Double")
                     return
             }
             
@@ -268,10 +268,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             
             self.serviceDistance = self.googleMapsController?.serviceDistance
             self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
-            
-            print("serviceDistance: \(String(describing: self.serviceDistance))")
-            print("serviceTravelDuration: \(String(describing: self.serviceTravelDuration))")
-            
+                        
             DispatchQueue.main.async {
                 self.updateViews()
             }

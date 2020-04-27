@@ -23,7 +23,7 @@ extension UICollectionViewCell {
                     fillColor: UIColor = UIColor.lightGray,
                     opacity: Float = 0.0,
                     offset: CGSize = CGSize(width: 3.0, height: 1.0),
-                    radius: CGFloat = 15) -> CAShapeLayer {
+                    radius: CGFloat = 15) {
         
         let shadowLayer = CAShapeLayer()
         shadowLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath
@@ -34,7 +34,6 @@ extension UICollectionViewCell {
         shadowLayer.shadowOpacity = opacity
         shadowLayer.shadowRadius = radius
         layer.insertSublayer(shadowLayer, at: 0)
-        return shadowLayer
     }
 }
 
