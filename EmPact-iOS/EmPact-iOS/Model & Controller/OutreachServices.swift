@@ -10,16 +10,16 @@ import Foundation
 
 struct OutreachServices: Decodable {
  
+    var _all: [IndividualResource]
     var afterSchool: [IndividualResource]
     var domesticViolence: [IndividualResource]
     var socialServices: [IndividualResource]
-    var _all: [IndividualResource]
     
     var outreachDictionary: [String: [IndividualResource]] {
-        return ["after school": afterSchool,
+        return ["all": _all,
+                "after school": afterSchool,
                 "domestic violence": domesticViolence,
-                "social services": socialServices,
-                "all": _all]
+                "social services": socialServices]
     }
     var dictionary: NSDictionary {
         return outreachDictionary as NSDictionary

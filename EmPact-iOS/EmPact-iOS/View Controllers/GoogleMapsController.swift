@@ -6,11 +6,11 @@
 //  Copyright © 2019 EmPact. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class GoogleMapsController {
     
-    var googleDistanceResponse: [Row]!
+    var googleDistanceResponse: [Row]?
     var serviceAddresses: [String]!
     var serviceDistance: String!
     var serviceTravelDuration: String!
@@ -128,9 +128,20 @@ class GoogleMapsController {
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
                 self.googleDistanceResponse = decodedResponse.rows
-                self.serviceDistance = self.googleDistanceResponse[0].elements[0].distance.text
+                if self.googleDistanceResponse?.canSupport(index: 0) == true
+                && self.googleDistanceResponse?[0].elements.canSupport(index: 0) == true {
+                    self.serviceDistance = self.googleDistanceResponse?[0].elements[0].distance.text
+                } else {
+                    NSLog("Error: No item found at that index")
+                }
                 
-                self.serviceTravelDuration = self.googleDistanceResponse[0].elements[0].duration.text
+                if self.googleDistanceResponse?.canSupport(index: 0) == true
+                && self.googleDistanceResponse?[0].elements.canSupport(index: 0) == true {
+                    self.serviceTravelDuration = self.googleDistanceResponse?[0].elements[0].duration.text
+                } else {
+                    NSLog("Error: No item found at that index")
+                }
+                
                 self.serviceAddresses = decodedResponse.destinationAddresses
                 completion(nil)
             } catch {

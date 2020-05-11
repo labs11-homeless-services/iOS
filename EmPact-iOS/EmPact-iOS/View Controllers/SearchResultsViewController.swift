@@ -35,7 +35,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.barTintColor = nil
         
-        // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
 
         self.title = "Search Results"

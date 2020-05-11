@@ -136,7 +136,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     @IBAction func unwindToSubcategoriesVC(segue:UIStoryboardSegue) {
-        //performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
     }
     
     // MARK - Collection View Data Source Methods
@@ -203,7 +202,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func filterServiceResults() {
         
-        // Grab the text, make sure it's not empty
         guard let searchTerm = self.collectionViewSearchBar.text, !searchTerm.isEmpty else {
             return
         }
@@ -227,7 +225,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         updateNearestShelter()
     }
     
-    // Shelter Nearest You Method
+    // MARK: - Shelter Nearest You Method
     private func getNearestShelter() {
         
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
@@ -245,8 +243,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             
             self.destinationAddresses = self.googleMapsController?.serviceAddresses
-            self.nearestDistance = self.googleMapsController?.googleDistanceResponse.first?.elements
-            // - FIXIT: Might have a race condition on the line above
+            self.nearestDistance = self.googleMapsController?.googleDistanceResponse?.first?.elements
+            // - FIXIT: Guarded against index out of range exception.
             
             guard let unwrappedShelters = self.nearestDistance else { return }
             

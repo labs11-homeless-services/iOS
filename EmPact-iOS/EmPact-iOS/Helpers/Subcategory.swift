@@ -27,6 +27,7 @@ enum UnderscoredCategory: String, Decodable {
 
 enum Subcategory: String, Decodable, CaseIterable {
     case all
+    case allOutreach = "_all"
     case women
     case men
     case youth

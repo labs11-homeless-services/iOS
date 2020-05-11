@@ -75,7 +75,6 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     
     func filterServiceResults() {
         
-        // Grab the text, make sure it's not empty
         guard let searchTerm = self.searchBar.text, !searchTerm.isEmpty else {
             return
         }

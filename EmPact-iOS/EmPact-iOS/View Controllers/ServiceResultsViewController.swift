@@ -23,7 +23,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         networkController?.tempCategorySelection = ""
         selectedSubcategory = ""
         
-        // If-statement accounts for if hamburger menu was skipped over
         if segue.identifier == "unwindToSubcategoriesVC" {
             networkController?.subcategoryDetails = []
             performSegue(withIdentifier: "unwindToSubcategoriesVC", sender: self)
@@ -152,7 +151,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             let subcategoryDetail = networkController?.subcategoryDetails[indexPath.row]
             
             // Name
-            //cell.serviceNameLabel.text = subcategoryDetail?.name
             let alteredString = subcategoryDetail?.name.replacingOccurrences(of: "Â", with: "")
             cell.serviceNameLabel.text = alteredString
             

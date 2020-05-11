@@ -37,9 +37,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
             self.shadowLayer.shadowPath = shadowLayer.path
             self.shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
             self.shadowLayer.shadowOpacity = 0.8
-            self.shadowLayer.shadowRadius = 10 //4
-            //self.shadowLayer.cornerRadius = 10
-            
+            self.shadowLayer.shadowRadius = 10             
             layer.insertSublayer(shadowLayer, at: 0)
         }
     }
