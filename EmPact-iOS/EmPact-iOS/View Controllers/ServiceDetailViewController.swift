@@ -72,71 +72,12 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.hideKeyboard()
-        
+    
         mapView.delegate = self
         
-        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
-            self.title = serviceDetail?.name
-            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
-        } else if selectedSubcategory == "" || selectedSubcategory == nil {
-            guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
-            self.title = serviceDetail?.name
-        } else {
-            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
-            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
-        }
-        
+        self.hideKeyboard()
         setupTheme()
-        
-        detailsView.isHidden = true
-        serviceView.isHidden = true
-        infoView.isHidden = false
-        mapUnavailableView.isHidden = true
-        mapUnavailableView.alpha = 0.75
-        mapUnavailableLabel.isHidden = true
-        mapUnavailableView.backgroundColor = .customDarkPurple
-
-        // Convert latitude/longitude strings to doubles to get User Location
-        if serviceDetail?.latitude == nil || serviceDetail?.latitude == "" || serviceDetail?.longitude == nil || serviceDetail?.longitude == "" {
-            mapUnavailableView.isHidden = false
-            mapUnavailableLabel.isHidden = false
-            mapUnavailableLabel.textColor = .white
-            
-            startMapButton.isHidden = true
-            serviceDetailDistanceLabel.text = "Unavailable"
-            serviceDetailWalkTimeLabel.text = "Unavailable"
-            
-            // Set default map to Central Park
-            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 14.0)
-            mapView.camera = camera
-        
-        } else {
-            guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-                let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
-                else {
-                    NSLog("Latitude or Longitude is not a valid Double")
-                    return
-            }
-            
-            // MARK: - Embedded Map
-            let marker = GMSMarker()
-            marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
-            
-            marker.title = serviceDetail?.name
-            mapView.selectedMarker = marker
-            //marker.appearAnimation = .pop
-            marker.map = mapView
-            
-            mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
-            
-        }
-        locationButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
-        DispatchQueue.main.async {
-            self.updateViews()
-            
-        }
+        verifyCategoryData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,8 +95,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         }
     }
     
-    // MARK: - Segmented Control Actions
-    // MARK: - Action to display info in the Locations View
+    // MARK: - Segmented Control Actions - Display info in the Locations View
     @IBAction func locationTapped(_ sender: Any) {
         detailsView.isHidden = true
         serviceView.isHidden = true
@@ -467,5 +407,61 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         infoPhoneView.layer.borderWidth = 0.25
         infoHoursView.layer.borderColor = UIColor.lightGray.cgColor
         infoHoursView.layer.borderWidth = 0.25
+        
+        detailsView.isHidden = true
+        serviceView.isHidden = true
+        infoView.isHidden = false
+        mapUnavailableView.isHidden = true
+        mapUnavailableView.alpha = 0.75
+        mapUnavailableLabel.isHidden = true
+        mapUnavailableView.backgroundColor = .customDarkPurple
+
+        if serviceDetail?.latitude == nil || serviceDetail?.latitude == "" || serviceDetail?.longitude == nil || serviceDetail?.longitude == "" {
+            mapUnavailableView.isHidden = false
+            mapUnavailableLabel.isHidden = false
+            mapUnavailableLabel.textColor = .white
+            
+            startMapButton.isHidden = true
+            serviceDetailDistanceLabel.text = "Unavailable"
+            serviceDetailWalkTimeLabel.text = "Unavailable"
+            
+            let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 14.0)
+            mapView.camera = camera
+        
+        } else {
+            guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
+                let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
+                else {
+                    NSLog("Latitude or Longitude is not a valid Double")
+                    return
+            }
+            
+            // MARK: - Embedded Map
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
+            
+            marker.title = serviceDetail?.name
+            mapView.selectedMarker = marker
+            marker.appearAnimation = .pop
+            marker.map = mapView
+            
+            mapView.camera = GMSCameraPosition(target: marker.position, zoom: 13, bearing: 0, viewingAngle: 0)
+            
+        }
+        locationButton.layer.addBorder(edge: .bottom, color: .white, thickness: 3)
+        DispatchQueue.main.async {
+            self.updateViews()
+            
+        }
+    }
+    private func verifyCategoryData() {
+        if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
+            self.title = serviceDetail?.name
+        } else if selectedSubcategory == "" || selectedSubcategory == nil {
+            self.title = serviceDetail?.name
+        } else {
+            guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
+            self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
+        }
     }
 }
