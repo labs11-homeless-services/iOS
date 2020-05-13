@@ -305,7 +305,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - Theme
-    
     private func setupTheme() {
         
         subcategoriesTitleLabel.textColor = UIColor.white
