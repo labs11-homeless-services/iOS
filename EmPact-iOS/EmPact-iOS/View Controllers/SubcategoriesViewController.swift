@@ -52,7 +52,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
        
         guard let passedCategory = Category(rawValue: selectedCategory.lowercased()) else { return }
         if networkController?.subcategoryNames.count ?? 0 < 1 {
-            networkController?.fetchSubcategoriesNames(passedCategory, completion: { ([String], error) in
+            networkController?.fetchSubcategoriesNames(passedCategory, completion: { (_: [String], error) in
                 if let error = error {
                     NSLog("Error fetching categories: \(error)")
                 }
