@@ -10,7 +10,6 @@ import UIKit
 
 class ServiceResultTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var resultsView: UIView!
     @IBOutlet weak var serviceNameLabel: UILabel!
     
     @IBOutlet weak var serviceAddressLabel: UILabel!
@@ -25,7 +24,4 @@ class ServiceResultTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "serviceResultCell"
     
-    @IBAction func viewButton(_ sender: Any) {
-        
-    }
 }

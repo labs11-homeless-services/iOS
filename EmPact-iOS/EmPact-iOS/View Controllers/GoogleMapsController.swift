@@ -128,20 +128,9 @@ class GoogleMapsController {
             do {
                 let decodedResponse = try jsonDecoder.decode(GoogleDistance.self, from: data)
                 self.googleDistanceResponse = decodedResponse.rows
-                if self.googleDistanceResponse?.canSupport(index: 0) == true
-                && self.googleDistanceResponse?[0].elements.canSupport(index: 0) == true {
-                    self.serviceDistance = self.googleDistanceResponse?[0].elements[0].distance.text
-                } else {
-                    NSLog("Error: No item found at that index")
-                }
-                
-                if self.googleDistanceResponse?.canSupport(index: 0) == true
-                && self.googleDistanceResponse?[0].elements.canSupport(index: 0) == true {
-                    self.serviceTravelDuration = self.googleDistanceResponse?[0].elements[0].duration.text
-                } else {
-                    NSLog("Error: No item found at that index")
-                }
-                
+                self.serviceDistance = self.googleDistanceResponse?[0].elements[0].distance.text
+                self.serviceTravelDuration = self.googleDistanceResponse?[0].elements[0].duration.text
+               
                 self.serviceAddresses = decodedResponse.destinationAddresses
                 completion(nil)
             } catch {

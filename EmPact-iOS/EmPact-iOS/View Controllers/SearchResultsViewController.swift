@@ -30,16 +30,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         self.hideKeyboard()
         
         setupTheme()
-        
-        navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.barTintColor = nil
-        
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
-
-        self.title = "Search Results"
-        guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
-        searchedTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +74,6 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.viewButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         cell.viewButton.layer.cornerRadius = 5
-        cell.searchResultsView.layer.borderColor = UIColor.lightGray.cgColor
-        cell.searchResultsView.layer.borderWidth = 0.5
         
         // Name
         let alteredString = subcategoryDetail?.name.replacingOccurrences(of: "Â", with: "")
@@ -129,13 +117,12 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         searchBar.resignFirstResponder()
         
         networkController?.subcategoryDetails = []
-        
         filterServiceResults()
         
         DispatchQueue.main.async {
             guard let unwrappedSearchTerm = self.networkController?.searchTerm else { return }
-            self.searchedTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
-            
+            self.searchedTitleLabel.text = "Results: \(unwrappedSearchTerm) within New York City, NY"
+            self.title =  "Results: \(unwrappedSearchTerm)"
             self.tableView.reloadData()
         }
     }
@@ -153,7 +140,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         
         networkController?.subcategoryDetails = matchingObjects
     }
-
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -171,12 +158,21 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func setupTheme() {
+    private func setupTheme() {
+        guard let unwrappedSearchTerm = networkController?.searchTerm else { return }
+        searchedTitleLabel.text = "Results: \(unwrappedSearchTerm) within New York City, NY"
+        self.title =  "Results: \(unwrappedSearchTerm)"
+        
         searchedTitleLabel.textColor = UIColor.white
         searchedTitleLabel.backgroundColor = UIColor.customDarkPurple
         searchedView.backgroundColor = .customDarkPurple
         searchedView.layer.cornerRadius = 5
         
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.barTintColor = nil
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         searchedView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
     }
