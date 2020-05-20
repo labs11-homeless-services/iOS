@@ -70,7 +70,6 @@
 		84B3A4DB22667CEE00F06DC4 /* SF-Pro-Display-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B3A4B822667C6A00F06DC4 /* SF-Pro-Display-UltralightItalic.otf */; };
 		84B3A4DD2267882200F06DC4 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4DC2267881F00F06DC4 /* Border.swift */; };
 		8C5DB22624576571005639AC /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DB22524576570005639AC /* Decoder.swift */; };
-		8C5DB228246746A7005639AC /* ArrayExceptionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DB227246746A7005639AC /* ArrayExceptionHelper.swift */; };
 		B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,7 +141,6 @@
 		84B3A4C922667C6D00F06DC4 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		84B3A4DC2267881F00F06DC4 /* Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
 		8C5DB22524576570005639AC /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
-		8C5DB227246746A7005639AC /* ArrayExceptionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExceptionHelper.swift; sourceTree = "<group>"; };
 		9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.debug.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,7 +242,6 @@
 				112A220D22566A910008E54B /* UserLocationViewController.swift */,
 				84B3A4DC2267881F00F06DC4 /* Border.swift */,
 				8C5DB22524576570005639AC /* Decoder.swift */,
-				8C5DB227246746A7005639AC /* ArrayExceptionHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -509,7 +506,6 @@
 				846264F0224D98F5009A21A2 /* LanguageSelectionViewController.swift in Sources */,
 				119F573A226FBFB1007A74FC /* SearchResultsTableViewCell.swift in Sources */,
 				110A763123550D140030E33C /* NearestShelter.swift in Sources */,
-				8C5DB228246746A7005639AC /* ArrayExceptionHelper.swift in Sources */,
 				11A098BD22541842006F8B9D /* IconImageHelper.swift in Sources */,
 				11A09897224E91FB006F8B9D /* CategoriesViewController.swift in Sources */,
 				84B3A4B222652E2A00F06DC4 /* CacheController.swift in Sources */,

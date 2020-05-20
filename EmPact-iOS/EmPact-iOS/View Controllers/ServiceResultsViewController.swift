@@ -107,8 +107,6 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         cell.viewDetailsButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
         
         cell.viewDetailsButton.layer.cornerRadius = 5
-        cell.resultsView.layer.borderColor = UIColor.lightGray.cgColor
-        cell.resultsView.layer.borderWidth = 0.5
         
         // Display the search results
         if matchingObjects != nil {
@@ -198,10 +196,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         filterServiceResults()
         
         DispatchQueue.main.async {
-            self.title = "Search Results"
             guard let unwrappedSearchTerm = self.networkController?.searchTerm else { return }
             self.subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
-            
+            self.title = "Search Results: \(unwrappedSearchTerm)"
             self.tableView.reloadData()
         }
     }
@@ -264,8 +261,9 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                subcategoriesTitleLabel.text = "Search Results: \(unwrappedSearchTerm)"
            } else {
                guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
-            self.title = "\(unwrappedTempCategorySelection) - \(String(describing: subcategory))"
+               self.title = "\(unwrappedTempCategorySelection) | \(String(describing: subcategory))"
                subcategoriesTitleLabel.text = "\(subcategory) | \(unwrappedTempCategorySelection) within New York City, NY"
+               self.tableView.reloadData()
            }
     }
     
