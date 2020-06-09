@@ -16,7 +16,7 @@ protocol MenuActionDelegate {
 }
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var helpView: UIView!
     
@@ -61,9 +61,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
-    var nearestShelter: IndividualResource?
     var nearestDistance: [Element]?
     var destinationAddresses: [String]?
+    var nearestShelter: IndividualResource? {
+        didSet {
+            updateNearestShelter()
+        }
+    }
     
     var screenSize: CGRect!
     var screenWidth: CGFloat!
@@ -82,17 +86,15 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionViewSearchBar.delegate = self
         
         setupTheme()
-        updateNearestShelter()
         formatCellSpacing()
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        collectionViewSearchBar.text = ""
-        
-        networkController?.subcategoryNames = []
+        // FIXIT: Update shelter method gets called no matter what redoing the nearest shelter fetch it just finished.
+        //        if nearestShelter != nil {
+        //            print("They say they're already got one!")
+        //            return
+        //        } else {
+        //            getNearestShelter()
+        //        }
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -110,6 +112,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        collectionViewSearchBar.text = ""
+        
+        networkController?.subcategoryNames = []
+        
+        
     }
     
     @IBAction func spanishButtonClicked(_ sender: Any) {
@@ -157,7 +170,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         if category == "Outreach Services" {
             cell.categoryNameLabel.text = " OUTREACH "
         } else if category == "Legal Administrative" {
-             cell.categoryNameLabel.text = "LEGAL"
+            cell.categoryNameLabel.text = "LEGAL"
         } else if category == "Health Care" {
             cell.categoryNameLabel.text = " HEALTHCARE "
         } else if category == "Education" {
@@ -178,7 +191,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let categoryAtIndexPath = networkController?.categoryNames[indexPath.row] else { return }
@@ -187,7 +200,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     // MARK: - UI Search Bar
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchBar.resignFirstResponder()
@@ -209,10 +222,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         networkController?.searchTerm = searchTerm
         
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
-
+        
         networkController?.subcategoryDetails = matchingObjects
     }
-
+    
     // MARK: - Shelter Nearest User Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         serviceCoordinates = manager.location?.coordinate
@@ -221,7 +234,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         } else {
             NSLog("User location is unavailable")
         }
-        getNearestShelter()
+        
+        if nearestShelter != nil {
+            print("They say they're already got one!")
+            return
+        } else {
+            getNearestShelter()
+        }
+        //getNearestShelter()
         updateNearestShelter()
     }
     
@@ -234,26 +254,30 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             if let error = error {
                 NSLog("Error fetching distance to chosen service: \(error)")
             }
-
+            
             self.serviceDistance = self.googleMapsController?.serviceDistance
             self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
-            
-            DispatchQueue.main.async {
-                self.updateNearestShelter()
-            }
             
             self.destinationAddresses = self.googleMapsController?.serviceAddresses
             self.nearestDistance = self.googleMapsController?.googleDistanceResponse?.first?.elements
             // - FIXIT: Guarded against index out of range exception.
             
+            if self.nearestShelter != nil {
+                return
+            } else {
+                DispatchQueue.main.async {
+                    self.updateNearestShelter()
+                }
+            }
+            
             guard let unwrappedShelters = self.nearestDistance else { return }
             
-            var shelter = unwrappedShelters[0] //.distance.value
+            var shelter = unwrappedShelters[0]  //.distance.value
             var index = 0
             var shelterIndex = 0
             
             for each in unwrappedShelters {
- 
+                
                 if each.distance.value < shelter.distance.value {
                     shelter = each
                     shelterIndex = index
@@ -261,7 +285,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 index += 1
             }
             
-            let fetchedShelter = self.googleMapsController?.serviceAddresses[ shelterIndex ]
+            let fetchedShelter = self.googleMapsController?.serviceAddresses?[ shelterIndex ]
             guard let splitAddress = fetchedShelter?.split(separator: " ") else { return }
             let addressNumber = splitAddress[0]
             
@@ -275,53 +299,54 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     private func updateNearestShelter() {
-        
-        if nearestShelter?.name == nil || nearestShelter?.name == "" {
-            shelterNameLabel.text = "Nearest Shelter Unknown"
-        } else {
-            shelterNameLabel.text = nearestShelter?.name
-        }
+        DispatchQueue.main.async {
+            if self.nearestShelter?.name == nil || self.nearestShelter?.name == "" {
+                self.shelterNameLabel.text = "Nearest Shelter Unknown"
+            } else {
+                self.shelterNameLabel.text = self.nearestShelter?.name
+            }
+            
+            if self.nearestShelter?.address == nil || self.nearestShelter?.address == "" {
+                self.shelterAddressLabel.text = "Address unavailable"
+            } else {
+                self.shelterAddressLabel.text = self.nearestShelter?.address
+            }
+            
+            if self.nearestShelter?.hours == nil || self.nearestShelter?.hours == "" {
+                self.shelterHoursLabel.text = "Please call for hours"
+            } else {
+                self.shelterHoursLabel.text = self.nearestShelter?.hours
+                self.shelterHoursLabel.adjustsFontSizeToFitWidth = true
+            }
+            
+            if let phoneJSON = self.nearestShelter?.phone {
+                self.shelterPhoneLabel.text = phoneJSON as? String
+            } else if self.nearestShelter?.phone == nil {
+                self.shelterPhoneLabel.text = "Phone number unavailable"
+            }
+            
+            if self.serviceDistance == nil || self.serviceDistance == "" {
+                self.shelterDistanceLabel.text = "Unavailable"
+            } else {
+                guard let unwrappedDistance = self.serviceDistance else { return }
+                self.shelterDistanceLabel.text = unwrappedDistance
+            }
+            
+            if self.serviceTravelDuration == nil || self.serviceTravelDuration == "" {
+                self.shelterDurationLabel.text = "Unavailable"
+            } else {
+                guard let unwrappedDuration = self.serviceTravelDuration else { return }
+                self.shelterDurationLabel.text = unwrappedDuration
+            }
 
-        if nearestShelter?.address == nil || nearestShelter?.address == "" {
-            shelterAddressLabel.text = "Address unavailable"
-        } else {
-            shelterAddressLabel.text = nearestShelter?.address
+            // Adjust fonts
+            self.shelterNameLabel.adjustsFontSizeToFitWidth = true
+            self.shelterAddressLabel.adjustsFontSizeToFitWidth = true
+            self.shelterHoursLabel.adjustsFontSizeToFitWidth = true
+            self.shelterPhoneLabel.adjustsFontSizeToFitWidth = true
+            self.shelterDistanceLabel.adjustsFontSizeToFitWidth = true
+            self.shelterDurationLabel.adjustsFontSizeToFitWidth = true
         }
-        
-        if nearestShelter?.hours == nil || nearestShelter?.hours == "" {
-            shelterHoursLabel.text = "Please call for hours"
-        } else {
-            shelterHoursLabel.text = nearestShelter?.hours
-            shelterHoursLabel.adjustsFontSizeToFitWidth = true
-        }
-        
-        if let phoneJSON = nearestShelter?.phone {
-            shelterPhoneLabel.text = phoneJSON as? String
-        } else if nearestShelter?.phone == nil {
-            shelterPhoneLabel.text = "Phone number unavailable"
-        }
-        
-        if serviceDistance == nil || serviceDistance == "" {
-            shelterDistanceLabel.text = "Unavailable"
-        } else {
-            guard let unwrappedDistance = serviceDistance else { return }
-            shelterDistanceLabel.text = unwrappedDistance
-        }
-        
-        if serviceTravelDuration == nil || serviceTravelDuration == "" {
-            shelterDurationLabel.text = "Unavailable"
-        } else {
-            guard let unwrappedDuration = serviceTravelDuration else { return }
-            shelterDurationLabel.text = unwrappedDuration
-        }
-        
-        // Adjust fonts
-        shelterNameLabel.adjustsFontSizeToFitWidth = true
-        shelterAddressLabel.adjustsFontSizeToFitWidth = true
-        shelterHoursLabel.adjustsFontSizeToFitWidth = true
-        shelterPhoneLabel.adjustsFontSizeToFitWidth = true
-        shelterDistanceLabel.adjustsFontSizeToFitWidth = true
-        shelterDurationLabel.adjustsFontSizeToFitWidth = true
     }
     
     // MARK: - Navigation
@@ -439,11 +464,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     private func formatCellSpacing() {
-                 
+        
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
-
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         layout.itemSize = CGSize(width: screenWidth/4, height: screenWidth/4)
