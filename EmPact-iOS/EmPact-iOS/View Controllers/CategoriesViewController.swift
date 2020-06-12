@@ -88,14 +88,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         setupTheme()
         formatCellSpacing()
         
-        // FIXIT: Update shelter method gets called no matter what redoing the nearest shelter fetch it just finished.
-        //        if nearestShelter != nil {
-        //            print("They say they're already got one!")
-        //            return
-        //        } else {
-        //            getNearestShelter()
-        //        }
-        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest

@@ -1008,15 +1008,15 @@
             <objects>
                 <viewController id="zem-mX-p5a" customClass="ServiceResultsViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hdl-0b-x97">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cYi-Ac-EoW">
-                                <rect key="frame" x="15" y="0.0" width="345" height="56"/>
+                                <rect key="frame" x="15" y="44" width="345" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8K8-u8-cMq">
-                                <rect key="frame" x="0.0" y="56" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="82"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epB-FQ-WNl">
                                         <rect key="frame" x="20" y="22" width="335" height="39"/>
@@ -1046,7 +1046,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XQF-ZT-kYN">
-                                <rect key="frame" x="10" y="138" width="355" height="509"/>
+                                <rect key="frame" x="10" y="182" width="355" height="485"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceResultCell" id="yLl-ZF-35p" customClass="ServiceResultTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
@@ -1270,11 +1270,11 @@
             <objects>
                 <viewController id="kk6-0y-WL5" customClass="ServiceDetailViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XMe-cl-Yme" userLabel="Parent View">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2m-cz-9ii">
-                                <rect key="frame" x="30" y="18" width="315" height="41"/>
+                                <rect key="frame" x="30" y="62" width="315" height="41"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="20U-54-fO9">
                                         <rect key="frame" x="0.0" y="-1" width="315" height="41"/>
@@ -1323,7 +1323,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-5L-hLr">
-                                <rect key="frame" x="20" y="77" width="335" height="250"/>
+                                <rect key="frame" x="20" y="121" width="335" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Og2-ec-Xca">
                                         <rect key="frame" x="8" y="11" width="319" height="54.5"/>
@@ -1362,7 +1362,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6N-S8-NBd" userLabel="Details View">
-                                <rect key="frame" x="20" y="77" width="335" height="250"/>
+                                <rect key="frame" x="20" y="121" width="335" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtQ-Zk-DwI">
                                         <rect key="frame" x="8" y="11" width="319" height="54.5"/>
@@ -1398,7 +1398,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1f-os-uhn" userLabel="Shelter Card">
-                                <rect key="frame" x="20" y="77" width="335" height="250"/>
+                                <rect key="frame" x="20" y="121" width="335" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TC-mR-8TL" userLabel="Name Label">
                                         <rect key="frame" x="8" y="11" width="319" height="67.5"/>
@@ -1569,14 +1569,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q24-JB-WOx" customClass="GMSMapView">
-                                <rect key="frame" x="20" y="345" width="335" height="153.5"/>
+                                <rect key="frame" x="20" y="389" width="335" height="153.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="q24-JB-WOx" secondAttribute="height" multiplier="6:2.75" id="VLb-fp-sBJ"/>
                                 </constraints>
                             </view>
                             <view tag="-1" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Wza-50-ix5">
-                                <rect key="frame" x="20" y="345" width="335" height="153.5"/>
+                                <rect key="frame" x="20" y="389" width="335" height="153.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Unavailable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyJ-9o-NR6">
                                         <rect key="frame" x="20" y="61" width="295" height="31.5"/>
@@ -1593,7 +1593,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUw-Fl-gkr">
-                                <rect key="frame" x="70" y="516.5" width="235" height="35"/>
+                                <rect key="frame" x="70" y="560.5" width="235" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="zpO-q8-hzj"/>
                                 </constraints>
@@ -1722,7 +1722,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7nu-7O-s07"/>
+        <segue reference="gb4-7u-i6d"/>
         <segue reference="BRR-cb-Fvu"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
