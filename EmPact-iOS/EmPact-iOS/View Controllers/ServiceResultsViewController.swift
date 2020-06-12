@@ -34,11 +34,10 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    var selectedSubcategory: String!
-    
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
     
+    var selectedSubcategory: String!
     var matchingObjects: [IndividualResource]?
     
     override func viewDidLoad() {
@@ -46,19 +45,12 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         
         self.hideKeyboard()
         
-        navigationItem.largeTitleDisplayMode = .never
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.barTintColor = nil
-        
-        // Set navigation bar to the default color
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
-        
-        setSearchTitle()
-        setupTheme()
-
         self.tableView.delegate = self
         self.tableView.dataSource = self
         searchBar.delegate = self
+        
+        setSearchTitle()
+        setupTheme()
         
     }
     
@@ -309,6 +301,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
         subcategoriesTitleView.backgroundColor = UIColor.customDarkPurple
         subcategoriesTitleLabel.backgroundColor = .customDarkPurple
         subcategoriesTitleView.layer.cornerRadius = 5
+        
+        navigationItem.largeTitleDisplayMode = .never
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.barTintColor = nil
+               
+        // Set navigation bar to the default color
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         subcategoriesTitleView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)

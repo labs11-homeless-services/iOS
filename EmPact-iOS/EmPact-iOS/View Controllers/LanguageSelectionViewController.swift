@@ -82,7 +82,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         networkController.searchTerm = searchTerm
         
         let matchingObjects = NetworkController.filteredObjects.filter({ $0.keywords.contains(searchTerm.lowercased()) || $0.name.contains(searchTerm.lowercased()) })
-        
+        print("Matching Objs \(matchingObjects)")
         networkController.subcategoryDetails = matchingObjects
     }
     
