@@ -408,7 +408,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JUh-ah-XMf">
-                                                <rect key="frame" x="25" y="80.5" width="325" height="306"/>
+                                                <rect key="frame" x="25" y="81" width="325" height="305.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="285" id="M2z-jM-qMw"/>
@@ -481,10 +481,10 @@
                                                 </cells>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEY-AX-X0E">
-                                                <rect key="frame" x="25" y="20" width="325" height="35.5"/>
+                                                <rect key="frame" x="25" y="20" width="325" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you looking for?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnQ-Qv-uX1">
-                                                        <rect key="frame" x="10" y="10" width="307" height="15.5"/>
+                                                        <rect key="frame" x="10" y="10" width="307" height="16"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="13"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
@@ -754,7 +754,7 @@
                             <constraint firstItem="EDU-uA-BJS" firstAttribute="width" secondItem="qqT-SJ-dEi" secondAttribute="width" id="Mzg-cG-NPy"/>
                             <constraint firstItem="XRj-oF-APD" firstAttribute="leading" secondItem="AcF-FV-YZa" secondAttribute="leading" constant="15" id="TGw-tE-zgn"/>
                             <constraint firstItem="XRj-oF-APD" firstAttribute="trailing" secondItem="AcF-FV-YZa" secondAttribute="trailing" constant="-15" id="XVE-se-7Gw"/>
-                            <constraint firstItem="EDU-uA-BJS" firstAttribute="centerX" secondItem="XRj-oF-APD" secondAttribute="centerX" id="Xq7-pj-1Zj"/>
+                            <constraint firstItem="EDU-uA-BJS" firstAttribute="centerX" secondItem="XRj-oF-APD" secondAttribute="centerX" id="fyv-oJ-vFv"/>
                             <constraint firstItem="EDU-uA-BJS" firstAttribute="top" secondItem="XRj-oF-APD" secondAttribute="bottom" id="rpL-YU-FG1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AcF-FV-YZa"/>
