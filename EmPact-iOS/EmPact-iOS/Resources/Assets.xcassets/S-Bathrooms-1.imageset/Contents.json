@@ -1,28 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "nu logo2.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "nu logo.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
+      "filename" : "baseline_wc_black_36pt_1x.png",
       "idiom" : "iphone",
       "scale" : "1x"
     },
     {
+      "filename" : "baseline_wc_black_36pt_2x.png",
       "idiom" : "iphone",
       "scale" : "2x"
     },
     {
+      "filename" : "baseline_wc_black_36pt_3x.png",
       "idiom" : "iphone",
       "scale" : "3x"
     }

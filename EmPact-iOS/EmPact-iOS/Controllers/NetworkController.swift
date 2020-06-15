@@ -170,20 +170,6 @@ class NetworkController {
         }.resume()
     }
     
-    
-//    private func createSubcatArray<C>(model: C.Type, data: Data) where C: IndividualResource {
-//        let jsonDecoder = JSONDecoder()
-//        var decodedResponse: C
-//        do {
-//            decodedResponse = try jsonDecoder.decode(model.self, from: data)
-//        } catch { NSLog("Error decoding model: \(model): \(error)") }
-//        for decodedResponseDictionary in decodedResponse.dictionary {
-//            self.subcategoryNames.append("\(decodedResponseDictionary.key)")
-//
-//            self.tempCategoryDictionary = ["\(decodedResponseDictionary.key)": [decodedResponseDictionary.value]]
-//        }
-//    }
-    
     func fetchSubcategoriesUnderscoredNames(_ category: UnderscoredCategory, completion: @escaping Handler = { _, _ in }) {
         
         var newCategoryName = ""

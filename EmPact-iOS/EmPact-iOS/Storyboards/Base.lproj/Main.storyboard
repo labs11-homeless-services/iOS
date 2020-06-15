@@ -741,7 +741,7 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="oY7-Lu-bue" secondAttribute="bottom" id="Elt-Wx-q0O"/>
                                     <constraint firstItem="oY7-Lu-bue" firstAttribute="top" secondItem="EDU-uA-BJS" secondAttribute="top" id="Kbn-YT-NJN"/>
-                                    <constraint firstAttribute="trailing" secondItem="oY7-Lu-bue" secondAttribute="trailing" constant="-10" id="Ufn-5M-XKk"/>
+                                    <constraint firstAttribute="trailing" secondItem="oY7-Lu-bue" secondAttribute="trailing" id="Ufn-5M-XKk"/>
                                     <constraint firstItem="oY7-Lu-bue" firstAttribute="centerX" secondItem="EDU-uA-BJS" secondAttribute="centerX" id="lu2-Xl-Tvg"/>
                                     <constraint firstItem="oY7-Lu-bue" firstAttribute="leading" secondItem="EDU-uA-BJS" secondAttribute="leading" id="xZc-Si-Ozk"/>
                                 </constraints>
@@ -753,9 +753,8 @@
                             <constraint firstItem="XRj-oF-APD" firstAttribute="top" secondItem="AcF-FV-YZa" secondAttribute="top" constant="10" id="Fdg-3i-YYv"/>
                             <constraint firstItem="EDU-uA-BJS" firstAttribute="width" secondItem="qqT-SJ-dEi" secondAttribute="width" id="Mzg-cG-NPy"/>
                             <constraint firstItem="XRj-oF-APD" firstAttribute="leading" secondItem="AcF-FV-YZa" secondAttribute="leading" constant="15" id="TGw-tE-zgn"/>
-                            <constraint firstItem="AcF-FV-YZa" firstAttribute="trailing" secondItem="EDU-uA-BJS" secondAttribute="trailing" id="Utr-Kf-YbD"/>
                             <constraint firstItem="XRj-oF-APD" firstAttribute="trailing" secondItem="AcF-FV-YZa" secondAttribute="trailing" constant="-15" id="XVE-se-7Gw"/>
-                            <constraint firstItem="EDU-uA-BJS" firstAttribute="leading" secondItem="AcF-FV-YZa" secondAttribute="leading" id="qX8-dW-tgj"/>
+                            <constraint firstItem="EDU-uA-BJS" firstAttribute="centerX" secondItem="XRj-oF-APD" secondAttribute="centerX" id="fyv-oJ-vFv"/>
                             <constraint firstItem="EDU-uA-BJS" firstAttribute="top" secondItem="XRj-oF-APD" secondAttribute="bottom" id="rpL-YU-FG1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AcF-FV-YZa"/>
@@ -1722,8 +1721,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gb4-7u-i6d"/>
-        <segue reference="BRR-cb-Fvu"/>
+        <segue reference="EQM-Nn-GBT"/>
+        <segue reference="d27-Sl-fNX"/>
         <segue reference="sI5-lG-G3I"/>
     </inferredMetricsTieBreakers>
     <resources>
