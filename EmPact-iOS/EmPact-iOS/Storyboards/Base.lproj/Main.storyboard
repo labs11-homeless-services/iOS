@@ -73,26 +73,26 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" image="landingPageImgNew" translatesAutoresizingMaskIntoConstraints="NO" id="8hy-oe-c9l">
-                                <rect key="frame" x="0.0" y="240" width="375" height="285"/>
+                                <rect key="frame" x="0.0" y="238" width="375" height="285"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="285" id="7gF-UV-EOe"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JL6-Py-ksV">
-                                <rect key="frame" x="64" y="535" width="247" height="49"/>
+                                <rect key="frame" x="64" y="539" width="247" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GU-ab-k0d">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="49"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="45"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
                                         <inset key="contentEdgeInsets" minX="12" minY="10" maxX="20" maxY="10"/>
                                         <state key="normal" title="English"/>
                                         <connections>
                                             <action selector="englishButtonClicked:" destination="L3M-VF-e8P" eventType="touchUpInside" id="4mM-hV-44P"/>
-                                            <segue destination="0tP-UG-PIs" kind="show" id="ZcM-yn-fUD"/>
+                                            <segue destination="0tP-UG-PIs" kind="show" identifier="CategoriesVC" id="ZcM-yn-fUD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyj-4M-Pmy">
-                                        <rect key="frame" x="135" y="0.0" width="112" height="49"/>
+                                        <rect key="frame" x="135" y="0.0" width="112" height="45"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
                                         <inset key="contentEdgeInsets" minX="12" minY="10" maxX="20" maxY="10"/>
                                         <state key="normal" title="Español"/>
@@ -101,22 +101,40 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="F2O-8B-KqS">
+                                <rect key="frame" x="100" y="598" width="175" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5C-Y7-PRW">
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="45"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
+                                        <state key="normal" title="Favorites"/>
+                                        <connections>
+                                            <segue destination="s3b-Bx-YES" kind="show" identifier="toFavoritesVC" id="Nny-Db-GH4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="5fl-hy-r2J"/>
+                                    <constraint firstAttribute="height" constant="45" id="8wy-6U-19u"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="8AQ-Va-4rq" firstAttribute="trailing" secondItem="F2O-8B-KqS" secondAttribute="trailing" constant="100" id="0X2-Y5-xyF"/>
                             <constraint firstItem="tHh-rK-WI2" firstAttribute="leading" secondItem="vQA-Tf-rlF" secondAttribute="leading" constant="-3" id="3Kh-os-LN1"/>
+                            <constraint firstItem="F2O-8B-KqS" firstAttribute="top" secondItem="JL6-Py-ksV" secondAttribute="bottom" constant="14" id="8UT-0v-XNc"/>
                             <constraint firstItem="fdO-Ye-Sop" firstAttribute="top" secondItem="tHh-rK-WI2" secondAttribute="bottom" constant="25" id="8rw-uR-XQW"/>
                             <constraint firstItem="8AQ-Va-4rq" firstAttribute="trailing" secondItem="8hy-oe-c9l" secondAttribute="trailing" id="DDB-aH-1re"/>
                             <constraint firstItem="tHh-rK-WI2" firstAttribute="top" secondItem="8AQ-Va-4rq" secondAttribute="top" id="N1r-Z6-2HS"/>
-                            <constraint firstItem="JL6-Py-ksV" firstAttribute="top" secondItem="8hy-oe-c9l" secondAttribute="bottom" constant="10" id="Ok7-rQ-Lp9"/>
-                            <constraint firstItem="8hy-oe-c9l" firstAttribute="top" secondItem="fdO-Ye-Sop" secondAttribute="bottom" constant="10" id="R9W-np-8Lr"/>
+                            <constraint firstItem="8AQ-Va-4rq" firstAttribute="bottom" secondItem="F2O-8B-KqS" secondAttribute="bottom" constant="24" id="OfB-D0-iQ3"/>
+                            <constraint firstItem="JL6-Py-ksV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8hy-oe-c9l" secondAttribute="bottom" constant="10" id="Ok7-rQ-Lp9"/>
+                            <constraint firstItem="8hy-oe-c9l" firstAttribute="top" secondItem="fdO-Ye-Sop" secondAttribute="bottom" constant="8" id="R9W-np-8Lr"/>
                             <constraint firstItem="JL6-Py-ksV" firstAttribute="centerX" secondItem="vQA-Tf-rlF" secondAttribute="centerX" id="Slv-v3-CEG"/>
                             <constraint firstAttribute="trailing" secondItem="fdO-Ye-Sop" secondAttribute="trailing" constant="20" id="Uia-a6-gLY"/>
                             <constraint firstItem="8hy-oe-c9l" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" id="XmC-Tp-eZP"/>
+                            <constraint firstItem="F2O-8B-KqS" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" constant="100" id="b8O-Zc-B1L"/>
+                            <constraint firstItem="JL6-Py-ksV" firstAttribute="height" secondItem="F2O-8B-KqS" secondAttribute="height" id="bab-1Y-yQO"/>
                             <constraint firstItem="tHh-rK-WI2" firstAttribute="trailing" secondItem="vQA-Tf-rlF" secondAttribute="trailing" constant="3" id="oLG-ya-w2K"/>
                             <constraint firstItem="fdO-Ye-Sop" firstAttribute="leading" secondItem="8AQ-Va-4rq" secondAttribute="leading" constant="20" id="rcH-Q8-yHy"/>
                         </constraints>
@@ -127,6 +145,7 @@
                         <outlet property="englishButton" destination="5GU-ab-k0d" id="AHZ-YC-GYp"/>
                         <outlet property="logoLabel" destination="Kjq-4T-8Pd" id="QOr-cK-bbu"/>
                         <outlet property="navBarExtensionView" destination="tHh-rK-WI2" id="vT5-Zi-DIm"/>
+                        <outlet property="savedButton" destination="G5C-Y7-PRW" id="Rn6-1H-bF8"/>
                         <outlet property="searchBar" destination="1Ag-qf-zji" id="FVw-bW-XAO"/>
                         <outlet property="searchTagLineLabel" destination="1gE-hM-I0i" id="48d-Xx-Bxz"/>
                         <outlet property="spanishButton" destination="Eyj-4M-Pmy" id="CfN-7K-pek"/>
@@ -138,6 +157,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du0-dv-BR1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="461.60000000000002" y="239.73013493253376"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="BUL-ly-oeb">
+            <objects>
+                <tableViewController id="s3b-Bx-YES" customClass="FavoritesTableViewController" customModule="EmPact_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="V7g-AB-5Dg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="x7y-wa-ce9">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x7y-wa-ce9" id="uhF-vK-AVc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kk6-0y-WL5" kind="show" identifier="savedToDetailsVC" id="w7N-4f-bSh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="s3b-Bx-YES" id="7zn-tT-qah"/>
+                            <outlet property="delegate" destination="s3b-Bx-YES" id="TqU-qq-oRz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites" id="SXo-r9-fkk"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pK0-x6-LZT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-318" y="1119"/>
         </scene>
         <!--Search Results View Controller-->
         <scene sceneID="dfM-e3-5ut">
@@ -1680,7 +1731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gwh-5o-txd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1846" y="1976"/>
+            <point key="canvasLocation" x="446" y="2004"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tul-sl-5zu">
@@ -1721,9 +1772,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EQM-Nn-GBT"/>
-        <segue reference="d27-Sl-fNX"/>
-        <segue reference="sI5-lG-G3I"/>
+        <segue reference="w7N-4f-bSh"/>
+        <segue reference="58c-q5-8x8"/>
+        <segue reference="ZcM-yn-fUD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Sharp" width="28" height="28"/>

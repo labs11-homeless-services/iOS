@@ -18,6 +18,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
+    var cacheController: CacheController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,6 +152,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                 let indexPath = tableView.indexPathForSelectedRow else { return }
             
             destination.googleMapsController = googleMapsController
+            destination.cacheController = cacheController
             destination.networkController = networkController
             
             let serviceDetail = networkController?.subcategoryDetails[indexPath.row]

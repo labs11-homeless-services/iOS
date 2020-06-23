@@ -15,10 +15,12 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchTagLineLabel: UILabel!
     @IBOutlet weak var englishButton: UIButton!
     @IBOutlet weak var spanishButton: UIButton!
+    @IBOutlet weak var savedButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
     let googleMapsController = GoogleMapsController()
     let networkController = NetworkController()
+    let cacheController = CacheController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         setupTheme()
         setupViews()
         setUpNavigationBarTitleImage()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +44,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         setupTheme()
         
         setupViews()
+        
     }
 
     
@@ -92,10 +96,14 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
             let destination = segue.destination as! SearchResultsViewController
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
-        } else {
+        } else if segue.identifier == "CategoriesVC" {
             let destination = segue.destination as! CategoriesViewController
             destination.networkController = networkController
+            destination.cacheController = cacheController
             destination.googleMapsController = googleMapsController
+        } else if segue.identifier == "toFavoritesVC" {
+            guard let destination = segue.destination as? FavoritesTableViewController else { return }
+            destination.cacheController = cacheController
         }
     }
     
@@ -142,6 +150,17 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         spanishButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         spanishButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
+        
+        let favColoredIcon = UIImage(named: "heart")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        savedButton.setTitle("Favorites  ", for: .normal)
+        savedButton.backgroundColor = .customDarkPurple
+        savedButton.tintColor = .white
+        savedButton.setImage(favColoredIcon, for: .normal)
+        savedButton.layer.cornerRadius = 5
+        savedButton.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        savedButton.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        savedButton.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        savedButton.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
     }
     
     func setUpNavigationBarTitleImage() {

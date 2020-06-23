@@ -36,6 +36,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
     
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
+    var cacheController: CacheController?
     
     var selectedSubcategory: String!
     var matchingObjects: [IndividualResource]?
@@ -278,11 +279,13 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
             destination.serviceDetail = serviceDetail
             destination.selectedSubcategory = selectedSubcategory
             destination.googleMapsController = googleMapsController
+            destination.cacheController = cacheController
             destination.networkController = networkController
         } else {
             // Pass the subcategory results array
             destination.selectedSubcategory = selectedSubcategory
             destination.googleMapsController = googleMapsController
+            destination.cacheController = cacheController
             destination.networkController = networkController
             
             if networkController?.subcategoryDetails == nil {
