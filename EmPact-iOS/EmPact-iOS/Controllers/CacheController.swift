@@ -10,8 +10,13 @@ import UIKit
 
 class CacheController {
     
+    var userDefaults = UserDefaults.standard
+    var savedFavorite: IndividualResource?
+    var savedResources: [IndividualResource] = []
+    
     static var cache = NSCache<NSString, IndividualResource>()
     static var resourceObject: IndividualResource?
+    
     
     // MARK: - Properties for FetchAll
     static var allShelterObjects: [IndividualResource] = []
@@ -26,6 +31,27 @@ class CacheController {
     static var filteredObjects: [IndividualResource] = []
     
     typealias CompletionHandler = (Error?) -> Void
+    
+    func saveToFavorites(resource: IndividualResource) {
+        
+        let tempResource = SimpleResource(address: resource.address, city: resource.city, name: resource.name, postalCode: resource.postalCode, state: resource.state)
+        if let encoded = try? JSONEncoder().encode(tempResource) {
+            UserDefaults.standard.set(encoded, forKey: "tempResource")
+        }
+    }
+    
+    func loadFavorites(resource: IndividualResource) -> IndividualResource{
+        var temp = resource
+       
+        if let resourceData = UserDefaults.standard.data(forKey: "tempResource"),
+            let temp = try? JSONDecoder().decode(IndividualResource.self, from: resourceData) {
+            savedResources.append(temp)
+            print("Saved Item: \(temp)")
+            print("Saved Item Array: \(savedResources)")
+        }
+        
+        return temp
+    }
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
         

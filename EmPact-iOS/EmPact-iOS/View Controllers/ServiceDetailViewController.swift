@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, FavoritesDelegate, CLLocationManagerDelegate {
     
     // MARK: - Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
@@ -66,18 +66,24 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
+    var cacheController: CacheController?
     
     var serviceDetail: IndividualResource?
     var selectedSubcategory: String!
+    weak var delegate: FavoritesDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        delegate = self
         mapView.delegate = self
         
         self.hideKeyboard()
         setupTheme()
         verifyCategoryData()
+        
+        guard let resourceDetail = serviceDetail else { return }
+        cacheController?.saveToFavorites(resource: resourceDetail)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +99,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         DispatchQueue.main.async {
             self.updateViews()
         }
+    }
+    
+    func saveResource(on vc: ServiceDetailViewController) {
+        guard let serviceDetail = serviceDetail else { return }
+        cacheController?.saveToFavorites(resource: serviceDetail)
     }
     
     // MARK: - Segmented Control Actions - Display info in the Locations View
@@ -318,6 +329,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         if segue.identifier == "backToAllResultsSegue" {
             let destination = segue.destination as! ServiceResultsViewController
             destination.networkController = networkController
+            destination.cacheController = cacheController
         }
     }
     

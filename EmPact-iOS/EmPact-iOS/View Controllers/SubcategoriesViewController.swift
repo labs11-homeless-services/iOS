@@ -28,6 +28,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var googleMapsController: GoogleMapsController?
     var networkController: NetworkController?
+    var cacheController: CacheController?
     var categoryController = CategoryController()
     
     override func viewDidLoad() {
@@ -112,6 +113,7 @@ class SubcategoriesViewController: UIViewController, UITableViewDelegate, UITabl
         
             destination.googleMapsController = googleMapsController
             destination.networkController = networkController
+            destination.cacheController = cacheController
             destination.selectedSubcategory = subcategoryDetails
         }
     }

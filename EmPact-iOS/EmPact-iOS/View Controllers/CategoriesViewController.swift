@@ -51,10 +51,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var bottomBarView: UIView!
     
-    var googleMapsController: GoogleMapsController?
     let categoryController = CategoryController()
+    var googleMapsController: GoogleMapsController?
+    var cacheController: CacheController?
     var networkController: NetworkController?
-    let cacheController = CacheController()
     
     var serviceCoordinates: CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
@@ -104,6 +104,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
+        //print("Favorites Resources: \(cacheController.loadFavorites().name)")
         
     }
     
@@ -348,6 +349,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             let searchDestinationVC = segue.destination as! ServiceResultsViewController
             searchDestinationVC.networkController = networkController
             searchDestinationVC.googleMapsController = googleMapsController
+            searchDestinationVC.cacheController = cacheController
         }
         
         if let destinationViewController = segue.destination as? SubcategoriesViewController {
@@ -360,6 +362,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             let destination = segue.destination as! SubcategoriesViewController
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
+            destination.cacheController = cacheController
             destination.selectedCategory = networkController?.tempCategorySelection
         }
         
@@ -367,6 +370,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             let destination = segue.destination as! ServiceDetailViewController
             destination.networkController = networkController
             destination.googleMapsController = googleMapsController
+            destination.cacheController = cacheController
             destination.serviceDetail = nearestShelter
             destination.serviceDistance = self.serviceDistance
             destination.serviceTravelDuration = self.serviceTravelDuration

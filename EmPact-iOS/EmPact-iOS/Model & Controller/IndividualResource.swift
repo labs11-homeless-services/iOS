@@ -8,7 +8,7 @@
 
 import Foundation
 
-class IndividualResource: Decodable {
+class IndividualResource: NSObject, Decodable {
     
     enum IndividualResourceCodingKeys: String, CodingKey {
         case address
