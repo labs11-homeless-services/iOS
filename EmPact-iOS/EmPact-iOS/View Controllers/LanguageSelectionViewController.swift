@@ -42,9 +42,7 @@ class LanguageSelectionViewController: UIViewController, UISearchBarDelegate {
         searchBar.text = ""
         
         setupTheme()
-        
         setupViews()
-        
     }
 
     

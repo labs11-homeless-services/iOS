@@ -72,7 +72,8 @@
 		8C5DB22624576571005639AC /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DB22524576570005639AC /* Decoder.swift */; };
 		8CBDA6DC24A135CB00150386 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DB24A135CB00150386 /* FavoritesTableViewController.swift */; };
 		8CBDA6DE24A1495A00150386 /* SimpleResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DD24A1495A00150386 /* SimpleResource.swift */; };
-		8CBDA6E024A17E6A00150386 /* FavoritesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DF24A17E6A00150386 /* FavoritesDelegate.swift */; };
+		8CBDA6E024A17E6A00150386 /* HamburgerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DF24A17E6A00150386 /* HamburgerProtocol.swift */; };
+		8CBDA6E424A4644000150386 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6E324A4644000150386 /* FavoritesTableViewCell.swift */; };
 		B4F63290CCDE36A593AFE058 /* Pods_EmPact_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591969F987DD62DAB5709AAC /* Pods_EmPact_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,7 +147,8 @@
 		8C5DB22524576570005639AC /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		8CBDA6DB24A135CB00150386 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8CBDA6DD24A1495A00150386 /* SimpleResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleResource.swift; sourceTree = "<group>"; };
-		8CBDA6DF24A17E6A00150386 /* FavoritesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDelegate.swift; sourceTree = "<group>"; };
+		8CBDA6DF24A17E6A00150386 /* HamburgerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerProtocol.swift; sourceTree = "<group>"; };
+		8CBDA6E324A4644000150386 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		9A505BAE806FA181EB726B7F /* Pods-EmPact-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmPact-iOS.debug.xcconfig"; path = "Target Support Files/Pods-EmPact-iOS/Pods-EmPact-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,7 +250,7 @@
 				112A220D22566A910008E54B /* UserLocationViewController.swift */,
 				84B3A4DC2267881F00F06DC4 /* Border.swift */,
 				8C5DB22524576570005639AC /* Decoder.swift */,
-				8CBDA6DF24A17E6A00150386 /* FavoritesDelegate.swift */,
+				8CBDA6DF24A17E6A00150386 /* HamburgerProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -260,6 +262,7 @@
 				847A7EDC225663BA00A62A5F /* SubcategoryTableViewCell.swift */,
 				846264ED224D98C6009A21A2 /* ServiceResultTableViewCell.swift */,
 				119F5739226FBFB1007A74FC /* SearchResultsTableViewCell.swift */,
+				8CBDA6E324A4644000150386 /* FavoritesTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -493,13 +496,14 @@
 				842DE2072252CEBF00BBE2FB /* Food.swift in Sources */,
 				119F5736226A4151007A74FC /* Constants.swift in Sources */,
 				11D79C7F225D04630064EFB5 /* PresentMenuAnimator.swift in Sources */,
-				8CBDA6E024A17E6A00150386 /* FavoritesDelegate.swift in Sources */,
+				8CBDA6E024A17E6A00150386 /* HamburgerProtocol.swift in Sources */,
 				11A098BB2253CBF8006F8B9D /* Categories.swift in Sources */,
 				846264EE224D98C6009A21A2 /* ServiceResultTableViewCell.swift in Sources */,
 				11A098BF22551911006F8B9D /* Jobs.swift in Sources */,
 				11A098C122552031006F8B9D /* Subcategory.swift in Sources */,
 				847A7EDD225663BA00A62A5F /* SubcategoryTableViewCell.swift in Sources */,
 				84B3A4AE2260076D00F06DC4 /* GoogleMapsController.swift in Sources */,
+				8CBDA6E424A4644000150386 /* FavoritesTableViewCell.swift in Sources */,
 				11D79C7E225D04630064EFB5 /* DismissMenuAnimator.swift in Sources */,
 				847A7ED922557B2900A62A5F /* OutreachServices.swift in Sources */,
 				842DE20F2252CFEA00BBE2FB /* Shelters.swift in Sources */,
