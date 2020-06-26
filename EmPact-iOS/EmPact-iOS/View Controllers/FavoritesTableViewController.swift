@@ -10,50 +10,37 @@ import UIKit
 
 class FavoritesTableViewController: UITableViewController {
 
+    var favoritesArray: [SimpleResource] = []
     var savedItem: IndividualResource?
-    
     var cacheController: CacheController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let temp = savedItem else { return }
-        cacheController?.loadFavorites(resource: temp)
-        
-        if let savedItem = savedItem {
-            print("Faves: \(cacheController?.loadFavorites(resource: savedItem))")
-            print("Hello World: \(cacheController?.savedResources)")
-            
-        }
-        print("Hello World: \(cacheController?.savedResources)")
     }
 
-    func saveResource() {
-        
-    }
-    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         print(cacheController?.savedResources.count ?? 0)
         return cacheController?.savedResources.count ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.reuseIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
 
-        // Configure the cell...
-
+        let favorite = cacheController?.savedResources[indexPath.row]
+        
+        cell.favoriteName.text = favorite?.name
+        cell.favoriteAddressLabel.text = favorite?.address
+        cell.favoritePhoneLabel.text = favorite?.phone
+        cell.favoriteHoursLabel.text = favorite?.hours
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -96,9 +83,14 @@ class FavoritesTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "savedToDetailsVC" {
+            guard let savedVC = segue.destination as? ServiceDetailViewController,
+            
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+            let savedDetail = cacheController?.savedResources[indexPath.row]
+                savedVC.cacheController = cacheController
+                savedVC.savedResource = savedDetail
             
         }
     }
     
-
 }

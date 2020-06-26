@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, FavoritesDelegate, CLLocationManagerDelegate {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
     // MARK: - Outlet for MapView
     @IBOutlet weak var mapView: GMSMapView!
@@ -69,21 +69,18 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, Favorit
     var cacheController: CacheController?
     
     var serviceDetail: IndividualResource?
+    var savedResource: SimpleResource?
     var selectedSubcategory: String!
-    weak var delegate: FavoritesDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        delegate = self
         mapView.delegate = self
         
         self.hideKeyboard()
         setupTheme()
         verifyCategoryData()
         
-        guard let resourceDetail = serviceDetail else { return }
-        cacheController?.saveToFavorites(resource: resourceDetail)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,11 +96,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, Favorit
         DispatchQueue.main.async {
             self.updateViews()
         }
-    }
-    
-    func saveResource(on vc: ServiceDetailViewController) {
-        guard let serviceDetail = serviceDetail else { return }
-        cacheController?.saveToFavorites(resource: serviceDetail)
     }
     
     // MARK: - Segmented Control Actions - Display info in the Locations View
@@ -167,6 +159,11 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, Favorit
         servicesButton.setTitleColor(.customLightestGray, for: .normal)
         
         updateViews()
+    }
+    
+    @IBAction func saveTapped(_ sender: Any) {
+        guard let resourceDetail = serviceDetail else { return }
+        cacheController?.saveToFavorites(resource: resourceDetail)
     }
     
     // MARK: - Change to Spanish Translation Action

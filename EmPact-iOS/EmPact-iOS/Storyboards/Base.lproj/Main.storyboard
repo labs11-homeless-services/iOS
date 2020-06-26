@@ -167,14 +167,153 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="x7y-wa-ce9">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCell" id="x7y-wa-ce9" customClass="FavoritesTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="240.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x7y-wa-ce9" id="uhF-vK-AVc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="240.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="C0h-SL-Z8A">
+                                            <rect key="frame" x="20" y="10" width="335" height="220.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pd-C1-6Xg" userLabel="Name Label">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="115.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wJT-YM-WiV">
+                                                    <rect key="frame" x="0.0" y="105.5" width="335" height="115"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5e-0m-t2T">
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3hp-8k-48E" userLabel="Address Stack">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bj8-oe-OZ2">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="35"/>
+                                                                            <subviews>
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place" translatesAutoresizingMaskIntoConstraints="NO" id="e86-PU-6hj" userLabel="Address Icon">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="35"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="30" id="4PY-70-4BI"/>
+                                                                                    </constraints>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstItem="e86-PU-6hj" firstAttribute="leading" secondItem="bj8-oe-OZ2" secondAttribute="leading" id="FqS-GD-mlE"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="e86-PU-6hj" secondAttribute="bottom" id="ciT-yC-2tH"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="e86-PU-6hj" secondAttribute="trailing" id="j8i-RK-Ted"/>
+                                                                                <constraint firstItem="e86-PU-6hj" firstAttribute="top" secondItem="bj8-oe-OZ2" secondAttribute="top" id="vFC-uB-DvT"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XVg-Ch-vZD">
+                                                                            <rect key="frame" x="38" y="0.0" width="297" height="35"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1100 E. Turner Benjamin Camp Rd, Inverness, Florida 34453" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LF1-gl-HT0">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="297" height="35"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="3hp-8k-48E" secondAttribute="trailing" id="Ayk-gj-I67"/>
+                                                                <constraint firstAttribute="bottom" secondItem="3hp-8k-48E" secondAttribute="bottom" id="SzL-Qf-7Yw"/>
+                                                                <constraint firstItem="3hp-8k-48E" firstAttribute="leading" secondItem="Y5e-0m-t2T" secondAttribute="leading" id="UwK-uO-tF5"/>
+                                                                <constraint firstItem="3hp-8k-48E" firstAttribute="top" secondItem="Y5e-0m-t2T" secondAttribute="top" id="qen-bX-CYK"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ogg-Ok-VP7">
+                                                            <rect key="frame" x="0.0" y="40" width="335" height="35"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2vS-9F-Gsa" userLabel="Phone Stack">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="7BN-gM-SCC" userLabel="Phone Icon">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="35"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="hMa-lL-gZ7"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 (352) 344 - 8111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEi-dr-t5J" userLabel="Phone Label">
+                                                                            <rect key="frame" x="38" y="0.0" width="297" height="35"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="2vS-9F-Gsa" firstAttribute="leading" secondItem="Ogg-Ok-VP7" secondAttribute="leading" id="538-kX-ibb"/>
+                                                                <constraint firstAttribute="bottom" secondItem="2vS-9F-Gsa" secondAttribute="bottom" id="6OK-rn-QhI"/>
+                                                                <constraint firstItem="2vS-9F-Gsa" firstAttribute="top" secondItem="Ogg-Ok-VP7" secondAttribute="top" id="Jq1-WG-5x7"/>
+                                                                <constraint firstAttribute="height" constant="35" id="b5H-Fg-lBD"/>
+                                                                <constraint firstAttribute="trailing" secondItem="2vS-9F-Gsa" secondAttribute="trailing" id="l6M-we-EcS"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhi-n2-soV">
+                                                            <rect key="frame" x="0.0" y="80" width="335" height="35"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uS1-oB-b6Z" userLabel="Hours Stack">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="g3E-AQ-WLp" userLabel="Hours Icon">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="35"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="30" id="w15-rB-lrA"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Monday - Friday 9 a.m. - 7 p.m." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiR-rM-6hj" userLabel="Hours Label">
+                                                                            <rect key="frame" x="38" y="0.0" width="297" height="35"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="uS1-oB-b6Z" firstAttribute="leading" secondItem="lhi-n2-soV" secondAttribute="leading" id="0bR-YD-Td0"/>
+                                                                <constraint firstAttribute="trailing" secondItem="uS1-oB-b6Z" secondAttribute="trailing" id="ICw-oB-HUN"/>
+                                                                <constraint firstAttribute="height" constant="35" id="N8q-ga-t1j"/>
+                                                                <constraint firstItem="uS1-oB-b6Z" firstAttribute="top" secondItem="lhi-n2-soV" secondAttribute="top" id="YKl-2g-4eJ"/>
+                                                                <constraint firstAttribute="bottom" secondItem="uS1-oB-b6Z" secondAttribute="bottom" id="urx-sb-jSe"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Y5e-0m-t2T" firstAttribute="leading" secondItem="wJT-YM-WiV" secondAttribute="leading" id="Otu-eO-cXd"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Y5e-0m-t2T" secondAttribute="trailing" id="UAw-mH-AdB"/>
+                                                        <constraint firstItem="Y5e-0m-t2T" firstAttribute="top" secondItem="wJT-YM-WiV" secondAttribute="top" id="ubc-5U-itT"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="C0h-SL-Z8A" secondAttribute="bottom" constant="10" id="4an-2A-pEW"/>
+                                        <constraint firstItem="C0h-SL-Z8A" firstAttribute="top" secondItem="uhF-vK-AVc" secondAttribute="top" constant="10" id="EZ1-Z0-3FV"/>
+                                        <constraint firstAttribute="trailing" secondItem="C0h-SL-Z8A" secondAttribute="trailing" constant="20" id="QEg-dd-3e2"/>
+                                        <constraint firstItem="C0h-SL-Z8A" firstAttribute="leading" secondItem="uhF-vK-AVc" secondAttribute="leading" constant="20" id="VDa-us-hOs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="favoriteAddressLabel" destination="LF1-gl-HT0" id="pX8-Of-9U6"/>
+                                    <outlet property="favoriteHoursLabel" destination="xiR-rM-6hj" id="LsC-2L-CEM"/>
+                                    <outlet property="favoriteName" destination="6Pd-C1-6Xg" id="UUZ-TO-T4J"/>
+                                    <outlet property="favoritePhoneLabel" destination="WEi-dr-t5J" id="oU3-Oy-TZx"/>
                                     <segue destination="kk6-0y-WL5" kind="show" identifier="savedToDetailsVC" id="w7N-4f-bSh"/>
                                 </connections>
                             </tableViewCell>
@@ -1687,9 +1826,9 @@
                         <viewLayoutGuide key="safeArea" id="LmX-Ue-zzX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Citrus County Abuse Shelter" id="aXl-kM-Yn3">
-                        <barButtonItem key="rightBarButtonItem" title="Español" id="iFQ-tK-faU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="iFQ-tK-faU">
                             <connections>
-                                <action selector="spanishButtonTapped:" destination="kk6-0y-WL5" id="0Ol-sT-DcK"/>
+                                <action selector="saveTapped:" destination="kk6-0y-WL5" id="l0N-oo-RCv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1773,7 +1912,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="w7N-4f-bSh"/>
-        <segue reference="58c-q5-8x8"/>
+        <segue reference="BRR-cb-Fvu"/>
         <segue reference="ZcM-yn-fUD"/>
     </inferredMetricsTieBreakers>
     <resources>

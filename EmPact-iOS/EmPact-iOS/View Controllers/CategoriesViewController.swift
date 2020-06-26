@@ -9,12 +9,6 @@
 import UIKit
 import CoreLocation
 
-// MARK: - Hamburger Menu protocol
-protocol MenuActionDelegate {
-    func openSegue(_ segueName: String, sender: AnyObject?)
-    func reopenMenu()
-}
-
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var helpLabel: UILabel!
@@ -75,6 +69,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         print("Test: \(cacheController?.savedResources.count ?? 0)")
         
         self.hideKeyboard()
         

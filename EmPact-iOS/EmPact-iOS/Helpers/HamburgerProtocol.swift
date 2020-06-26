@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol FavoritesDelegate: class {
-    func saveResource(on vc: ServiceDetailViewController )
+// MARK: - Hamburger Menu protocol
+protocol MenuActionDelegate {
+    func openSegue(_ segueName: String, sender: AnyObject?)
+    func reopenMenu()
 }

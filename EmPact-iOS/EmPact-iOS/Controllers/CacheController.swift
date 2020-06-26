@@ -12,7 +12,7 @@ class CacheController {
     
     var userDefaults = UserDefaults.standard
     var savedFavorite: IndividualResource?
-    var savedResources: [IndividualResource] = []
+    var savedResources: [SimpleResource] = []
     
     static var cache = NSCache<NSString, IndividualResource>()
     static var resourceObject: IndividualResource?
@@ -34,23 +34,20 @@ class CacheController {
     
     func saveToFavorites(resource: IndividualResource) {
         
-        let tempResource = SimpleResource(address: resource.address, city: resource.city, name: resource.name, postalCode: resource.postalCode, state: resource.state)
+        let tempResource = SimpleResource(address: resource.address, city: resource.city, details: resource.details as? String ?? "", additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: resource.services as? String ?? "")
+            savedResources.append(tempResource)
+        
         if let encoded = try? JSONEncoder().encode(tempResource) {
-            UserDefaults.standard.set(encoded, forKey: "tempResource")
+            UserDefaults.standard.set(encoded, forKey: "tempResources")
         }
     }
     
-    func loadFavorites(resource: IndividualResource) -> IndividualResource{
-        var temp = resource
-       
-        if let resourceData = UserDefaults.standard.data(forKey: "tempResource"),
-            let temp = try? JSONDecoder().decode(IndividualResource.self, from: resourceData) {
-            savedResources.append(temp)
-            print("Saved Item: \(temp)")
-            print("Saved Item Array: \(savedResources)")
-        }
+    func loadFavorites() -> [SimpleResource] {
         
-        return temp
+        let resourceData = userDefaults.data(forKey: "tempResources")
+        let loadedResources = try? JSONDecoder().decode([SimpleResource].self, from: resourceData!)
+        
+        return loadedResources ?? []
     }
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
