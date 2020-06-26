@@ -34,7 +34,7 @@ class CacheController {
     
     func saveToFavorites(resource: IndividualResource) {
         
-        let tempResource = SimpleResource(address: resource.address, city: resource.city, name: resource.name, postalCode: resource.postalCode, state: resource.state)
+        let tempResource = SimpleResource(address: resource.address, city: resource.city, details: resource.details as? String ?? "", additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: resource.services as? String ?? "")
             savedResources.append(tempResource)
         
         if let encoded = try? JSONEncoder().encode(tempResource) {

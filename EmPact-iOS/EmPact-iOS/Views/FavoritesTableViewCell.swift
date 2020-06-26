@@ -11,6 +11,9 @@ import UIKit
 class FavoritesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var favoriteName: UILabel!
-
+    @IBOutlet weak var favoriteAddressLabel: UILabel!
+    @IBOutlet weak var favoritePhoneLabel: UILabel!
+    @IBOutlet weak var favoriteHoursLabel: UILabel!
+    
     static let reuseIdentifier = "FavoritesCell"
 }

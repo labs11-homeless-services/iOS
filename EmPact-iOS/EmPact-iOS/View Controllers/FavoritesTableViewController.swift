@@ -19,10 +19,6 @@ class FavoritesTableViewController: UITableViewController {
         
     }
 
-    func saveResource() {
-        
-    }
-    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,6 +34,10 @@ class FavoritesTableViewController: UITableViewController {
         let favorite = cacheController?.savedResources[indexPath.row]
         
         cell.favoriteName.text = favorite?.name
+        cell.favoriteAddressLabel.text = favorite?.address
+        cell.favoritePhoneLabel.text = favorite?.phone
+        cell.favoriteHoursLabel.text = favorite?.hours
+        
         return cell
     }
     
@@ -83,17 +83,14 @@ class FavoritesTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "savedToDetailsVC" {
+            guard let savedVC = segue.destination as? ServiceDetailViewController,
+            
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+            let savedDetail = cacheController?.savedResources[indexPath.row]
+                savedVC.cacheController = cacheController
+                savedVC.savedResource = savedDetail
             
         }
     }
     
-
 }
-
-//extension FavoritesTableViewController: FavoritesDelegate {
-//
-//    func saveResource(sender: ServiceDetailViewController) {
-//        guard let serviceDetail = serviceDetail else { return }
-//        cacheController?.saveToFavorites(resource: serviceDetail)
-//    }
-//}

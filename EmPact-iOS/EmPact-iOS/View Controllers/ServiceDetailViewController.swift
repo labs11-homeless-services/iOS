@@ -69,6 +69,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     var cacheController: CacheController?
     
     var serviceDetail: IndividualResource?
+    var savedResource: SimpleResource?
     var selectedSubcategory: String!
     
     override func viewDidLoad() {
