@@ -23,7 +23,6 @@ class FavoritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(cacheController?.savedResources.count ?? 0)
         return cacheController?.savedResources.count ?? 0
     }
 
@@ -83,7 +82,7 @@ class FavoritesTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "savedToDetailsVC" {
-            guard let savedVC = segue.destination as? ServiceDetailViewController,
+            guard let savedVC = segue.destination as? FavoritesDetailViewController,
             
             let indexPath = tableView.indexPathForSelectedRow else { return }
             let savedDetail = cacheController?.savedResources[indexPath.row]

@@ -32,6 +32,18 @@ class CacheController {
     
     typealias CompletionHandler = (Error?) -> Void
     
+    func simpleToIndividual(resource: SimpleResource) -> IndividualResource{
+        var switchedResource: IndividualResource?
+        if let encoded = try? JSONEncoder().encode(resource) {
+            switchedResource = try? IndividualResource(jsonData: encoded)
+        }
+        
+        return switchedResource!
+        
+//        (address: resource.address, city: resource.city, details: resource.details as? String ?? "", additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: resource.services as? String ?? "")
+    
+    }
+    
     func saveToFavorites(resource: IndividualResource) {
         
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: resource.details as? String ?? "", additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: resource.services as? String ?? "")

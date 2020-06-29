@@ -1,63 +1,62 @@
 //
-//  ServiceDetailViewController.swift
+//  FavoritesDetailViewController.swift
 //  EmPact-iOS
 //
-//  Created by Audrey Welch on 3/29/19.
-//  Copyright © 2019 EmPact. All rights reserved.
+//  Created by Jonah  on 6/27/20.
+//  Copyright © 2020 EmPact. All rights reserved.
 //
 
 import UIKit
 import GoogleMaps
 
-class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-    // MARK: - Outlet for MapView
-    @IBOutlet weak var mapView: GMSMapView!
+       // MARK: - Outlet for MapView
+       @IBOutlet weak var mapView: GMSMapView!
+       
+       // MARK: - Custom Segment Control Buttons
+       @IBOutlet weak var segmentButtonView: UIView!
+       @IBOutlet weak var locationButton: UIButton!
+       @IBOutlet weak var servicesButton: UIButton!
+       @IBOutlet weak var detailsButton: UIButton!
+       
+       // MARK: - Info View Outlets
+       @IBOutlet weak var infoView: UIView!
+       @IBOutlet weak var infoTravelView: UIView!
+       @IBOutlet weak var infoAddressView: UIView!
+       @IBOutlet weak var infoPhoneView: UIView!
+       @IBOutlet weak var infoHoursView: UIView!
+       
+       @IBOutlet weak var serviceDetailNameLabel: UILabel!
+       @IBOutlet weak var serviceDetailAddressLabel: UILabel!
+       @IBOutlet weak var serviceDetailDistanceLabel: UILabel!
+       @IBOutlet weak var serviceDetailWalkTimeLabel: UILabel!
+       @IBOutlet weak var serviceDetailPhoneLabel: UILabel!
+       @IBOutlet weak var serviceDetailHoursLabel: UILabel!
+       
+       @IBOutlet weak var addressIconImageView: UIImageView!
+       @IBOutlet weak var transitIconImageView: UIImageView!
+       @IBOutlet weak var walkIconImageView: UIImageView!
+       @IBOutlet weak var phoneIconImageView: UIImageView!
+       @IBOutlet weak var hoursIconImageView: UIImageView!
+       
+       // MARK: Service View Outlets
+       @IBOutlet weak var serviceView: UIView!
+       @IBOutlet weak var servicesInfoNameLabel: UILabel!
+       @IBOutlet weak var primaryServicesLabel: UILabel!
+       @IBOutlet weak var serviesInfoTextView: UITextView!
+       
+       // MARK: Detail View Outlets
+       @IBOutlet weak var detailsView: UIView!
+       @IBOutlet weak var detailsNameLabel: UILabel!
+       @IBOutlet weak var admissionDetailsLabel: UILabel!
+       @IBOutlet weak var detailsTextView: UITextView!
+       
+       // MARK: - Map Unavailable Outlets
+       @IBOutlet weak var mapUnavailableView: UIView!
+       @IBOutlet weak var mapUnavailableLabel: UILabel!
+       @IBOutlet weak var startMapButton: UIButton!
     
-    // MARK: - Custom Segment Control Buttons
-    @IBOutlet weak var segmentButtonView: UIView!
-    @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var servicesButton: UIButton!
-    @IBOutlet weak var detailsButton: UIButton!
-    
-    // MARK: - Info View Outlets
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var infoTravelView: UIView!
-    @IBOutlet weak var infoAddressView: UIView!
-    @IBOutlet weak var infoPhoneView: UIView!
-    @IBOutlet weak var infoHoursView: UIView!
-    
-    @IBOutlet weak var serviceDetailNameLabel: UILabel!
-    @IBOutlet weak var serviceDetailAddressLabel: UILabel!
-    @IBOutlet weak var serviceDetailDistanceLabel: UILabel!
-    @IBOutlet weak var serviceDetailWalkTimeLabel: UILabel!
-    @IBOutlet weak var serviceDetailPhoneLabel: UILabel!
-    @IBOutlet weak var serviceDetailHoursLabel: UILabel!
-    
-    @IBOutlet weak var addressIconImageView: UIImageView!
-    @IBOutlet weak var transitIconImageView: UIImageView!
-    @IBOutlet weak var walkIconImageView: UIImageView!
-    @IBOutlet weak var phoneIconImageView: UIImageView!
-    @IBOutlet weak var hoursIconImageView: UIImageView!
-    
-    // MARK: Service View Outlets
-    @IBOutlet weak var serviceView: UIView!
-    @IBOutlet weak var servicesInfoNameLabel: UILabel!
-    @IBOutlet weak var primaryServicesLabel: UILabel!
-    @IBOutlet weak var serviesInfoTextView: UITextView!
-    
-    // MARK: Detail View Outlets
-    @IBOutlet weak var detailsView: UIView!
-    @IBOutlet weak var detailsNameLabel: UILabel!
-    @IBOutlet weak var admissionDetailsLabel: UILabel!
-    @IBOutlet weak var detailsTextView: UITextView!
-    
-    // MARK: - Map Unavailable Outlets
-    @IBOutlet weak var mapUnavailableView: UIView!
-    @IBOutlet weak var mapUnavailableLabel: UILabel!
-    @IBOutlet weak var startMapButton: UIButton!
-    
-    // MARK: - Properties
     var serviceDistance: String!
     var serviceTravelDuration: String!
     
@@ -68,20 +67,20 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     var networkController: NetworkController?
     var cacheController: CacheController?
     
-    var serviceDetail: IndividualResource?
+    //var serviceDetail: IndividualResource?
     var savedResource: SimpleResource?
     var tempResource: AnyObject?
     var selectedSubcategory: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         mapView.delegate = self
         
         self.hideKeyboard()
         setupTheme()
         verifyCategoryData()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,19 +161,6 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         updateViews()
     }
     
-    @IBAction func saveTapped(_ sender: Any) {
-        guard let resourceDetail = serviceDetail else { return }
-        cacheController?.saveToFavorites(resource: resourceDetail)
-    }
-    
-    // MARK: - Change to Spanish Translation Action
-    @IBAction func spanishButtonTapped(_ sender: Any) {
-        
-        let alert = UIAlertController(title: "La traducción al español vendrá pronto.", message: "Spanish translation coming soon.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
     // MARK: - Location & Maps Management
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         serviceCoordinates = manager.location?.coordinate
@@ -191,8 +177,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     @IBAction func launchMapsButton(_ sender: Any) {
         
         guard let unwrappedServiceCoordinate = serviceCoordinates else { return }
-        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(serviceDetail!.latitude!),\(serviceDetail!.longitude!)&travelmode=transit") {
-     
+        if let url = URL(string: "https://www.google.com/maps/dir/?api=1&origin=\(unwrappedServiceCoordinate.latitude),\(unwrappedServiceCoordinate.longitude)&destination=\(savedResource!.latitude!),\(savedResource!.longitude!)&travelmode=transit") {
+            
             UIApplication.shared.open(url, options: [:])
         }
     }
@@ -200,24 +186,24 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // MARK: - Google Distance Matrix to get Walking Distance and Travel Duration
     private func getServiceDistanceAndDuration() {
         
-        guard serviceDetail?.latitude != nil, serviceDetail?.longitude != nil
+        guard savedResource?.latitude != nil, savedResource?.longitude != nil
             else {
                 NSLog("serviceDetail's latitude or longitude was nil")
                 return
         }
         
         guard let unwrappedServiceCoordinate = serviceCoordinates,
-            let unwrappedDestLatitude  = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-            let unwrappedDestLongitude = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue else { return }
+            let unwrappedDestLatitude = NumberFormatter().number(from: savedResource?.latitude ?? ""),
+            let unwrappedDestLongitude = NumberFormatter().number(from: savedResource?.longitude ?? "") else { return }
         
-        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, unwrappedDestLatitude, unwrappedDestLongitude) { (error) in
+        googleMapsController?.fetchServiceDistance(unwrappedServiceCoordinate.latitude, unwrappedServiceCoordinate.longitude, Double(truncating: unwrappedDestLatitude), Double(truncating: unwrappedDestLongitude)) { (error) in
             if let error = error {
                 NSLog("Error fetching distance to chosen service: \(error)")
             }
             
             self.serviceDistance = self.googleMapsController?.serviceDistance
             self.serviceTravelDuration = self.googleMapsController?.serviceTravelDuration
-                        
+            
             DispatchQueue.main.async {
                 self.updateViews()
             }
@@ -227,77 +213,81 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     // MARK: - Update View's Information Method
     func updateViews() {
         
-        serviceDetailNameLabel.text = serviceDetail?.name
+        serviceDetailNameLabel.text = savedResource?.name
         
-        if serviceDetail?.address == nil || serviceDetail?.address == "" {
+        if savedResource?.address == nil || savedResource?.address == "" {
             serviceDetailAddressLabel.text = "Address Unavailable"
         } else {
-            serviceDetailAddressLabel.text = serviceDetail?.address
+            serviceDetailAddressLabel.text = savedResource?.address
         }
         
-        if serviceDetail?.phone == nil {
+        if savedResource?.phone == nil {
             serviceDetailPhoneLabel.text = "Phone number unavailable"
         } else {
-            if let phoneJSON = serviceDetail?.phone {
-                serviceDetailPhoneLabel.text = phoneJSON as? String
-            }
+            serviceDetailPhoneLabel.text = savedResource?.phone
+                
         }
         
-        if serviceDetail?.hours == nil {
+        if savedResource?.hours == nil {
             serviceDetailHoursLabel.text = "Please call for hours"
         } else {
-            serviceDetailHoursLabel.text = serviceDetail?.hours
+            serviceDetailHoursLabel.text = savedResource?.hours
         }
         
         // Services Tab Info
-        servicesInfoNameLabel.text = serviceDetail?.name
+        servicesInfoNameLabel.text = savedResource?.name
         
-        if let servicesJSON = serviceDetail?.services {
-            if let arrayJSON = servicesJSON as? [String] {
-                
-                var index = 1
-                var orderedServices: [String] = []
-                for arrayItems in arrayJSON {
-                    let service = "  \(index).    \(arrayItems)"
-                    index += 1
-                    orderedServices.append(service)
-                }
-                
-                let stringOfServices = orderedServices.joined(separator: "\n")
-                serviesInfoTextView.text = stringOfServices.capitalized
-            } else if let stringJSON = servicesJSON as? String {
-                if stringJSON == "" {
-                    serviesInfoTextView.text = "Please call for services"
-                } else {
-                    serviesInfoTextView.text = stringJSON
-                }
-            }
-        }
+        guard let services = savedResource?.services else { return }
+        serviesInfoTextView.text = services
+//        if let servicesJSON = savedResource?.services {
+//
+//
+//                var index = 1
+//                var orderedServices: [String] = []
+//                for arrayItems in arrayJSON {
+//                    let service = "  \(index).    \(arrayItems)"
+//                    index += 1
+//                    orderedServices.append(service)
+//                }
+//
+//                let stringOfServices = orderedServices.joined(separator: "\n")
+//                serviesInfoTextView.text = stringOfServices.capitalized
+//
+//                if stringJSON == "" {
+//                    serviesInfoTextView.text = "Please call for services"
+//                } else {
+//                    serviesInfoTextView.text = stringJSON
+//                }
+//
+//        }
         
         // Details Tab Info
-        detailsNameLabel.text = serviceDetail?.name
+        detailsNameLabel.text = savedResource?.name
         
-        if let detailsJSON = serviceDetail?.details {
-            if let arrayJSON = detailsJSON as? [String] {
+        detailsTextView.text = savedResource?.details
+        let detailsJSON = savedResource?.details
+        print("detailsJSON: \(detailsJSON)")
+            let arrayJSON = detailsJSON
                 var index = 1
                 var orderedDetails: [String] = []
-                for arrayItems in arrayJSON {
-                    let details = "  \(index).    \(arrayItems)"
-                    index += 1
-                    orderedDetails.append(details)
-                }
+//                for arrayItems in arrayJSON {
+//                    let details = "  \(index).    \(arrayItems)"
+//                    index += 1
+//                    orderedDetails.append(details)
+//                }
                 
                 let stringOfDetails = orderedDetails.joined(separator: "\n")
                 detailsTextView.text = stringOfDetails.capitalized
-            } else if let stringJSON = detailsJSON as? String {
+            
+              let stringJSON = detailsJSON
                 if stringJSON == "" {
                     detailsTextView.text = "Please call for details"
                 } else {
                     detailsTextView.text = stringJSON
                 }
-            }
-        }
-
+            
+        
+        
         // Adjustable Font sizes
         servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
         serviceDetailNameLabel.adjustsFontSizeToFitWidth = true
@@ -425,8 +415,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         mapUnavailableView.alpha = 0.75
         mapUnavailableLabel.isHidden = true
         mapUnavailableView.backgroundColor = .customDarkPurple
-
-        if serviceDetail?.latitude == nil || serviceDetail?.latitude == "" || serviceDetail?.longitude == nil || serviceDetail?.longitude == "" {
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        if savedResource?.latitude == nil || savedResource?.latitude == "" || savedResource?.longitude == nil || savedResource?.longitude == "" {
             mapUnavailableView.isHidden = false
             mapUnavailableLabel.isHidden = false
             mapUnavailableLabel.textColor = .white
@@ -437,10 +429,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             
             let camera = GMSCameraPosition.camera(withLatitude: 40.7829, longitude: -73.9654, zoom: 14.0)
             mapView.camera = camera
-        
+            
         } else {
-            guard let doubleLatValue = NumberFormatter().number(from: (serviceDetail?.latitude)!)?.doubleValue,
-                let doubleLongValue = NumberFormatter().number(from: (serviceDetail?.longitude)!)?.doubleValue
+            guard let doubleLatValue = NumberFormatter().number(from: (savedResource?.latitude)!)?.doubleValue,
+                let doubleLongValue = NumberFormatter().number(from: (savedResource?.longitude)!)?.doubleValue
                 else {
                     NSLog("Latitude or Longitude is not a valid Double")
                     return
@@ -450,7 +442,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: doubleLatValue, longitude: doubleLongValue)
             
-            marker.title = serviceDetail?.name
+            marker.title = savedResource?.name
             mapView.selectedMarker = marker
             marker.appearAnimation = .pop
             marker.map = mapView
@@ -464,14 +456,18 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             
         }
     }
+    
     private func verifyCategoryData() {
         if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
-            self.title = serviceDetail?.name
+            self.title = savedResource?.name
         } else if selectedSubcategory == "" || selectedSubcategory == nil {
-            self.title = serviceDetail?.name
+            self.title = savedResource?.name
         } else {
             guard let unwrappedTempCategorySelection = networkController?.tempCategorySelection else { return }
             self.title = "\(unwrappedTempCategorySelection) - \(selectedSubcategory.capitalized)"
         }
     }
 }
+
+
+
