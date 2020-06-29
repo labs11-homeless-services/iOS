@@ -69,9 +69,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-         print("Test: \(cacheController?.savedResources.count ?? 0)")
-        
+
         self.hideKeyboard()
         
         networkController?.subcategoryNames = []
@@ -100,8 +98,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 self.categoriesCollectionView.reloadData()
             }
         }
-        //print("Favorites Resources: \(cacheController.loadFavorites().name)")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,7 +221,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         if nearestShelter != nil {
-            print("They say they're already got one!")
             return
         } else {
             getNearestShelter()
