@@ -238,6 +238,8 @@ class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLoc
         servicesInfoNameLabel.text = savedResource?.name
         
         guard let services = savedResource?.services else { return }
+        print("savedResource: \(String(describing: savedResource!))")
+        print("services: \(services)")
         serviesInfoTextView.text = services
 //        if let servicesJSON = savedResource?.services {
 //
@@ -266,7 +268,7 @@ class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLoc
         
         detailsTextView.text = savedResource?.details
         let detailsJSON = savedResource?.details
-        print("detailsJSON: \(detailsJSON)")
+       
             let arrayJSON = detailsJSON
                 var index = 1
                 var orderedDetails: [String] = []
