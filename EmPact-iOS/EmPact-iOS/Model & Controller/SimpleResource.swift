@@ -26,7 +26,7 @@ class SimpleResource: Codable {
     
     var services: String?
     
-    init(address: String?, city: String, details: String, additionalInformation: String?, hours: String?, keywords: String, latitude: String?, longitude: String?, name: String, phone: String?, postalCode: String?, state: String, services: String?) {
+    init(address: String?, city: String, details: String?, additionalInformation: String?, hours: String?, keywords: String, latitude: String?, longitude: String?, name: String, phone: String?, postalCode: String?, state: String, services: String?) {
         
         self.address = address
         self.city = city
