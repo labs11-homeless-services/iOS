@@ -17,7 +17,6 @@ class CacheController {
     static var cache = NSCache<NSString, IndividualResource>()
     static var resourceObject: IndividualResource?
     
-    
     // MARK: - Properties for FetchAll
     static var allShelterObjects: [IndividualResource] = []
     static var allEducationObjects: [IndividualResource] = []
@@ -32,6 +31,11 @@ class CacheController {
     
     typealias CompletionHandler = (Error?) -> Void
     
+    init() {
+        savedResources = loadFavorites()
+        print("saved: \(savedResources)")
+    }
+    
     func simpleToIndividual(resource: SimpleResource) -> IndividualResource{
         var switchedResource: IndividualResource?
         if let encoded = try? JSONEncoder().encode(resource) {
@@ -39,25 +43,26 @@ class CacheController {
         }
         
         return switchedResource!
-        
-//        (address: resource.address, city: resource.city, details: resource.details as? String ?? "", additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: resource.services as? String ?? "")
-    
     }
     
     func saveToFavorites(resource: IndividualResource) {
         
-        let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: resource.details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: resource.services))
+        guard let services = resource.services,
+            let details = resource.details else { return }
+        
+        let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
         savedResources.append(tempResource)
         
-        if let encoded = try? JSONEncoder().encode(tempResource) {
-            UserDefaults.standard.set(encoded, forKey: "tempResources")
-        }
+        let encoded = try? JSONEncoder().encode(savedResources)
+        userDefaults.set(encoded, forKey: "savedResources")
+            
     }
     
     func loadFavorites() -> [SimpleResource] {
         
-        let resourceData = userDefaults.data(forKey: "tempResources")
-        let loadedResources = try? JSONDecoder().decode([SimpleResource].self, from: resourceData!)
+        let resourceData = userDefaults.data(forKey: "savedResources")
+        guard let userDefaultsData = resourceData else { return [SimpleResource]() }
+        let loadedResources = try? JSONDecoder().decode([SimpleResource].self, from: userDefaultsData)
         
         return loadedResources ?? []
     }
