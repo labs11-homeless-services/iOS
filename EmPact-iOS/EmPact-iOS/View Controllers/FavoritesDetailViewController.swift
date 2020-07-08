@@ -238,57 +238,33 @@ class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLoc
         servicesInfoNameLabel.text = savedResource?.name
         
         guard let services = savedResource?.services else { return }
-        print("savedResource: \(String(describing: savedResource!))")
-        print("services: \(services)")
-        serviesInfoTextView.text = services
-//        if let servicesJSON = savedResource?.services {
-//
-//
-//                var index = 1
-//                var orderedServices: [String] = []
-//                for arrayItems in arrayJSON {
-//                    let service = "  \(index).    \(arrayItems)"
-//                    index += 1
-//                    orderedServices.append(service)
-//                }
-//
-//                let stringOfServices = orderedServices.joined(separator: "\n")
-//                serviesInfoTextView.text = stringOfServices.capitalized
-//
-//                if stringJSON == "" {
-//                    serviesInfoTextView.text = "Please call for services"
-//                } else {
-//                    serviesInfoTextView.text = stringJSON
-//                }
-//
-//        }
+        let tempServices = services
+            .replacingOccurrences(of: "[", with: "")
+            .replacingOccurrences(of: "]", with: "")
+            .replacingOccurrences(of: "\"", with: "")
+            .replacingOccurrences(of: ",", with: "\n")
         
+        if tempServices == "" {
+            serviesInfoTextView.text = "Please call for available services"
+        } else {
+            serviesInfoTextView.text = tempServices
+        }
+            
         // Details Tab Info
         detailsNameLabel.text = savedResource?.name
         
-        detailsTextView.text = savedResource?.details
-        let detailsJSON = savedResource?.details
-       
-            let arrayJSON = detailsJSON
-                var index = 1
-                var orderedDetails: [String] = []
-//                for arrayItems in arrayJSON {
-//                    let details = "  \(index).    \(arrayItems)"
-//                    index += 1
-//                    orderedDetails.append(details)
-//                }
-                
-                let stringOfDetails = orderedDetails.joined(separator: "\n")
-                detailsTextView.text = stringOfDetails.capitalized
-            
-              let stringJSON = detailsJSON
-                if stringJSON == "" {
-                    detailsTextView.text = "Please call for details"
-                } else {
-                    detailsTextView.text = stringJSON
-                }
-            
+        guard let details = savedResource?.details else { return }
+        let tempDetails = details
+            .replacingOccurrences(of: "[", with: "")
+            .replacingOccurrences(of: "]", with: "")
+            .replacingOccurrences(of: "\"", with: "")
+            .replacingOccurrences(of: ",", with: "\n")
         
+        if tempDetails == "" {
+            detailsTextView.text = "Please call for admission details"
+        } else {
+            detailsTextView.text = tempDetails
+        }
         
         // Adjustable Font sizes
         servicesInfoNameLabel.adjustsFontSizeToFitWidth = true
