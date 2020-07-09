@@ -23,6 +23,7 @@ class FavoritesTableViewController: UITableViewController {
         
         guard let cacheController = cacheController else { return }
         favoritesArray = cacheController.loadFavorites()
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -48,11 +49,11 @@ class FavoritesTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            
+            let favorite = favoritesArray[indexPath.row]
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            cacheController?.saveToFavorites()
+        }
     }
     
     // MARK: - Navigation
