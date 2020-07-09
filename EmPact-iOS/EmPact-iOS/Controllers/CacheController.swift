@@ -33,7 +33,6 @@ class CacheController {
     
     init() {
         savedResources = loadFavorites()
-        print("saved: \(savedResources)")
     }
     
     func simpleToIndividual(resource: SimpleResource) -> IndividualResource{
@@ -45,17 +44,26 @@ class CacheController {
         return switchedResource!
     }
     
-    func saveToFavorites(resource: IndividualResource) {
+    func saveAndConversion(resource: IndividualResource) {
         
         guard let services = resource.services,
             let details = resource.details else { return }
         
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
-        savedResources.append(tempResource)
+        if savedResources.contains(tempResource) {
+            return
+        } else {
+           savedResources.append(tempResource)
+        }
         
         let encoded = try? JSONEncoder().encode(savedResources)
         userDefaults.set(encoded, forKey: "savedResources")
             
+    }
+    
+    func saveToFavorites() {
+        let encoded = try? JSONEncoder().encode(savedResources)
+        userDefaults.set(encoded, forKey: "savedResources")
     }
     
     func loadFavorites() -> [SimpleResource] {
@@ -65,6 +73,11 @@ class CacheController {
         let loadedResources = try? JSONDecoder().decode([SimpleResource].self, from: userDefaultsData)
         
         return loadedResources ?? []
+    }
+    
+    func deleteFavorite(index: Int) {
+        savedResources.remove(at: index)
+        
     }
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {

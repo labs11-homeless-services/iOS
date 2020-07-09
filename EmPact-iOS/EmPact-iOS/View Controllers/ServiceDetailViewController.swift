@@ -81,7 +81,8 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
         self.hideKeyboard()
         setupTheme()
         verifyCategoryData()
-
+        
+        print("savedResource: \(savedResource)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -164,7 +165,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     @IBAction func saveTapped(_ sender: Any) {
         guard let resourceDetail = serviceDetail else { return }
-        cacheController?.saveToFavorites(resource: resourceDetail)
+        cacheController?.saveAndConversion(resource: resourceDetail)
     }
     
     // MARK: - Change to Spanish Translation Action
