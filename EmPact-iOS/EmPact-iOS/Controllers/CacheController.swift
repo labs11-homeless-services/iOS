@@ -31,9 +31,9 @@ class CacheController {
     
     typealias CompletionHandler = (Error?) -> Void
     
-    init() {
-        savedResources = loadFavorites()
-    }
+//    init() {
+//        savedResources = loadFavorites()
+//    }
     
     func simpleToIndividual(resource: SimpleResource) -> IndividualResource{
         var switchedResource: IndividualResource?
@@ -51,9 +51,11 @@ class CacheController {
         
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
         if savedResources.contains(tempResource) {
+            print("Match of \(tempResource) found")
             return
         } else {
-           savedResources.append(tempResource)
+            print("\(tempResource) saved")
+            savedResources.append(tempResource)
         }
         
         let encoded = try? JSONEncoder().encode(savedResources)
