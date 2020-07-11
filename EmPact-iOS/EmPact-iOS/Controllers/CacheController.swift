@@ -13,6 +13,7 @@ class CacheController {
     var userDefaults = UserDefaults.standard
     var savedFavorite: IndividualResource?
     var savedResources: [SimpleResource] = []
+    var resourceSet = Set<String>()
     
     static var cache = NSCache<NSString, IndividualResource>()
     static var resourceObject: IndividualResource?
@@ -44,19 +45,23 @@ class CacheController {
         return switchedResource!
     }
     
+    private func removeDuplicates() {
+        for resource in savedResources {
+            if !resourceSet.contains(resource.name) {
+                savedResources.append(resource)
+                resourceSet.insert(resource.name)
+            }
+        }
+    }
+    
     func saveAndConversion(resource: IndividualResource) {
         
         guard let services = resource.services,
             let details = resource.details else { return }
         
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
-        if savedResources.contains(tempResource) {
-            print("Match of \(tempResource) found")
-            return
-        } else {
-            print("\(tempResource) saved")
             savedResources.append(tempResource)
-        }
+        
         
         let encoded = try? JSONEncoder().encode(savedResources)
         userDefaults.set(encoded, forKey: "savedResources")

@@ -69,7 +69,7 @@
 		84B3A4DA22667CEB00F06DC4 /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B3A4C922667C6D00F06DC4 /* SF-Pro-Display-Ultralight.otf */; };
 		84B3A4DB22667CEE00F06DC4 /* SF-Pro-Display-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 84B3A4B822667C6A00F06DC4 /* SF-Pro-Display-UltralightItalic.otf */; };
 		84B3A4DD2267882200F06DC4 /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3A4DC2267881F00F06DC4 /* Border.swift */; };
-		8C5DB22624576571005639AC /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DB22524576570005639AC /* Decoder.swift */; };
+		8C5DB22624576571005639AC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DB22524576570005639AC /* Extensions.swift */; };
 		8CBDA6DC24A135CB00150386 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DB24A135CB00150386 /* FavoritesTableViewController.swift */; };
 		8CBDA6DE24A1495A00150386 /* SimpleResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DD24A1495A00150386 /* SimpleResource.swift */; };
 		8CBDA6E024A17E6A00150386 /* HamburgerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDA6DF24A17E6A00150386 /* HamburgerProtocol.swift */; };
@@ -145,7 +145,7 @@
 		84B3A4C822667C6D00F06DC4 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		84B3A4C922667C6D00F06DC4 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		84B3A4DC2267881F00F06DC4 /* Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
-		8C5DB22524576570005639AC /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		8C5DB22524576570005639AC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8CBDA6DB24A135CB00150386 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8CBDA6DD24A1495A00150386 /* SimpleResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleResource.swift; sourceTree = "<group>"; };
 		8CBDA6DF24A17E6A00150386 /* HamburgerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerProtocol.swift; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 				11A098C022552031006F8B9D /* Subcategory.swift */,
 				112A220D22566A910008E54B /* UserLocationViewController.swift */,
 				84B3A4DC2267881F00F06DC4 /* Border.swift */,
-				8C5DB22524576570005639AC /* Decoder.swift */,
+				8C5DB22524576570005639AC /* Extensions.swift */,
 				8CBDA6DF24A17E6A00150386 /* HamburgerProtocol.swift */,
 			);
 			path = Helpers;
@@ -541,7 +541,7 @@
 				11D79C80225D04630064EFB5 /* MenuHelper.swift in Sources */,
 				842DE2052252CE2900BBE2FB /* LegalAdministrative.swift in Sources */,
 				112A221022569C550008E54B /* CategoryController.swift in Sources */,
-				8C5DB22624576571005639AC /* Decoder.swift in Sources */,
+				8C5DB22624576571005639AC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

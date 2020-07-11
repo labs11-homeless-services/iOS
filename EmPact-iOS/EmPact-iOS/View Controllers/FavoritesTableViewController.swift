@@ -15,6 +15,7 @@ class FavoritesTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    var favoritesWithoutDuplicates: [SimpleResource] = []
     var savedItem: IndividualResource?
     var cacheController: CacheController?
     
@@ -23,19 +24,20 @@ class FavoritesTableViewController: UITableViewController {
         
         guard let cacheController = cacheController else { return }
         favoritesArray = cacheController.loadFavorites()
+        favoritesWithoutDuplicates = favoritesArray.uniques(by: \.phone)
         tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoritesArray.count
+        return favoritesWithoutDuplicates.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.reuseIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
 
-        let favorite = favoritesArray[indexPath.row]
+        let favorite = favoritesWithoutDuplicates[indexPath.row]
         
         cell.favoriteName.text = favorite.name
         cell.favoriteAddressLabel.text = favorite.address
