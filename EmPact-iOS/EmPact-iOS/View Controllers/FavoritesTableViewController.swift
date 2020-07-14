@@ -24,7 +24,7 @@ class FavoritesTableViewController: UITableViewController {
         
         guard let cacheController = cacheController else { return }
         favoritesArray = cacheController.loadFavorites()
-        favoritesWithoutDuplicates = favoritesArray.uniques(by: \.phone)
+
         tableView.reloadData()
     }
 

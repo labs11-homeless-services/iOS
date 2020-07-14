@@ -39,7 +39,7 @@ class CacheController {
     func simpleToIndividual(resource: SimpleResource) -> IndividualResource{
         var switchedResource: IndividualResource?
         if let encoded = try? JSONEncoder().encode(resource) {
-            switchedResource = try? IndividualResource(jsonData: encoded)
+            switchedResource = try? IndividualResource(from: encoded as! Decoder)
         }
         
         return switchedResource!
@@ -54,6 +54,16 @@ class CacheController {
         }
     }
     
+    func removeDuplicateElements(resource: [SimpleResource]) -> [SimpleResource] {
+        var uniqueResource = [SimpleResource]()
+        for resource in savedResources {
+            if !uniqueResource.contains(where: {$0.name == resource.name }) {
+                uniqueResource.append(resource)
+            }
+        }
+        return uniqueResource
+    }
+    
     func saveAndConversion(resource: IndividualResource) {
         
         guard let services = resource.services,
@@ -62,6 +72,7 @@ class CacheController {
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
             savedResources.append(tempResource)
         
+        removeDuplicateElements(resource: savedResources)
         
         let encoded = try? JSONEncoder().encode(savedResources)
         userDefaults.set(encoded, forKey: "savedResources")
