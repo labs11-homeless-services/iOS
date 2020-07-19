@@ -47,13 +47,13 @@ class CacheController {
     
     private func removeDuplicates(arr: [SimpleResource], tempResource: SimpleResource) -> [SimpleResource] {
         var temp = arr
-        for resource in temp {
-            if !resourceSet.contains(resource.name) {
+        resourceSet.insert(tempResource.name)
+        for _ in temp {
+            if !resourceSet.contains(tempResource.name) {
                 temp.append(tempResource)
-                resourceSet.insert(resource.name)
             }
         }
-        return savedResources
+        return temp
     }
     
     func saveAndConversion(resource: IndividualResource) {
@@ -69,11 +69,6 @@ class CacheController {
         userDefaults.set(encoded, forKey: "savedResources")
     }
     
-//    func saveToFavorites() {
-//        let encoded = try? JSONEncoder().encode(savedResources)
-//        userDefaults.set(encoded, forKey: "savedResources")
-//    }
-    
     func loadFavorites() -> [SimpleResource] {
         
         let resourceData = userDefaults.data(forKey: "savedResources")
@@ -85,7 +80,6 @@ class CacheController {
     
     func deleteFavorite(index: Int) {
         savedResources.remove(at: index)
-        
     }
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {

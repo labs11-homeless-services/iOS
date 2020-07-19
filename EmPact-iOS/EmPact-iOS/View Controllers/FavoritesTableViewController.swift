@@ -53,8 +53,9 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let favorite = favoritesArray[indexPath.row]
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            favoritesArray.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            cacheController?.userDefaults.set(favoritesArray, forKey: "savedResources")
         }
     }
     
