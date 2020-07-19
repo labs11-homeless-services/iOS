@@ -24,20 +24,21 @@ class FavoritesTableViewController: UITableViewController {
         
         guard let cacheController = cacheController else { return }
         favoritesArray = cacheController.loadFavorites()
-
+        print("Faves Array \(favoritesArray)")
         tableView.reloadData()
+        self.tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoritesWithoutDuplicates.count
+        return favoritesArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.reuseIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
 
-        let favorite = favoritesWithoutDuplicates[indexPath.row]
+        let favorite = favoritesArray[indexPath.row]
         
         cell.favoriteName.text = favorite.name
         cell.favoriteAddressLabel.text = favorite.address
@@ -52,9 +53,9 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let favorite = favoritesArray[indexPath.row]
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            cacheController?.saveToFavorites()
+//            favoritesArray.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            cacheController?.userDefaults.set(favoritesArray, forKey: "savedResources")
         }
     }
     

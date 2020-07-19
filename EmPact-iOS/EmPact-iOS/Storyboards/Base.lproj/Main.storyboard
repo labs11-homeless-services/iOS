@@ -168,16 +168,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCell" id="x7y-wa-ce9" customClass="FavoritesTableViewCell" customModule="EmPact_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="240.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="225.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x7y-wa-ce9" id="uhF-vK-AVc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="240.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="225.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="C0h-SL-Z8A">
-                                            <rect key="frame" x="20" y="10" width="335" height="220.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="335" height="220.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pd-C1-6Xg" userLabel="Name Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citrus County Abuse Shelter Association, Inc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pd-C1-6Xg" userLabel="Name Label">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="115.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <nil key="textColor"/>
@@ -303,8 +303,8 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="C0h-SL-Z8A" secondAttribute="bottom" constant="10" id="4an-2A-pEW"/>
-                                        <constraint firstItem="C0h-SL-Z8A" firstAttribute="top" secondItem="uhF-vK-AVc" secondAttribute="top" constant="10" id="EZ1-Z0-3FV"/>
+                                        <constraint firstAttribute="bottom" secondItem="C0h-SL-Z8A" secondAttribute="bottom" constant="5" id="4an-2A-pEW"/>
+                                        <constraint firstItem="C0h-SL-Z8A" firstAttribute="top" secondItem="uhF-vK-AVc" secondAttribute="top" id="EZ1-Z0-3FV"/>
                                         <constraint firstAttribute="trailing" secondItem="C0h-SL-Z8A" secondAttribute="trailing" constant="20" id="QEg-dd-3e2"/>
                                         <constraint firstItem="C0h-SL-Z8A" firstAttribute="leading" secondItem="uhF-vK-AVc" secondAttribute="leading" constant="20" id="VDa-us-hOs"/>
                                     </constraints>
