@@ -55,19 +55,38 @@ class CacheController {
         return uniqueResources
     }
     
-    func saveAndConversion(resource: IndividualResource) {
-        
-        guard let services = resource.services,
-            let details = resource.details else { return }
+    func convertToSimple(resource: IndividualResource) -> SimpleResource {
+        let services = resource.services!
+        let details = resource.details!
         
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
-        savedResources.append(tempResource)
+        
+        return tempResource
+    }
+    
+    func saveFavorite(resource: IndividualResource) {
+        let temp = convertToSimple(resource: resource)
+        savedResources.append(temp)
         
         let savedArray = removeDuplicateElements(resources: savedResources)
         
         let encoded = try? JSONEncoder().encode(savedArray)
         userDefaults.set(encoded, forKey: "savedResources")
     }
+    
+//    func saveAndConversion(resource: IndividualResource) {
+//        
+//        guard let services = resource.services,
+//            let details = resource.details else { return }
+//        
+//        let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
+//        savedResources.append(tempResource)
+//        
+//        let savedArray = removeDuplicateElements(resources: savedResources)
+//        
+//        let encoded = try? JSONEncoder().encode(savedArray)
+//        userDefaults.set(encoded, forKey: "savedResources")
+//    }
     
     func loadFavorites() -> [SimpleResource] {
         

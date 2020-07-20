@@ -165,7 +165,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
     
     @IBAction func saveTapped(_ sender: Any) {
         guard let resourceDetail = serviceDetail else { return }
-        cacheController?.saveAndConversion(resource: resourceDetail)
+        cacheController?.saveFavorite(resource: resourceDetail)
     }
     
     // MARK: - Change to Spanish Translation Action

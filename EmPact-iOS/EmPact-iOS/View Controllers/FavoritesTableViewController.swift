@@ -57,7 +57,7 @@ class FavoritesTableViewController: UITableViewController {
         if editingStyle == .delete {
             
             let favorite = favoritesArray[indexPath.row]
-            cacheController?.deleteFavorite(index: fa)
+//            cacheController?.deleteFavorite(index: fa)
             favoritesArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             cacheController?.userDefaults.set(favoritesArray, forKey: "savedResources")
