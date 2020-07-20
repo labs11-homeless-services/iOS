@@ -10,43 +10,35 @@ import UIKit
 
 class FavoritesTableViewController: UITableViewController {
 
-    var favoritesArray: [SimpleResource] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    
     var favoritesWithoutDuplicates: [SimpleResource] = []
     var savedItem: IndividualResource?
     var cacheController: CacheController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let cacheController = cacheController else { return }
-        favoritesArray = cacheController.loadFavorites()
-        tableView.reloadData()
+ 
         self.tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Count: \(favoritesArray.count)")
-        return favoritesArray.count
+        return cacheController?.savedResources.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesTableViewCell.reuseIdentifier, for: indexPath) as? FavoritesTableViewCell else { return UITableViewCell() }
 
-        let favorite = favoritesArray[indexPath.row]
+        let favorite = cacheController?.savedResources[indexPath.row]
         
         let pointSize  = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.title2).pointSize
         cell.favoriteName.font = UIFont.boldSystemFont(ofSize: pointSize)
         
-        cell.favoriteName.text = favorite.name
-        cell.favoriteAddressLabel.text = favorite.address
-        cell.favoritePhoneLabel.text = favorite.phone
-        cell.favoriteHoursLabel.text = favorite.hours
+        cell.favoriteName.text = favorite?.name
+        cell.favoriteAddressLabel.text = favorite?.address
+        cell.favoritePhoneLabel.text = favorite?.phone
+        cell.favoriteHoursLabel.text = favorite?.hours
         
         return cell
     }
@@ -56,8 +48,7 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            favoritesArray.remove(at: indexPath.row)
-            cacheController?.deleteFavorite(resources: favoritesArray, index: indexPath.row)
+            cacheController?.deleteFavorite(index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }

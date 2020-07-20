@@ -74,9 +74,9 @@ class CacheController {
         return loadedResources ?? []
     }
     
-    func deleteFavorite(resources: [SimpleResource], index: Int) {
+    func deleteFavorite(index: Int) {
         savedResources.remove(at: index)
-        let encoded = try? JSONEncoder().encode(resources)
+        let encoded = try? JSONEncoder().encode(savedResources)
         userDefaults.set(encoded, forKey: "savedResources")
     }
     
