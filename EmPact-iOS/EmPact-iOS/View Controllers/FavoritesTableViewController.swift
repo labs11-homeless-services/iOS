@@ -40,6 +40,9 @@ class FavoritesTableViewController: UITableViewController {
 
         let favorite = favoritesArray[indexPath.row]
         
+        let pointSize  = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.title2).pointSize
+        cell.favoriteName.font = UIFont.boldSystemFont(ofSize: pointSize)
+        
         cell.favoriteName.text = favorite.name
         cell.favoriteAddressLabel.text = favorite.address
         cell.favoritePhoneLabel.text = favorite.phone
@@ -53,9 +56,11 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-//            favoritesArray.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            cacheController?.userDefaults.set(favoritesArray, forKey: "savedResources")
+            let favorite = favoritesArray[indexPath.row]
+            cacheController?.deleteFavorite(index: fa)
+            favoritesArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            cacheController?.userDefaults.set(favoritesArray, forKey: "savedResources")
         }
     }
     

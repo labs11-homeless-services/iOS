@@ -45,15 +45,14 @@ class CacheController {
         return switchedResource!
     }
     
-    private func removeDuplicates(arr: [SimpleResource], tempResource: SimpleResource) -> [SimpleResource] {
-        var temp = arr
-        resourceSet.insert(tempResource.name)
-        for _ in temp {
-            if !resourceSet.contains(tempResource.name) {
-                temp.append(tempResource)
+    private func removeDuplicateElements(resources: [SimpleResource]) -> [SimpleResource] {
+        var uniqueResources: [SimpleResource] = []
+        for resource in savedResources {
+            if !uniqueResources.contains(where: {$0.name == resource.name }) {
+                uniqueResources.append(resource)
             }
         }
-        return temp
+        return uniqueResources
     }
     
     func saveAndConversion(resource: IndividualResource) {
@@ -62,8 +61,9 @@ class CacheController {
             let details = resource.details else { return }
         
         let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
+        savedResources.append(tempResource)
         
-        let savedArray = removeDuplicates(arr: savedResources, tempResource: tempResource)
+        let savedArray = removeDuplicateElements(resources: savedResources)
         
         let encoded = try? JSONEncoder().encode(savedArray)
         userDefaults.set(encoded, forKey: "savedResources")
@@ -78,8 +78,8 @@ class CacheController {
         return loadedResources ?? []
     }
     
-    func deleteFavorite(index: Int) {
-        savedResources.remove(at: index)
+    func deleteFavorite(resource: SimpleResource) {
+    
     }
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {

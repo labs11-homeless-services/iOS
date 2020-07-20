@@ -394,6 +394,8 @@ class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLoc
         mapUnavailableLabel.isHidden = true
         mapUnavailableView.backgroundColor = .customDarkPurple
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         if savedResource?.latitude == nil || savedResource?.latitude == "" || savedResource?.longitude == nil || savedResource?.longitude == "" {
