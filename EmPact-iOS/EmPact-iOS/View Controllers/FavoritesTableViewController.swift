@@ -24,7 +24,6 @@ class FavoritesTableViewController: UITableViewController {
         
         guard let cacheController = cacheController else { return }
         favoritesArray = cacheController.loadFavorites()
-        print("Faves Array \(favoritesArray)")
         tableView.reloadData()
         self.tableView.separatorStyle = .none
     }
@@ -32,6 +31,7 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Count: \(favoritesArray.count)")
         return favoritesArray.count
     }
 
@@ -56,11 +56,10 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let favorite = favoritesArray[indexPath.row]
-//            cacheController?.deleteFavorite(index: fa)
             favoritesArray.remove(at: indexPath.row)
+            cacheController?.deleteFavorite(resources: favoritesArray, index: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            cacheController?.userDefaults.set(favoritesArray, forKey: "savedResources")
+            tableView.reloadData()
         }
     }
     

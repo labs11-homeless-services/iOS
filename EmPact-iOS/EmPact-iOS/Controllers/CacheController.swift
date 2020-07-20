@@ -35,16 +35,7 @@ class CacheController {
     init() {
         savedResources = loadFavorites()
     }
-    
-    func simpleToIndividual(resource: SimpleResource) -> IndividualResource{
-        var switchedResource: IndividualResource?
-        if let encoded = try? JSONEncoder().encode(resource) {
-            switchedResource = try? IndividualResource(from: encoded as! Decoder)
-        }
         
-        return switchedResource!
-    }
-    
     private func removeDuplicateElements(resources: [SimpleResource]) -> [SimpleResource] {
         var uniqueResources: [SimpleResource] = []
         for resource in savedResources {
@@ -55,7 +46,7 @@ class CacheController {
         return uniqueResources
     }
     
-    func convertToSimple(resource: IndividualResource) -> SimpleResource {
+    private func convertToSimple(resource: IndividualResource) -> SimpleResource {
         let services = resource.services!
         let details = resource.details!
         
@@ -74,20 +65,6 @@ class CacheController {
         userDefaults.set(encoded, forKey: "savedResources")
     }
     
-//    func saveAndConversion(resource: IndividualResource) {
-//        
-//        guard let services = resource.services,
-//            let details = resource.details else { return }
-//        
-//        let tempResource = SimpleResource(address: resource.address, city: resource.city, details: String(describing: details), additionalInformation: resource.additionalInformation, hours: resource.hours, keywords: resource.keywords, latitude: resource.latitude, longitude: resource.longitude, name: resource.name, phone: resource.phone as? String ?? "", postalCode: resource.postalCode, state: resource.state, services: String(describing: services))
-//        savedResources.append(tempResource)
-//        
-//        let savedArray = removeDuplicateElements(resources: savedResources)
-//        
-//        let encoded = try? JSONEncoder().encode(savedArray)
-//        userDefaults.set(encoded, forKey: "savedResources")
-//    }
-    
     func loadFavorites() -> [SimpleResource] {
         
         let resourceData = userDefaults.data(forKey: "savedResources")
@@ -97,8 +74,10 @@ class CacheController {
         return loadedResources ?? []
     }
     
-    func deleteFavorite(resource: SimpleResource) {
-    
+    func deleteFavorite(resources: [SimpleResource], index: Int) {
+        savedResources.remove(at: index)
+        let encoded = try? JSONEncoder().encode(resources)
+        userDefaults.set(encoded, forKey: "savedResources")
     }
     
     static func fetchAllForSearch(completion: @escaping CompletionHandler = { _ in }) {
