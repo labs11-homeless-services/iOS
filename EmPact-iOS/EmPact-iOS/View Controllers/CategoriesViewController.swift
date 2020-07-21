@@ -375,10 +375,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         navigationItem.largeTitleDisplayMode = .never
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.barTintColor = nil
+        UIBarButtonItem.appearance().tintColor = UIColor(red:0.31, green:0.36, blue:0.46, alpha:1.0)
         
         // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         helpView.backgroundColor = UIColor.customDarkPurple
         helpView.layer.cornerRadius = 5

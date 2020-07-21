@@ -311,6 +311,7 @@ class ServiceResultsViewController: UIViewController, UITableViewDelegate, UITab
                
         // Set navigation bar to the default color
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        UIBarButtonItem.appearance().tintColor = UIColor(red:0.31, green:0.36, blue:0.46, alpha:1.0)
         
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         subcategoriesTitleView.setViewShadow(color: UIColor.black, opacity: 0.3, offset: CGSize(width: 1, height: 3), radius: 4, viewCornerRadius: 0)
