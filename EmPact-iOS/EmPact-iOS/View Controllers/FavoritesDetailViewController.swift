@@ -300,7 +300,7 @@ class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLoc
     }
     
     // MARK: - Appearance Theme Method
-    func setupTheme() {
+    private func setupTheme() {
         
         // Button
         startMapButton.setTitle("  Start Map", for: .normal)
@@ -395,8 +395,8 @@ class FavoritesDetailViewController: UIViewController, GMSMapViewDelegate, CLLoc
         mapUnavailableView.backgroundColor = .customDarkPurple
         
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         if savedResource?.latitude == nil || savedResource?.latitude == "" || savedResource?.longitude == nil || savedResource?.longitude == "" {
             mapUnavailableView.isHidden = false

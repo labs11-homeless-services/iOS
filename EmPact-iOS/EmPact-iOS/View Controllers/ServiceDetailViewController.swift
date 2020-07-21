@@ -465,6 +465,7 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate, CLLocat
             
         }
     }
+    
     private func verifyCategoryData() {
         if networkController?.tempCategorySelection == "" || networkController?.tempCategorySelection == nil {
             self.title = serviceDetail?.name

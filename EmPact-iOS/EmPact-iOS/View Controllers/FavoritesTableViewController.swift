@@ -18,6 +18,8 @@ class FavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        Appearance.setupTheme()
+        self.setupTheme()
         self.tableView.separatorStyle = .none
     }
 
@@ -67,6 +69,12 @@ class FavoritesTableViewController: UITableViewController {
                 savedVC.savedResource = savedDetail
             
         }
+    }
+    
+    private func setupTheme() {
+        UIBarButtonItem.appearance().tintColor = UIColor(red:0.31, green:0.36, blue:0.46, alpha:1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     
 }
